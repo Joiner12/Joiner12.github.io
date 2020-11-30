@@ -20,17 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Abstract​    Interview Learn  Note.      Good Luck.   Data Struct1.栈(stack)和列队(queue)​    栈和列队都是动态集合。在栈中实现的是一种“后进先出”的策略，LIFO(last in ,first out)  ，栈的常用实现方式：数组、指针两种。在列队中，实现的是一种“先进先出”的策略，FIFO(first in,f">
+  <meta name="description" content="Abstract​    Interview Learn  Note.      Good Luck.   Data Struct栈(stack)和列队(queue)​    栈和列队都是动态集合。在栈中实现的是一种“后进先出”的策略，LIFO(last in ,first out)  ，栈的常用实现方式：数组、指针两种。在列队中，实现的是一种“先进先出”的策略，FIFO(first in,fir">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Interview Learn Code">
 <meta property="og:url" content="http://example.com/2020/11/25/MFTS/index.html">
 <meta property="og:site_name" content="Personal Blogs">
-<meta property="og:description" content="Abstract​    Interview Learn  Note.      Good Luck.   Data Struct1.栈(stack)和列队(queue)​    栈和列队都是动态集合。在栈中实现的是一种“后进先出”的策略，LIFO(last in ,first out)  ，栈的常用实现方式：数组、指针两种。在列队中，实现的是一种“先进先出”的策略，FIFO(first in,f">
+<meta property="og:description" content="Abstract​    Interview Learn  Note.      Good Luck.   Data Struct栈(stack)和列队(queue)​    栈和列队都是动态集合。在栈中实现的是一种“后进先出”的策略，LIFO(last in ,first out)  ，栈的常用实现方式：数组、指针两种。在列队中，实现的是一种“先进先出”的策略，FIFO(first in,fir">
 <meta property="og:locale">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=L=(a_%7B1%7D,a_%7B2%7D,...,a_%7Bn%7D)%5C%5C">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=a_%7Bi%7D">
+<meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128101930425.png">
+<meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128102407037.png">
+<meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128102721430.png">
+<meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128102749562.png">
 <meta property="article:published_time" content="2020-11-25T09:10:57.000Z">
-<meta property="article:modified_time" content="2020-11-28T01:22:50.115Z">
+<meta property="article:modified_time" content="2020-11-29T16:02:05.878Z">
 <meta property="article:author" content="Risky">
 <meta property="article:tag" content="C&#x2F;C++ DataStructure Algorithm">
 <meta name="twitter:card" content="summary">
@@ -195,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-28 09:22:50" itemprop="dateModified" datetime="2020-11-28T09:22:50+08:00">2020-11-28</time>
+                <time title="修改时间：2020-11-30 00:02:05" itemprop="dateModified" datetime="2020-11-30T00:02:05+08:00">2020-11-30</time>
               </span>
 
           
@@ -214,16 +218,45 @@
     Good Luck.
 </p>
 
-<h2 id="Data-Struct"><a href="#Data-Struct" class="headerlink" title="Data Struct"></a>Data Struct</h2><h3 id="1-栈-stack-和列队-queue"><a href="#1-栈-stack-和列队-queue" class="headerlink" title="1.栈(stack)和列队(queue)"></a>1.栈(stack)和列队(queue)</h3><p>​    栈和列队都是动态集合。在栈中实现的是一种“后进先出”的策略，<strong>LIFO(last in ,first out)</strong>  ，栈的常用实现方式：数组、指针两种。在列队中，实现的是一种“先进先出”的策略，<strong>FIFO(first in,first out)</strong> ，它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，列队的常用实现方式：数组、指针。栈和列队的基本操作为入栈（队）Push和出栈(队)Pop。</p>
+<h2 id="Data-Struct"><a href="#Data-Struct" class="headerlink" title="Data Struct"></a>Data Struct</h2><h3 id="栈-stack-和列队-queue"><a href="#栈-stack-和列队-queue" class="headerlink" title="栈(stack)和列队(queue)"></a>栈(stack)和列队(queue)</h3><p>​    栈和列队都是动态集合。在栈中实现的是一种“后进先出”的策略，<strong>LIFO(last in ,first out)</strong>  ，栈的常用实现方式：数组、指针两种。在列队中，实现的是一种“先进先出”的策略，<strong>FIFO(first in,first out)</strong> ，它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，列队的常用实现方式：数组、指针。栈和列队的基本操作为入栈（队）Push和出栈(队)Pop。</p>
 <p>列队包括：顺序列队（sequence queue）、循环列队（circle queue）。</p>
 <p>栈实现方式（<code>数组</code>）：</p>
 <p><a href="stack.cpp">stack.c</a> </p>
 <p>列队实现方式(<code>数组</code>)：</p>
 <p><a href="queue.cpp">queue.c</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/45798936">数据结构浅析(7)-线性结构：队列和双端队列 - 知乎 (zhihu.com)</a></p>
-<h3 id="2-顺序表"><a href="#2-顺序表" class="headerlink" title="2.顺序表"></a>2.顺序表</h3><p>​        在所有的数据结构中，最简单的是线性表(linear list)。通常，定义线性表为n(n&gt;=0)个数据元素的一个<strong>有限</strong>序列。记为：</p>
+<h3 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h3><p>​        在所有的数据结构中，最简单的是线性表(linear list)。通常，定义线性表为n(n&gt;=0)个数据元素的一个<strong>有限</strong>序列。记为：</p>
 <p><img src="https://www.zhihu.com/equation?tex=L=(a_%7B1%7D,a_%7B2%7D,...,a_%7Bn%7D)%5C%5C" alt="[公式]"><br>其中，L是<strong>表名</strong>， <img src="https://www.zhihu.com/equation?tex=a_%7Bi%7D" alt="[公式]"> 是表中的数据元素，是不可再分割的原子数据，也称为<strong>结点或表项</strong>。n是表中的表项个数，也称为<strong>表的长度</strong>。若n=0叫做<strong>空表</strong>，此时，表中一个表项也没有。线性表的第一个表项称为<strong>表头</strong>(head),最后一个称为<strong>表尾</strong>(tail)。</p>
-<p>Reference</p>
+<p>顺序表的基本操作：</p>
+<ul>
+<li>删除</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/90063215">数据结构之顺序表的常见操作（一） - 知乎 (zhihu.com)</a></p>
+<h3 id="链表（Linked-list）"><a href="#链表（Linked-list）" class="headerlink" title="链表（Linked list）"></a>链表（Linked list）</h3><p>​    链表是一种数据元素顺序排列的数据结构。数组的线性顺序由数组的下标决定，链表的数据对象由对象里的指针决定。</p>
+<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128101930425.png" alt="image-20201128101930425"></p>
+<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102407037.png" alt="image-20201128102407037"></p>
+<p><strong>单链表</strong></p>
+<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102721430.png" alt="image-20201128102721430"></p>
+<p><strong>环形列表</strong></p>
+<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102749562.png" alt="image-20201128102749562"></p>
+<h4 id="广义链表"><a href="#广义链表" class="headerlink" title="广义链表"></a>广义链表</h4><h3 id="递归、分治、迭代"><a href="#递归、分治、迭代" class="headerlink" title="递归、分治、迭代"></a>递归、分治、迭代</h3><p>​    递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。</p>
+<p>​    分治（英语：Conquer），字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。</p>
+<h4 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h4><p>分治算法的核心思想就是“分而治之”。</p>
+<p>大概的流程可以分为三步：分解 -&gt; 解决 -&gt; 合并。</p>
+<ol>
+<li>分解原问题为结构相同的子问题。</li>
+<li>分解到某个容易求解的边界之后，进行递归求解。</li>
+<li>将子问题的解合并成原问题的解。</li>
+</ol>
+<p>分治法能解决的问题一般有如下特征：</p>
+<ul>
+<li>该问题的规模缩小到一定的程度就可以容易地解决。</li>
+<li>该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质，利用该问题分解出的子问题的解可以合并为该问题的解。</li>
+<li>该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子问题。</li>
+<li></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/basic/divide-and-conquer/">https://oi-wiki.org/basic/divide-and-conquer/</a></p>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>Reference</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Zengmeng1998/article/details/107117528">Matlab建模—导弹追踪问题_徐思孟的博客-CSDN博客_matlab导弹追踪问题</a></li>
 </ol>
@@ -243,6 +276,13 @@
 
 
         
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/29/%E6%95%B0%E5%AD%97%E6%BB%A4%E6%B3%A2-IIR-FIR-1/" rel="next" title="数字滤波-IIR-FIR">
+      数字滤波-IIR-FIR <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -300,7 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Struct"><span class="nav-number">2.</span> <span class="nav-text">Data Struct</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%88-stack-%E5%92%8C%E5%88%97%E9%98%9F-queue"><span class="nav-number">2.1.</span> <span class="nav-text">1.栈(stack)和列队(queue)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text">2.顺序表</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Struct"><span class="nav-number">2.</span> <span class="nav-text">Data Struct</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88-stack-%E5%92%8C%E5%88%97%E9%98%9F-queue"><span class="nav-number">2.1.</span> <span class="nav-text">栈(stack)和列队(queue)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%EF%BC%88Linked-list%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">链表（Linked list）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E9%93%BE%E8%A1%A8"><span class="nav-number">2.3.1.</span> <span class="nav-text">广义链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E3%80%81%E5%88%86%E6%B2%BB%E3%80%81%E8%BF%AD%E4%BB%A3"><span class="nav-number">2.4.</span> <span class="nav-text">递归、分治、迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.1.</span> <span class="nav-text">分治算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.5.</span> <span class="nav-text">二叉树</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -314,12 +354,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
