@@ -27,9 +27,12 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=L=(a_%7B1%7D,a_%7B2%7D,...,a_%7Bn%7D)%5C%5C">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=a_%7Bi%7D">
+<meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201206111711173.png">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128101930425.png">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128102407037.png">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128102721430.png">
+<meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201206152631962.png">
+<meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201206152611904.png">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128102749562.png">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201130093149769.png">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201130093310637.png">
@@ -44,7 +47,7 @@
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_1.svg_.png">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_2.svg_.png">
 <meta property="article:published_time" content="2020-11-25T09:10:57.000Z">
-<meta property="article:modified_time" content="2020-12-05T08:24:14.331Z">
+<meta property="article:modified_time" content="2020-12-06T07:49:41.164Z">
 <meta property="article:author" content="Risky">
 <meta property="article:tag" content="C&#x2F;C++ DataStructure Algorithm">
 <meta name="twitter:card" content="summary">
@@ -209,7 +212,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-05 16:24:14" itemprop="dateModified" datetime="2020-12-05T16:24:14+08:00">2020-12-05</time>
+                <time title="修改时间：2020-12-06 15:49:41" itemprop="dateModified" datetime="2020-12-06T15:49:41+08:00">2020-12-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,11 +257,23 @@
 <li>删除</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/90063215">数据结构之顺序表的常见操作（一） - 知乎 (zhihu.com)</a></p>
-<h3 id="链表（Linked-list）"><a href="#链表（Linked-list）" class="headerlink" title="链表（Linked list）"></a>链表（Linked list）</h3><p>​    链表是一种数据元素顺序排列的数据结构。数组的线性顺序由数组的下标决定，链表的数据对象由对象里的指针决定。</p>
+<h3 id="链表（Linked-list）"><a href="#链表（Linked-list）" class="headerlink" title="链表（Linked list）"></a>链表（Linked list）</h3><p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206111711173.png" alt="image-20201206111711173"></p>
+<p>​    链表是一种数据元素顺序排列的数据结构。数组的线性顺序由数组的下标决定，链表的数据对象由对象里的指针决定。</p>
 <p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128101930425.png" alt="image-20201128101930425"></p>
 <p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102407037.png" alt="image-20201128102407037"></p>
 <p><strong>单链表</strong></p>
 <p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102721430.png" alt="image-20201128102721430"></p>
+<h4 id="表头-Header-或哑结点-dummy-node"><a href="#表头-Header-或哑结点-dummy-node" class="headerlink" title="表头(Header)或哑结点(dummy node)"></a>表头(Header)或哑结点(dummy node)</h4><p>表头（哑结点）是一种个人编程习惯，在对链表进行操作的习惯，处于以下几点原因需要表头：</p>
+<ol>
+<li>并不存在从出发在表头的之前的显式插入方法；</li>
+<li>从表的前面进行删除会改变表的起始端，造成表的丢失；</li>
+<li>表的删除需要保留上一结点信息；</li>
+</ol>
+<h5 id="链表、头指针、头结点："><a href="#链表、头指针、头结点：" class="headerlink" title="链表、头指针、头结点："></a>链表、头指针、头结点：</h5><p>头指针：指向链表中第一个结点（即第一个数据元素的存储映像）的存储位置；单链表可由头指针来确定；</p>
+<p>头结点：有时在单链表的第一个结点之前附设一个结点。 头结点的数据域可以不存储任何信息，也可以存储如线性表长度等类的附加信息，头结点的指针域存储指向第一个结点的指针（即第一个元素结点的存储位置）。</p>
+<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206152631962.png" alt="image-20201206152631962"></p>
+<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206152611904.png" alt="image-20201206152611904"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhenyusoso/article/details/6092843">https://blog.csdn.net/zhenyusoso/article/details/6092843</a></p>
 <p><strong>环形列表</strong></p>
 <p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102749562.png" alt="image-20201128102749562"></p>
 <h4 id="广义链表"><a href="#广义链表" class="headerlink" title="广义链表"></a>广义链表</h4><h3 id="递归、分治、迭代"><a href="#递归、分治、迭代" class="headerlink" title="递归、分治、迭代"></a>递归、分治、迭代</h3><p>​    递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。</p>
@@ -278,6 +293,13 @@
 <li></li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://oi-wiki.org/basic/divide-and-conquer/">https://oi-wiki.org/basic/divide-and-conquer/</a></p>
+<h3 id="递归思想（Recursion）"><a href="#递归思想（Recursion）" class="headerlink" title="递归思想（Recursion）"></a>递归思想（Recursion）</h3><p>三大要素：</p>
+<ol>
+<li>递归终止条件；</li>
+<li>等价关系；</li>
+<li>定义函数功能；</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59389994">https://zhuanlan.zhihu.com/p/59389994</a></p>
 <h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>树的定义方式：递归。</p>
 <p>结点路径、高、深度定义：</p>
 <p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130093149769.png" alt="image-20201130093149769"></p>
@@ -471,7 +493,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88-stack-%E5%92%8C%E5%88%97%E9%98%9F-queue"><span class="nav-number">1.</span> <span class="nav-text">栈(stack)和列队(queue)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%EF%BC%88Linked-list%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">链表（Linked list）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E9%93%BE%E8%A1%A8"><span class="nav-number">3.1.</span> <span class="nav-text">广义链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E3%80%81%E5%88%86%E6%B2%BB%E3%80%81%E8%BF%AD%E4%BB%A3"><span class="nav-number">4.</span> <span class="nav-text">递归、分治、迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">分治算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">5.</span> <span class="nav-text">二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">6.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">7.1.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">7.2.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%A2%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">7.3.</span> <span class="nav-text">谢尔排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">7.4.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">7.5.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">7.6.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">7.7.</span> <span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">7.8.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">7.9.</span> <span class="nav-text">基数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-vs-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F-vs-%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">7.9.1.</span> <span class="nav-text">基数排序 vs 计数排序 vs 桶排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE"><span class="nav-number">8.1.</span> <span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">8.2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE"><span class="nav-number">8.3.</span> <span class="nav-text">插值查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%9F%A5%E6%89%BE"><span class="nav-number">8.4.</span> <span class="nav-text">斐波那契查找</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#todo"><span class="nav-number">8.4.1.</span> <span class="nav-text">todo:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%A0%91%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">8.5.</span> <span class="nav-text">最简单的树表查找算法——二叉树查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#todo-1"><span class="nav-number">8.5.1.</span> <span class="nav-text">todo:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">9.</span> <span class="nav-text">图搜索算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">10.</span> <span class="nav-text">设计模式</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88-stack-%E5%92%8C%E5%88%97%E9%98%9F-queue"><span class="nav-number">1.</span> <span class="nav-text">栈(stack)和列队(queue)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%EF%BC%88Linked-list%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">链表（Linked list）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E5%A4%B4-Header-%E6%88%96%E5%93%91%E7%BB%93%E7%82%B9-dummy-node"><span class="nav-number">3.1.</span> <span class="nav-text">表头(Header)或哑结点(dummy node)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E3%80%81%E5%A4%B4%E6%8C%87%E9%92%88%E3%80%81%E5%A4%B4%E7%BB%93%E7%82%B9%EF%BC%9A"><span class="nav-number">3.1.1.</span> <span class="nav-text">链表、头指针、头结点：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E9%93%BE%E8%A1%A8"><span class="nav-number">3.2.</span> <span class="nav-text">广义链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E3%80%81%E5%88%86%E6%B2%BB%E3%80%81%E8%BF%AD%E4%BB%A3"><span class="nav-number">4.</span> <span class="nav-text">递归、分治、迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">分治算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88Recursion%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">递归思想（Recursion）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">6.</span> <span class="nav-text">二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">7.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">8.1.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">8.2.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%A2%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">8.3.</span> <span class="nav-text">谢尔排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">8.4.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">8.5.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">8.6.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">8.7.</span> <span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">8.8.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">8.9.</span> <span class="nav-text">基数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-vs-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F-vs-%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">8.9.1.</span> <span class="nav-text">基数排序 vs 计数排序 vs 桶排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">9.</span> <span class="nav-text">查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE"><span class="nav-number">9.1.</span> <span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">9.2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE"><span class="nav-number">9.3.</span> <span class="nav-text">插值查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%9F%A5%E6%89%BE"><span class="nav-number">9.4.</span> <span class="nav-text">斐波那契查找</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#todo"><span class="nav-number">9.4.1.</span> <span class="nav-text">todo:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%A0%91%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">9.5.</span> <span class="nav-text">最简单的树表查找算法——二叉树查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#todo-1"><span class="nav-number">9.5.1.</span> <span class="nav-text">todo:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">10.</span> <span class="nav-text">图搜索算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">11.</span> <span class="nav-text">设计模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -487,7 +509,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -496,7 +518,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
