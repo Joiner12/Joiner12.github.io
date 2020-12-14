@@ -25,7 +25,7 @@
 <meta property="og:url" content="http://example.com/2020/11/25/MFTS/index.html">
 <meta property="og:site_name" content="Personal Blogs">
 <meta property="og:locale">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=L=(a_%7B1%7D,a_%7B2%7D,...,a_%7Bn%7D)%5C%5C">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=L%3D%28a_%7B1%7D%2Ca_%7B2%7D%2C...%2Ca_%7Bn%7D%29%5C%5C">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=a_%7Bi%7D">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201206111711173.png">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201128101930425.png">
@@ -42,16 +42,15 @@
 <meta property="og:image" content="https://pic3.zhimg.com/v2-91b76e8e4dab9b0cad9a017d7dd431e2_b.jpg">
 <meta property="og:image" content="d:%5CSoftwares%5CTyporaPic%5Cimage-20201130155404632.png">
 <meta property="og:image" content="https://pic3.zhimg.com/v2-cdda3f11c6efbc01577f5c29a9066772_b.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-33a947c71ad62b254cab62e5364d2813_b.webp">
 <meta property="og:image" content="https://pic1.zhimg.com/v2-c411339b79f92499dcb7b5f304c826f4_b.jpg">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_1.svg_.png">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_2.svg_.png">
 <meta property="article:published_time" content="2020-11-25T09:10:57.000Z">
-<meta property="article:modified_time" content="2020-12-08T09:35:22.298Z">
+<meta property="article:modified_time" content="2020-12-14T03:35:32.226Z">
 <meta property="article:author" content="Risky">
 <meta property="article:tag" content="C&#x2F;C++ DataStructure Algorithm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.zhihu.com/equation?tex=L=(a_%7B1%7D,a_%7B2%7D,...,a_%7Bn%7D)%5C%5C">
+<meta name="twitter:image" content="https://www.zhihu.com/equation?tex=L%3D%28a_%7B1%7D%2Ca_%7B2%7D%2C...%2Ca_%7Bn%7D%29%5C%5C">
 
 <link rel="canonical" href="http://example.com/2020/11/25/MFTS/">
 
@@ -97,7 +96,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -212,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-08 17:35:22" itemprop="dateModified" datetime="2020-12-08T17:35:22+08:00">2020-12-08</time>
+                <time title="修改时间：2020-12-14 11:35:32" itemprop="dateModified" datetime="2020-12-14T11:35:32+08:00">2020-12-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,52 +238,72 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr>
+        <hr />
 <a id="more"></a>
-
 <p style="font-family:times;color:red;font-size:20px;text-align:center;">
-    Good Luck,Be confident.
+Good Luck,Be confident.
 </p>
-## Data Struct
-
-<h3 id="栈-stack-和列队-queue"><a href="#栈-stack-和列队-queue" class="headerlink" title="栈(stack)和列队(queue)"></a>栈(stack)和列队(queue)</h3><p>​    栈和列队都是动态集合。在栈中实现的是一种“后进先出”的策略，<strong>LIFO(last in ,first out)</strong>  ，栈的常用实现方式：数组、指针两种。在列队中，实现的是一种“先进先出”的策略，<strong>FIFO(first in,first out)</strong> ，它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，列队的常用实现方式：数组、指针。栈和列队的基本操作为入栈（队）Push和出栈(队)Pop。</p>
+<h2 id="data-struct">Data Struct</h2>
+<h3 id="栈stack和列队queue">栈(stack)和列队(queue)</h3>
+<p>​ 栈和列队都是动态集合。在栈中实现的是一种“后进先出”的策略，<strong>LIFO(last in ,first out)</strong> ，栈的常用实现方式：数组、指针两种。在列队中，实现的是一种“先进先出”的策略，<strong>FIFO(first in,first out)</strong> ，它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，列队的常用实现方式：数组、指针。栈和列队的基本操作为入栈（队）Push和出栈(队)Pop。</p>
 <p>列队包括：顺序列队（sequence queue）、循环列队（circle queue）。</p>
 <p>栈实现方式（<code>数组</code>）：</p>
-<p><a href="stack.cpp">stack.c</a> </p>
+<p><a href="stack.cpp">stack.c</a></p>
 <p>列队实现方式(<code>数组</code>)：</p>
 <p><a href="queue.cpp">queue.c</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/45798936">数据结构浅析(7)-线性结构：队列和双端队列 - 知乎 (zhihu.com)</a></p>
-<h3 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h3><p>​        在所有的数据结构中，最简单的是线性表(linear list)。通常，定义线性表为n(n&gt;=0)个数据元素的一个<strong>有限</strong>序列。记为：</p>
-<p><img src="https://www.zhihu.com/equation?tex=L=(a_%7B1%7D,a_%7B2%7D,...,a_%7Bn%7D)%5C%5C" alt="[公式]"><br>其中，L是<strong>表名</strong>， <img src="https://www.zhihu.com/equation?tex=a_%7Bi%7D" alt="[公式]"> 是表中的数据元素，是不可再分割的原子数据，也称为<strong>结点或表项</strong>。n是表中的表项个数，也称为<strong>表的长度</strong>。若n=0叫做<strong>空表</strong>，此时，表中一个表项也没有。线性表的第一个表项称为<strong>表头</strong>(head),最后一个称为<strong>表尾</strong>(tail)。</p>
+<h3 id="顺序表">顺序表</h3>
+<p>​ 在所有的数据结构中，最简单的是线性表(linear list)。通常，定义线性表为n(n&gt;=0)个数据元素的一个<strong>有限</strong>序列。记为：</p>
+<p><img src="https://www.zhihu.com/equation?tex=L%3D%28a_%7B1%7D%2Ca_%7B2%7D%2C...%2Ca_%7Bn%7D%29%5C%5C" alt="[公式]" /> 其中，L是<strong>表名</strong>， <img src="https://www.zhihu.com/equation?tex=a_%7Bi%7D" alt="[公式]" /> 是表中的数据元素，是不可再分割的原子数据，也称为<strong>结点或表项</strong>。n是表中的表项个数，也称为<strong>表的长度</strong>。若n=0叫做<strong>空表</strong>，此时，表中一个表项也没有。线性表的第一个表项称为<strong>表头</strong>(head),最后一个称为<strong>表尾</strong>(tail)。</p>
 <p>顺序表的基本操作：</p>
 <ul>
 <li>删除</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/90063215">数据结构之顺序表的常见操作（一） - 知乎 (zhihu.com)</a></p>
-<h3 id="链表（Linked-list）"><a href="#链表（Linked-list）" class="headerlink" title="链表（Linked list）"></a>链表（Linked list）</h3><p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206111711173.png" alt="image-20201206111711173"></p>
-<p>​    链表是一种数据元素顺序排列的数据结构。数组的线性顺序由数组的下标决定，链表的数据对象由对象里的指针决定。</p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128101930425.png" alt="image-20201128101930425"></p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102407037.png" alt="image-20201128102407037"></p>
+<h3 id="链表linked-list">链表（Linked list）</h3>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206111711173.png" alt="image-20201206111711173" /><figcaption>image-20201206111711173</figcaption>
+</figure>
+<p>​ 链表是一种数据元素顺序排列的数据结构。数组的线性顺序由数组的下标决定，链表的数据对象由对象里的指针决定。</p>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128101930425.png" alt="image-20201128101930425" /><figcaption>image-20201128101930425</figcaption>
+</figure>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102407037.png" alt="image-20201128102407037" /><figcaption>image-20201128102407037</figcaption>
+</figure>
 <p><strong>单链表</strong></p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102721430.png" alt="image-20201128102721430"></p>
-<h4 id="表头-Header-或哑结点-dummy-node"><a href="#表头-Header-或哑结点-dummy-node" class="headerlink" title="表头(Header)或哑结点(dummy node)"></a>表头(Header)或哑结点(dummy node)</h4><p>表头（哑结点）是一种个人编程习惯，在对链表进行操作的习惯，处于以下几点原因需要表头：</p>
-<ol>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102721430.png" alt="image-20201128102721430" /><figcaption>image-20201128102721430</figcaption>
+</figure>
+<h4 id="表头header或哑结点dummy-node">表头(Header)或哑结点(dummy node)</h4>
+<p>表头（哑结点）是一种个人编程习惯，在对链表进行操作的习惯，处于以下几点原因需要表头：</p>
+<ol type="1">
 <li>并不存在从出发在表头的之前的显式插入方法；</li>
 <li>从表的前面进行删除会改变表的起始端，造成表的丢失；</li>
 <li>表的删除需要保留上一结点信息；</li>
 </ol>
-<h5 id="链表、头指针、头结点："><a href="#链表、头指针、头结点：" class="headerlink" title="链表、头指针、头结点："></a>链表、头指针、头结点：</h5><p>头指针：指向链表中第一个结点（即第一个数据元素的存储映像）的存储位置；单链表可由头指针来确定；</p>
+<h5 id="链表头指针头结点">链表、头指针、头结点：</h5>
+<p>头指针：指向链表中第一个结点（即第一个数据元素的存储映像）的存储位置；单链表可由头指针来确定；</p>
 <p>头结点：有时在单链表的第一个结点之前附设一个结点。 头结点的数据域可以不存储任何信息，也可以存储如线性表长度等类的附加信息，头结点的指针域存储指向第一个结点的指针（即第一个元素结点的存储位置）。</p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206152631962.png" alt="image-20201206152631962"></p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206152611904.png" alt="image-20201206152611904"></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhenyusoso/article/details/6092843">https://blog.csdn.net/zhenyusoso/article/details/6092843</a></p>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206152631962.png" alt="image-20201206152631962" /><figcaption>image-20201206152631962</figcaption>
+</figure>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201206152611904.png" alt="image-20201206152611904" /><figcaption>image-20201206152611904</figcaption>
+</figure>
+<p>https://blog.csdn.net/zhenyusoso/article/details/6092843</p>
 <p><strong>环形列表</strong></p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102749562.png" alt="image-20201128102749562"></p>
-<h4 id="广义链表"><a href="#广义链表" class="headerlink" title="广义链表"></a>广义链表</h4><h3 id="递归、分治、迭代"><a href="#递归、分治、迭代" class="headerlink" title="递归、分治、迭代"></a>递归、分治、迭代</h3><p>​    递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。</p>
-<p>​    分治（英语：Conquer），字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。</p>
-<h4 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h4><p>分治算法的核心思想就是“分而治之”。</p>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201128102749562.png" alt="image-20201128102749562" /><figcaption>image-20201128102749562</figcaption>
+</figure>
+<h4 id="广义链表">广义链表</h4>
+<h3 id="递归分治迭代">递归、分治、迭代</h3>
+<p>​ 递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。</p>
+<p>​ 分治（英语：Conquer），字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。</p>
+<h4 id="分治算法">分治算法</h4>
+<p>分治算法的核心思想就是“分而治之”。</p>
 <p>大概的流程可以分为三步：分解 -&gt; 解决 -&gt; 合并。</p>
-<ol>
+<ol type="1">
 <li>分解原问题为结构相同的子问题。</li>
 <li>分解到某个容易求解的边界之后，进行递归求解。</li>
 <li>将子问题的解合并成原问题的解。</li>
@@ -292,85 +315,116 @@
 <li>该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子问题。</li>
 <li></li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/basic/divide-and-conquer/">https://oi-wiki.org/basic/divide-and-conquer/</a></p>
-<h3 id="递归思想（Recursion）"><a href="#递归思想（Recursion）" class="headerlink" title="递归思想（Recursion）"></a>递归思想（Recursion）</h3><p>三大要素：</p>
-<ol>
+<p>https://oi-wiki.org/basic/divide-and-conquer/</p>
+<h3 id="递归思想recursion">递归思想（Recursion）</h3>
+<p>三大要素：</p>
+<ol type="1">
 <li>递归终止条件；</li>
 <li>等价关系；</li>
 <li>定义函数功能；</li>
 </ol>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59389994">https://zhuanlan.zhihu.com/p/59389994</a></p>
-<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>树的定义方式：递归。</p>
+<p>https://zhuanlan.zhihu.com/p/59389994</p>
+<h3 id="二叉树">二叉树</h3>
+<p>树的定义方式：递归。</p>
 <p>结点路径、高、深度定义：</p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130093149769.png" alt="image-20201130093149769"></p>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130093149769.png" alt="image-20201130093149769" /><figcaption>image-20201130093149769</figcaption>
+</figure>
 <p>树的遍历：</p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130093310637.png" alt="image-20201130093310637"></p>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130093310637.png" alt="image-20201130093310637" /><figcaption>image-20201130093310637</figcaption>
+</figure>
 <p>二叉树操作：</p>
-<p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130093844847.png" alt="image-20201130093844847">    </p>
-<p>二叉树构建方式 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bd8eb04f2135">https://www.jianshu.com/p/bd8eb04f2135</a></p>
-<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p>能在主存中完成，不需要外部磁盘或存储结构：内部排序，外部排序；</p>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130093844847.png" alt="image-20201130093844847" /><figcaption>image-20201130093844847</figcaption>
+</figure>
+<p>二叉树构建方式 https://www.jianshu.com/p/bd8eb04f2135</p>
+<h3 id="红黑树">红黑树</h3>
+<h3 id="排序算法">排序算法</h3>
+<p>能在主存中完成，不需要外部磁盘或存储结构：内部排序，外部排序；</p>
 <p>排序算法：冒泡、选择、堆、插入、希尔排序</p>
-<h4 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h4><p>  选择排序是一种简单直观的排序算法，无论什么数据进去都是 O(n²) 的时间复杂度。所以用到它的时候，数据规模越小越好。选择排序是一种简单直观的排序算法，它也是一种交换排序算法，和冒泡排序有一定的相似度，可以认为选择排序是冒泡排序的一种改进。</p>
-<ol>
+<h4 id="选择排序">选择排序</h4>
+<p>选择排序是一种简单直观的排序算法，无论什么数据进去都是 O(n²) 的时间复杂度。所以用到它的时候，数据规模越小越好。选择排序是一种简单直观的排序算法，它也是一种交换排序算法，和冒泡排序有一定的相似度，可以认为选择排序是冒泡排序的一种改进。</p>
+<ol type="1">
 <li>首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置。</li>
 <li>再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。</li>
 <li>重复第二步，直到所有元素均排序完毕。</li>
 </ol>
-<p><img src="https://pic1.zhimg.com/v2-1c7e20f306ddc02eb4e3a50fa7817ff4_b.jpg" alt="img"></p>
-<hr>
-<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130155428872.png" alt="image-20201130155428872"></p>
+<figure>
+<img src="https://pic1.zhimg.com/v2-1c7e20f306ddc02eb4e3a50fa7817ff4_b.jpg" alt="img" /><figcaption>img</figcaption>
+</figure>
+<hr />
+<h4 id="插入排序">插入排序</h4>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130155428872.png" alt="image-20201130155428872" /><figcaption>image-20201130155428872</figcaption>
+</figure>
 <p>插入排序是一种最简单直观的排序算法，它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序和冒泡排序一样，也有一种优化算法，叫做拆半插入。</p>
-<ol>
+<ol type="1">
 <li>将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。</li>
 <li>从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。（如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面。）</li>
 </ol>
-<p><img src="https://pic3.zhimg.com/v2-91b76e8e4dab9b0cad9a017d7dd431e2_b.jpg" alt="img"></p>
-<hr>
-<h4 id="谢尔排序"><a href="#谢尔排序" class="headerlink" title="谢尔排序"></a>谢尔排序</h4><p><img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130155404632.png" alt="image-20201130155404632"></p>
-<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><p>归并排序（Merge sort）是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</p>
+<figure>
+<img src="https://pic3.zhimg.com/v2-91b76e8e4dab9b0cad9a017d7dd431e2_b.jpg" alt="img" /><figcaption>img</figcaption>
+</figure>
+<hr />
+<h4 id="谢尔排序">谢尔排序</h4>
+<figure>
+<img src="D:%5CSoftwares%5CTyporaPic%5Cimage-20201130155404632.png" alt="image-20201130155404632" /><figcaption>image-20201130155404632</figcaption>
+</figure>
+<h4 id="归并排序">归并排序</h4>
+<p>归并排序（Merge sort）是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</p>
 <p>作为一种典型的分而治之思想的算法应用，归并排序的实现由两种方法：</p>
 <ul>
 <li>自上而下的递归（所有递归的方法都可以用迭代重写，所以就有了第 2 种方法）；</li>
 <li>自下而上的迭代；</li>
 </ul>
-<ol>
+<ol type="1">
 <li>申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列；</li>
 <li>设定两个指针，最初位置分别为两个已经排序序列的起始位置；</li>
 <li>比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置；</li>
 <li>重复步骤 3 直到某一指针达到序列尾；</li>
 <li>将另一序列剩下的所有元素直接复制到合并序列尾。</li>
 </ol>
-<p><img src="https://pic3.zhimg.com/v2-cdda3f11c6efbc01577f5c29a9066772_b.jpg" alt="img"></p>
-<hr>
-<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><p>​    冒泡排序（Bubble Sort）也是一种简单直观的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。</p>
-<ol>
+<figure>
+<img src="https://pic3.zhimg.com/v2-cdda3f11c6efbc01577f5c29a9066772_b.jpg" alt="img" /><figcaption>img</figcaption>
+</figure>
+<hr />
+<h4 id="冒泡排序">冒泡排序</h4>
+<p>​ 冒泡排序（Bubble Sort）也是一种简单直观的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。</p>
+<ol type="1">
 <li><p>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</p>
-<ol start="2">
+<ol start="2" type="1">
 <li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。</li>
 <li>针对所有的元素重复以上的步骤，除了最后一个。</li>
 <li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<p><img src="https://pic4.zhimg.com/v2-33a947c71ad62b254cab62e5364d2813_b.webp" alt="img"></p>
-<hr>
-<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>快速排序使用分治法（Divide and conquer）策略来把一个串行（list）分为两个子串行（sub-lists）。快速排序又是一种分而治之思想在排序算法上的典型应用。本质上来看，快速排序应该算是在冒泡排序基础上的递归分治法。</p>
-<ol>
-<li>从数列中挑出一个元素，称为 “基准”（pivot）;</li>
+<figure>
+<embed src="https://pic4.zhimg.com/v2-33a947c71ad62b254cab62e5364d2813_b.webp" /><figcaption>img</figcaption>
+</figure>
+<hr />
+<h4 id="快速排序">快速排序</h4>
+<p>快速排序使用分治法（Divide and conquer）策略来把一个串行（list）分为两个子串行（sub-lists）。快速排序又是一种分而治之思想在排序算法上的典型应用。本质上来看，快速排序应该算是在冒泡排序基础上的递归分治法。</p>
+<ol type="1">
+<li>从数列中挑出一个元素，称为 &quot;基准&quot;（pivot）;</li>
 <li>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</li>
 <li>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序；</li>
 </ol>
-<p><img src="https://pic1.zhimg.com/v2-c411339b79f92499dcb7b5f304c826f4_b.jpg" alt="img"></p>
+<figure>
+<img src="https://pic1.zhimg.com/v2-c411339b79f92499dcb7b5f304c826f4_b.jpg" alt="img" /><figcaption>img</figcaption>
+</figure>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/MOBIN/p/4681369.html">图解快速排序</a></p>
-<hr>
-<h4 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h4><ul>
+<hr />
+<h4 id="计数排序">计数排序</h4>
+<ul>
 <li>（1）找出待排序的数组中最大和最小的元素</li>
 <li>（2）统计数组中每个值为i的元素出现的次数，存入数组C的第i项</li>
 <li>（3）对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）</li>
 <li>（4）反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1</li>
 </ul>
-<h4 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h4><p>桶排序又叫箱排序，是计数排序的升级版，它的工作原理是将数组分到有限数量的桶子里，然后对每个桶子再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排序），最后将各个桶中的数据有序的合并起来。</p>
-<ol>
+<h4 id="桶排序">桶排序</h4>
+<p>桶排序又叫箱排序，是计数排序的升级版，它的工作原理是将数组分到有限数量的桶子里，然后对每个桶子再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排序），最后将各个桶中的数据有序的合并起来。</p>
+<ol type="1">
 <li>找出待排序数组中的最大值max、最小值min</li>
 <li>我们使用 动态数组ArrayList 作为桶，桶里放的元素也用 ArrayList 存储。桶的数量为(max-min)/arr.length+1</li>
 <li>遍历数组 arr，计算每个元素 arr[i] 放的桶</li>
@@ -378,20 +432,27 @@
 <li>遍历桶数组，把排序好的元素放进输出数组</li>
 </ol>
 <p>元素分布在桶中：</p>
-<p><img src="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_1.svg_.png" alt="img"></p>
+<figure>
+<img src="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_1.svg_.png" alt="img" /><figcaption>img</figcaption>
+</figure>
 <p>然后，元素在每个桶中排序：</p>
-<p><img src="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_2.svg_.png" alt="img"></p>
-<h4 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h4><p>基数排序是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
-<h5 id="基数排序-vs-计数排序-vs-桶排序"><a href="#基数排序-vs-计数排序-vs-桶排序" class="headerlink" title="基数排序 vs 计数排序 vs 桶排序"></a>基数排序 vs 计数排序 vs 桶排序</h5><p>基数排序有两种方法：</p>
+<figure>
+<img src="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_2.svg_.png" alt="img" /><figcaption>img</figcaption>
+</figure>
+<h4 id="基数排序">基数排序</h4>
+<p>基数排序是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
+<h5 id="基数排序-vs-计数排序-vs-桶排序">基数排序 vs 计数排序 vs 桶排序</h5>
+<p>基数排序有两种方法：</p>
 <p>这三种排序算法都利用了桶的概念，但对桶的使用方法上有明显差异：</p>
 <ul>
 <li>基数排序：根据键值的每位数字来分配桶；</li>
 <li>计数排序：每个桶只存储单一键值；</li>
 <li>桶排序：每个桶存储一定范围的数值；</li>
 </ul>
-<p>排序算法 <a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/ten-sorting-algorithm.html">https://www.runoob.com/w3cnote/ten-sorting-algorithm.html</a></p>
-<p>排序算法<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/42586566">https://zhuanlan.zhihu.com/p/42586566</a></p>
-<h3 id="查找算法"><a href="#查找算法" class="headerlink" title="查找算法"></a>查找算法</h3><p>1 顺序查找</p>
+<p>排序算法 https://www.runoob.com/w3cnote/ten-sorting-algorithm.html</p>
+<p>排序算法https://zhuanlan.zhihu.com/p/42586566</p>
+<h3 id="查找算法">查找算法</h3>
+<p>1 顺序查找</p>
 <p>2 二分查找</p>
 <p>3 插值查找</p>
 <p>4 斐波那契查找</p>
@@ -404,34 +465,55 @@
 <p>注：静态或者动态都是针对查找表而言的。动态表指查找表中有删除和插入操作的表。</p>
 <p>2）无序查找和有序查找。</p>
 <p>无序查找：被查找数列有序无序均可； 有序查找：被查找数列必须为有序数列。</p>
-<p><strong>平均查找长度（Average Search Length，ASL）：</strong>需和指定key进行比较的关键字的个数的期望值，称为查找算法在查找成功时的平均查找长度。<br>$$<br>\begin{align}<br>&amp;对于含有n个数据元素的查找表，查找成功的平均查找长度为：ASL = Pi*Ci的和。\<br>&amp;Pi：查找表中第i个数据元素的概率。\<br>&amp;Ci：找到第i个数据元素时已经比较过的次数。\</p>
-<p>\end{align}<br>$$</p>
-<h4 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h4><p>顺序查找也称为线形查找，属于无序查找算法。从数据结构线形表的一端开始，顺序扫描，依次将扫描到的结点关键字与给定值k相比较，若相等则表示查找成功；若扫描结束仍没有找到关键字等于k的结点，表示查找失败。</p>
-<h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><p>也称为是折半查找，属于有序查找算法。用给定值k先与中间结点的关键字比较，中间结点把线形表分成两个子表，若相等则查找成功；若不相等，再根据k与该中间结点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或查找结束发现表中没有这样的结点。</p>
-<h4 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h4><p>基于二分查找算法，将查找点的选择改进为自适应选择，可以提高查找效率。当然，差值查找也属于有序查找。</p>
-<p><strong>插值和二分</strong>：<br>$$<br> mid=(low+high)/2, 即mid=low+1/2*(high-low);\<br> 通过类比，我们可以将查找的点改进为如下：\<br> mid=low+(key-a[low])/(a[high]-a[low])*(high-low)\<br>$$</p>
-<h4 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h4><p>斐波那契查找方法是二分查找的改进，斐波那契公式：${F(n) = F(n-1)+F(n-2)}$，如：1、1、2、3、5、8…。当n趋近于无穷的时候，${F(n)/F(n-1) = 0.618}$ 。 </p>
-<h4 id="最简单的树表查找算法——二叉树查找算法"><a href="#最简单的树表查找算法——二叉树查找算法" class="headerlink" title="最简单的树表查找算法——二叉树查找算法"></a>最简单的树表查找算法——二叉树查找算法</h4><p>七大查找算法<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/64940290">https://zhuanlan.zhihu.com/p/64940290</a></p>
-<p>七大查找算法<a target="_blank" rel="noopener" href="https://www.cnblogs.com/maybe2030/p/4715035.html">https://www.cnblogs.com/maybe2030/p/4715035.html</a></p>
-<hr>
-<h3 id="图搜索算法"><a href="#图搜索算法" class="headerlink" title="图搜索算法"></a>图搜索算法</h3><p>深度优先：</p>
+<p><strong>平均查找长度（Average Search Length，ASL）：</strong>需和指定key进行比较的关键字的个数的期望值，称为查找算法在查找成功时的平均查找长度。 $$ <span class="math display">\[\begin{align}
+&amp;对于含有n个数据元素的查找表，查找成功的平均查找长度为：ASL = Pi*Ci的和。\\
+&amp;Pi：查找表中第i个数据元素的概率。\\
+&amp;Ci：找到第i个数据元素时已经比较过的次数。\\
+
+\end{align}\]</span> $$</p>
+<h4 id="顺序查找">顺序查找</h4>
+<p>顺序查找也称为线形查找，属于无序查找算法。从数据结构线形表的一端开始，顺序扫描，依次将扫描到的结点关键字与给定值k相比较，若相等则表示查找成功；若扫描结束仍没有找到关键字等于k的结点，表示查找失败。</p>
+<h4 id="二分查找">二分查找</h4>
+<p>也称为是折半查找，属于有序查找算法。用给定值k先与中间结点的关键字比较，中间结点把线形表分成两个子表，若相等则查找成功；若不相等，再根据k与该中间结点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或查找结束发现表中没有这样的结点。</p>
+<h4 id="插值查找">插值查找</h4>
+<p>基于二分查找算法，将查找点的选择改进为自适应选择，可以提高查找效率。当然，差值查找也属于有序查找。</p>
+<p><strong>插值和二分</strong>： <span class="math display">\[
+ mid=(low+high)/2, 即mid=low+1/2*(high-low);\\
+ 通过类比，我们可以将查找的点改进为如下：\\
+ mid=low+(key-a[low])/(a[high]-a[low])*(high-low)\\
+\]</span></p>
+<h4 id="斐波那契查找">斐波那契查找</h4>
+<p>斐波那契查找方法是二分查找的改进，斐波那契公式：<span class="math inline">\({F(n) = F(n-1)+F(n-2)}\)</span>，如：1、1、2、3、5、8...。当n趋近于无穷的时候，<span class="math inline">\({F(n)/F(n-1) = 0.618}\)</span> 。</p>
+<h4 id="最简单的树表查找算法二叉树查找算法">最简单的树表查找算法——二叉树查找算法</h4>
+<p>七大查找算法https://zhuanlan.zhihu.com/p/64940290</p>
+<p>七大查找算法https://www.cnblogs.com/maybe2030/p/4715035.html</p>
+<hr />
+<h3 id="图搜索算法">图搜索算法</h3>
+<p>深度优先：</p>
 <p>从顶点v开始搜索，然后依次从它未访问的邻接点出发深度优先搜索遍历，直到所有与V有路径连接的点被遍历完。如果此实还有未到的点，则另选一个未被访问的点作为起始点，重复上述过程。</p>
 <p>广度优先：</p>
 <p>从顶点V开始搜索，在访问完v的所有邻接点之后，从这些邻接点出发依次访问它们的邻接点，并使得“先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问，直至图中所有已被访问的顶点的邻接点都被访问到。如果此时图中尚有顶点未被访问，则需要另选一个未曾被访问过的顶点作为新的起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
-<p>图搜索算法—广度优先&amp;深度优先<a target="_blank" rel="noopener" href="https://www.cnblogs.com/skywang12345/p/3711483.html">https://www.cnblogs.com/skywang12345/p/3711483.html</a></p>
-<hr>
-<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><blockquote>
+<p>图搜索算法—广度优先&amp;深度优先https://www.cnblogs.com/skywang12345/p/3711483.html</p>
+<hr />
+<h2 id="设计模式">设计模式</h2>
+<blockquote>
 <p>各大设计模式例子参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liang19890820/article/details/66974516">CSDN专栏 . C++ 设计模式</a> 系列博文</p>
 </blockquote>
 <p><a href="DesignPattern">设计模式工程目录</a></p>
-<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>保证一个类仅有一个实例，并提供一个全局接口用以访问它；</p>
+<h3 id="单例模式">单例模式</h3>
+<p>保证一个类仅有一个实例，并提供一个全局接口用以访问它；</p>
 <p><a href="DesignPattern/SingletonPattern">单例模式例子</a></p>
-<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</p>
+<h3 id="抽象工厂模式">抽象工厂模式</h3>
+<p>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</p>
 <p><a href="DesignPattern/AbstractFactoryPattern">抽象工厂模式例子</a></p>
-<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p><a href="DesignPattern/AdapterPattern">适配器模式例子</a></p>
-<h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><p><a href="DesignPattern/BridgePattern">桥接模式例子</a></p>
-<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><p><a href="DesignPattern/ObserverPattern">观察者模式例子</a></p>
-<h3 id="设计模式的六大原则"><a href="#设计模式的六大原则" class="headerlink" title="设计模式的六大原则"></a>设计模式的六大原则</h3><ul>
+<h3 id="适配器模式">适配器模式</h3>
+<p><a href="DesignPattern/AdapterPattern">适配器模式例子</a></p>
+<h3 id="桥接模式">桥接模式</h3>
+<p><a href="DesignPattern/BridgePattern">桥接模式例子</a></p>
+<h3 id="观察者模式">观察者模式</h3>
+<p><a href="DesignPattern/ObserverPattern">观察者模式例子</a></p>
+<h3 id="设计模式的六大原则">设计模式的六大原则</h3>
+<ul>
 <li>单一职责原则（SRP，Single Responsibility Principle）</li>
 <li>里氏替换原则（LSP，Liskov Substitution Principle）</li>
 <li>依赖倒置原则（DIP，Dependence Inversion Principle）</li>
@@ -439,7 +521,7 @@
 <li>迪米特法则（LoD，Law of Demeter）</li>
 <li>开放封闭原则（OCP，Open Close Principle）</li>
 </ul>
-<hr>
+<hr />
 
     </div>
 
@@ -520,7 +602,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88-stack-%E5%92%8C%E5%88%97%E9%98%9F-queue"><span class="nav-number">1.</span> <span class="nav-text">栈(stack)和列队(queue)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%EF%BC%88Linked-list%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">链表（Linked list）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E5%A4%B4-Header-%E6%88%96%E5%93%91%E7%BB%93%E7%82%B9-dummy-node"><span class="nav-number">3.1.</span> <span class="nav-text">表头(Header)或哑结点(dummy node)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E3%80%81%E5%A4%B4%E6%8C%87%E9%92%88%E3%80%81%E5%A4%B4%E7%BB%93%E7%82%B9%EF%BC%9A"><span class="nav-number">3.1.1.</span> <span class="nav-text">链表、头指针、头结点：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E9%93%BE%E8%A1%A8"><span class="nav-number">3.2.</span> <span class="nav-text">广义链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E3%80%81%E5%88%86%E6%B2%BB%E3%80%81%E8%BF%AD%E4%BB%A3"><span class="nav-number">4.</span> <span class="nav-text">递归、分治、迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">分治算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88Recursion%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">递归思想（Recursion）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">6.</span> <span class="nav-text">二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">7.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">8.1.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">8.2.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%A2%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">8.3.</span> <span class="nav-text">谢尔排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">8.4.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">8.5.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">8.6.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">8.7.</span> <span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">8.8.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">8.9.</span> <span class="nav-text">基数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-vs-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F-vs-%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">8.9.1.</span> <span class="nav-text">基数排序 vs 计数排序 vs 桶排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">9.</span> <span class="nav-text">查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE"><span class="nav-number">9.1.</span> <span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">9.2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE"><span class="nav-number">9.3.</span> <span class="nav-text">插值查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%9F%A5%E6%89%BE"><span class="nav-number">9.4.</span> <span class="nav-text">斐波那契查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%A0%91%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">9.5.</span> <span class="nav-text">最简单的树表查找算法——二叉树查找算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">10.</span> <span class="nav-text">图搜索算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number"></span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="nav-number">6.</span> <span class="nav-text">设计模式的六大原则</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#data-struct"><span class="nav-number">1.</span> <span class="nav-text">Data Struct</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88stack%E5%92%8C%E5%88%97%E9%98%9Fqueue"><span class="nav-number">1.1.</span> <span class="nav-text">栈(stack)和列队(queue)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">1.2.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8linked-list"><span class="nav-number">1.3.</span> <span class="nav-text">链表（Linked list）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E5%A4%B4header%E6%88%96%E5%93%91%E7%BB%93%E7%82%B9dummy-node"><span class="nav-number">1.3.1.</span> <span class="nav-text">表头(Header)或哑结点(dummy node)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E5%A4%B4%E6%8C%87%E9%92%88%E5%A4%B4%E7%BB%93%E7%82%B9"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">链表、头指针、头结点：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E9%93%BE%E8%A1%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">广义链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%88%86%E6%B2%BB%E8%BF%AD%E4%BB%A3"><span class="nav-number">1.4.</span> <span class="nav-text">递归、分治、迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.1.</span> <span class="nav-text">分治算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3recursion"><span class="nav-number">1.5.</span> <span class="nav-text">递归思想（Recursion）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.6.</span> <span class="nav-text">二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">1.7.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-number">1.8.</span> <span class="nav-text">排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.1.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.2.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%A2%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.3.</span> <span class="nav-text">谢尔排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.4.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.5.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.6.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.7.</span> <span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.8.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.9.</span> <span class="nav-text">基数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-vs-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F-vs-%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">1.8.9.1.</span> <span class="nav-text">基数排序 vs 计数排序 vs 桶排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.9.</span> <span class="nav-text">查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE"><span class="nav-number">1.9.1.</span> <span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.9.2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE"><span class="nav-number">1.9.3.</span> <span class="nav-text">插值查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%9F%A5%E6%89%BE"><span class="nav-number">1.9.4.</span> <span class="nav-text">斐波那契查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%A0%91%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.9.5.</span> <span class="nav-text">最简单的树表查找算法——二叉树查找算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">1.10.</span> <span class="nav-text">图搜索算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.5.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="nav-number">2.6.</span> <span class="nav-text">设计模式的六大原则</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
