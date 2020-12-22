@@ -156,6 +156,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/22/Linear-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Risky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Personal Blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/22/Linear-Regression/" class="post-title-link" itemprop="url">Linear Regression</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-22 10:23:17 / 修改时间：10:44:00" itemprop="dateCreated datePublished" datetime="2020-12-22T10:23:17+08:00">2020-12-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <!--readmore-->
+<h2 id="线性回归">线性回归</h2>
+<p>​ 线性回归：给定数据集，<span class="math inline">\({D=\{(x_1,y_1),(x_2,y_2),...(x_i,y_i)\}}\)</span> ，其中 <span class="math display">\[
+x_{i} =(x_{i1};x_{i2};...;x_{in}),y_i \in R;
+\]</span> 线性回归试图学得一个线性模型，以尽可能准确地预测实值输出。 <span class="math display">\[
+f(x_i) = wx_i+b;使得f(x_i)\cong y_i
+\]</span></p>
+<h2 id="最小二乘法">最小二乘法</h2>
+<p>​ 如何确定<span class="math inline">\(w,b\)</span> 的值，关键在于如何衡量<span class="math inline">\(f(x_i)和y_i\)</span> 的差值。均方误差是线性回归中最常用的性能度量，因此可以试图让均方误差最小。均方误差对应常用的欧式距离(Euclidean distance)。基于均方误差最小化来对模型进行求解的方法称为最小二乘法（Least square method）。 <span class="math display">\[
+\begin{align}
+&amp; (w^*,b^*) = arg min\sum_{i=1}^{n}(f(x_i)-y_i)^2\\
+\end{align}
+\]</span></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/14/TestMathjax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -179,10 +250,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-12-14 18:59:12 / 修改时间：19:00:30" itemprop="dateCreated datePublished" datetime="2020-12-14T18:59:12+08:00">2020-12-14</time>
+              <time title="创建时间：2020-12-14 18:59:12" itemprop="dateCreated datePublished" datetime="2020-12-14T18:59:12+08:00">2020-12-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-17 12:25:21" itemprop="dateModified" datetime="2020-12-17T12:25:21+08:00">2020-12-17</time>
+              </span>
 
           
 
@@ -197,13 +274,9 @@
       
           <!--readmore-->
 <p><span class="math display">\[
-\begin{equation} \label{eq2}
 \begin{aligned}
-a &amp;= b + c \\
-  &amp;= d + e + f + g \\
-  &amp;= h + i
+a = b\\
 \end{aligned}
-\end{equation}
 \]</span></p>
 
       
@@ -680,7 +753,7 @@ a &amp;= b + c \\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -689,7 +762,7 @@ a &amp;= b + c \\
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
