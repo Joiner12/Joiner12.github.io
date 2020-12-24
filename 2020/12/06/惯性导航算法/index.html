@@ -7,14 +7,16 @@
   
   <title>惯性导航算法 | Personal Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="导航系统(Navigation System) GNSS：Global Navigation Satellite System全球导航卫星系统，包括GPS,GLONASS，北斗卫星导航系统 （BDS） INS：全称Inertial Navigation System即惯性导航系统。IMU是测量角速度和加速度的装置，INS是通过测量得出的角速度和加速度的数值可以确定运动载体在惯性参考坐标中的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="惯性导航算法">
 <meta property="og:url" content="http://example.com/2020/12/06/%E6%83%AF%E6%80%A7%E5%AF%BC%E8%88%AA%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Personal Blogs">
+<meta property="og:description" content="导航系统(Navigation System) GNSS：Global Navigation Satellite System全球导航卫星系统，包括GPS,GLONASS，北斗卫星导航系统 （BDS） INS：全称Inertial Navigation System即惯性导航系统。IMU是测量角速度和加速度的装置，INS是通过测量得出的角速度和加速度的数值可以确定运动载体在惯性参考坐标中的">
 <meta property="og:locale">
 <meta property="og:image" content="https://pic4.zhimg.com/v2-ec52d1cf82a741439743ee710b17936f_r.jpg">
 <meta property="article:published_time" content="2020-12-06T08:02:40.000Z">
-<meta property="article:modified_time" content="2020-12-24T03:22:07.228Z">
+<meta property="article:modified_time" content="2020-12-24T03:28:25.035Z">
 <meta property="article:author" content="Peace4LV">
 <meta property="article:tag" content="Algorithm IMU">
 <meta name="twitter:card" content="summary">
@@ -94,10 +96,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr />
-<a id="more"></a>
 <h2 id="导航系统navigation-system">导航系统(Navigation System)</h2>
 <p><strong>GNSS：</strong>Global Navigation Satellite System全球导航卫星系统，包括GPS,GLONASS，北斗卫星导航系统 （BDS）</p>
 <p><strong>INS：</strong>全称Inertial Navigation System即惯性导航系统。IMU是测量角速度和加速度的装置，INS是通过测量得出的角速度和加速度的数值可以确定运动载体在惯性参考坐标中的运动</p>
+<a id="more"></a>
 <hr />
 <h2 id="imuinertial-measurement-units">IMU(inertial measurement units)</h2>
 <p>​ 测量物体三轴姿态角（或角速率）以及加速度的装置。</p>
@@ -109,7 +111,7 @@
 <h2 id="imu误差模型">IMU误差模型</h2>
 <h3 id="系统误差">系统误差</h3>
 <p><strong>陀螺仪系统误差：</strong></p>
-<p>$ $</p>
+<p>$ {_m = Af(_t) ++ b + Ba_t}$</p>
 <p><span class="math inline">\(A\)</span> ：比例因子、不重合和非正交误差；</p>
 <p><span class="math inline">\(\eta\)</span> ：温度变化引起的误差；</p>
 <p><span class="math inline">\(b\)</span> ：恒定的零偏误差；</p>
@@ -118,7 +120,7 @@
 <p><span class="math inline">\(\omega_m\)</span> ：角速度测量值；</p>
 <p><span class="math inline">\(\omega_t\)</span> ：角速度真实值；</p>
 <p><strong>加速度计系统误差：</strong></p>
-<p><span class="math inline">\(\bold{a_m = Bf_1(a_t) + \eta + b}\)</span></p>
+<p><span class="math inline">\(\bold\{a_m = Bf_1(a_t) + \eta + b\}\)</span></p>
 <p>....</p>
 <h3 id="加速度计陀螺仪随机误差">加速度计&amp;陀螺仪随机误差</h3>
 <p>​ 陀螺仪的随机误差一般包含两项：<strong>随机行走误差</strong>（random walk）及<strong>零偏不稳定性</strong>（bias instability）</p>
@@ -169,20 +171,20 @@
 \end{align}\]</span> $$</p>
 <p><strong>Reference</strong></p>
 <ol type="1">
-<li>向量和矩阵范数https://ryannng.github.io/2016/12/23/%E5%90%91%E9%87%8F%E8%8C%83%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0/</li>
-<li>AHRS（航姿参考系统）和IMU（惯性测量单元）的区别 https://zhuanlan.zhihu.com/p/28262130</li>
-<li>《IMU、AHRS、VRU和GNSS、INS》https://blog.csdn.net/sru_alo/article/details/88385185</li>
-<li>深度解析卡尔曼滤波在IMU中的使用https://zhuanlan.zhihu.com/p/36374943</li>
-<li>几种姿态解算滤波算法https://blog.csdn.net/csshuke/article/details/80389456</li>
-<li>MPU6050的数据获取、分析与处理https://zhuanlan.zhihu.com/p/20082486</li>
-<li>Nonlinear Complementary Filters on the Special Orthogonal Group https://hal.archives-ouvertes.fr/hal-00488376/document</li>
-<li>线性互补滤波器从原理到实现https://zhuanlan.zhihu.com/p/108101458</li>
+<li><a target="_blank" rel="noopener" href="https://ryannng.github.io/2016/12/23/%E5%90%91%E9%87%8F%E8%8C%83%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0/">向量和矩阵范数</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28262130">AHRS（航姿参考系统）和IMU（惯性测量单元）的区别</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sru_alo/article/details/88385185">《IMU、AHRS、VRU和GNSS、INS》</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36374943">深度解析卡尔曼滤波在IMU中的使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/csshuke/article/details/80389456">几种姿态解算滤波算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20082486">MPU6050的数据获取、分析与处理</a></li>
+<li><a target="_blank" rel="noopener" href="https://hal.archives-ouvertes.fr/hal-00488376/document">Nonlinear Complementary Filters on the Special Orthogonal Group</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108101458">线性互补滤波器从原理到实现</a></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/06/%E6%83%AF%E6%80%A7%E5%AF%BC%E8%88%AA%E7%AE%97%E6%B3%95/" data-id="ckj2a6umg0007qsw31r9c0qeh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/06/%E6%83%AF%E6%80%A7%E5%AF%BC%E8%88%AA%E7%AE%97%E6%B3%95/" data-id="ckj2aqgb30007ysw30onsgr77" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm-IMU/" rel="tag">Algorithm IMU</a></li></ul>
