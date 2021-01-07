@@ -75,6 +75,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-视频下载工具" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/08/%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7/" class="article-date">
+  <time datetime="2021-01-07T16:28:04.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/08/%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7/">视频下载工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言">前言</h2>
+        
+          <p class="article-more-link">
+            <a href="/2021/01/08/%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/08/%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7/" data-id="ckjn3cysy000u38w34inxc006" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/videodownload/" rel="tag">videodownload</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-youtube-dl中文文档-zh-CN" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/01/06/youtube-dl%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-zh-CN/" class="article-date">
@@ -102,234 +149,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>youtube-dl - download videos from youtube.com or other video platforms</p>
-<!--readmore-->
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#installation">INSTALLATION</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#description">DESCRIPTION</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#options">OPTIONS</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#configuration">CONFIGURATION</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#output-template">OUTPUT TEMPLATE</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#format-selection">FORMAT SELECTION</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#video-selection">VIDEO SELECTION</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#faq">FAQ</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#developer-instructions">DEVELOPER INSTRUCTIONS</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#embedding-youtube-dl">EMBEDDING YOUTUBE-DL</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#bugs">BUGS</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#copyright">COPYRIGHT</a></li>
-</ul>
-<h1 id="安装">安装</h1>
-<p>UNIX（Linux，macOS,etc）用户，输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L https:&#x2F;&#x2F;yt-dl.org&#x2F;downloads&#x2F;latest&#x2F;youtube-dl -o &#x2F;usr&#x2F;local&#x2F;bin&#x2F;youtube-dl</span><br><span class="line">sudo chmod a+rx &#x2F;usr&#x2F;local&#x2F;bin&#x2F;youtube-dl</span><br></pre></td></tr></table></figure>
-<p>于此同时，也可以使用<code>wget</code>进行安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https:&#x2F;&#x2F;yt-dl.org&#x2F;downloads&#x2F;latest&#x2F;youtube-dl -O &#x2F;usr&#x2F;local&#x2F;bin&#x2F;youtube-dl</span><br><span class="line">sudo chmod a+rx &#x2F;usr&#x2F;local&#x2F;bin&#x2F;youtube-dl</span><br></pre></td></tr></table></figure>
-<p>windows用户可以使用<a target="_blank" rel="noopener" href="https://yt-dl.org/latest/youtube-dl.exe">download an .exe</a> 进行安装，并保证安装路径是系统路径<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/PATH_(variable)">PATH</a>。但是安装路径不能是<code>%SYSTEMROOT%\System32</code>。也可以使用<code>pip</code>安装工具进行安装。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H pip install --upgrade youtube-dl</span><br></pre></td></tr></table></figure>
-<p>如果您已经安装了youtube-dl库，它将对youtube-dl进行更行。关于<code>pip</code> 参阅<a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/youtube_dl">pypi page</a> 。</p>
-<p>搭配<a target="_blank" rel="noopener" href="https://www.macports.org/">MacPorts</a>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo port install youtube-dl</span><br></pre></td></tr></table></figure>
-<p>或者，请参阅开发人员<a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#developer-instructions">developer instructions</a> 说明以了解如何检出并使用git存储库。 有关其他选项（包括PGP签名）的信息，请参见youtube-dl下载页面<a target="_blank" rel="noopener" href="https://ytdl-org.github.io/youtube-dl/download.html">youtube-dl Download Page</a> 。</p>
-<h1 id="简述">简述</h1>
-<p>​ youtube-dl是一个命令行工具，可以从YouTube.com和其他一些网站下载视频。 它需要2.6、2.7或3.2+版本的Python解释器。它不是跨平台工具，可以在Unix，Windows或macOS上运行。 您可以随意修改，重新分发或使用它。基本语法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl [OPTIONS] URL [URL...]</span><br></pre></td></tr></table></figure>
-<h1 id="选项">选项</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">-h，--help                 打印此帮助文本并退出</span><br><span class="line">--version                  打印程序版本并退出</span><br><span class="line">-U，--update               将此程序更新为最新版本。确保您具有足够的权限（如果需要，使用sudo运行）</span><br><span class="line">-i，-ignore-errors         忽略下载错误继续进行下载，例如跳过播放列表中不可用的视频</span><br><span class="line">--abort-on-error           如果有错误发生，终止其他视频的下载（在播放列表或命令行中）</span><br><span class="line">--dump-user-agent          显示当前浏览器标识</span><br><span class="line">--list-extractors          列出所有支持的提取器</span><br><span class="line">--extractor-descriptions   输出所有受支持的提取器相关描述</span><br><span class="line">--force-generic-extractor  强制提取以使用通用提取器</span><br><span class="line">--default-search PREFIX    使用此前缀表示不受限制的URL。</span><br><span class="line">                           例如，“ gvsearch2：”表示”从google视频中</span><br><span class="line">                           为youtube-dl“大苹果”下载了两个视频。</span><br><span class="line">                           使用“auto”值让youtube-dl自己进行猜测</span><br><span class="line">                           （猜测错误时抛出“auto_warning”）。</span><br><span class="line">                           “error”抛出错误。缺省值“fixup_error”表示修复损坏的URL，</span><br><span class="line">                           但如果没有可以代替的结果，则报错。</span><br><span class="line">                           </span><br><span class="line">--ignore-config            不读取配置文件。如果有全局配置文件：&#x2F;etc&#x2F;youtube-dl.conf，</span><br><span class="line">                           则不读取用户在〜&#x2F;.config&#x2F;youtube-dl&#x2F;config</span><br><span class="line">                          （Windows上的配置文件为： </span><br><span class="line">                           ％APPDATA％&#x2F;youtube-dl&#x2F;config.txt）的配置文件。</span><br><span class="line">                          </span><br><span class="line">--config-location PATH    配置文件的位置；配置的路径或其包含目录。</span><br><span class="line"></span><br><span class="line">--flat-playlist           不提取播放列表的视频，而只列出它们。</span><br><span class="line">--mark-marked             标注观看过的视频（仅限YouTube）</span><br><span class="line">--no-mark-watched         不标记观看的视频（仅限YouTube）</span><br><span class="line">--no-color                输出代码无颜色</span><br></pre></td></tr></table></figure>
-<h2 id="网络选项">网络选项：</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--proxy URL               使用指定的HTTP&#x2F;HTTPS&#x2F;SOCKS代理。</span><br><span class="line">                          要启用SOCKS代理，需要指定适当的方案。 </span><br><span class="line">                          例如socks5：&#x2F;&#x2F;127.0.0.1:1080 &#x2F;。</span><br><span class="line">                          传入一个空字符串（--proxy“”）表示进行直连。</span><br><span class="line">              </span><br><span class="line">--socket-timeout SECONDS  等待时间，以秒为单位</span><br><span class="line">--source-address IP       要绑定的客户端IP地址</span><br><span class="line">-4, --force-ipv4          通过IPv4建立所有连接</span><br><span class="line">-6, --force-ipv6          通过IPv6建立所有连接</span><br></pre></td></tr></table></figure>
-<h2 id="区域限制">区域限制</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--geo-verification-proxy URL   使用此代理来验证某些受地理限制的站点的IP地址。</span><br><span class="line">                               --proxy指定的默认代理（如果没有，则不指定）用于实际下载。</span><br><span class="line">                              </span><br><span class="line">                              </span><br><span class="line">--geo-bypass                   通过伪造X-Forwarded-For HTTP标头绕过地理限制</span><br><span class="line">--no-geo-bypass                不通过伪造X-Forwarded-For HTTP标头来绕过地理限制</span><br><span class="line">--geo-bypass-country CODE      使用ISO 3166-2提供的国家&#x2F;地区（两个字母）的编码强制绕过地理限制</span><br><span class="line"></span><br><span class="line">--geo-bypass-ip-block IP_BLOCK 通过CIDR表示法中的IP块强制绕过地理限制</span><br></pre></td></tr></table></figure>
-<h2 id="视频选项">视频选项</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">--playlist-start NUMBER        播放列表视频开始序号（默认为1）</span><br><span class="line">--playlist-end NUMBER          播放列表视频结尾序号（默认是最后一个）</span><br><span class="line">--playlist-items ITEM_SPEC     要下载的播放列表视频项。指定播放列表中视频的索引，并用逗号分隔，例                                如：如果要下载在播放列表中索引为1、2、5、8的视频，请使用“ --                                    playlist-items 1,2,5,8”。 您可以指定范围：“-playlist-items                                1-3,7,10-13”，它将下载索引为1、2、3、7、10、11、12和13的视频。</span><br><span class="line">--match-title REGEX            仅下载匹配的标题（正则表达式或无大小写的子字符串）</span><br><span class="line"></span><br><span class="line">--max-downloads NUMBER         下载NUMBER个文件后中止。</span><br><span class="line"></span><br><span class="line">--min-filesize SIZE            请勿下载任何小于SIZE的视频（例如50k或44.6m）</span><br><span class="line"></span><br><span class="line">--max-filesize SIZE            请勿下载任何大于SIZE的视频（例如50k或44.6m）</span><br><span class="line">--date DATE                    仅下载该日期（DATE）上传的视频</span><br><span class="line">--datebefore DATE              仅下载在该日期或该日期之前（包括该日期）上传的视频</span><br><span class="line">--dateafter DATE               仅下载在该日期或之后上传的视频（包括该日期）</span><br><span class="line">--min-views COUNT              不要下载观看次数少于COUNT的视频</span><br><span class="line">--max-views COUNT              不要下载观看次数超过COUNT的视频</span><br><span class="line">--match-filter FILTER          通用视频过滤器。 指定任意键（请参阅</span><br><span class="line">                              （可用模板列表的“输出模板”）以匹配是否存在该密钥，！key检查该密钥是                                否不存在，key&gt; NUMBER（例如“ comment_count&gt; 12”，也可以与&gt;                                  &#x3D;，&lt;， &lt;&#x3D;，！&#x3D;，&#x3D;）与数字进行比较，键&#x3D;&#39;LITERAL&#39;（例如“                                        uploader &#x3D;&#39;Mike Smith&#39;”，也与！&#x3D;配合使用）与字符串文字进行匹                                  配，并且＆需要多次匹配。 除非您在运算符后面加上问号（？），否则将排                                除未知的值。 例如，要仅匹配已被点赞超过100次而被点赞次数少于50次的                                视频（或在给定的服务中不喜欢的功能不可用），但也具有描述，请使用--                                match-filter“ like_count &gt; 100＆dislike_count &lt;？50＆                                    description”。</span><br><span class="line">                              </span><br><span class="line">--no-playlist                  如果URL指向视频和播放列表，仅下载视频。</span><br><span class="line">--yes-playlist                 如果URL指向视频和播放列表，则下载播放列表。</span><br><span class="line">--age-limit YEARS              只下载适合给定年龄的视频</span><br><span class="line">--download-archive FILE        仅下载未列出的视频存档文件。 记录其中所有已下载视频的ID。</span><br><span class="line">--include-ads                  同时下载广告（实验性）</span><br></pre></td></tr></table></figure>
-<h2 id="下载选项">下载选项</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-r，--limit-rate RATE              最大下载速率，以每秒字节数为单位（例如50K或4.2M）</span><br><span class="line">-R，--retries RETRIES              重试次数（默认为10）或“无限”。</span><br><span class="line">--fragment-retries                 重试片段的重试次数（默认为10）或“无限”（DASH，hlsnative和ISM）</span><br><span class="line">--skip-unavailable-fragments      跳过不可用的片段（DASH，hlsnative和ISM）</span><br><span class="line">--abort-on-unavailable-fragment   当某些片段不可用时中止下载</span><br><span class="line">--keep-fragments                  下载完成后，将下载的片段保留在磁盘上；默认情况下会删除片段</span><br><span class="line">--buffer-size SIZE                下载缓冲区的大小（例如1024或16K）（默认为1024）</span><br><span class="line">--no-resize-buffer                不自动调整缓冲区大小。默认情况下，缓冲区大小会从SIZE的初始值自                                   动调整大小。</span><br><span class="line">--http-chunk-size SIZE            基于块的HTTP下载的块大小（例如10485760或10M）（默认为禁用）。                                   可能有助于绕过网络服务器施加的带宽限制（实验性）</span><br><span class="line">--playlist-reverse                以相反的顺序下载播放列表视频</span><br><span class="line">--playlist-random                 以随机顺序下载播放列表视频</span><br><span class="line">--xattr-set-filesize              使用预期的文件大小设置文件xattribute ytdl.filesize</span><br><span class="line">--hls-prefer-native               使用本地HLS下载程序而不是ffmpeg</span><br><span class="line">--hls-prefer-ffmpeg               使用ffmpeg代替本地HLS下载器</span><br><span class="line">--hls-use-mpegts                  使用mpegts容器存储HLS视频，允许在下载时播放视频（某些播放器可                                   能无法播放）</span><br><span class="line">--external-downloader             命令使用指定的外部下载器。当前支持aria2c，avconv，axel，                                       curl，ffmpeg，httpie，wget</span><br><span class="line">--external-downloader-args        ARGS将这些参数提供给外部下载器</span><br></pre></td></tr></table></figure>
-<h2 id="文件系统">文件系统</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-a, --batch-file FILE      文件包含要下载的URL（标准输入为“-”），每行一个URL。以“＃”，“;”开头的行                            或&#39;]&#39;被视为注释并被忽略。</span><br><span class="line">--id                       在文件名中仅使用视频ID</span><br><span class="line">-o，--output TEMPLATE      输出文件名模板，有关所有信息，请参见“ OUTPUT TEMPLATE”</span><br><span class="line">--autonumber-start NUMBER  指定％（autonumber）s的起始值（默认为1）</span><br><span class="line">--restrict-filenames       将文件名限制为仅ASCII字符，并避免在文件名中使用“＆”和空格</span><br><span class="line">-w，--no-overwrites        不覆盖文件</span><br><span class="line">-c，--continue             强制恢复部分下载的文件。默认情况下，youtube-dl将尽可能恢复下载。</span><br><span class="line">--no-continue              不恢复部分下载的文件（从头开始重新启动）</span><br><span class="line">--no-part                  不使用.part文件-直接写入输出文件</span><br><span class="line">--no-mtime                 不要使用Last-modified标头设置文件修改时间</span><br><span class="line">--write-description        将视频描述写入.description文件</span><br><span class="line">--write-info-json          将视频元数据写入.info.json文件</span><br><span class="line">--write-annotations        将视频注释写入.annotations.xml文件</span><br><span class="line">--load-info-json           文件包含视频信息的JSON文件（使用“ --write-info-json”选项创建）</span><br><span class="line">--cookies FILE             FILE文件，用于从中读取cookie并在其中转储cookie jar</span><br><span class="line">--cache-dir DIR            在youtube-dl可以永久存储一些下载信息的文件系统中的位置。默认情况下，$                            XDG_CACHE_HOME &#x2F; youtube-dl或〜&#x2F; .cache &#x2F; youtube-dl。目前，仅                            缓存YouTube播放器文件（用于签名模糊的视频），但是可能会发生变化。</span><br><span class="line">--no-cache-dir             禁用文件系统缓存</span><br><span class="line">--rm-cache-dir             删除所有文件系统缓存文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="缩略图">缩略图</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--write-thumbnail             将缩略图写入磁盘</span><br><span class="line">--write-all-thumbnails        将所有缩略图格式写入磁盘</span><br><span class="line">--list-thumbnails             模拟并列出所有可用的缩略图格式</span><br></pre></td></tr></table></figure>
-<h2 id="详细度-模拟选项">详细度/ 模拟选项</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-q,--quiet                 激活安静模式</span><br><span class="line">--no-warnings              忽略警告</span><br><span class="line">-s,-simulate               不要下载视频,也不向磁盘写入任何内容</span><br><span class="line">--skip-download            不要下载视频</span><br><span class="line">-g,--get-url               模拟,安静但打印URL</span><br><span class="line">-e,--get-title             模拟,安静但可打印标题</span><br><span class="line">--get-id                   模拟,安静但打印ID</span><br><span class="line">--get-thumbnail            模拟,安静但打印缩略图URL</span><br><span class="line">--get-description          模拟,安静但打印视频描述</span><br><span class="line">--get-duration             模拟,安静但可打印视频长度</span><br><span class="line">--get-filename             模拟,安静但打印输出文件名</span><br><span class="line">--get-format               模拟,安静但打印输出格式</span><br><span class="line">-j,--dump-json             模拟,安静但打印JSON信息。有关可用键的说明,请参见“输出模板”。</span><br><span class="line">-J,--dump-single-json      模拟,安静,但为每个命令行参数打印JSON信息。如果URL指向播放列表,则将整个                            播放列表信息转储在一行中。</span><br><span class="line">--print-json               请保持安静,并将视频信息打印为JSON（仍在下载视频）。</span><br><span class="line">--newline                  输出进度条为新行</span><br><span class="line">--no-progress              不打印进度条</span><br><span class="line">--console-title            在控制台标题栏中显示进度</span><br><span class="line">-v,--verbose               打印各种调试信息</span><br><span class="line">--dump-pages               打印使用base64编码的已下载页面以调试问题（非常详细）</span><br><span class="line">--write-pages              将下载的中间页写入当前目录中的文件以调试问题</span><br><span class="line">--print-traffic            显示已发送和读取的HTTP流量</span><br><span class="line">-C,--call-home             与youtube-dl服务器联系以进行调试</span><br><span class="line">--no-call-home             请勿联系youtube-dl服务器进行调试</span><br></pre></td></tr></table></figure>
-<h2 id="解决方法">解决方法</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--encoding ENCODING          强制指定的编码（实验性）</span><br><span class="line">--no-check-certificate       禁止HTTPS证书验证</span><br><span class="line">--prefer-insecure            使用未加密的连接来检索有关视频的信息。 （当前仅支持YouTube）</span><br><span class="line">--user-agent UA              指定自定义用户代理</span><br><span class="line">--referer URL                指定自定义引用，如果视频访问仅限于一个域，则使用</span><br><span class="line">--add-header FIELD：VALUE    指定自定义HTTP标头及其值，以冒号&#39;：&#39;分隔。您可以多次使用此选项</span><br><span class="line">--bidi-workaround            解决缺少双向文本支持的终端。需要PATH中的bidiv或fribidi可执行文件</span><br><span class="line">--sleep-interval SECONDS     单独使用时，每次下载前的睡眠秒数，或与--max-sleep-interval一起使用                              时，每次下载前的随机睡眠范围的下限（最小睡眠秒数） 。</span><br><span class="line">--max-sleep-interval SECONDS 每次下载前随机睡眠范围的上限（最大可能的睡眠秒数）。必须仅与--min-                                sleep-interval一起使用。</span><br></pre></td></tr></table></figure>
-<h2 id="视频格式选型">视频格式选型</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-f，--format FORMAT          视频格式代码，有关所有信息，请参见“ FORMAT SELECTION”</span><br><span class="line">--all-formats                下载所有可用的视频格式</span><br><span class="line">--prefer-free-formats        首选免费视频格式，除非请求特定格式</span><br><span class="line">-F，--list-formats           列出请求的视频的所有可用格式</span><br><span class="line">--youtube-skip-dash-manifest 不要在YouTube视频上下载DASH清单和相关数据</span><br><span class="line">--merge-output-format        格式如果需要合并（例如bestvideo + bestaudio），则输出为给定的容器                              格式。 mkv，mp4，ogg，webm，flv之一。 如果不需要合并，则忽略</span><br></pre></td></tr></table></figure>
-<h2 id="字幕选项">字幕选项</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--write-sub          写字幕文件</span><br><span class="line">--write-auto-sub     写入自动生成的字幕文件（仅YouTube）</span><br><span class="line">--all-subs           下载视频的所有可用字幕</span><br><span class="line">--list-subs          列出视频的所有可用字幕</span><br><span class="line">--sub-format FORMAT  字幕格式，接受格式首选项，例如：“ srt”或“ ass &#x2F; srt &#x2F; best”</span><br><span class="line">--sub-lang LANGS     要下载的字幕语言（可选），以逗号分隔，对可用语言标签使用--list- subs</span><br></pre></td></tr></table></figure>
-<h2 id="身份验证选项">身份验证选项</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-u，--username USERNAME         使用此帐户ID登录</span><br><span class="line">-p，--password PASSWORD         帐户密码。 如果忽略此选项，则youtube-dl将进行交互询问。</span><br><span class="line">-2，--twofactor TWOFACTOR       两因素身份验证代码</span><br><span class="line">-n，--netrc                     使用.netrc身份验证数据</span><br><span class="line">--video-password                密码视频密码（vimeo，优酷）</span><br></pre></td></tr></table></figure>
-<h2 id="adobe登录选型">Adobe登录选型</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--ap-mso MSO            Adobe Pass多系统运营商（电视提供商）标识符，将--ap-list-mso用作可用MSO                         的列表</span><br><span class="line">--ap-username USERNAME  多系统操作员帐户登录</span><br><span class="line">--ap-password           密码多系统操作员帐户密码。 如果忽略此选项，则youtube-dl将进行交互询问。</span><br><span class="line">--ap-list-mso           列出所有受支持的多系统运算符</span><br></pre></td></tr></table></figure>
-<h2 id="后处理选项">后处理选项</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-x,--extract-audio             将视频文件转换为纯音频文件（需要ffmpeg或avconv以及ffprobe或                                    avprobe）</span><br><span class="line">--audio-format FORMAT          指定音频格式：“最佳”，“ aac”，“ flac”，“ mp3”，“ m4a”，“                                    opus”，“ vorbis”或“ wav”；默认情况下为“最佳”；没有-x则没有效果</span><br><span class="line">--audio-quality QUALITY        指定ffmpeg &#x2F; avconv音频质量，为VBR插入0（更好）到9（更差）之间的                                值，或插入128K的特定比特率（默认为5）</span><br><span class="line"></span><br><span class="line">--recode-video FORMAT          视需要将视频编码为其他格式（当前支持：mp4 | flv | ogg | webm |                                mkv | avi）</span><br><span class="line">--postprocessor-args ARGS      将这些参数提供给后处理器</span><br><span class="line">-k, --keep-video               后处理后，将视频文件保留在磁盘上；默认情况下会删除视频</span><br><span class="line">--no-post-overwrites           不要覆盖后处理的文件；默认情况下，后处理的文件将被覆盖</span><br><span class="line">--embed-subs                   在视频中嵌入字幕（仅适用于mp4，webm和mkv视频）</span><br><span class="line">--embed-thumbnail              在音频中嵌入缩略图作为封面</span><br><span class="line">--add-metadata                 将元数据写入视频文件</span><br><span class="line">--metadata-from-title FORMAT   解析视频标题中的其他元数据，例如歌曲标题&#x2F;艺术家。格式语法与--                                    output相同。也可以使用带有命名捕获组的正则表达式。解析的参数替换现                                有值。示例：--metadata-from-标题“％（artist）s-％（title）s”                                与“ Coldplay-Paradise”之类的标题匹配。示例（正则表达式）：--                                  metadata-from-title“（？P &lt;artist&gt;。+？）-（？P &lt;title&gt;。                                  +）”</span><br><span class="line">--xattrs                       将元数据写入视频文件的xattrs（使用都柏林核心和xdg标准）</span><br><span class="line">--fixup POLICY                 动更正文件的已知错误。 永不（不执行任何操作），警告（仅发出警告），                                detect_or_warn（默认；如果可以的话，修复文件，否则警告）之一</span><br><span class="line">--prefer-avconv                在ffmpeg上优先使用avconv来运行后处理器</span><br><span class="line">--prefer-ffmpeg                优先使用ffmpeg而不是avconv来运行后处理器（默认）</span><br><span class="line">--ffmpeg-location PATH         ffmpeg &#x2F; avconv二进制文件的位置； 二进制文件或其包含目录的路径。</span><br><span class="line">--exec CMD                     下载和后处理后，对文件执行命令，类似于find的-exec语法。 示例：--                                 exec&#39;adb push &#123;&#125; &#x2F; sdcard &#x2F; Music &#x2F; &amp;&amp; rm &#123;&#125;&#39;</span><br><span class="line">--convert-subs FORMAT          将字幕转换为其他格式（当前支持：srt | ass | vtt | lrc）</span><br></pre></td></tr></table></figure>
-<h1 id="配置">配置</h1>
-<p>您可以通过将任何受支持的命令行选项放置到配置文件中来配置youtube-dl。 在Linux和macOS上，系统范围的配置文件位于/etc/youtube-dl.conf，用户范围的配置文件位于〜/ .config / youtube-dl / config。 在Windows上，用户范围的配置文件位置为％APPDATA％ youtube-dl  config.txt或C： Users  <用户名>  youtube-dl.conf。 请注意，默认情况下配置文件可能不存在，因此您可能需要自己创建它。</p>
-<p>例如，使用以下配置文件youtube-dl将始终提取音频，而不复制mtime，使用代理并将所有视频保存在主目录中的Movies目录下：</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Lines starting with # are comments</span><br><span class="line"></span><br><span class="line"># Always extract audio</span><br><span class="line">-x</span><br><span class="line"></span><br><span class="line"># <span class="keyword">Do</span> <span class="keyword">not</span> <span class="built_in">copy</span> the mtime</span><br><span class="line">--no-mtime</span><br><span class="line"></span><br><span class="line"># Use this proxy</span><br><span class="line">--proxy <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">3128</span></span><br><span class="line"></span><br><span class="line"># Save all videos under Movies directory <span class="keyword">in</span> your home directory</span><br><span class="line">-o ~/Movies/<span class="variable">%(title)s.%</span>(ext)s</span><br></pre></td></tr></table></figure>
-<p>请注意，配置文件中的选项与常规命令行调用中使用的选项（也称为开关）相同，因此-或--后必须没有空格，例如 -o或--proxy，但不是- o或-- proxy。</p>
-<p>如果要为特定的youtube-dl运行禁用配置文件，则可以使用--ignore-config。 如果要为特定的youtube-dl运行使用自定义配置文件，也可以使用--config-location。</p>
-<h3 id="使用-.netrc-进行身份验证">使用 <code>.netrc</code> 进行身份验证</h3>
-<p>您可能还想为支持身份验证的提取程序配置自动凭据存储（通过为登录名和密码提供--username和--password），以便在每次youtube-dl执行时都不将凭据作为命令行参数传递并防止跟踪纯文本 shell命令历史记录中的密码。 您可以在每个提取器的基础上使用.netrc文件来实现此目的。 为此，您将需要在$ HOME中创建一个.netrc文件，并限制只有您才能进行读/写的权限：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch $HOME&#x2F;.netrc</span><br><span class="line">chmod a-rwx,u+rw $HOME&#x2F;.netrc</span><br></pre></td></tr></table></figure>
-<p>之后，您可以采用以下格式添加提取程序的凭据，其中extractor是提取程序的名称，小写形式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">machine &lt;extractor&gt; login &lt;login&gt; password &lt;password&gt;</span><br></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">machine youtube login myaccount@gmail.com password my_youtube_password</span><br><span class="line">machine twitch login my_twitch_account_name password my_twitch_password</span><br></pre></td></tr></table></figure>
-<p>要使用.netrc文件激活身份验证，您应将--netrc传递给youtube-dl或将其放在配置文件 <a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#configuration">configuration file</a>中。</p>
-<p>在Windows上，您可能还需要手动设置％HOME％环境变量。 例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set HOME&#x3D;%USERPROFILE%</span><br></pre></td></tr></table></figure>
-<h1 id="输出模板">输出模板</h1>
-<p>-o选项允许用户指示输出文件名的模板。</p>
-<p>tl; dr：导航至示例。<a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#output-template-examples">navigate me to examples</a>.</p>
-<p>基本用法是在下载单个文件时不设置任何模板参数，例如youtube-dl -o funny_video.flv“ https：// some / video”。 但是，它可能包含特殊的序列，这些序列将在下载每个视频时被替换。 可以根据python字符串格式化操作对特殊序列进行格式化。 例如，％（NAME）s或％（NAME）05d。 为了明确起见，这是一个百分号，后跟一个括号，然后是格式化操作。 允许的名称以及序列类型为：</p>
-<ul>
-<li>id(string)：视频标识符</li>
-<li>title(string)：视频标题</li>
-<li>url(string)：视频URL</li>
-<li>ext(string)：视频文件扩展名</li>
-<li>alt_title(string)：视频的辅助标题</li>
-<li>display_id(string)：视频的备用标识符</li>
-<li>uploader(string)：视频上传者的全名</li>
-<li>license(string)：视频所许可的许可证名称</li>
-<li>creator(string)：视频的创建者</li>
-<li>release_date(string)：视频发布的日期（YYYYMMDD）</li>
-<li>timestamp(numeric)：视频可用时的UNIX时间戳</li>
-<li>upload_date(string)：视频上传日期（YYYYMMDD）</li>
-<li>uploader_id(string)：视频上传者的昵称或ID</li>
-<li>channel(string)：上传视频的频道的全名</li>
-<li>channel_id(string)：通道的ID</li>
-<li>location(string)：录制视频的实际位置</li>
-<li>duration(numeric)：视频长度（以秒为单位）</li>
-<li>view_count(numeric)：在平台上观看了多少用户</li>
-<li>like_count(numeric)：视频的正面评价数</li>
-<li>dislike_count(numeric)：视频的负面评价数</li>
-<li>repost_count(numeric)：视频的转发次数</li>
-<li>average_rating(numeric)：用户给出的平均评分，使用的比例取决于网页</li>
-<li>comment_count(numeric)：视频评论数</li>
-<li>age_limit(numeric)：视频的年龄限制（年）</li>
-<li>is_live（布尔值）：该视频是实时流还是固定长度的视频</li>
-<li>start_time(numeric)：复制开始的时间（以秒为单位），如URL中所指定</li>
-<li>end_time(numeric)：复制应结束的时间（以秒为单位），如URL中所指定</li>
-<li>format(string)：格式的易于理解的描述</li>
-<li>format_id(string)：--format指定的格式代码</li>
-<li>format_note(string)：有关格式的其他信息</li>
-<li>width(numeric)：视频的宽度</li>
-<li>height(numeric)：视频的高度</li>
-<li>resolution(string)：宽度和高度的文字描述</li>
-<li>tbr(numeric)：音频和视频的平均比特率，单位为KBit / s</li>
-<li>abr(numeric)：平均音频比特率，单位为KBit / s</li>
-<li>acodec(string)：使用中的音频编解码器的名称</li>
-<li>asr(numeric)：音频采样率，以赫兹为单位</li>
-<li>vbr(numeric)：平均视频比特率，单位为KBit / s</li>
-<li>fps(numeric)：帧频</li>
-<li>vcodec(string)：正在使用的视频编解码器的名称</li>
-<li>container(string)：容器格式的名称</li>
-<li>filesize(numeric)：字节数（如果事先知道）</li>
-<li>filesize_approx(numeric)：估计的字节数</li>
-<li>protocol(string)：将用于实际下载的协议</li>
-<li>extractor(string)：提取器的名称</li>
-<li>extractor_key(string)：提取器的密钥名称</li>
-<li>epoch(numeric)：创建文件时的Unix纪元</li>
-<li>autonumber(numeric)：每次下载都会增加的编号，从--autonumber-start开始</li>
-<li>playlist(string)：包含视频的播放列表的名称或ID</li>
-<li>playlist_index(numeric)：播放列表中视频的索引，根据播放列表的总长度填充前导零</li>
-<li>playlist_id(string)：播放列表标识符</li>
-<li>playlist_title(string)：播放列表标题</li>
-<li>playlist_uploader(string)：播放列表上传者的全名</li>
-<li>playlist_uploader_id(string)：播放列表上传者的昵称或ID</li>
-</ul>
-<p>适用于属于某些逻辑章节的视频：</p>
-<ul>
-<li>chapter(string)：视频所属章节的名称或标题</li>
-<li>chapter_number(numeric)：视频所属章节的编号</li>
-<li>chapter_id(string)：视频所属章节的ID</li>
-</ul>
-<p>适用于某些系列或节目的一集的视频：</p>
-<ul>
-<li>series(string)：视频片段所属的系列或节目的标题</li>
-<li>season(string)：视频片段所属的季节的标题</li>
-<li>season_number(numeric)：视频片段所属的季节数</li>
-<li>season_id(string)：视频片段所属的季节ID</li>
-<li>episode (string)：视频剧集的标题</li>
-<li>episode_number(numeric)：一个季节中的视频节目编号</li>
-<li>episode_id(string)：视频剧集的ID</li>
-</ul>
-<p>可用于作为曲目或音乐专辑一部分的媒体：</p>
-<ul>
-<li>track(string)：轨道的标题</li>
-<li>track_number(numeric)：专辑或光盘中轨道的编号</li>
-<li>track_id(string)：轨道的ID</li>
-<li>艺术家(string)：曲目的艺术家</li>
-<li>流派(string)：曲目的流派</li>
-<li>专辑(string)：曲目所属专辑的标题</li>
-<li>album_type(string)：相册的类型</li>
-<li>album_artist(string)：出现在专辑中的所有艺术家的列表</li>
-<li>disc_number(numeric)：轨道所属的光盘或其他物理介质的编号</li>
-<li>release_year(numeric)：专辑发行的年份（YYYY）</li>
-</ul>
-<p>当在输出模板中引用每个上述序列时，将由对应于序列名称的实际值替换。 请注意，某些序列不保证存在，因为它们取决于特定提取器获得的元数据。 此类序列将替换为NA。</p>
-<p>例如，对于-o％（title）s-％（id）s。％（ext）s和带有标题youtube-dl测试视频且ID为BaW_jenozKcj的mp4视频，这将导致youtube-dl测试视频-BaW_jenozKcj。 在当前目录中创建的mp4文件。</p>
-<p>对于数字序列，您可以使用数字相关的格式，例如，％（view_count）05d将导致一个字符串，其中的视图计数用零填充，最多为5个字符，例如00042。 输出模板还可以包含任意分层路径，例如 -o'％（播放列表）s /％（播放列表索引）s-％（标题）。％（ext）s'，这将导致将每个视频下载到与此路径模板相对应的目录中。 任何丢失的目录将自动为您创建。 要在输出模板中使用百分比文字，请使用%%。 要输出到标准输出，请使用-o-。 当前的默认模板为％（title）s-％（id）s。％（ext）s。 在某些情况下，例如在将下载的文件名传输到Windows系统或通过8bit-unsafe通道将文件名传输到Windows系统时，您不需要特殊字符（如中，空格或＆）。 在这些情况下，请添加--restrict-filenames标志以获取较短的标题：</p>
-<h4 id="输出模板和windows批处理文件">输出模板和Windows批处理文件</h4>
-<p>如果在Windows批处理文件中使用输出模板，则必须通过加倍转义普通百分号（％），以便-o“％（title）s-％（id）s。％（ext）s”应变为 -o“ %%（title）s-%%（id）s。%%（ext）s”。 但是，您不应触摸非纯字符的％，例如 用于扩展的环境变量应保持不变：-o“ C：％HOMEPATH％ Desktop  %%（title）s。%%（ext）s”。</p>
-<h4 id="输出模板示例">输出模板示例</h4>
-<p>请注意，在Windows上，您可能需要使用双引号而不是单引号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ youtube-dl --get-filename -o &#39;%(title)s.%(ext)s&#39; BaW_jenozKc</span><br><span class="line">youtube-dl test video &#39;&#39;_ä↭𝕐.mp4    # All kinds of weird characters</span><br><span class="line"></span><br><span class="line">$ youtube-dl --get-filename -o &#39;%(title)s.%(ext)s&#39; BaW_jenozKc --restrict-filenames</span><br><span class="line">youtube-dl_test_video_.mp4          # A simple file name</span><br><span class="line"></span><br><span class="line"># Download YouTube playlist videos in separate directory indexed by video order in a playlist</span><br><span class="line">$ youtube-dl -o &#39;%(playlist)s&#x2F;%(playlist_index)s - %(title)s.%(ext)s&#39; https:&#x2F;&#x2F;www.youtube.com&#x2F;playlist?list&#x3D;PLwiyx1dc3P2JR9N8gQaQN_BCvlSlap7re</span><br><span class="line"></span><br><span class="line"># Download all playlists of YouTube channel&#x2F;user keeping each playlist in separate directory:</span><br><span class="line">$ youtube-dl -o &#39;%(uploader)s&#x2F;%(playlist)s&#x2F;%(playlist_index)s - %(title)s.%(ext)s&#39; https:&#x2F;&#x2F;www.youtube.com&#x2F;user&#x2F;TheLinuxFoundation&#x2F;playlists</span><br><span class="line"></span><br><span class="line"># Download Udemy course keeping each chapter in separate directory under MyVideos directory in your home</span><br><span class="line">$ youtube-dl -u user -p password -o &#39;~&#x2F;MyVideos&#x2F;%(playlist)s&#x2F;%(chapter_number)s - %(chapter)s&#x2F;%(title)s.%(ext)s&#39; https:&#x2F;&#x2F;www.udemy.com&#x2F;java-tutorial&#x2F;</span><br><span class="line"></span><br><span class="line"># Download entire series season keeping each series and each season in separate directory under C:&#x2F;MyVideos</span><br><span class="line">$ youtube-dl -o &quot;C:&#x2F;MyVideos&#x2F;%(series)s&#x2F;%(season_number)s - %(season)s&#x2F;%(episode_number)s - %(episode)s.%(ext)s&quot; https:&#x2F;&#x2F;videomore.ru&#x2F;kino_v_detalayah&#x2F;5_sezon&#x2F;367617</span><br><span class="line"></span><br><span class="line"># Stream the video being downloaded to stdout</span><br><span class="line">$ youtube-dl -o - BaW_jenozKc</span><br></pre></td></tr></table></figure>
-<h1 id="格式选择">格式选择</h1>
-<p>默认情况下，youtube-dl尝试下载最佳质量，即，如果您想要最佳质量，则不需要通过任何特殊选项，youtube-dl会默认为您猜测。 但是有时您可能想以其他格式下载，例如，在连接速度较慢或断断续续时。 实现此目的的关键机制是所谓的格式选择，您可以基于该机制显式指定所需的格式，基于某个或多个条件选择格式，设置优先级等。 格式选择的一般语法是--format FORMAT或更短的-f FORMAT，其中FORMAT是选择器表达式，即描述您要下载的一种或多种格式的表达式。</p>
-<p><strong>tl;dr:</strong> <a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#format-selection-examples">navigate me to examples</a>.</p>
-<p>最简单的情况是请求特定格式，例如，使用-f 22可以下载格式代码等于22的格式。您可以使用--list-formats或-F获取特定视频的可用格式代码列表。 请注意，这些格式代码是提取器特定的。 您还可以使用文件扩展名（当前支持3gp，aac，flv，m4a，mp3，mp4，ogg，wav，webm）下载作为单个文件的特定文件扩展名的最佳格式，例如 -f webm将以webm扩展名作为单个文件下载最佳质量格式。 您还可以使用特殊名称来选择特殊的边缘情况格式：</p>
-<ul>
-<li>best：选择包含视频和音频的单个文件代表的最佳质量格式。</li>
-<li>worst：选择包含视频和音频的单个文件表示的最差质量格式。</li>
-<li>bestvideo：选择质量最好的纯视频格式（例如DASH视频）。 可能不可用。</li>
-<li>worstvideo：选择质量最差的纯视频格式。 可能不可用。</li>
-<li>bestaudio：选择质量最好的仅音频格式。 可能不可用。</li>
-<li>worstaudio：选择质量最差的纯音频格式。 可能不可用。</li>
-</ul>
-<p>例如，要下载质量最差的纯视频格式，可以使用-f最坏视频。</p>
-<p>如果要下载多个视频，而它们没有可用的相同格式，则可以使用斜杠指定首选项的顺序。请注意，斜杠是左关联的，即首选左侧格式，例如-f 22/17/18将下载格式22（如果可用），否则将下载格式17（如果可用），否则将下载格式18（如果有），否则会抱怨没有合适的格式可供下载。 如果您要下载同一视频的多种格式，请使用逗号作为分隔符，例如-f 22,17,18当然会下载所有这三种格式。或更高级的示例结合了优先功能：-f 136/137 / mp4 / bestvideo，140 / m4a / bestaudio。 您也可以通过将条件放在方括号中来过滤视频格式，如-f“ best [height = 720]”（或-f“ [filesize&gt; 10M]”）一样。 以下数字元字段可用于比较&lt;，&lt;=，&gt;，&gt; =，=（等于），！=（不等于）：</p>
-<ul>
-<li>filesize：字节数，如果事先知道</li>
-<li>width：视频的宽度（如果已知）</li>
-<li>height：视频的高度（如果已知）</li>
-<li>tbr：音频和视频的平均比特率，单位为KBit/s</li>
-<li>abr：平均音频比特率，单位为KBit/s</li>
-<li>vbr：平均视频比特率，单位为KBit/s</li>
-<li>asr：赫兹的音频采样率</li>
-<li>fps：帧频</li>
-</ul>
-<p>还过滤比较的工作=（等于），^ =（以）开头，$ =（以）结尾，* =（包含）以及以下字符串元字段：</p>
-<ul>
-<li>ext：文件扩展名</li>
-<li>acodec：正在使用的音频编解码器的名称</li>
-<li>vcodec：使用中的视频编解码器的名称</li>
-<li>container：容器格式名称</li>
-<li>protocol：将用于实际下载的协议，小写（http，https，rtsp，rtmp，rtmpe，mms，f4m，ism，http_dash_segments，m3u8或m3u8_native）</li>
-<li>format_id：格式的简短说明</li>
-<li>language：语言代码</li>
-</ul>
-<p>任何字符串比较都可以加上否定前缀！为了产生相反的比较，例如！* =（不包含）。 注意，上述元字段都不保证存在，因为这仅取决于特定提取器获得的元数据，即由视频主机提供的元数据。 除非您在运算符后面加上问号（？），否则将排除不知道其值的格式。您可以组合使用格式过滤器，因此-f“ [height &lt;=？720] [tbr&gt; 500]”最多以至少500 KBit / s的比特率选择720p视频（或高度未知的视频）。 您可以使用-f <视频格式> + <音频格式>（需要安装ffmpeg或avconv）将两种格式的视频和音频合并为一个文件，例如，-f bestvideo + bestaudio将仅下载最佳视频文件。格式，最好的纯音频格式，并将其与ffmpeg / avconv混合使用。 格式选择器也可以使用括号进行分组，例如，如果您要下载高度低于480的最佳mp4和webm格式，则可以使用-f'（mp4，webm）[height &lt;480]'。 自2015年4月底和版本2015.04.26起，youtube-dl使用-f bestvideo + bestaudio / best作为默认格式选择（请参阅＃5447，＃5456）(<a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl/issues/5447">#5447</a>, <a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl/issues/5456">#5456</a>)。如果安装了ffmpeg或avconv，则将导致分别下载bestvideo和bestaudio并将它们混合到一个文件中，从而提供最佳的整体质量。否则，它会恢复到最佳状态，并导致以单个文件的形式下载最佳质量的文件。非YouTube的视频也需要最好的，因为它们没有以两个不同的文件提供音频和视频。如果只想下载某些DASH格式（例如，如果您不希望获得分辨率高于1080p的视频），则可以在配置文件中添加-f bestvideo [height &lt;=？1080] + bestaudio / best。请注意，如果您使用youtube-dl来流式输出到stdout（然后很可能将其通过管道传输到媒体播放器），即您将输出模板明确指定为-o-，那么youtube-dl仍将使用-f最佳格式选择以立即开始将内容交付给播放器，而不要等到bestvideo和bestaudio被下载并混合后再发送。 如果您要保留旧的格式选择行为（在youtube-dl 2015.04.26之前），即要以单个文件的形式下载质量最好的可用媒体，则应使用-f best明确指定您的选择。您可能需要将其添加到配置文件 <a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#configuration">configuration file</a> 中，以免每次运行youtube-dl时都将其键入。</p>
-<h4 id="格式选择示例">格式选择示例</h4>
-<p>请注意，在Windows上，您可能需要使用双引号而不是单引号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Download best mp4 format available or any other best if no mp4 available</span><br><span class="line">$ youtube-dl -f &#39;bestvideo[ext&#x3D;mp4]+bestaudio[ext&#x3D;m4a]&#x2F;best[ext&#x3D;mp4]&#x2F;best&#39;</span><br><span class="line"></span><br><span class="line"># Download best format available but no better than 480p</span><br><span class="line">$ youtube-dl -f &#39;bestvideo[height&lt;&#x3D;480]+bestaudio&#x2F;best[height&lt;&#x3D;480]&#39;</span><br><span class="line"></span><br><span class="line"># Download best video only format but no bigger than 50 MB</span><br><span class="line">$ youtube-dl -f &#39;best[filesize&lt;50M]&#39;</span><br><span class="line"></span><br><span class="line"># Download best format available via direct link over HTTP&#x2F;HTTPS protocol</span><br><span class="line">$ youtube-dl -f &#39;(bestvideo+bestaudio&#x2F;best)[protocol^&#x3D;http]&#39;</span><br><span class="line"></span><br><span class="line"># Download the best video format and the best audio format without merging them</span><br><span class="line">$ youtube-dl -f &#39;bestvideo,bestaudio&#39; -o &#39;%(title)s.f%(format_id)s.%(ext)s&#39;</span><br></pre></td></tr></table></figure>
-<p>请注意，在最后一个示例中，建议使用输出模板，因为bestvideo和bestaudio可能具有相同的文件名。</p>
-<h1 id="视频选项-1">视频选项</h1>
-<p>可以使用--date，-datebefore或--dateafter选项按上传日期过滤视频。 它们接受两种格式的日期：</p>
-<ul>
-<li>绝对日期：日期格式为YYYYMMDD。</li>
-<li>相对日期：日期格式为（现在|今天）[+-] [0-9]（天|周|月|年）？</li>
-</ul>
-<p>Examples:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Download only the videos uploaded in the last 6 months</span><br><span class="line">$ youtube-dl --dateafter now-6months</span><br><span class="line"></span><br><span class="line"># Download only the videos uploaded on January 1, 1970</span><br><span class="line">$ youtube-dl --date 19700101</span><br><span class="line"></span><br><span class="line">$ # Download only the videos uploaded in the 200x decade</span><br><span class="line">$ youtube-dl --dateafter 20000101 --datebefore 20091231</span><br></pre></td></tr></table></figure>
-<h1 id="faq">FAQ</h1>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//todo:</span></span><br></pre></td></tr></table></figure>
-<h1 id="开发人员说明">开发人员说明</h1>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//todo:</span></span><br></pre></td></tr></table></figure>
-<p>:round_pushpin: China,Chengdu.</p>
-<p>:calendar: 2021年1月7日</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2021/01/06/youtube-dl%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-zh-CN/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/06/youtube-dl%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-zh-CN/" data-id="ckjmyi4l2000y9sw3hy5c8c2t" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/06/youtube-dl%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-zh-CN/" data-id="ckjn3cytk001338w3ed7u30m7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/video-download/" rel="tag">video download</a></li></ul>
@@ -378,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckjmyi4js000h9sw370bb7shr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckjn3cysp000a38w31voreeoi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reg/" rel="tag">reg</a></li></ul>
@@ -434,7 +262,7 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/22/Linear-Regression/" data-id="ckjmyi4jh00039sw31vt1827b" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/22/Linear-Regression/" data-id="ckjn3cysf000138w31zv0e1ie" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linear-Fitting/" rel="tag">Linear Fitting</a></li></ul>
@@ -484,7 +312,7 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/06/%E6%83%AF%E6%80%A7%E5%AF%BC%E8%88%AA%E7%AE%97%E6%B3%95/" data-id="ckjmyi4jr000g9sw36vu46f0r" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/06/%E6%83%AF%E6%80%A7%E5%AF%BC%E8%88%AA%E7%AE%97%E6%B3%95/" data-id="ckjn3cysn000738w3dk130cfh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm-IMU/" rel="tag">Algorithm IMU</a></li></ul>
@@ -531,7 +359,7 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/InterviewQuestion-C-Cplusplus/" data-id="ckjmyi4jd00019sw3e6v11tbz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/InterviewQuestion-C-Cplusplus/" data-id="ckjn3cysj000338w3gq71ccfl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview/" rel="tag">interview</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/question/" rel="tag">question</a></li></ul>
@@ -578,7 +406,7 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/29/%E6%95%B0%E5%AD%97%E6%BB%A4%E6%B3%A2-IIR-FIR-1/" data-id="ckjmyi4ju000k9sw3dyor04z6" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/29/%E6%95%B0%E5%AD%97%E6%BB%A4%E6%B3%A2-IIR-FIR-1/" data-id="ckjn3cyso000938w34l3kaia1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/filter/" rel="tag">filter</a></li></ul>
@@ -625,7 +453,7 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/25/MFTS/" data-id="ckjmyi4ko000u9sw34ynn2x5d" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/25/MFTS/" data-id="ckjn3cysy000v38w38udhgx89" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C-DataStructure-Algorithm/" rel="tag">C/C++ DataStructure Algorithm</a></li></ul>
@@ -647,7 +475,7 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning-Note/">Learning Note</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/interpretation/">interpretation</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning-Note/">Learning Note</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/interpretation/">interpretation</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li></ul>
     </div>
   </div>
 
@@ -657,7 +485,7 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm-IMU/" rel="tag">Algorithm IMU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C-DataStructure-Algorithm/" rel="tag">C/C++ DataStructure Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linear-Fitting/" rel="tag">Linear Fitting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/filter/" rel="tag">filter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/question/" rel="tag">question</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reg/" rel="tag">reg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video-download/" rel="tag">video download</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm-IMU/" rel="tag">Algorithm IMU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C-DataStructure-Algorithm/" rel="tag">C/C++ DataStructure Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linear-Fitting/" rel="tag">Linear Fitting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/filter/" rel="tag">filter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/question/" rel="tag">question</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reg/" rel="tag">reg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video-download/" rel="tag">video download</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/videodownload/" rel="tag">videodownload</a></li></ul>
     </div>
   </div>
 
@@ -680,6 +508,10 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
       <ul>
         
           <li>
+            <a href="/2021/01/08/%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7/">视频下载工具</a>
+          </li>
+        
+          <li>
             <a href="/2021/01/06/youtube-dl%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-zh-CN/">youtube-dl中文文档(zh-CN)</a>
           </li>
         
@@ -693,10 +525,6 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
         
           <li>
             <a href="/2020/12/06/%E6%83%AF%E6%80%A7%E5%AF%BC%E8%88%AA%E7%AE%97%E6%B3%95/">惯性导航算法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/03/InterviewQuestion-C-Cplusplus/">InterviewQuestion-C-Cplusplus</a>
           </li>
         
       </ul>
@@ -744,20 +572,5 @@ f(x_i) = wx_i+b;使得f(x_i)\cong y_i
 
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
