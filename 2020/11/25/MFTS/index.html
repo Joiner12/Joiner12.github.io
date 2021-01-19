@@ -32,8 +32,15 @@
 <meta property="og:image" content="https://pic1.zhimg.com/v2-c411339b79f92499dcb7b5f304c826f4_b.jpg">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_1.svg_.png">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/Bucket_sort_2.svg_.png">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20201203/250058309_1606981758486_A7EF9B373F8BB975186F4CA6444028E1">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20201203/250058309_1606981835132_A0015DB1EE8CFA0F80C25A5CEE14D475">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20201203/250058309_1606986929037_1D9E4D05BA64A4CDA190FED508B27D93">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20201205/250058309_1607138932790_BE7D88E949F5E456AE785FDCDB1711FE">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20201205/250058309_1607145276111_3DF07624430D5A2CA584367AE095144D">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20201205/250058309_1607149263648_A86E0206BED89158166AB570BD3B8E9A">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20201205/250058309_1607151519087_211933063E833B2A9A9A4B92A69CB6B7">
 <meta property="article:published_time" content="2020-11-25T09:10:57.000Z">
-<meta property="article:modified_time" content="2020-12-23T15:31:14.995Z">
+<meta property="article:modified_time" content="2021-01-13T06:27:18.095Z">
 <meta property="article:author" content="Peace4LV">
 <meta property="article:tag" content="C&#x2F;C++ DataStructure Algorithm">
 <meta name="twitter:card" content="summary">
@@ -407,11 +414,116 @@ Good Luck,Be confident.
 <li>开放封闭原则（OCP，Open Close Principle）</li>
 </ul>
 <hr />
+<h2 id="题解">题解</h2>
+<p>链接：https://www.nowcoder.com/questionTerminal/b56799ebfd684fb394bd315e89324fb4?answerType=1&amp;f=discussion 来源：牛客网</p>
+<p>对以下做过的子串问题进行解析和总结。</p>
+<figure>
+<img src="https://uploadfiles.nowcoder.com/images/20201203/250058309_1606981758486_A7EF9B373F8BB975186F4CA6444028E1" alt="图片说明" /><figcaption>图片说明</figcaption>
+</figure>
+<blockquote>
+<p><strong>找到字符串的最长无重复字符子串</strong></p>
+</blockquote>
+<figure>
+<img src="https://uploadfiles.nowcoder.com/images/20201203/250058309_1606981835132_A0015DB1EE8CFA0F80C25A5CEE14D475" alt="图片说明" /><figcaption>图片说明</figcaption>
+</figure>
+<p>方法一 <strong>滑动窗口法</strong>：</p>
+<ul>
+<li>我们可以使用<strong>双指针</strong>模拟一个<strong>滑动窗口</strong>。</li>
+<li>初始化窗口为 <strong>(left, right]</strong>。 所以left从-1开始。</li>
+<li>窗口不断往右扩大。</li>
+<li>根据题目的要求，即遇到有重复数字的，在窗口左侧缩小。</li>
+<li>在每次滑动时，对窗口的大小进行比较，保留最大的长度。</li>
+</ul>
+<p>代码实现：</p>
+<p><a href="#">复制代码</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxLength</span> <span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> res = <span class="number">0</span>, left = -<span class="number">1</span>;</span><br><span class="line">  <span class="comment">//用来存放窗口存放过的数字</span></span><br><span class="line">  HashMap&lt;Integer, Integer&gt; windows = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">  <span class="comment">//窗口不断往右移</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> right = <span class="number">0</span>; right &lt; arr.length; right++)&#123;</span><br><span class="line">    <span class="comment">//根据题目，当遇到重复的数字时，缩小左侧窗口</span></span><br><span class="line">    <span class="keyword">if</span>( windows.containsKey(arr[right]))&#123;</span><br><span class="line">      <span class="comment">//因为我们有可能遇到索引比left原来还小的相同数字</span></span><br><span class="line">      <span class="comment">//所以这里要进行比较，目的还是为了缩小左侧窗口，确保窗口内全是不重复的数字</span></span><br><span class="line">      left = Math.max(left, windows.get(arr[right]));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//更新窗口内数字的索引</span></span><br><span class="line">    windows.put(arr[right], right);</span><br><span class="line">    <span class="comment">//right-left是窗口大小</span></span><br><span class="line">    <span class="comment">//因为要找最长，所以要进行比较</span></span><br><span class="line">    res = Math.max(res, right-left);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法二 <strong>双指针+回头遍历</strong>：</p>
+<p>过程可以看注释</p>
+<p><a href="#">复制代码</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxLength</span> <span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> res = <span class="number">0</span>, tmp = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//right指针往右移动</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> right = <span class="number">0</span>; right &lt; arr.length; right++)&#123;</span><br><span class="line">    <span class="keyword">int</span> left = right - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//回头扫描，要是没有找到相同的，左指针一直倒退</span></span><br><span class="line">    <span class="keyword">while</span>(left &gt;= <span class="number">0</span> &amp;&amp; arr[right] != arr[left])</span><br><span class="line">      left--;</span><br><span class="line">    <span class="comment">//暂时保存子串长度 </span></span><br><span class="line">    <span class="comment">//若指针距离比上一个字符时拥有的子串长度大，就tmp + 1，否则就设置为指针距离，方便下一步res进行比较</span></span><br><span class="line">    tmp = tmp &lt; right - left ? tmp + <span class="number">1</span> : right - left;</span><br><span class="line">    res = Math.max(res,tmp);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>最长公共子串</strong></p>
+</blockquote>
+<figure>
+<img src="https://uploadfiles.nowcoder.com/images/20201203/250058309_1606986929037_1D9E4D05BA64A4CDA190FED508B27D93" alt="图片说明" /><figcaption>图片说明</figcaption>
+</figure>
+<p>这道题有点类似 <strong>最长公共子序列</strong>。</p>
+<blockquote>
+<p>公共子串和公共子序列的区别</p>
+</blockquote>
+<ul>
+<li>公共子串：必须是连续的。</li>
+<li>公共子序列：不必是连续的，但是相对位置必须不能改变。</li>
+</ul>
+<p>好，接下来，我们上<strong>动态规划</strong>解法：</p>
+<ul>
+<li>其实解法跟<strong>最长公共子序列</strong>的是差不多的。</li>
+</ul>
+<ol type="1">
+<li>先确定状态和选择
+<ul>
+<li>状态有两个，分别是str1 和 str2 的索引 i,j 变化</li>
+<li>选择有两个，当str1[i-1] 和 str2[j-1]相等时，dp[i][j] + 1；当不相等时，dp[i][j]置为0。</li>
+</ul></li>
+<li>确定状态转移方程和 base case
+<ul>
+<li>这里画个图就清晰多了 <img src="https://uploadfiles.nowcoder.com/images/20201205/250058309_1607138932790_BE7D88E949F5E456AE785FDCDB1711FE" alt="图片说明" /> 当字符相等时，dp[i][j] = dp[i-1][j-1] + 1； 不相等时，dp[i][j] = 0</li>
+<li>base case：dp[0][j] 和 dp[i][0] 全部置为0。</li>
+</ul></li>
+</ol>
+<p>代码实现：</p>
+<p><a href="#">复制代码</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>` `<span class="function">String <span class="title">LCS</span><span class="params">(String str1, String str2)</span></span>&#123;``  ``<span class="keyword">if</span>``(str1.length() == ``<span class="number">0</span>` `|| str2.length() == ``<span class="number">0</span>``)&#123;``    ``<span class="keyword">return</span>` `<span class="string">&quot;-1&quot;</span>``;``  ``&#125;``  ``<span class="comment">//起始位置``  ``int` `start1 = ``0``;``  ``//偏移量``  ``int` `max = ``0``;``  ``int` `len1 = str1.length();``  ``int` `len2 = str2.length();` `  ``int``[][] dp = ``new` `int``[len1+``1``][len2+``1``];` `  ``for``(``int` `i = ``1``; i &lt;= len1; i++)&#123;``    ``for``(``int` `j = ``1``; j &lt;= len2; j++)&#123;``      ``if``(str1.charAt(i-``1``) == str2.charAt(j-``1``))&#123;``         ``//将当前相等的字符计入 + 1``         ``dp[i][j] = dp[i-``1``][j-``1``] + ``1``;``      ``&#125;``else` `&#123;``        ``dp[i][j] = ``0``;``      ``&#125;` `      ``if``(max &lt; dp[i][j])&#123;``        ``//max记录已经拥有的子串长度 ``        ``max = dp[i][j];``        ``//因为字符串索引是从0开始的，所以 i - max 刚好是起始位置``        ``start1 = i - max;` `      ``&#125;``    ``&#125;``  ``&#125;``  ``if``(max == ``0``) ``return` `&quot;-1&quot;``;``  ``return` `str1.substring(start1, max+start1);``&#125;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最长回文子串</p>
+</blockquote>
+<figure>
+<img src="https://uploadfiles.nowcoder.com/images/20201205/250058309_1607145276111_3DF07624430D5A2CA584367AE095144D" alt="图片说明" /><figcaption>图片说明</figcaption>
+</figure>
+<p>代码实现：</p>
+<p><a href="#">复制代码</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public&#96; &#96;class&#96; &#96;Palindrome &#123;&#96;&#96;  &#96;&#96;public&#96; &#96;int&#96; &#96;getLongestPalindrome(String A, &#96;&#96;int&#96; &#96;n) &#123;&#96;&#96;    &#96;&#96;int&#96; &#96;res &#x3D; &#96;&#96;0&#96;&#96;;&#96;&#96;    &#96;&#96;&#x2F;&#x2F;暴力解法&#96;&#96;    &#96;&#96;for&#96;&#96;(&#96;&#96;int&#96; &#96;i &#x3D; &#96;&#96;0&#96;&#96;; i &lt; n; i++)&#123;&#96;&#96;      &#96;&#96;for&#96;&#96;(&#96;&#96;int&#96; &#96;j &#x3D; i+&#96;&#96;1&#96;&#96;; j &lt;&#x3D; n; j++)&#123;&#96;&#96;        &#96;&#96;String tmp &#x3D; A.substring(i,j);&#96;&#96;        &#96;&#96;&#x2F;&#x2F;调用判断是否为回文子串的方法&#96;&#96;        &#96;&#96;if&#96;&#96;(isPalindrome(tmp))&#123;&#96;&#96;          &#96;&#96;res &#x3D; Math.max(res, tmp.length());&#96;&#96;        &#96;&#96;&#125;&#96;&#96;      &#96;&#96;&#125;&#96;&#96;    &#96;&#96;&#125;&#96;&#96;    &#96;&#96;return&#96; &#96;res;&#96;&#96;  &#96;&#96;&#125;&#96; &#96;  &#96;&#96;public&#96; &#96;boolean&#96; &#96;isPalindrome(String s) &#123;&#96;&#96;    &#96;&#96;int&#96; &#96;len &#x3D; s.length();&#96;&#96;    &#96;&#96;for&#96;&#96;(&#96;&#96;int&#96; &#96;i&#x3D;&#96;&#96;0&#96;&#96;; i&lt; len&#x2F;&#96;&#96;2&#96;&#96;; i++)&#123;&#96;&#96;      &#96;&#96;if&#96;&#96;(s.charAt(i) !&#x3D; s.charAt(len-&#96;&#96;1&#96;&#96;-i))&#96;&#96;        &#96;&#96;return&#96; &#96;false&#96;&#96;;&#96;&#96;    &#96;&#96;&#125;&#96;&#96;    &#96;&#96;return&#96; &#96;true&#96;&#96;;&#96;&#96;  &#96;&#96;&#125;&#96;&#96;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最长的括号子串</p>
+</blockquote>
+<figure>
+<img src="https://uploadfiles.nowcoder.com/images/20201205/250058309_1607149263648_A86E0206BED89158166AB570BD3B8E9A" alt="图片说明" /><figcaption>图片说明</figcaption>
+</figure>
+<p>绝了这道题，一开始写了个使用栈的解法，测试一直过不了。后来看了题解，才发现自己理解错题目了呜呜呜。 上正确解法：</p>
+<p>方法一 <strong>使用栈</strong> ： 这个应该是很容易想到的解法</p>
+<ul>
+<li>栈存放的是括号的索引。</li>
+<li>当遇到 '('时，入栈，当遇到 ')'时，如果栈为空，将它放进去；否则弹出栈顶，再将当前索引减去栈顶的索引，再跟原来的res进行比较，更新res值，保证取到最大的数字。</li>
+</ul>
+<p>代码实现：</p>
+<p><a href="#">复制代码</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public&#96; &#96;int&#96; &#96;longestValidParentheses (String s) &#123;&#96;&#96;  &#96;&#96;int&#96; &#96;res &#x3D; &#96;&#96;0&#96;&#96;;&#96;&#96;  &#96;&#96;Stack&lt;Integer&gt; stack &#x3D; &#96;&#96;new&#96; &#96;Stack&lt;&gt;();&#96;&#96;  &#96;&#96;stack.push(-&#96;&#96;1&#96;&#96;);&#96;&#96;  &#96;&#96;for&#96;&#96;(&#96;&#96;int&#96; &#96;i&#x3D;&#96;&#96;0&#96;&#96;; i &lt; s.length(); i++)&#123;&#96;&#96;    &#96;&#96;if&#96;&#96;(s.charAt(i) &#x3D;&#x3D; &#96;&#96;&#39;(&#39;&#96;&#96;)&#123;&#96;&#96;      &#96;&#96;stack.push(i);&#96;&#96;    &#96;&#96;&#125; &#96;&#96;else&#96; &#96;&#123;&#96;&#96;      &#96;&#96;stack.pop();&#96;&#96;      &#96;&#96;if&#96;&#96;(stack.empty()) &#123;&#96;&#96;        &#96;&#96;stack.push(i);&#96;&#96;      &#96;&#96;&#125; &#96;&#96;else&#96; &#96;&#123;&#96;&#96;        &#96;&#96;res &#x3D; Math.max(res, i - stack.peek());&#96;&#96;      &#96;&#96;&#125;&#96;&#96;    &#96;&#96;&#125;      &#96;&#96;  &#96;&#96;&#125;&#96;&#96;  &#96;&#96;return&#96; &#96;res;&#96;&#96;&#125;</span><br></pre></td></tr></table></figure>
+<p>方法二 <strong>动态规划</strong>：</p>
+<p>dp数组存放的是当前所拥有的括号子串长度。 在动态规划框架上，处理了三种情况：</p>
+<ul>
+<li>当前字符为 '('，跳过，默认初始化为0;</li>
+<li>当前字符为 ')'，又分为两种情况：
+<ul>
+<li>当前面只有单个'()'出现或者判断字符正处于嵌套括号的最里层时，dp[i] = dp[i-2] + 2；</li>
+<li>当处于嵌套括号的外层时， dp[i] = dp[i-1] + dp[i-dp[i-1]-2] + 2；</li>
+</ul></li>
+</ul>
+<p>代码实现：</p>
+<p><a href="#">复制代码</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public&#96; &#96;int&#96; &#96;longestValidParentheses (String s) &#123;&#96;&#96;  &#96;&#96;int&#96; &#96;res &#x3D; &#96;&#96;0&#96;&#96;;&#96;&#96;  &#96;&#96;int&#96;&#96;[] dp &#x3D; &#96;&#96;new&#96; &#96;int&#96;&#96;[s.length()];&#96;&#96;  &#96;&#96;for&#96;&#96;(&#96;&#96;int&#96; &#96;i &#x3D; &#96;&#96;1&#96;&#96;; i &lt; s.length(); i++)&#123;&#96;&#96;    &#96;&#96;&#x2F;&#x2F;只对当前字符是&#39;)&#39;进行处理&#96;&#96;    &#96;&#96;if&#96;&#96;(s.charAt(i) &#x3D;&#x3D; &#96;&#96;&#39;)&#39;&#96;&#96;)&#123;&#96;&#96;      &#96;&#96;&#x2F;&#x2F;当()时&#96;&#96;       &#96;&#96;if&#96;&#96;(s.charAt(i-&#96;&#96;1&#96;&#96;) &#x3D;&#x3D; &#96;&#96;&#39;(&#39;&#96;&#96;)&#123;&#96;&#96;        &#96;&#96;dp[i] &#x3D; (i &gt;&#x3D; &#96;&#96;2&#96; &#96;? dp[i-&#96;&#96;2&#96;&#96;] : &#96;&#96;0&#96;&#96;) + &#96;&#96;2&#96;&#96;;&#96;&#96;       &#96;&#96;&#125; &#96;&#96;else&#96; &#96;if&#96;&#96;(i - dp[i-&#96;&#96;1&#96;&#96;] &gt; &#96;&#96;0&#96; &#96;&amp;&amp; s.charAt(i - dp[i-&#96;&#96;1&#96;&#96;] - &#96;&#96;1&#96;&#96;) &#x3D;&#x3D; &#96;&#96;&#39;(&#39;&#96;&#96;)&#123; &#96;&#96;&#x2F;&#x2F;当 (())时&#96;&#96;        &#96;&#96;dp[i] &#x3D; dp[i-&#96;&#96;1&#96;&#96;] + ((i-dp[i-&#96;&#96;1&#96;&#96;]) &gt;&#x3D; &#96;&#96;2&#96; &#96;? dp[i - dp[i-&#96;&#96;1&#96;&#96;] - &#96;&#96;2&#96;&#96;] : &#96;&#96;0&#96;&#96;) + &#96;&#96;2&#96;&#96;;&#96;&#96;       &#96;&#96;&#125;&#96;&#96;       &#96;&#96;res &#x3D; Math.max(res, dp[i]);&#96;&#96;    &#96;&#96;&#125;&#96;&#96;  &#96;&#96;&#125;&#96;&#96;  &#96;&#96;return&#96; &#96;res;&#96;&#96;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最长的覆盖子串</p>
+</blockquote>
+<p><img src="https://uploadfiles.nowcoder.com/images/20201205/250058309_1607151519087_211933063E833B2A9A9A4B92A69CB6B7" /></p>
+<p>这道题也可以用<strong>滑动窗口</strong>方法： 与第一题不同的是，窗口左侧收缩的满足条件是 <strong>当S包含T的所有字符</strong>时。</p>
+<p>代码实现：</p>
+<p><a href="#">复制代码</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public&#96; &#96;String minWindow (String S, String T) &#123;&#96;&#96;    &#96;&#96;&#x2F;&#x2F; write code here&#96;&#96;    &#96;&#96;HashMap&lt;Character, Integer&gt; need, window;&#96;&#96;    &#96;&#96;need &#x3D; &#96;&#96;new&#96; &#96;HashMap&lt;Character, Integer&gt;();&#96;&#96;    &#96;&#96;window &#x3D; &#96;&#96;new&#96; &#96;HashMap&lt;Character, Integer&gt;();&#96; &#96;    &#96;&#96;for&#96;&#96;(&#96;&#96;int&#96; &#96;i&#x3D;&#96;&#96;0&#96;&#96;; i &lt; T.length(); i++)&#123;&#96;&#96;      &#96;&#96;char&#96; &#96;c &#x3D; T.charAt(i);&#96;&#96;      &#96;&#96;need.put(c,need.getOrDefault(c,&#96;&#96;0&#96;&#96;)+&#96;&#96;1&#96;&#96;);&#96;&#96;    &#96;&#96;&#125;&#96; &#96;    &#96;&#96;int&#96; &#96;left &#x3D; &#96;&#96;0&#96;&#96;, right &#x3D; &#96;&#96;0&#96;&#96;;&#96;&#96;    &#96;&#96;&#x2F;&#x2F;包含目标T的字符数&#96;&#96;    &#96;&#96;int&#96; &#96;valid &#x3D; &#96;&#96;0&#96;&#96;;&#96; &#96;    &#96;&#96;&#x2F;&#x2F;记录最小覆盖子串的起始索引及长度&#96;&#96;    &#96;&#96;int&#96; &#96;start &#x3D; &#96;&#96;0&#96;&#96;, len &#x3D; Integer.MAX_VALUE;&#96; &#96;    &#96;&#96;&#x2F;&#x2F;窗口不断往右移 &#96;&#96;    &#96;&#96;while&#96;&#96;(right &lt; S.length())&#123;&#96;&#96;      &#96;&#96;char&#96; &#96;c &#x3D; S.charAt(right);&#96; &#96;      &#96;&#96;&#x2F;&#x2F;右移窗口&#96;&#96;      &#96;&#96;right++;&#96;&#96;      &#96;&#96;&#x2F;&#x2F;进行窗口内数据更新&#96;&#96;      &#96;&#96;if&#96;&#96;(need.containsKey(c))&#123;&#96;&#96;        &#96;&#96;window.put(c,window.getOrDefault(c,&#96;&#96;0&#96;&#96;)+&#96;&#96;1&#96;&#96;);&#96;&#96;        &#96;&#96;if&#96;&#96;(window.get(c) &#x3D;&#x3D; need.get(c))&#96;&#96;          &#96;&#96;valid++;&#96;&#96;      &#96;&#96;&#125;&#96; &#96;      &#96;&#96;&#x2F;&#x2F;判断左侧是否进行收缩&#96;&#96;      &#96;&#96;while&#96;&#96;(valid &#x3D;&#x3D; need.size())&#123;&#96;&#96;        &#96;&#96;&#x2F;&#x2F;更新最小覆盖子串&#96;&#96;        &#96;&#96;if&#96;&#96;(right - left &lt; len)&#123;&#96;&#96;          &#96;&#96;start &#x3D; left;&#96;&#96;          &#96;&#96;len &#x3D; right - left;&#96;&#96;        &#96;&#96;&#125;&#96; &#96;        &#96;&#96;char&#96; &#96;d &#x3D; S.charAt(left);&#96;&#96;        &#96;&#96;&#x2F;&#x2F;左移窗口&#96;&#96;        &#96;&#96;left++;&#96; &#96;        &#96;&#96;&#x2F;&#x2F;进行窗口内数据更新&#96;&#96;        &#96;&#96;if&#96;&#96;(need.containsKey(d)) &#123;&#96;&#96;          &#96;&#96;if&#96;&#96;(window.get(d) &#x3D;&#x3D; need.get(d))&#96;&#96;            &#96;&#96;valid--;&#96;&#96;          &#96;&#96;window.put(d,window.get(d)-&#96;&#96;1&#96;&#96;);&#96;&#96;        &#96;&#96;&#125;&#96;&#96;      &#96;&#96;&#125;&#96;&#96;    &#96;&#96;&#125;&#96;&#96;    &#96;&#96;return&#96; &#96;len &#x3D;&#x3D; Integer.MAX_VALUE ? &#96;&#96;&quot;&quot;&#96; &#96;: S.substring(start,start+len);&#96; &#96;  &#96;&#96;&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/25/MFTS/" data-id="ckjrzid9e0014n4w38mk8hlm7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/25/MFTS/" data-id="ckk4a6ka7000swgw3hthzglf4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C-DataStructure-Algorithm/" rel="tag">C/C++ DataStructure Algorithm</a></li></ul>
@@ -455,7 +567,7 @@ Good Luck,Be confident.
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm-IMU/" rel="tag">Algorithm IMU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C-DataStructure/" rel="tag">C/C++ DataStructure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C-DataStructure-Algorithm/" rel="tag">C/C++ DataStructure Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linear-Fitting/" rel="tag">Linear Fitting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/filter/" rel="tag">filter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/question/" rel="tag">question</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reg/" rel="tag">reg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video-download/" rel="tag">video download</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/videodownload/" rel="tag">videodownload</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm-IMU/" rel="tag">Algorithm IMU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C-DataStructure/" rel="tag">C/C++ DataStructure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C-DataStructure-Algorithm/" rel="tag">C/C++ DataStructure Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linear-Fitting/" rel="tag">Linear Fitting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/economics/" rel="tag">economics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/filter/" rel="tag">filter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interview/" rel="tag">interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/question/" rel="tag">question</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reg/" rel="tag">reg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video-download/" rel="tag">video download</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/videodownload/" rel="tag">videodownload</a></li></ul>
     </div>
   </div>
 
@@ -478,6 +590,10 @@ Good Luck,Be confident.
       <ul>
         
           <li>
+            <a href="/2021/01/20/Economics/">Economics</a>
+          </li>
+        
+          <li>
             <a href="/2021/01/11/%E6%8E%92%E5%BA%8F-%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/">排序+搜索算法</a>
           </li>
         
@@ -491,10 +607,6 @@ Good Luck,Be confident.
         
           <li>
             <a href="/2020/12/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">正则表达式学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/22/Linear-Regression/">Linear Regression</a>
           </li>
         
       </ul>
