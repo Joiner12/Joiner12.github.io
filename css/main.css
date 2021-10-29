@@ -1136,10 +1136,10 @@ pre .javascript .function {
   display: inline-block;
 }
 .site-author-image {
-  border: 1px solid #eee;
+  border: 5px solid #eee;
   display: block;
   margin: 0 auto;
-  max-width: 120px;
+  max-width: 80px;
   padding: 2px;
   border-radius: 50%;
 }
@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #1a44ff;
+  background: #6f2046;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
