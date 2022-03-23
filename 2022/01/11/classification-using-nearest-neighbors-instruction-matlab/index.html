@@ -1,268 +1,216 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-monkey.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-monkey.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="心比天高 命比纸薄">
+    <meta name="author" content="Wh.吴昊🛰️">
+    
+    <title>
+        
+            MATLAB近邻算法分类指南 |
+        
+        Wh.🛰️
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="stylesheet" href="/css/main.css">
+    <link rel="shortcut icon" href="/images/favicon-16x16-monkey.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/favicon-16x16-monkey.png","favicon":"/images/favicon-16x16-monkey.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"你在我的心里永远是故乡"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-
-  <meta property="og:type" content="article">
-<meta property="og:title" content="MATLAB近邻算法分类指南">
-<meta property="og:url" content="http://example.com/2022/01/11/classification-using-nearest-neighbors-instruction-matlab/index.html">
-<meta property="og:site_name" content="Wuhao.吴昊">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/KNN-1.gif">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110212806751.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213015362.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213307164.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213439402.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213602515.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213739381.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213907637.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214026302.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214114274.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214225480.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214240166.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/exhaustivesearch.gif">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelines.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelinesnewpoint.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_01.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_02.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_04.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_05.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_06.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220111105413617.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_01.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_02.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/kaifaliucheng.png">
-<meta property="article:published_time" content="2022-01-11T07:11:39.000Z">
-<meta property="article:modified_time" content="2022-01-11T07:54:05.547Z">
-<meta property="article:author" content="Wh.吴昊🛰️">
-<meta property="article:tag" content="algorithm">
-<meta property="article:tag" content="matlab">
-<meta property="article:tag" content="kNN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/KNN-1.gif">
-
-<link rel="canonical" href="http://example.com/2022/01/11/classification-using-nearest-neighbors-instruction-matlab/">
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>MATLAB近邻算法分类指南 | Wuhao.吴昊</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+<body>
+<div class="progress-bar-container">
     
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Wuhao.吴昊</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">你在我的心里永远是故乡</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
+    
 </div>
 
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-thoughts">
-
-    <a href="/thoughts/" rel="section"><i class="fa fa-podcast fa-fw"></i>思考</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
+<main class="page-container">
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
+    <div class="page-main-content">
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
-          <div class="content post posts-expand">
+    <div class="header-content">
+        <div class="left">
             
+                <a class="logo-image" href="/">
+                    <img src="/images/favicon-16x16-monkey.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+                Wh.🛰️
+            </a>
+        </div>
 
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/11/classification-using-nearest-neighbors-instruction-matlab/">
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/thoughts"
+                            >
+                                思考
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/monkey.png">
-      <meta itemprop="name" content="Wh.吴昊🛰️">
-      <meta itemprop="description" content="心比天高 命比纸薄">
-    </span>
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/thoughts">思考</a>
+                </li>
+            
+        </ul>
+    </div>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wuhao.吴昊">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          MATLAB近邻算法分类指南
-        </h1>
+    <div class="window-mask"></div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+</header>
 
-              <time title="创建时间：2022-01-11 15:11:39 / 修改时间：15:54:05" itemprop="dateCreated datePublished" datetime="2022-01-11T15:11:39+08:00">2022-01-11</time>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/01/11/classification-using-nearest-neighbors-instruction-matlab/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/11/classification-using-nearest-neighbors-instruction-matlab/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
-      </header>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">MATLAB近邻算法分类指南</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/favicon-16x16-monkey.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wh.吴昊🛰️</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-01-11 15:11:39</span>
+        <span class="mobile">2022-01-11 15:11</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/algorithm/">algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/matlab/">matlab</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/kNN/">kNN</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    
+</div>
 
-      
-        <div style="text-align:center;">
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <div style="text-align:center;">
     <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/KNN-1.gif" style="zoom:50%;">
 </div>
 
 <span id="more"></span>
 <h1 id="近邻算法分类"><a href="#近邻算法分类" class="headerlink" title="近邻算法分类"></a>近邻算法分类</h1><p style="text-align:left;">
-    原文:<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#bsfjytu-1">Classification Using Nearest Neighbors</a>
+    原文:<a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#bsfjytu-1" >Classification Using Nearest Neighbors<i class="fas fa-external-link-alt"></i></a>
 </p>
 
 <h2 id="1-距离度量指标"><a href="#1-距离度量指标" class="headerlink" title="1.距离度量指标"></a>1.距离度量指标</h2><p>将待查询数据和训练数据集的距离作为分类依据是一种简单有效的分类方法。可以使用多种指标来确定距离。</p>
@@ -312,7 +260,7 @@
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214225480.png" alt="image-20220110214225480"></p>
 <p><strong>斯皮尔曼距离(Spearman distance)</strong></p>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214240166.png" alt="image-20220110214240166"></p>
-<p>MATLAB中用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/pdist2.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">pdist2</a>函数计算不同距离度量。</p>
+<p>MATLAB中用<a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/pdist2.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">pdist2<i class="fas fa-external-link-alt"></i></a>函数计算不同距离度量。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">X = [<span class="number">1</span>,<span class="number">3</span>];</span><br><span class="line">Y = [<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line">D1 = pdist2(X,Y,<span class="string">&#x27;cityblock&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D3 = pdist2(X,Y,<span class="string">&#x27;euclidean&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D4 = pdist2(X,Y,<span class="string">&#x27;minkowski&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">D5 = pdist2(X,Y,<span class="string">&#x27;hamming&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D6 = pdist2(X,Y,<span class="string">&#x27;chebychev&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D7 = pdist2(X,Y,<span class="string">&#x27;cosine&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="2-k近邻搜索和半径搜索"><a href="#2-k近邻搜索和半径搜索" class="headerlink" title="2.k近邻搜索和半径搜索"></a>2.k近邻搜索和半径搜索</h2><p>给定一组包含 n 个点的$X $和一个距离函数，k-近邻 (kNN) 搜索可以找到 $X$ 中与查询点或点集 $Y$ 最接近的 k 个点。kNN 算法和基于 kNN 的算法被广泛用作不同学习算法的基准。 kNN 算法相对简单且可解释性使得将其他分类技术的结果与 kNN 结果进行比较容易。</p>
 <p> kNN 算法可以用在其他机器学习算法中，例如：</p>
@@ -322,14 +270,14 @@
 <li>缺失数据插补和插值</li>
 <li>密度估计</li>
 </ul>
-<p>kNN可以与许多基于距离的学习的算法一起使用，例如 K-means 聚类。 相反，对于正实数 r，范围搜索 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">rangsearch</a>查找 X 中与 Y 中每个点的距离为 r 的所有点。这种固定半径搜索与 kNN 搜索密切相关，因为它支持相同的距离度量和搜索类别 ，并使用相同的搜索算法。 </p>
+<p>kNN可以与许多基于距离的学习的算法一起使用，例如 K-means 聚类。 相反，对于正实数 r，范围搜索 <a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/rangesearch.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">rangsearch<i class="fas fa-external-link-alt"></i></a>查找 X 中与 Y 中每个点的距离为 r 的所有点。这种固定半径搜索与 kNN 搜索密切相关，因为它支持相同的距离度量和搜索类别 ，并使用相同的搜索算法。 </p>
 <h3 id="2-1-KNN-穷举搜索"><a href="#2-1-KNN-穷举搜索" class="headerlink" title="2.1 KNN-穷举搜索"></a>2.1 KNN-穷举搜索</h3><p>在matlab中，可以使用多种底层搜索算法实现kNN算法的搜索过程，当满足以下条件时默认使用穷举搜索方式：</p>
 <ul>
 <li>$X$ 的列数超过 10；</li>
 <li>$X$ 是稀疏的；</li>
 <li>距离度量使用：苏氏距离、马氏距离、余弦距离、相关距离、斯皮尔曼距离、汉明距离、杰卡德距离、自定义距离函数 ；</li>
 </ul>
-<p>如果搜索对象是<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;" >ExhaustiveSearcher </a> 模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a> 也会使用穷举搜索方法。 穷举搜索方法是找到每个查询点到$X$中每个点的距离，按升序排列，返回距离最小的k个点。 例如，此图显示了 k = 3 个最近邻。 </p>
+<p>如果搜索对象是<a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;" >ExhaustiveSearcher <i class="fas fa-external-link-alt"></i></a> 模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a> 也会使用穷举搜索方法。 穷举搜索方法是找到每个查询点到$X$中每个点的距离，按升序排列，返回距离最小的k个点。 例如，此图显示了 k = 3 个最近邻。 </p>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/exhaustivesearch.gif" alt="img"></p>
 <h3 id="2-2-KNN-Kd树搜索"><a href="#2-2-KNN-Kd树搜索" class="headerlink" title="2.2 KNN-Kd树搜索"></a>2.2 KNN-Kd树搜索</h3><p>当输入数据满足以下所有条件时，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>默认会创建一个 Kd树来查找：</p>
 <ul>
@@ -337,7 +285,7 @@
 <li>$X$ 是非稀疏的；</li>
 <li>欧式距离（默认）、城市街区距离、闵可夫斯基距离、切比雪夫距离</li>
 </ul>
-<p>如果搜索对象是 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher </a>模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>也会使用 Kd-树。 </p>
+<p>如果搜索对象是 <a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher <i class="fas fa-external-link-alt"></i></a>模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>也会使用 Kd-树。 </p>
 <p>Kd-树根据坐标（而不是类别）将数据划分为每个节点最多 <em>BucketSize</em>（默认为 50）个点的节点。 下图中不同的颜色块对应的是不同的节点。 </p>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelines.png" alt="img"></p>
 <p>查找给定查询点的 k 最近邻时，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>执行以下操作：</p>
@@ -348,7 +296,7 @@
 <li>在该范围内的节点中搜索更接近查询点的任何点。 在以下示例中，红色方块中的点比节点 4 中的点更靠近查询点。 </li>
 </ol>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelinesnewpoint.png" alt="img"></p>
-<p>对少于 10 个维度（列）的大型数据集使用 Kd-树可能比使用穷举搜索方法更有效，因为<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>只需要计算距离的子集。 为了最大限度地提高 Kd树的效率，请使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher</a>模型。 </p>
+<p>对少于 10 个维度（列）的大型数据集使用 Kd-树可能比使用穷举搜索方法更有效，因为<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>只需要计算距离的子集。 为了最大限度地提高 Kd树的效率，请使用<a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher<i class="fas fa-external-link-alt"></i></a>模型。 </p>
 <h3 id="2-3-搜索模型对象"><a href="#2-3-搜索模型对象" class="headerlink" title="2.3 搜索模型对象"></a>2.3 搜索模型对象</h3><p>通常来说，模型对象是一种存储信息的便捷方式。相关模型具有与指定搜索方法相关的值和类型的相同属性。 除了在模型中存储信息之外，还可以对模型执行某些操作。可以使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>在搜索模型上高效地执行 k 近邻搜索。 或者，可以使用搜索模型和范围搜索搜索指定半径内的所有邻居。 此外，还有一个通用的<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em></a> 和<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>函数可以在不创建或使用模型的情况下进行搜索。 </p>
 <p>可以从以下方向考虑使用哪种类型的模型和搜索方法最适合给定的数据：</p>
 <ul>
@@ -377,7 +325,7 @@
 <p><strong>Step-3 构建Kd树近邻搜索模型</strong> </p>
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mdl = KDTreeSearcher(x)</span><br></pre></td></tr></table></figure>
-<p>Mdl 是一个<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher</a>模型。 默认情况下，它用于搜索邻居的距离度量是欧氏距离。 </p>
+<p>Mdl 是一个<a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher<i class="fas fa-external-link-alt"></i></a>模型。 默认情况下，它用于搜索邻居的距离度量是欧氏距离。 </p>
 <blockquote>
 <p><strong>Step-4 找出到待查询点最近的10个点</strong></p>
 </blockquote>
@@ -399,7 +347,7 @@
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">figure</span> </span><br><span class="line">newpoint2 = [<span class="number">5</span> <span class="number">1.45</span>;<span class="number">6</span> <span class="number">2</span>;<span class="number">2.75</span> <span class="number">.75</span>];</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">[n2,d2] = knnsearch(Mdl,newpoint2,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n2,<span class="number">1</span>),x(n2,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">line(newpoint2(:,<span class="number">1</span>),newpoint2(:,<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_06.png" alt="Figure contains an axes object. The axes object contains 5 objects of type line. These objects represent setosa, versicolor, virginica."></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_kd_tree.mlx">完整代码：Position/knn_kd_tree.mlx at develop · Joiner12/Position (github.com)</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_kd_tree.mlx" >完整代码：Position/knn_kd_tree.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
 <h2 id="4-使用自定义距离度量查找最近的邻居"><a href="#4-使用自定义距离度量查找最近的邻居" class="headerlink" title="4.使用自定义距离度量查找最近的邻居"></a>4.使用自定义距离度量查找最近的邻居</h2><p>示例说明如何找到与 X 中的三个最近卡方距离(chi-square distance)数据的索引。卡方距离常用于相关性分析(correspondence analysis)，特别是在生态应用中。 </p>
 <p>$j$ 维向量 $x$ 和 $z$ 之间的卡方距离定义为：</p>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220111105413617.png" alt="image-20220111105413617"></p>
@@ -422,13 +370,13 @@
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:k</span><br><span class="line">    h(<span class="number">3</span>) = <span class="built_in">plot</span>(X(Idx(:,<span class="built_in">j</span>),<span class="number">1</span>),X(Idx(:,<span class="built_in">j</span>),<span class="number">2</span>),<span class="string">&#x27;ko&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">legend</span>(h,&#123;<span class="string">&#x27;\texttt&#123;X&#125;&#x27;</span>,<span class="string">&#x27;\texttt&#123;Y&#125;&#x27;</span>,<span class="string">&#x27;Nearest Neighbor&#x27;</span>&#125;,<span class="string">&#x27;Interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data and Nearest Neighbors&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_02.png" alt="Figure contains an axes object. The axes object with title Heterogeneous Data and Nearest Neighbors contains 5 objects of type line. These objects represent \texttt{X}, \texttt{Y}, Nearest Neighbor."></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/using_custom_distance_metric.mlx">完整代码：Position/using_custom_distance_metric.mlx at develop · Joiner12/Position (github.com)</a></p>
-<h2 id="5-有监督学习的-K-近邻分类"><a href="#5-有监督学习的-K-近邻分类" class="headerlink" title="5.有监督学习的 K-近邻分类"></a>5.有监督学习的 K-近邻分类</h2><h3 id="5-1-说明"><a href="#5-1-说明" class="headerlink" title="5.1 说明"></a>5.1 说明</h3><p>使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classificationknn.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">ClassificationKNN </a>分类模型实现k-近邻分类具体可以分为以下几步：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/using_custom_distance_metric.mlx" >完整代码：Position/using_custom_distance_metric.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="5-有监督学习的-K-近邻分类"><a href="#5-有监督学习的-K-近邻分类" class="headerlink" title="5.有监督学习的 K-近邻分类"></a>5.有监督学习的 K-近邻分类</h2><h3 id="5-1-说明"><a href="#5-1-说明" class="headerlink" title="5.1 说明"></a>5.1 说明</h3><p>使用<a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classificationknn.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">ClassificationKNN <i class="fas fa-external-link-alt"></i></a>分类模型实现k-近邻分类具体可以分为以下几步：</p>
 <ol>
-<li>构造 KNN 分类器<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7k2" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Construct KNN Classifier</a></li>
-<li>检查 KNN 分类器<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7l_" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Examine Quality of KNN Classifier</a></li>
-<li>使用 KNN 分类器进行预测分类 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7nm" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Predict Classification Using KNN Classifier</a></li>
-<li>修改 KNN 分类器 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap_jn" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Modify KNN Classifier</a></li>
+<li>构造 KNN 分类器<a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7k2"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Construct KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>检查 KNN 分类器<a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7l_"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Examine Quality of KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>使用 KNN 分类器进行预测分类 <a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7nm"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Predict Classification Using KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>修改 KNN 分类器 <a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap_jn"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Modify KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
 </ol>
 <h3 id="5-2-示例"><a href="#5-2-示例" class="headerlink" title="5.2 示例"></a>5.2 示例</h3><p>例子展示了如何为 Fisher iris 数据构建一个 k 最近邻分类器。 </p>
 <blockquote>
@@ -452,7 +400,7 @@
 <p><strong>Step5- 使用kNN构造预测分类</strong></p>
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flwr = <span class="built_in">mean</span>(X); <span class="comment">% an average flower</span></span><br><span class="line">flwrClass = predict(Mdl,flwr)</span><br><span class="line"><span class="comment">% 预测结果</span></span><br><span class="line"><span class="comment">% flwrClass = 1x1 cell array</span></span><br><span class="line"><span class="comment">%    &#123;&#x27;versicolor&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_supervised_learn.mlx">完整代码：Position/knn_supervised_learn.mlx at develop · Joiner12/Position (github.com)</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_supervised_learn.mlx" >完整代码：Position/knn_supervised_learn.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
 <h2 id="6-kNN开发流程总结"><a href="#6-kNN开发流程总结" class="headerlink" title="6.kNN开发流程总结"></a>6.kNN开发流程总结</h2><p><strong>机器学习算法通用流程</strong></p>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kaifaliucheng.png" alt="kaifaliucheng"></p>
 <p>收集数据：任何方法<br>准备数据：距离计算所需要的数值，最好是结构化的数据格式<br>分析数据：任何方法<br>训练算法：此步骤不适用于 k-近邻算法，k-近邻算法是在搜索过程中训练算法；<br>测试算法：计算错误率<br>使用算法：输入样本数据和结构化的输出结果，然后运行 k-近邻算法判断输入数据分类属于哪个分类，最后对计算出的分类执行后续处理。</p>
@@ -461,216 +409,179 @@
 <p style="text-align:right;">2022-01-11 15:10</p>
 
 
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
-              <a href="/tags/matlab/" rel="tag"># matlab</a>
-              <a href="/tags/kNN/" rel="tag"># kNN</a>
-          </div>
+        </div>
 
         
 
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/algorithm/">#algorithm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/matlab/">#matlab</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/kNN/">#kNN</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
         
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%B6%E4%BD%9C%E5%BD%B1%E9%9F%B3%E7%B3%BB%E7%BB%9F/" rel="prev" title="树莓派制作影音系统">
-      <i class="fa fa-chevron-left"></i> 树莓派制作影音系统
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/03/19/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" rel="next" title="搜索技巧">
-      搜索技巧 <i class="fa fa-chevron-right"></i>
-    </a></div>
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/03/19/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">搜索技巧</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%B6%E4%BD%9C%E5%BD%B1%E9%9F%B3%E7%B3%BB%E7%BB%9F/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">树莓派制作影音系统</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
     </div>
-      </footer>
-    
-  </article>
-  
-  
-  
+</div>
 
 
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+                
+            </div>
 
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%E5%88%86%E7%B1%BB"><span class="nav-text">近邻算法分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%B7%9D%E7%A6%BB%E5%BA%A6%E9%87%8F%E6%8C%87%E6%A0%87"><span class="nav-text">1.距离度量指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-k%E8%BF%91%E9%82%BB%E6%90%9C%E7%B4%A2%E5%92%8C%E5%8D%8A%E5%BE%84%E6%90%9C%E7%B4%A2"><span class="nav-text">2.k近邻搜索和半径搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-KNN-%E7%A9%B7%E4%B8%BE%E6%90%9C%E7%B4%A2"><span class="nav-text">2.1 KNN-穷举搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-KNN-Kd%E6%A0%91%E6%90%9C%E7%B4%A2"><span class="nav-text">2.2 KNN-Kd树搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%90%9C%E7%B4%A2%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1"><span class="nav-text">2.3 搜索模型对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%E2%80%94Kd%E6%A0%91"><span class="nav-text">3.对数据进行分类—Kd树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%9D%E7%A6%BB%E5%BA%A6%E9%87%8F%E6%9F%A5%E6%89%BE%E6%9C%80%E8%BF%91%E7%9A%84%E9%82%BB%E5%B1%85"><span class="nav-text">4.使用自定义距离度量查找最近的邻居</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%9C%89%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%9A%84-K-%E8%BF%91%E9%82%BB%E5%88%86%E7%B1%BB"><span class="nav-text">5.有监督学习的 K-近邻分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E8%AF%B4%E6%98%8E"><span class="nav-text">5.1 说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E7%A4%BA%E4%BE%8B"><span class="nav-text">5.2 示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-kNN%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="nav-text">6.kNN开发流程总结</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Wh.吴昊🛰️"
-      src="/images/monkey.png">
-  <p class="site-author-name" itemprop="name">Wh.吴昊🛰️</p>
-  <div class="site-description" itemprop="description">心比天高 命比纸薄</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wh.吴昊🛰️</a>
+        </div>
         
-          <span class="site-state-item-count">9</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Joiner12" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Joiner12" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://gitee.com/RiskyJR" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;RiskyJR" rel="noopener" target="_blank"><i class="fab fa-git-square fa-fw"></i>Gitee</a>
-      </span>
-  </div>
 
+        </div>
+    
 
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-      </div>
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Wh.吴昊🛰️</span>
+    <div class="image-viewer-container">
+    <img src="">
 </div>
 
 
+    
 
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
+</main>
 
 
 
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
+<script src="/js/main.js"></script>
 
+<script src="/js/header-shrink.js"></script>
 
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/back2top.js"></script>
 
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
+<script src="/js/dark-light-toggle.js"></script>
 
 
 
@@ -679,100 +590,11 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
+<div class="post-scripts">
     
+</div>
 
-  
 
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : '43FQrt5PWMN34LAODEHoFf4V-gzGzoHsz',
-      appKey     : 'uwFbb0FxazQHNqTpFIS7gP1C',
-      placeholder: "Say something",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : 'zh-CN' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
 
 </body>
 </html>

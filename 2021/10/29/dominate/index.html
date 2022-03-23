@@ -1,245 +1,206 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-monkey.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-monkey.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="dominate是一个使用DOM api创建和修改HTML(HyperText Markup Language)文件的python库。">
+    <meta name="author" content="Wh.吴昊🛰️">
+    
+    <title>
+        
+            Using dominate to Generate Web Page |
+        
+        Wh.🛰️
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="stylesheet" href="/css/main.css">
+    <link rel="shortcut icon" href="/images/favicon-16x16-monkey.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/favicon-16x16-monkey.png","favicon":"/images/favicon-16x16-monkey.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"你在我的心里永远是故乡"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-
-  <meta name="description" content="dominate是一个使用DOM api创建和修改HTML(HyperText Markup Language)文件的python库。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Using dominate to Generate Web Page">
-<meta property="og:url" content="http://example.com/2021/10/29/dominate/index.html">
-<meta property="og:site_name" content="Wuhao.吴昊">
-<meta property="og:description" content="dominate是一个使用DOM api创建和修改HTML(HyperText Markup Language)文件的python库。">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-29T08:41:00.000Z">
-<meta property="article:modified_time" content="2021-11-01T00:55:58.216Z">
-<meta property="article:author" content="Wh.吴昊🛰️">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Html">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://example.com/2021/10/29/dominate/">
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>Using dominate to Generate Web Page | Wuhao.吴昊</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+<body>
+<div class="progress-bar-container">
     
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Wuhao.吴昊</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">你在我的心里永远是故乡</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
+    
 </div>
 
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-thoughts">
-
-    <a href="/thoughts/" rel="section"><i class="fa fa-podcast fa-fw"></i>思考</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
+<main class="page-container">
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
+    <div class="page-main-content">
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
-          <div class="content post posts-expand">
+    <div class="header-content">
+        <div class="left">
             
+                <a class="logo-image" href="/">
+                    <img src="/images/favicon-16x16-monkey.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+                Wh.🛰️
+            </a>
+        </div>
 
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/29/dominate/">
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/thoughts"
+                            >
+                                思考
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/monkey.png">
-      <meta itemprop="name" content="Wh.吴昊🛰️">
-      <meta itemprop="description" content="心比天高 命比纸薄">
-    </span>
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/thoughts">思考</a>
+                </li>
+            
+        </ul>
+    </div>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wuhao.吴昊">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Using dominate to Generate Web Page
-        </h1>
+    <div class="window-mask"></div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+</header>
 
-              <time title="创建时间：2021-10-29 16:41:00" itemprop="dateCreated datePublished" datetime="2021-10-29T16:41:00+08:00">2021-10-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-01 08:55:58" itemprop="dateModified" datetime="2021-11-01T08:55:58+08:00">2021-11-01</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/10/29/dominate/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/29/dominate/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <div class="post-description">dominate是一个使用DOM api创建和修改HTML(HyperText Markup Language)文件的python库。</div>
 
         </div>
-      </header>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Using dominate to Generate Web Page</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/favicon-16x16-monkey.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wh.吴昊🛰️</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-10-29 16:41:00</span>
+        <span class="mobile">2021-10-29 16:41</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Python/">Python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Html/">Html</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    
+</div>
 
-      
-        <h1 id="Dominate学习笔记"><a href="#Dominate学习笔记" class="headerlink" title="Dominate学习笔记"></a>Dominate学习笔记</h1><h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1. 问题背景"></a>1. 问题背景</h2><p>​    算法调试、文档输出等需要有相应的文档记录。常用的记录保存方式：markdown、office、html等多种方式。个人常用的方式还是偏向于MarkDown文档（Typora），但是在使用的过程中，还是遇到一些问题。比如：MarkDown相比较于其他两种记录方式较为简洁，自定义程度不高，在需要输出一些复杂度要求高的文档时会显得有些无力。因此，在一些情况下会选择使用html作为记录方式。理所当然，出现了一个新的问题，html是一种结构化文档，能够很方便地通过自己写代码自动修改、生成文档。Python的 <a target="_blank" rel="noopener" href="https://pypi.org/project/dominate/" style="font-family: Source Sans Pro,Helvetica,Arial,sans-serif;font-size: 1rem;font-weight: 400;color: #006dad;cursor: pointer;">dominate</a>库能够是一个封装得很好的库，对于dominate库学习、使用，是以为记。</p>
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Dominate学习笔记"><a href="#Dominate学习笔记" class="headerlink" title="Dominate学习笔记"></a>Dominate学习笔记</h1><h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1. 问题背景"></a>1. 问题背景</h2><p>​    算法调试、文档输出等需要有相应的文档记录。常用的记录保存方式：markdown、office、html等多种方式。个人常用的方式还是偏向于MarkDown文档（Typora），但是在使用的过程中，还是遇到一些问题。比如：MarkDown相比较于其他两种记录方式较为简洁，自定义程度不高，在需要输出一些复杂度要求高的文档时会显得有些无力。因此，在一些情况下会选择使用html作为记录方式。理所当然，出现了一个新的问题，html是一种结构化文档，能够很方便地通过自己写代码自动修改、生成文档。Python的 <a class="link"   target="_blank" rel="noopener" href="https://pypi.org/project/dominate/"  style="font-family: Source Sans Pro,Helvetica,Arial,sans-serif;font-size: 1rem;font-weight: 400;color: #006dad;cursor: pointer;">dominate<i class="fas fa-external-link-alt"></i></a>库能够是一个封装得很好的库，对于dominate库学习、使用，是以为记。</p>
 <h2 id="2-Dominate"><a href="#2-Dominate" class="headerlink" title="2. Dominate"></a>2. Dominate</h2><h3 id="2-1-dominate简介"><a href="#2-1-dominate简介" class="headerlink" title="2.1 dominate简介"></a>2.1 dominate简介</h3><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>是一个使用DOM api创建和修改HTML(HyperText Markup Language)${^{[1]}}$文件的python库。通过dominate能够很方便的用python地写html网页，且无需深入学习模板语言(css，html等)。</p>
 <h2 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h2><p>官方推荐安装方法：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install dominate</span><br></pre></td></tr></table></figure>
@@ -361,219 +322,179 @@
 <p><code>document</code>类也的基本用法同其他节点一样。</p>
 <h2 id="11-SVG"><a href="#11-SVG" class="headerlink" title="11.SVG"></a>11.SVG</h2><p><code>dominate.svg</code> 模块包含SVG标签。SVG元素会将’_’自动转换为’-‘。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.svg <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(circle(stroke_width=<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1.<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Introduction_to_HTML/Getting_started">开始学习 HTML - 学习 Web 开发 | MDN (mozilla.org)</a></p>
-<p>2.<a target="_blank" rel="noopener" href="https://vegibit.com/html5-data-attributes/#:~:text=HTML5 Data Attributes 1 Data Attributes are Awesome.,can see%2C data attributes are very flexible.">HTML5 Data Attributes - Vegibit</a></p>
-<p>3.<a target="_blank" rel="noopener" href="https://realpython.com/python-with-statement/">Context Managers and Python’s with Statement – Real Python</a></p>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/Html/" rel="tag"># Html</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/10/25/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/11/02/MATLAB%E7%BB%98%E5%9B%BE%E9%AB%98%E7%BA%A7%E6%8C%87%E5%8D%97/" rel="next" title="MATLAB绘图高级指南">
-      MATLAB绘图高级指南 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1.<a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Introduction_to_HTML/Getting_started" >开始学习 HTML - 学习 Web 开发 | MDN (mozilla.org)<i class="fas fa-external-link-alt"></i></a></p>
+<p>2.<a class="link"   target="_blank" rel="noopener" href="https://vegibit.com/html5-data-attributes/#:~:text=HTML5 Data Attributes 1 Data Attributes are Awesome.,can see%2C data attributes are very flexible." >HTML5 Data Attributes - Vegibit<i class="fas fa-external-link-alt"></i></a></p>
+<p>3.<a class="link"   target="_blank" rel="noopener" href="https://realpython.com/python-with-statement/" >Context Managers and Python’s with Statement – Real Python<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dominate%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-text">Dominate学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-text">1. 问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Dominate"><span class="nav-text">2. Dominate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-dominate%E7%AE%80%E4%BB%8B"><span class="nav-text">2.1 dominate简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85"><span class="nav-text">3. 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%A4%BA%E4%BE%8B"><span class="nav-text">4. 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Hello-World"><span class="nav-text">4.1 Hello,World</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-%E4%BD%BF%E7%94%A8dominate%E8%BE%93%E5%87%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9%E3%80%82"><span class="nav-text">4.1.1 使用dominate输出第一个网页内容。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2-class-html%E5%92%8Cclass-dominate-document"><span class="nav-text">4.1.2 class:html和class:dominate.document</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%B1%9E%E6%80%A7"><span class="nav-text">5. 属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%82%E6%95%B0%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7"><span class="nav-text">5.1 关键字参数修改属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E4%BD%BF%E7%94%A8data-%E4%BF%AE%E6%94%B9HTML5%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="nav-text">5.1 使用data_*修改HTML5数据属性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E4%BD%BF%E7%94%A8%E7%B1%BB%E4%BC%BC%E4%BA%8E%E5%AD%97%E5%85%B8%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%BF%AE%E6%94%B9%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7"><span class="nav-text">5.3 使用类似于字典的接口修改标签属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%9E%84%E9%80%A0%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84"><span class="nav-text">6.构造复杂网页结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-amp-add"><span class="nav-text">6.1 +&#x3D;&amp;.add()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E4%BD%BF%E7%94%A8%E7%B1%BB%E6%95%B0%E7%BB%84%E6%8E%A5%E5%8F%A3%E4%BF%AE%E6%94%B9%E6%A0%87%E7%AD%BE%E5%AD%90%E9%A1%B9"><span class="nav-text">6.2 使用类数组接口修改标签子项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E4%BD%BF%E7%94%A8commit%E7%B1%BB%E4%B8%BAHTML%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E6%B3%A8%E9%87%8A"><span class="nav-text">6.3 使用commit类为HTML文件添加注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%B8%B2%E6%9F%93%E7%BD%91%E9%A1%B5%E6%96%87%E6%9C%AC-render"><span class="nav-text">7. 渲染网页文本(render)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-HTML%E6%96%87%E4%BB%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86"><span class="nav-text">8.HTML文件上下文管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-with%E6%B7%BB%E5%8A%A0%E5%AD%90%E6%A0%87%E7%AD%BE"><span class="nav-text">8.1 with添加子标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-attr%E6%B7%BB%E5%8A%A0%E5%B1%9E%E6%80%A7"><span class="nav-text">8.2 attr添加属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-text%E5%87%BD%E6%95%B0%E4%B8%BA%E6%96%87%E6%9C%AC%E8%8A%82%E7%82%B9%E6%B7%BB%E5%8A%A0%E6%96%87%E6%9C%AC"><span class="nav-text">8.3 text函数为文本节点添加文本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E8%A3%85%E9%A5%B0%E5%99%A8-Decorators"><span class="nav-text">9.装饰器(Decorators)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6-Creating-Documents"><span class="nav-text">10.创建文件(Creating Documents)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-SVG"><span class="nav-text">11.SVG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Wh.吴昊🛰️"
-      src="/images/monkey.png">
-  <p class="site-author-name" itemprop="name">Wh.吴昊🛰️</p>
-  <div class="site-description" itemprop="description">心比天高 命比纸薄</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Python/">#Python</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Html/">#Html</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/11/02/MATLAB%E7%BB%98%E5%9B%BE%E9%AB%98%E7%BA%A7%E6%8C%87%E5%8D%97/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MATLAB绘图高级指南</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/10/25/hello-world/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Joiner12" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Joiner12" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://gitee.com/RiskyJR" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;RiskyJR" rel="noopener" target="_blank"><i class="fab fa-git-square fa-fw"></i>Gitee</a>
-      </span>
-  </div>
 
 
+                
+            </div>
 
-      </div>
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wh.吴昊🛰️</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Wh.吴昊🛰️</span>
+    <div class="image-viewer-container">
+    <img src="">
 </div>
 
 
+    
 
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
+</main>
 
 
 
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
+<script src="/js/main.js"></script>
 
+<script src="/js/header-shrink.js"></script>
 
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/back2top.js"></script>
 
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
+<script src="/js/dark-light-toggle.js"></script>
 
 
 
@@ -582,100 +503,11 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
+<div class="post-scripts">
     
+</div>
 
-  
 
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : '43FQrt5PWMN34LAODEHoFf4V-gzGzoHsz',
-      appKey     : 'uwFbb0FxazQHNqTpFIS7gP1C',
-      placeholder: "Say something",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : 'zh-CN' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
 
 </body>
 </html>

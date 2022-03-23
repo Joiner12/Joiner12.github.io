@@ -1,265 +1,210 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-monkey.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-monkey.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS记录...">
+    <meta name="author" content="Wh.吴昊🛰️">
+    
+    <title>
+        
+            树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS |
+        
+        Wh.🛰️
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="stylesheet" href="/css/main.css">
+    <link rel="shortcut icon" href="/images/favicon-16x16-monkey.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/favicon-16x16-monkey.png","favicon":"/images/favicon-16x16-monkey.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"你在我的心里永远是故乡"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-
-  <meta name="description" content="树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS记录...">
-<meta property="og:type" content="article">
-<meta property="og:title" content="树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS">
-<meta property="og:url" content="http://example.com/2021/11/23/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85Ubuntu%E5%92%8CROS/index.html">
-<meta property="og:site_name" content="Wuhao.吴昊">
-<meta property="og:description" content="树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS记录...">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20220110111619.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116154457.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116152501.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116152613.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116152735.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116153122.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116153820.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116153852.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116153957.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116154107.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116154248.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116155729.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116160012.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116160101.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20200404152056536.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20200324164713387.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211116181815428.png">
-<meta property="og:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211117091922942.png">
-<meta property="article:published_time" content="2021-11-23T02:11:00.000Z">
-<meta property="article:modified_time" content="2022-01-10T03:19:14.632Z">
-<meta property="article:author" content="Wh.吴昊🛰️">
-<meta property="article:tag" content="raspberry">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="ros">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/RiskyJR/pic-bed/raw/master/20220110111619.png">
-
-<link rel="canonical" href="http://example.com/2021/11/23/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85Ubuntu%E5%92%8CROS/">
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS | Wuhao.吴昊</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+<body>
+<div class="progress-bar-container">
     
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Wuhao.吴昊</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">你在我的心里永远是故乡</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
+    
 </div>
 
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-thoughts">
-
-    <a href="/thoughts/" rel="section"><i class="fa fa-podcast fa-fw"></i>思考</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
+<main class="page-container">
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
+    <div class="page-main-content">
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
-          <div class="content post posts-expand">
+    <div class="header-content">
+        <div class="left">
             
+                <a class="logo-image" href="/">
+                    <img src="/images/favicon-16x16-monkey.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+                Wh.🛰️
+            </a>
+        </div>
 
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/23/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85Ubuntu%E5%92%8CROS/">
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/thoughts"
+                            >
+                                思考
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/monkey.png">
-      <meta itemprop="name" content="Wh.吴昊🛰️">
-      <meta itemprop="description" content="心比天高 命比纸薄">
-    </span>
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/thoughts">思考</a>
+                </li>
+            
+        </ul>
+    </div>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wuhao.吴昊">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS
-        </h1>
+    <div class="window-mask"></div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+</header>
 
-              <time title="创建时间：2021-11-23 10:11:00" itemprop="dateCreated datePublished" datetime="2021-11-23T10:11:00+08:00">2021-11-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-10 11:19:14" itemprop="dateModified" datetime="2022-01-10T11:19:14+08:00">2022-01-10</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/11/23/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85Ubuntu%E5%92%8CROS/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/23/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85Ubuntu%E5%92%8CROS/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <div class="post-description">树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS记录...</div>
 
         </div>
-      </header>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/favicon-16x16-monkey.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wh.吴昊🛰️</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-11-23 10:11:00</span>
+        <span class="mobile">2021-11-23 10:11</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/raspberry/">raspberry</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ros/">ros</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    
+</div>
 
-      
-        <div>
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <div>
     <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20220110111619.png">
 </div>
 
@@ -271,18 +216,18 @@
 </ol>
 <h2 id="2-软件准备"><a href="#2-软件准备" class="headerlink" title="2.软件准备"></a>2.软件准备</h2><ol>
 <li><p>SDFormatter（SD卡格式化工具）</p>
-<p>下载链接 <a target="_blank" rel="noopener" href="https://www.sdcard.org/downloads/formatter/sd-memory-card-formatter-for-windows-download/">SD Memory Card Formatter for Windows Download | SD Association (sdcard.org)</a></p>
+<p>下载链接 <a class="link"   target="_blank" rel="noopener" href="https://www.sdcard.org/downloads/formatter/sd-memory-card-formatter-for-windows-download/" >SD Memory Card Formatter for Windows Download | SD Association (sdcard.org)<i class="fas fa-external-link-alt"></i></a></p>
 </li>
 <li><p>Win32DiskImager (镜像烧录工具)</p>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116154457.png"></p>
 </li>
 </ol>
 <h2 id="3-系统镜像源"><a href="#3-系统镜像源" class="headerlink" title="3.系统镜像源"></a>3.系统镜像源</h2><p>1.清华源备份镜像</p>
-<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cdimage/ubuntu/releases/18.04.5/release/">Index of /ubuntu-cdimage/ubuntu/releases/18.04.5/release/ | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cdimage/ubuntu/releases/18.04.5/release/" >Index of /ubuntu-cdimage/ubuntu/releases/18.04.5/release/ | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror<i class="fas fa-external-link-alt"></i></a></p>
 <p>2.ubuntu镜像</p>
-<p><a target="_blank" rel="noopener" href="http://cdimage.ubuntu.com/releases/">Index of /releases (ubuntu.com)</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="http://cdimage.ubuntu.com/releases/" >Index of /releases (ubuntu.com)<i class="fas fa-external-link-alt"></i></a></p>
 <p>3.树莓派官方镜像</p>
-<p><a target="_blank" rel="noopener" href="https://www.raspberrypi.com/software/operating-systems/">Operating system images – Raspberry Pi</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.raspberrypi.com/software/operating-systems/" >Operating system images – Raspberry Pi<i class="fas fa-external-link-alt"></i></a></p>
 <p>笔者用的镜像版本是：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu-18.04.5-preinstalled-server-arm64+raspi4.img</span><br></pre></td></tr></table></figure>
 <p>PS:</p>
@@ -334,7 +279,7 @@
 <h2 id="6-开启SSH"><a href="#6-开启SSH" class="headerlink" title="6.开启SSH"></a>6.开启SSH</h2><p>安装的系统由于没有桌面程序，需要通过SSH来进行接下来的操作。打开 Micro SD 卡根目录，在根目录下新建一个记事本文件，并命名为SSH。</p>
 <p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20200404152056536.png" alt="img"></p>
 <p>安全弹出内存卡。</p>
-<h2 id="7-启动系统"><a href="#7-启动系统" class="headerlink" title="7.启动系统"></a>7.启动系统</h2><p>拔出内存卡，把内存卡插到树莓派中，树莓派跟电脑连接到同一个网络，使用SSH连接树莓派，首先查看树莓派的ip地址。笔者的树莓派是通过网线连接到路由器上的，因此通过登录路由器首页就可以查看连接设备的IP地址。路由器登录页面链接为：<a target="_blank" rel="noopener" href="http://192.168.1.1/">JCG Q8 - 首页</a>。当然也可以使用IP Scanner扫描工具查看ip地址。</p>
+<h2 id="7-启动系统"><a href="#7-启动系统" class="headerlink" title="7.启动系统"></a>7.启动系统</h2><p>拔出内存卡，把内存卡插到树莓派中，树莓派跟电脑连接到同一个网络，使用SSH连接树莓派，首先查看树莓派的ip地址。笔者的树莓派是通过网线连接到路由器上的，因此通过登录路由器首页就可以查看连接设备的IP地址。路由器登录页面链接为：<a class="link"   target="_blank" rel="noopener" href="http://192.168.1.1/" >JCG Q8 - 首页<i class="fas fa-external-link-alt"></i></a>。当然也可以使用IP Scanner扫描工具查看ip地址。</p>
 <h2 id="8-系统登录"><a href="#8-系统登录" class="headerlink" title="8.系统登录"></a>8.系统登录</h2><p>通过PuTTY连接上树莓派后，使用默认账号密码登录。</p>
 <p>默认账号：<code>ubuntu</code> 默认密码：<code>ubuntu</code></p>
 <p>第一次登录会要求更改登录密码，更改完成之后使用新密码登录。这个密码一定要注意，在这一步笔者因为多次输错密码出现<code>access denied</code>，由于没有找到好的方法解决，只能重新烧录系统。</p>
@@ -359,7 +304,7 @@
 <li>在Ubuntu 20.05上安装melodic→:bomb:</li>
 </ul>
 <p>踩了这么多的坑，到最后终于在ubuntu18.04上安装了melodic，是因为找到了大神写的工具，能帮忙避开那些因为各种原因出现的坑。就几行命令就完成安装了。参考链接如下：</p>
-<p><strong><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/8hTrKL0N5y9i6s9ujhp0UA">玩着游戏听着歌，就把ROS装好了！一行代码搞定系列！ (qq.com)</a></strong></p>
+<p><strong><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/8hTrKL0N5y9i6s9ujhp0UA" >玩着游戏听着歌，就把ROS装好了！一行代码搞定系列！ (qq.com)<i class="fas fa-external-link-alt"></i></a></strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 一行指令安装ROS</span></span><br><span class="line">sudo wget http://fishros.com/install -O fishros &amp;&amp; sudo bash fishros</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 第一次安装完成后，尝试运行roscore检验安装是否完成→报错</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###############################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 开始以下尝试</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置环境变量</span></span><br><span class="line">sudo echo &quot;source /opt/ros/melodic/setup.bash&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装ROS编译依赖包</span></span><br><span class="line">sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次尝试运行roscore</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">############################## 成功 ##############################</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><strong>到此结束，终于成功安装ros，浪费了很多时间。总结一下自己在这个过程中做得不好的吧，希望看到这篇博客的人能少踩点坑：</strong></p>
 <ol>
@@ -383,232 +328,195 @@
 </li>
 </ol>
 <h3 id="12-3-sudo-raspi-config-command-not-found"><a href="#12-3-sudo-raspi-config-command-not-found" class="headerlink" title="12.3 sudo: raspi-config: command not found"></a>12.3 sudo: raspi-config: command not found</h3><p>raspi-config 一般在树莓派官方系统是预装的，而在kali、ubuntu mate、osmc、等第三方系统中则是没有内置raspi-config的。</p>
-<p>raspi-config树莓派官网deb安装包列表：<a target="_blank" rel="noopener" href="http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/">Index of /debian/pool/main/r/raspi-config (raspberrypi.org)</a></p>
+<p>raspi-config树莓派官网deb安装包列表：<a class="link"   target="_blank" rel="noopener" href="http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/" >Index of /debian/pool/main/r/raspi-config (raspberrypi.org)<i class="fas fa-external-link-alt"></i></a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、安装依赖</span></span><br><span class="line">sudo apt install whiptail parted lua5.1 alsa-utils psmisc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、从Raspberrypi官网下载最新的deb安装包</span></span><br><span class="line"><span class="comment"># 在http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/找到需要安装的包的连接 </span></span><br><span class="line">wget http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20211203_all.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、安装Deb安装包</span></span><br><span class="line">sudo dpkg -i raspi-config_20211203_all.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、装好软件还是提示缺少依赖执行错误</span></span><br><span class="line">sudo apt install -f -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、运行raspi-config，需要sudo或以上权限</span></span><br><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
-<p>参考[8] <a target="_blank" rel="noopener" href="https://blog.csdn.net/no1xium/article/details/107477055">树莓派安装非官方系统没有raspi-config命令的解决方法_Linux I Tell U-CSDN博客_raspi-config安装</a>。</p>
+<p>参考[8] <a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/no1xium/article/details/107477055" >树莓派安装非官方系统没有raspi-config命令的解决方法_Linux I Tell U-CSDN博客_raspi-config安装<i class="fas fa-external-link-alt"></i></a>。</p>
 <h3 id="12-4-换源报错"><a href="#12-4-换源报错" class="headerlink" title="12.4 换源报错"></a>12.4 换源报错</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 更换中科大源后，更新软件源</span></span><br><span class="line">sudo apt update </span><br><span class="line"><span class="meta">#</span><span class="bash"> 错误描述</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> W: GPG error: https://mirrors.sjtug.sjtu.edu.cn/ros/ubuntu bionic InRelease: The following</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> signatures couldn<span class="string">&#x27;t be verified because the public key is not available: NO_PUBKEY F42ED6FBAB17C654</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string"> E: The repository &#x27;</span>http://mirrors.sjtug.sjtu.edu.cn/ros/ubuntu bionic InRelease<span class="string">&#x27; is not signed.</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string"> 原因分析，公钥（F42ED6FBAB17C654）校验失败，解决就是手动添加公钥</span></span></span><br><span class="line">sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com F42ED6FBAB17C654</span><br></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1174343">如何将Ubuntu升级到18.04最新版 - 云+社区 - 腾讯云 (tencent.com)</a></p>
-<p>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35898865/article/details/105065259">树莓派4B安装ubuntu18.04.4和ROS并测试激光雷达_蜗小侠的博客-CSDN博客</a></p>
-<p>[3] <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27149279/article/details/105359840">树莓派4B安装Ubuntu 18.04.4 LTS （or）Ubuntu 19.10_六五酥的博客-CSDN博客</a></p>
-<p>[4] <a target="_blank" rel="noopener" href="https://blog.csdn.net/lovely_yoshino/article/details/109448556">树莓派4安装 18.04ubuntu server（2020.11.2）_lovely_yoshino的博客-CSDN博客_树莓派ubuntu18.04</a></p>
-<p>[5] <a target="_blank" rel="noopener" href="https://blog.csdn.net/blueisman/article/details/104048628">树莓派Raspberry Pi图形桌面安装_blueisman的专栏-CSDN博客_树莓派安装图形界面</a></p>
-<p>[6] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b50ba46175e">树莓派加装3.5寸触摸屏方法和触摸屏问题处理 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/157340205#:~:text=直接上电后，屏幕,要按照相关的驱动)</a></p>
-<p>[7] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2b2a7955a8ef">Linux查看系统基本信息 - 简书 (jianshu.com)</a></p>
-<p>[8] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/swjian/p/10487007.html">树莓派配置wifi链接 - 没事儿写个bug - 博客园 (cnblogs.com)</a></p>
-<p>[9] <a target="_blank" rel="noopener" href="https://linux.cn/article-9287-1.html">桌面应用|在 Linux 字符界面中获取天气预报</a></p>
-<p>[10] <a target="_blank" rel="noopener" href="http://wiki.ros.org/ROS/Installation">ROS/Installation - ROS Wiki</a></p>
-<p>[11] <a target="_blank" rel="noopener" href="https://linuxconfig.org/how-to-install-gnome-on-ubuntu-18-04-bionic-beaver-linux">How to install Gnome on Ubuntu 18.04 Bionic Beaver Linux - Linux Tutorials - Learn Linux Configuration</a></p>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/raspberry/" rel="tag"># raspberry</a>
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-              <a href="/tags/ros/" rel="tag"># ros</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/11/02/MATLAB%E7%BB%98%E5%9B%BE%E9%AB%98%E7%BA%A7%E6%8C%87%E5%8D%97/" rel="prev" title="MATLAB绘图高级指南">
-      <i class="fa fa-chevron-left"></i> MATLAB绘图高级指南
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/09/Gaussian-Filtering/" rel="next" title="Gaussian Filtering">
-      Gaussian Filtering <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1174343" >如何将Ubuntu升级到18.04最新版 - 云+社区 - 腾讯云 (tencent.com)<i class="fas fa-external-link-alt"></i></a></p>
+<p>[2] <a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35898865/article/details/105065259" >树莓派4B安装ubuntu18.04.4和ROS并测试激光雷达_蜗小侠的博客-CSDN博客<i class="fas fa-external-link-alt"></i></a></p>
+<p>[3] <a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27149279/article/details/105359840" >树莓派4B安装Ubuntu 18.04.4 LTS （or）Ubuntu 19.10_六五酥的博客-CSDN博客<i class="fas fa-external-link-alt"></i></a></p>
+<p>[4] <a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/lovely_yoshino/article/details/109448556" >树莓派4安装 18.04ubuntu server（2020.11.2）_lovely_yoshino的博客-CSDN博客_树莓派ubuntu18.04<i class="fas fa-external-link-alt"></i></a></p>
+<p>[5] <a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/blueisman/article/details/104048628" >树莓派Raspberry Pi图形桌面安装_blueisman的专栏-CSDN博客_树莓派安装图形界面<i class="fas fa-external-link-alt"></i></a></p>
+<p>[6] <a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b50ba46175e" >树莓派加装3.5寸触摸屏方法和触摸屏问题处理 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/157340205#:~:text=直接上电后，屏幕,要按照相关的驱动)<i class="fas fa-external-link-alt"></i></a></p>
+<p>[7] <a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/2b2a7955a8ef" >Linux查看系统基本信息 - 简书 (jianshu.com)<i class="fas fa-external-link-alt"></i></a></p>
+<p>[8] <a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/swjian/p/10487007.html" >树莓派配置wifi链接 - 没事儿写个bug - 博客园 (cnblogs.com)<i class="fas fa-external-link-alt"></i></a></p>
+<p>[9] <a class="link"   target="_blank" rel="noopener" href="https://linux.cn/article-9287-1.html" >桌面应用|在 Linux 字符界面中获取天气预报<i class="fas fa-external-link-alt"></i></a></p>
+<p>[10] <a class="link"   target="_blank" rel="noopener" href="http://wiki.ros.org/ROS/Installation" >ROS/Installation - ROS Wiki<i class="fas fa-external-link-alt"></i></a></p>
+<p>[11] <a class="link"   target="_blank" rel="noopener" href="https://linuxconfig.org/how-to-install-gnome-on-ubuntu-18-04-bionic-beaver-linux" >How to install Gnome on Ubuntu 18.04 Bionic Beaver Linux - Linux Tutorials - Learn Linux Configuration<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE-Raspberry-Pi-4-Model-B-%E5%AE%89%E8%A3%85Ubuntu18-04-5"><span class="nav-text">树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-text">1.硬件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-text">2.软件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-text">3.系统镜像源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-SD%E5%8D%A1%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-text">4.SD卡格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%95%9C%E5%83%8F%E7%83%A7%E5%BD%95"><span class="nav-text">5.镜像烧录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%BC%80%E5%90%AFSSH"><span class="nav-text">6.开启SSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%90%AF%E5%8A%A8%E7%B3%BB%E7%BB%9F"><span class="nav-text">7.启动系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E7%B3%BB%E7%BB%9F%E7%99%BB%E5%BD%95"><span class="nav-text">8.系统登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E6%8D%A2%E6%BA%90"><span class="nav-text">9.换源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%AE%89%E8%A3%85ubuntu18-04-4%E7%9A%84%E6%A1%8C%E9%9D%A2"><span class="nav-text">10.安装ubuntu18.04.4的桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%AE%89%E8%A3%85ROS"><span class="nav-text">11.安装ROS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E9%85%8D%E7%BD%AE%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C"><span class="nav-text">12.配置无线网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iwconfig"><span class="nav-text">iwconfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wpa-passphrase"><span class="nav-text">wpa_passphrase</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="nav-text">12.问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-1-%E6%A0%91%E8%8E%93%E6%B4%BE%E7%99%BD%E5%B1%8F"><span class="nav-text">12.1 树莓派白屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-2-VNC-Viewer%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6"><span class="nav-text">12.2 VNC Viewer远程连接超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-sudo-raspi-config-command-not-found"><span class="nav-text">12.3 sudo: raspi-config: command not found</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-%E6%8D%A2%E6%BA%90%E6%8A%A5%E9%94%99"><span class="nav-text">12.4 换源报错</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Wh.吴昊🛰️"
-      src="/images/monkey.png">
-  <p class="site-author-name" itemprop="name">Wh.吴昊🛰️</p>
-  <div class="site-description" itemprop="description">心比天高 命比纸薄</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/raspberry/">#raspberry</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Linux/">#Linux</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/ros/">#ros</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/12/09/Gaussian-Filtering/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Gaussian Filtering</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/02/MATLAB%E7%BB%98%E5%9B%BE%E9%AB%98%E7%BA%A7%E6%8C%87%E5%8D%97/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MATLAB绘图高级指南</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Joiner12" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Joiner12" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://gitee.com/RiskyJR" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;RiskyJR" rel="noopener" target="_blank"><i class="fab fa-git-square fa-fw"></i>Gitee</a>
-      </span>
-  </div>
 
 
+                
+            </div>
 
-      </div>
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wh.吴昊🛰️</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Wh.吴昊🛰️</span>
+    <div class="image-viewer-container">
+    <img src="">
 </div>
 
 
+    
 
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
+</main>
 
 
 
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
+<script src="/js/main.js"></script>
 
+<script src="/js/header-shrink.js"></script>
 
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/back2top.js"></script>
 
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
+<script src="/js/dark-light-toggle.js"></script>
 
 
 
@@ -617,47 +525,11 @@
 
 
 
+<div class="post-scripts">
+    
+</div>
 
 
-
-
-
-
-
-  
-
-  
-
-  
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : '43FQrt5PWMN34LAODEHoFf4V-gzGzoHsz',
-      appKey     : 'uwFbb0FxazQHNqTpFIS7gP1C',
-      placeholder: "Say something",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : 'zh-CN' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
 
 </body>
 </html>
