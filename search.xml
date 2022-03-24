@@ -1,0 +1,1095 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>MATLAB绘图高级指南</title>
+    <url>/2021/11/02/MATLAB%E7%BB%98%E5%9B%BE%E9%AB%98%E7%BA%A7%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<div style="text-align:center;">
+    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/test-2.png">
+</div>
+
+
+
+<span id="more"></span>
+<h1 id="MATLAB绘图高级指南"><a href="#MATLAB绘图高级指南" class="headerlink" title="MATLAB绘图高级指南"></a>MATLAB绘图高级指南</h1><h2 id="1-序言"><a href="#1-序言" class="headerlink" title="1.序言"></a>1.序言</h2><p>MATLAB图形对象是实现数据可视化(data visualization)的一种重要手段。在处理数据的过程中，必不可少的一个方法就是图形可视化。但是MATLAB基本的绘图功能有时候并不能满足数据可视化的需求，无论是从美观（python的Matplotlib、pyecharts）度还是信息明确度角度看。但这并不意味着MATLAB不能绘制出更好的图形。MATLAB绘图的定制程度很高，因此需要对MATLAB图像对象有更深入的理解。</p>
+<h2 id="2-图形对象层次结构"><a href="#2-图形对象层次结构" class="headerlink" title="2.图形对象层次结构"></a>2.图形对象层次结构</h2><h3 id="2-1-层级结构"><a href="#2-1-层级结构" class="headerlink" title="2.1 层级结构"></a>2.1 层级结构</h3><p>图形对象是 MATLAB® 用来以图形的形式显示数据的可视化组件。每个对象都有一个名为 <strong>句柄(handle)</strong> 的唯一标识符。通过设置图形对象 <strong>属性(property)</strong> 来操作现有图形对象的特征。例如修改坐标轴数据的显示方式、线条颜色、线条宽度、自定义回调函数等。当我们调用<code>plot</code>函数时候， MATLAB 会自动执行一系列步骤生成图形。这些步骤包括创建对象和将这些对象属性值设置为适合特定图形的值。MATLAB的图像对象按照如下的方式进行组织：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/doccenter_graphicsheirarchy.png"></p>
+<p>图形对象的层次结构本身反映出对象之间的包含关系。matlab的图窗对象包括：Root(根节点)、Figure(图窗)、Annotation(标注)、Axes(坐标区)、Illustration(图例)、UI(用户界面控件)。例如，使用 <code>plot</code> 函数创建线图。坐标区对象为表示数据的线定义了参考系。图窗是显示图形的窗口。图窗包含坐标区，坐标区包含线条、文本、图例以及其他用于表示图形的对象。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">    close(<span class="string">&#x27;figure&#x27;</span>)</span><br><span class="line"><span class="keyword">catch</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">f1 = <span class="built_in">figure</span>(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;figure&#x27;</span>, <span class="string">&#x27;color&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;menubar&#x27;</span>, <span class="string">&#x27;figure&#x27;</span>);</span><br><span class="line">subplot(<span class="number">121</span>)</span><br><span class="line">x = <span class="built_in">linspace</span>(<span class="number">-2</span> * <span class="built_in">pi</span>, <span class="number">2</span> * <span class="built_in">pi</span>);</span><br><span class="line">y1 = <span class="number">6</span> .* <span class="built_in">sin</span>(x);</span><br><span class="line">y2 = <span class="number">6</span> .* <span class="built_in">cos</span>(x);</span><br><span class="line"><span class="built_in">plot</span>(x, y1, x, y2)</span><br><span class="line">title(<span class="string">&#x27;axes 1&#x27;</span>)</span><br><span class="line">xlabel(<span class="string">&#x27;axis-x-1&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;axis-y-1&#x27;</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;1-1&#x27;</span>, <span class="string">&#x27;1-2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">122</span>)</span><br><span class="line">x = <span class="built_in">linspace</span>(<span class="number">0</span>, <span class="number">3</span> * <span class="built_in">pi</span>, <span class="number">200</span>);</span><br><span class="line">y = <span class="built_in">cos</span>(x) + <span class="built_in">rand</span>(<span class="number">1</span>, <span class="number">200</span>);</span><br><span class="line">sz = <span class="number">25</span>;</span><br><span class="line">c = <span class="built_in">linspace</span>(<span class="number">1</span>, <span class="number">10</span>, <span class="built_in">length</span>(x));</span><br><span class="line"><span class="built_in">scatter</span>(x, y, sz, c, <span class="string">&#x27;filled&#x27;</span>)</span><br><span class="line">xlabel(<span class="string">&#x27;axis-x-2&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;axis-y-2&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;axes 2&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/1.png" style="zoom:80%"></p>
+<p>图中，红色框：figure，绿色框：axes，黄色框：Annotation(箭头)，褐色框：illustration(legend)。</p>
+<h3 id="2-2-图像对象继承关系"><a href="#2-2-图像对象继承关系" class="headerlink" title="2.2 图像对象继承关系"></a>2.2 图像对象继承关系</h3><p>对象间的关系保存在 <code>Parent</code> 和 <code>Children</code> 属性中。例如，坐标区的父级是一个图窗。坐标区的 <code>Parent</code> 属性包含了该坐标区所在图窗的句柄。</p>
+<p>同样，图窗的 <code>Children</code> 属性包含了其所含的所有坐标区。图窗 <code>Children</code> 属性还包含其所含的其他所有对象，如图例和用户界面对象。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 3*1 Group</span></span><br><span class="line">graph_children = f1.Children()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3×1 graphics 数组:</span><br><span class="line"></span><br><span class="line">Axes      (axes 2)</span><br><span class="line">Legend    (1-1, 1-2)</span><br><span class="line">Axes      (axes 1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% axes 1的父对象</span></span><br><span class="line">graph_children(<span class="number">1</span>).Parent</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Figure (1: figure) - 属性:</span><br><span class="line"></span><br><span class="line">    Number: 1</span><br><span class="line">      Name: &#x27;figure&#x27;</span><br><span class="line">     Color: [1 1 1]</span><br><span class="line">  Position: [680 558 560 420]</span><br><span class="line">     Units: &#x27;pixels&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-groot-修改图窗默认值"><a href="#2-3-groot-修改图窗默认值" class="headerlink" title="2.3 groot(修改图窗默认值)"></a>2.3 groot(修改图窗默认值)</h3><p>groot使用图形根对象。使用 groot 访问根属性。绘图的默认属性都是由groot的设定的默认值决定，groot能修改根图形的属性<code>root(Root 对象是图形对象树的根。Root 属性包含有关图形环境和图形系统的当前状态的信息。使用圆点表示法引用特定的对象和属性。)</code>。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 获取根图像属性(root)</span></span><br><span class="line">get(groot)</span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">%&#123;</span></span><br><span class="line"><span class="comment">         CallbackObject: [0×0 GraphicsPlaceholder]</span></span><br><span class="line"><span class="comment">               Children: [1×1 Figure]</span></span><br><span class="line"><span class="comment">          CurrentFigure: [1×1 Figure]</span></span><br><span class="line"><span class="comment">     FixedWidthFontName: &#x27;SimHei&#x27;</span></span><br><span class="line"><span class="comment">       HandleVisibility: &#x27;on&#x27;</span></span><br><span class="line"><span class="comment">       MonitorPositions: [1 1 1920 1080]</span></span><br><span class="line"><span class="comment">                 Parent: [0×0 GraphicsPlaceholder]</span></span><br><span class="line"><span class="comment">        PointerLocation: [781 725]</span></span><br><span class="line"><span class="comment">            ScreenDepth: 32</span></span><br><span class="line"><span class="comment">    ScreenPixelsPerInch: 96</span></span><br><span class="line"><span class="comment">             ScreenSize: [1 1 1920 1080]</span></span><br><span class="line"><span class="comment">      ShowHiddenHandles: &#x27;off&#x27;</span></span><br><span class="line"><span class="comment">                    Tag: &#x27;&#x27;</span></span><br><span class="line"><span class="comment">                   Type: &#x27;root&#x27;</span></span><br><span class="line"><span class="comment">                  Units: &#x27;pixels&#x27;</span></span><br><span class="line"><span class="comment">               UserData: []</span></span><br><span class="line"><span class="comment">%&#125;</span></span><br></pre></td></tr></table></figure>
+<p>使用groot还能为其他类型的对象设置根级别的默认值。例如每次绘图时对于线条，希望其线宽(LineWidth属性)默认为2。则可以通过groot实现。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(groot,<span class="string">&#x27;defaultLineLineWidth&#x27;</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>指定属性值为 <code>&#39;remove&#39;</code> 会去除用户定义的默认值。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(groot,<span class="string">&#x27;defaultSurfaceEdgeColor&#x27;</span>,<span class="string">&#x27;remove&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>指定属性值为 <code>&#39;factory&#39;</code> 将会让属性设置为其出厂定义值。例如，这些语句将曲面 <code>h</code> 的 <code>EdgeColor</code> 设置为黑色（其出厂设定），无论定义的默认定义值为何值：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gcf,<span class="string">&#x27;defaultSurfaceEdgeColor&#x27;</span>,<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">h = surface(peaks);</span><br><span class="line">set(h,<span class="string">&#x27;EdgeColor&#x27;</span>,<span class="string">&#x27;factory&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="3-保存图窗为其他格式的图片"><a href="#3-保存图窗为其他格式的图片" class="headerlink" title="3.保存图窗为其他格式的图片"></a>3.保存图窗为其他格式的图片</h2><h3 id="3-1-saveas"><a href="#3-1-saveas" class="headerlink" title="3.1 saveas"></a>3.1 saveas</h3><p>将图窗保存为特定文件格式。</p>
+<p>基本用法包括：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">saveas(fig,filename)</span><br><span class="line">saveas(fig,filename,formattype)</span><br></pre></td></tr></table></figure>
+<p><code>saveas(fig,filename)</code> 将 <code>fig</code> 指定的图窗或 Simulink® 模块图保存到 <code>filename</code> 文件中。将文件名指定为字符向量或字符串，包括文件扩展名，例如 <code>&#39;myplot.jpg&#39;</code>。文件扩展名用于定义文件格式。如果不指定扩展名，则 <code>saveas</code> 会将图窗保存为 FIG 文件。要保存当前图窗，请将 <code>fig</code> 指定为 <code>gcf</code>。</p>
+<p><code>saveas(fig,filename,formattype)</code> 使用指定的文件格式 <code>formattype</code> 创建文件。如果不在文件名中指定文件扩展名（例如 <code>&#39;myplot&#39;</code>），则与指定的格式对应的标准扩展名会自动附加到文件名后面。如果指定了文件扩展名，该扩展名不必与文件格式相匹配。<code>saveas</code> 为该格式使用 <code>formattype</code>，但会将文件保存为指定的扩展名。因此，文件扩展名可能与使用的实际格式不匹配。</p>
+<h3 id="3-2-imwrite"><a href="#3-2-imwrite" class="headerlink" title="3.2 imwrite"></a>3.2 imwrite</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SaveFigure2Img</span><span class="params">(graph_object, imgfile, varargin)</span></span></span><br><span class="line">    <span class="comment">% 功能:</span></span><br><span class="line">    <span class="comment">%       将当前figure保存为image;</span></span><br><span class="line">    <span class="comment">% 定义:</span></span><br><span class="line">    <span class="comment">%       SaveFigure2Img(imgfile,varargin)</span></span><br><span class="line">    <span class="comment">% 输入:</span></span><br><span class="line">    <span class="comment">%		graph_object,图窗对象(figure|axes)</span></span><br><span class="line">    <span class="comment">%       imgfile,目标image全路径,e.g:D:/xx/A.png</span></span><br><span class="line">    <span class="comment">%       varargin,保留参数</span></span><br><span class="line">    <span class="comment">% 输出:</span></span><br><span class="line">    <span class="comment">%       none</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">%%</span></span><br><span class="line">    <span class="comment">% 捕获坐标区或图窗作为影片帧</span></span><br><span class="line">    cur_frame = getframe(graph_object);</span><br><span class="line">    <span class="comment">% 返回与影片帧关联的图像数据</span></span><br><span class="line">    im = frame2im(cur_frame);</span><br><span class="line">    <span class="comment">% 将图像写入图形文件</span></span><br><span class="line">    imwrite(im, imgfile);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-3-生成GIF"><a href="#3-3-生成GIF" class="headerlink" title="3.3 生成GIF"></a>3.3 生成GIF</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clc;</span><br><span class="line">clf;</span><br><span class="line"><span class="comment">%白色背景</span></span><br><span class="line"><span class="comment">% axis([-2, 2, -2, 2]);</span></span><br><span class="line">xlabel(<span class="string">&#x27;X轴&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;Y轴&#x27;</span>);</span><br><span class="line"><span class="comment">%四周的边框</span></span><br><span class="line">box on;</span><br><span class="line"><span class="comment">%绘图区域</span></span><br><span class="line">t = <span class="number">0</span>:<span class="number">0.02</span>:<span class="number">10</span>;</span><br><span class="line">Nt = <span class="built_in">size</span>(t, <span class="number">2</span>);</span><br><span class="line">x = <span class="number">2</span> * <span class="built_in">cos</span>(t(<span class="number">1</span>:Nt));</span><br><span class="line">y = <span class="built_in">sin</span>(t(<span class="number">1</span>:Nt));</span><br><span class="line"><span class="comment">%循环绘图</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:Nt</span><br><span class="line">    cla;</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(x, y)</span><br><span class="line">    <span class="built_in">plot</span>(x(<span class="built_in">i</span>), y(<span class="built_in">i</span>), <span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">    frame = getframe(gcf);</span><br><span class="line">    imind = frame2im(frame);</span><br><span class="line">    [imind, cm] = rgb2ind(imind, <span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">i</span> == <span class="number">1</span></span><br><span class="line">        imwrite(imind, cm, <span class="string">&#x27;test.gif&#x27;</span>, <span class="string">&#x27;gif&#x27;</span>, <span class="string">&#x27;Loopcount&#x27;</span>, <span class="built_in">inf</span>, <span class="string">&#x27;DelayTime&#x27;</span>, <span class="number">1e-4</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        imwrite(imind, cm, <span class="string">&#x27;test.gif&#x27;</span>, <span class="string">&#x27;gif&#x27;</span>, <span class="string">&#x27;WriteMode&#x27;</span>, <span class="string">&#x27;append&#x27;</span>, <span class="string">&#x27;DelayTime&#x27;</span>, <span class="number">1e-4</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-绘制动图"><a href="#4-绘制动图" class="headerlink" title="4.绘制动图"></a>4.绘制动图</h2><h3 id="4-1-animatedline"><a href="#4-1-animatedline" class="headerlink" title="4.1 animatedline"></a>4.1 animatedline</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="comment">% clf用来清除图形的命令。一般在画图之前用。</span></span><br><span class="line">clf;</span><br><span class="line">clc;</span><br><span class="line">axis([<span class="number">-2</span>, <span class="number">2</span>, <span class="number">-2</span>, <span class="number">2</span>]);</span><br><span class="line"><span class="comment">% axis square 当前坐标系图形设置为方形，刻度范围不一定一样，但是一定是方形的。</span></span><br><span class="line"><span class="comment">% axis equal 将横轴纵轴的定标系数设成相同值，即单位长度相同，刻度是等长的，但不一定是方形的。</span></span><br><span class="line">axis equal;</span><br><span class="line">grid on;</span><br><span class="line"></span><br><span class="line">h = animatedline(<span class="string">&#x27;Marker&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;color&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;LineStyle&#x27;</span>, <span class="string">&#x27;none&#x27;</span>);</span><br><span class="line">t = <span class="number">6</span> * <span class="built_in">pi</span> * (<span class="number">0</span>:<span class="number">0.02</span>:<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> n = <span class="number">1</span>:<span class="built_in">length</span>(t)</span><br><span class="line">    addpoints(h, <span class="number">2</span> * <span class="built_in">cos</span>(t(<span class="number">1</span>:n)), <span class="built_in">sin</span>(t(<span class="number">1</span>:n)));</span><br><span class="line"></span><br><span class="line">    <span class="comment">% 一般是为了动态观察变化过程 pause（a）暂停a秒后执行下一条指令</span></span><br><span class="line">    pause(<span class="number">0.5</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">% 可以用drawnow update加快动画速度</span></span><br><span class="line">    drawnow update;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-2-movie"><a href="#4-2-movie" class="headerlink" title="4.2 movie"></a>4.2 movie</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%%</span></span><br><span class="line">clc; clear;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 初始化一个电影矩阵</span></span><br><span class="line">M = moviein(<span class="number">16</span>);</span><br><span class="line"><span class="comment">% 创建电影</span></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">16</span></span><br><span class="line">    <span class="built_in">plot</span>(fft(<span class="built_in">eye</span>(k + <span class="number">16</span>)));</span><br><span class="line">    axis equal;</span><br><span class="line">    <span class="comment">% 调用getframe函数生成每个帧</span></span><br><span class="line">    M(k) = getframe;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 调用movie函数将电影动画矩阵M(k)播放5次</span></span><br><span class="line">movie(M, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 将前面创建的电影动画中添加一个垂直的滚动条</span></span><br><span class="line">h = uicontrol(<span class="string">&#x27;style&#x27;</span>, <span class="string">&#x27;slider&#x27;</span>, <span class="string">&#x27;position&#x27;</span>, [<span class="number">10</span> <span class="number">50</span> <span class="number">20</span> <span class="number">100</span>], <span class="string">&#x27;Min&#x27;</span>, <span class="number">1</span>, <span class="string">&#x27;Max&#x27;</span>, <span class="number">16</span>, <span class="string">&#x27;Value&#x27;</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">16</span></span><br><span class="line">    <span class="built_in">plot</span>(fft(<span class="built_in">eye</span>(k + <span class="number">16</span>)));</span><br><span class="line">    axis equal;</span><br><span class="line">    set(h, <span class="string">&#x27;Value&#x27;</span>, k);</span><br><span class="line">    <span class="comment">% gcf为返回当前图形窗口句柄</span></span><br><span class="line">    M(k) = getframe(gcf);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">clf;</span><br><span class="line">axes(<span class="string">&#x27;Position&#x27;</span>, [<span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">movie(M, <span class="number">5</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="5-图窗按键回调"><a href="#5-图窗按键回调" class="headerlink" title="5.图窗按键回调"></a>5.图窗按键回调</h2><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%% matlab figure keypressdown callback use</span></span><br><span class="line">clc;</span><br><span class="line">tcf();</span><br><span class="line"><span class="built_in">figure</span>(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;deserado&#x27;</span>, <span class="string">&#x27;color&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;KeyPressFcn&#x27;</span>, @isEscPressDown);</span><br><span class="line">text(<span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;desperado,why don&#x27;&#x27;t you come to your senses,come down your fences&#x27;</span>);</span><br><span class="line">axis([<span class="number">-1</span>, <span class="number">40</span>, <span class="number">-1</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">    pause(<span class="number">0.1</span>);</span><br><span class="line">    <span class="keyword">if</span> strcmpi(get(gcf, <span class="string">&#x27;CurrentCharacter&#x27;</span>),char(<span class="number">27</span>))</span><br><span class="line">        <span class="built_in">disp</span>(<span class="string">&#x27;esc pressdown&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">disp</span>(<span class="string">&#x27;function break down&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">%% callback function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEscPressDown</span><span class="params">(src, event)</span></span></span><br><span class="line">    fprintf(<span class="string">&#x27;%s\n&#x27;</span>, get(gcf, <span class="string">&#x27;CurrentCharacter&#x27;</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="6-数据游标模式"><a href="#6-数据游标模式" class="headerlink" title="6.数据游标模式"></a>6.数据游标模式</h2><p>启用数据游标模式。数据提示是显示关于单个数据点的信息的小文本框。在 R2018b 之前的版本中，使用 <code>datacursormode</code> 函数创建和编辑数据提示。通过使用 <code>datacursormode</code> 创建数据游标管理器对象来控制数据提示的外观和行为。</p>
+<p>从 R2018b 开始，您可以改用内置交互来创建和编辑数据提示。内置交互不要求您启用某种模式，并且比交互模式响应更快。</p>
+<p><code>test.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 修改数据游标格式</span></span><br><span class="line">clc;</span><br><span class="line">nbt_lat_lon_h = [<span class="number">104.058567643123</span>, <span class="number">30.547872167734</span>, <span class="number">467.946972989477</span></span><br><span class="line">            <span class="number">104.058567183453</span>, <span class="number">30.548014837274</span>, <span class="number">468.115972990170</span></span><br><span class="line">            <span class="number">104.058730768827</span>, <span class="number">30.548018797743</span>, <span class="number">467.900972989388</span></span><br><span class="line">            <span class="number">104.058889206422</span>, <span class="number">30.547874726343</span>, <span class="number">468.024972987361</span></span><br><span class="line">            <span class="number">104.058895271369</span>, <span class="number">30.548019508539</span>, <span class="number">469.051972987130</span></span><br><span class="line">            <span class="number">104.058728300713</span>, <span class="number">30.547880364315</span>, <span class="number">469.601972988807</span>];</span><br><span class="line"></span><br><span class="line">[x_1, y_1, ~] = latlon_to_xy(<span class="number">30.547872167734</span>, <span class="number">104.058567643123</span>);</span><br><span class="line">[x_2, y_2, ~] = latlon_to_xy(<span class="number">30.548019508539</span>, <span class="number">104.058895271369</span>);</span><br><span class="line"><span class="comment">% lat:30.5478721677,lon:104.0585676431</span></span><br><span class="line">x_s = <span class="built_in">linspace</span>(x_1, x_2, <span class="number">200</span>);</span><br><span class="line">y_s = <span class="built_in">linspace</span>(y_1, y_2, <span class="number">200</span>);</span><br><span class="line">[x_s, y_s] = <span class="built_in">meshgrid</span>(x_s, y_s);</span><br><span class="line"></span><br><span class="line">tcf(<span class="string">&#x27;map-grid&#x27;</span>);</span><br><span class="line">f1 = <span class="built_in">figure</span>(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;map-grid&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">dcm_obj = datacursormode(f1);</span><br><span class="line"><span class="comment">% 添加数据游标变化回调函数,在对话窗中打印当前游标数据</span></span><br><span class="line">set(dcm_obj, <span class="string">&#x27;UpdateFcn&#x27;</span>, @modify_cursor_callback)</span><br><span class="line">mesh(x_s, y_s, <span class="built_in">zeros</span>(<span class="number">200</span>, <span class="number">200</span>))</span><br><span class="line"><span class="built_in">plot</span>(x_s(<span class="number">1</span>), y_s(<span class="number">1</span>), <span class="string">&#x27;r*&#x27;</span>)</span><br><span class="line">text(x_s(<span class="number">1</span>), y_s(<span class="number">1</span>), <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line"><span class="built_in">plot</span>(x_s(<span class="keyword">end</span>), y_s(<span class="keyword">end</span>), <span class="string">&#x27;b*&#x27;</span>)</span><br><span class="line">text(x_s(<span class="keyword">end</span>), y_s(<span class="keyword">end</span>), <span class="string">&#x27;5&#x27;</span>)</span><br><span class="line">view(<span class="number">0</span>, <span class="number">90</span>)</span><br><span class="line">grid minor</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>modify_cursor_callback.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output_txt</span> = <span class="title">modify_cursor_callback</span><span class="params">(obj, event_obj)</span></span></span><br><span class="line">    <span class="comment">% Display the position of the data cursor</span></span><br><span class="line">    <span class="comment">% obj          Currently not used (empty)</span></span><br><span class="line">    <span class="comment">% event_obj    Handle to event object</span></span><br><span class="line">    <span class="comment">% output_txt   Data cursor text string (string or cell array of strings).</span></span><br><span class="line"></span><br><span class="line">    pos = get(event_obj, <span class="string">&#x27;Position&#x27;</span>);</span><br><span class="line">    x_text = sprintf(<span class="string">&#x27;%.10f&#x27;</span>, pos(<span class="number">1</span>));</span><br><span class="line">    y_text = sprintf(<span class="string">&#x27;%.10f&#x27;</span>, pos(<span class="number">2</span>));</span><br><span class="line">    output_txt = &#123;[<span class="string">&#x27;X: &#x27;</span>, x_text], ...</span><br><span class="line">        <span class="comment">% 此处的pos(1)后的数字，即X轴的数据游标的显示精度位数</span></span><br><span class="line">            [<span class="string">&#x27;Y: &#x27;</span>, y_text]&#125;;</span><br><span class="line">    <span class="comment">% 此处的pos(2)后的数字，即Y轴的数据游标的显示精度位数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">% If there is a Z-coordinate in the position, display it as well</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">length</span>(pos) &gt; <span class="number">2</span></span><br><span class="line">        z_text = sprintf(<span class="string">&#x27;%.10f&#x27;</span>, pos(<span class="number">3</span>));</span><br><span class="line">        output_txt&#123;<span class="keyword">end</span> + <span class="number">1</span>&#125; = [<span class="string">&#x27;Z: &#x27;</span>, z_text];</span><br><span class="line">        <span class="comment">% 此处的pos(3)后的数字，即Z轴的数据游标的显示精度位数</span></span><br><span class="line">        fprintf(<span class="string">&#x27;x:%s,y:%s,hei:%s\n&#x27;</span>, x_text, y_text, z_text);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">% [x,y]转换为[lat,lon]</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">true</span></span><br><span class="line">        [lat, lon] = xy_to_latlon(pos(<span class="number">1</span>), pos(<span class="number">2</span>), <span class="number">1.832595714594046</span>);</span><br><span class="line">        fprintf(<span class="string">&#x27;lat:%0.10f,lon:%0.10f\n&#x27;</span>, lat, lon);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1.<a class="link"   href="https://ww2.mathworks.cn/help/matlab/creating_plots/graphics-objects.html?lang=en" >Graphics Object Hierarchy - MATLAB &amp; Simulink - MathWorks China<i class="fas fa-external-link-alt"></i></a></p>
+<p>2.<a class="link"   href="https://ww2.mathworks.cn/help/matlab/ref/groot.html" >图形根对象 - MATLAB groot - MathWorks 中国<i class="fas fa-external-link-alt"></i></a></p>
+<p>3.<a class="link"   href="https://ww2.mathworks.cn/help/matlab/ref/matlab.ui.root-properties.html" >图形环境和状态信息 - MATLAB - MathWorks 中国<i class="fas fa-external-link-alt"></i></a></p>
+<p>4.<a class="link"   href="https://ww2.mathworks.cn/help/matlab/creating_plots/default-property-values.html#bub84qp" >默认属性值 - MATLAB &amp; Simulink - MathWorks 中国<i class="fas fa-external-link-alt"></i></a></p>
+<p>5.<a class="link"   href="https://ww2.mathworks.cn/help/matlab/ref/saveas.html?searchHighlight=saveas&amp;s_tid=srchtitle_saveas_1" >将图窗保存为特定文件格式 - MATLAB saveas - MathWorks 中国<i class="fas fa-external-link-alt"></i></a></p>
+<p>6.<a class="link"   href="https://ww2.mathworks.cn/help/matlab/ref/matlab.graphics.shape.internal.datacursormanager.html?searchHighlight=datacursormode&amp;s_tid=srchtitle_datacursormode_1" >启用数据游标模式 - MATLAB - MathWorks 中国<i class="fas fa-external-link-alt"></i></a></p>
+<p>7.<a class="link"   href="https://blogs.mathworks.com/steve/2019/02/14/pursuit-curves/?s_tid=blogs_rc_3" >Pursuit Curves » Steve on Image Processing with MATLAB - MATLAB &amp; Simulink (mathworks.com)<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gaussian Filtering</title>
+    <url>/2021/12/09/Gaussian-Filtering/</url>
+    <content><![CDATA[<h1 id="高斯平滑"><a href="#高斯平滑" class="headerlink" title="高斯平滑"></a>高斯平滑</h1><p>高斯平滑又叫高斯滤波，是一种<a class="link"   href="https://en.wikipedia.org/wiki/Smoothing" >数据平滑技术<i class="fas fa-external-link-alt"></i></a>， 常用在图像模糊(Blur)中去除噪声和细节。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_5.png" style="zoom:60%"></p>
+<span id="more"></span>
+<h2 id="1-高斯函数"><a href="#1-高斯函数" class="headerlink" title="1.高斯函数"></a>1.高斯函数</h2><p>高斯函数就是我们常说的高斯分布(Gaussian Distribution)，一维中，高斯函数如下：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211209211532311.png" style="zoom:40%"></p>
+<p>上式中标准差为σ，平均值μ为0。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211209214731127.png" style="zoom:80%"></p>
+<p>如图所示，高斯分布是对称的钟形，上图为均值为0，标准差为1的高斯分布也即正态分布，高斯函数的标准差在其滤波中起着重要作用。位于±σ之间的值占集合的68%，而位于±2σ之间的值占集合的95%，±3σ占99.7%，这在设计固定长度的高斯核时非常重要。</p>
+<p>其他性质：</p>
+<ul>
+<li>高斯函数在实数域的积分x∈(-∞，+∞)为1，从概率学的角度看表示所有事件集合；</li>
+<li>高斯函数的值不为零；</li>
+<li>高斯函数是对称函数，对称轴为均值。</li>
+</ul>
+<p>高斯分布的特点是在均值μ两边的概率都很大，离之越远的概率越小，所以高斯函数用在滤波上体现的思想就是：离某个点越近的点对其产生的影响越大，所以让其权重大，越远的产生的影响越小，让其权重越小。高斯滤波的关键是生成高斯核(Gaussian Kernel)。</p>
+<h2 id="2-高斯核-Gaussian-Kernel"><a href="#2-高斯核-Gaussian-Kernel" class="headerlink" title="2.高斯核(Gaussian Kernel)"></a>2.高斯核(Gaussian Kernel)</h2><p>数字滤波领域信号一般都是离散的，如一维数字信号用f(nT)进行描述，其中T为采样周期，n为时间序列。f(nT)表示第n个采样时刻的信号值。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_3.png" style="zoom:70%"></p>
+<p><strong>所谓高斯滤波操作，其实就是用高斯函数对原始信号做<a class="link"   href="https://zh.wikipedia.org/zh/%E5%8D%B7%E7%A7%AF" >卷积<i class="fas fa-external-link-alt"></i></a>计算</strong>。而高斯函数是连续函数，所以我们要从连续高斯函数中采样生成离散的权重系数，即Gaussian Kernel。 高斯核是对连续高斯函数的离散近似，通常对高斯函数进行离散采样和归一化得出，这里，归一化指的是卷积核所有元素（权重系数）之和为1。下面分别为为一维和二维高斯核的例子：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210100939019.png" style="zoom:80%"></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210100905664.png" style="zoom:%80;"></p>
+<p>计算高斯核中，有两个重要参数：σ、$r$ 。σ为高斯函数的标准差；$r$ 为核大小。不同的σ和$r$ 会有不同的滤波结果。</p>
+<p>高斯核可以看成是与中心距离负相关的权重。平滑时，调整σ实际是在调整周围像素对当前像素的影响程度，<strong>调大σ即提高了远处像素对中心像素的影响程度</strong>，滤波结果也就越平滑${^{4}}$。高斯曲线随σ变化的曲线如下：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/izOixs.png" style="zoom:60%"></p>
+<p>高斯核是对连续高斯的离散近似，窗口越大自然近似越好，但高斯函数是钟形曲线，距离中心越远数值越小，足够远处可以忽略不计，钟型曲线在区间(μ−σ,μ+σ)(μ−σ,μ+σ)范围内的面积占曲线下总面积的68%，(μ−2σ,μ+2σ)范围占95%，(μ−3σ,μ+3σ)范围占99.7%，一般3σ外的数值已接近于0，可忽略，半径为3σ即窗口大小为6σ×6σ即可，通常取最近的奇数。</p>
+<h2 id="3-一维高斯滤波例子"><a href="#3-一维高斯滤波例子" class="headerlink" title="3.一维高斯滤波例子"></a>3.一维高斯滤波例子</h2><p><code>Python</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Created on Thu Dec  9 22:22:11 2021</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: W-H</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> mpl</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;STZhongsong&#x27;</span>]    <span class="comment"># 指定默认字体：解决plot不能显示中文问题</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span>           <span class="comment"># 解决保存图像是负号&#x27;-&#x27;显示为方块的问题</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gauss_kernel</span>(<span class="params">r, sigma, *args, **kwargs</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; 生成一维高斯滤波高斯核</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    r:float</span></span><br><span class="line"><span class="string">        核大小，通常为基数</span></span><br><span class="line"><span class="string">    sigma: float</span></span><br><span class="line"><span class="string">        标准差</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    输出</span></span><br><span class="line"><span class="string">    gauss_weight:array</span></span><br><span class="line"><span class="string">        高斯核</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    gauss_weight = np.zeros(<span class="number">2</span>*r+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">2</span>*(r+<span class="number">1</span>), <span class="number">1</span>):</span><br><span class="line">        gauss_weight[i-<span class="number">1</span>] = np.exp(-<span class="number">1</span>*<span class="built_in">pow</span>((i-r), <span class="number">2</span>) /</span><br><span class="line">                                   (<span class="number">2</span>*<span class="built_in">pow</span>(sigma, <span class="number">2</span>))) / (sigma*np.sqrt(<span class="number">2</span>*np.pi))</span><br><span class="line">    <span class="keyword">return</span> gauss_weight</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gaussian_filtering_1</span>(<span class="params">data, kernel_cof, r</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; 一维高斯滤波</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    data: array</span></span><br><span class="line"><span class="string">        原始数据</span></span><br><span class="line"><span class="string">    kernel_cof: array</span></span><br><span class="line"><span class="string">        高斯核</span></span><br><span class="line"><span class="string">    r: float</span></span><br><span class="line"><span class="string">        核大小，通常为基数</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    输出</span></span><br><span class="line"><span class="string">    data_f: array</span></span><br><span class="line"><span class="string">        滤波后数据</span></span><br><span class="line"><span class="string">    说明</span></span><br><span class="line"><span class="string">    高斯滤波是对原始数据进行核卷积运算，滤波中边界不进行处理</span></span><br><span class="line"><span class="string">    data = [1,2,3,4,5]</span></span><br><span class="line"><span class="string">    kernel_cof = [a1,a0,a1]</span></span><br><span class="line"><span class="string">    data_f[0] = 1 # 保留原始数据</span></span><br><span class="line"><span class="string">    data_f[1] = a1*data[1-1] + a0*data[1] + a1*data[1+1]</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    data[4] = 5</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    data_y = np.zeros(data.size)</span><br><span class="line">    data_len = data.size</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(data_len):</span><br><span class="line">        <span class="keyword">if</span> k &lt; r <span class="keyword">or</span> k &gt; data_len-r-<span class="number">1</span>:</span><br><span class="line">            data_y[k] = data[k]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp = np.dot(data[k-r:k+r+<span class="number">1</span>], kernel_cof)</span><br><span class="line">            data_y[k] = temp</span><br><span class="line">    <span class="keyword">return</span> data_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_1</span>():</span></span><br><span class="line">    <span class="comment"># 生成测试数据</span></span><br><span class="line">    data = np.random.rand(<span class="number">100</span>)</span><br><span class="line">    r = <span class="number">2</span></span><br><span class="line">    sigma = <span class="number">5</span></span><br><span class="line">    gauss_cof = gauss_kernel(r, sigma)</span><br><span class="line">    data_y1 = gaussian_filtering_1(data, gauss_cof, r)</span><br><span class="line">    r = <span class="number">2</span></span><br><span class="line">    sigma = <span class="number">20</span></span><br><span class="line">    gauss_cof = gauss_kernel(r, sigma)</span><br><span class="line">    data_y2 = gaussian_filtering_1(data, gauss_cof, r)</span><br><span class="line">    plt.plot(data, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.plot(data_y1, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.plot(data_y2, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;采样周期T&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">    plt.grid(axis=<span class="string">&#x27;x&#x27;</span>, color=<span class="string">&#x27;0.95&#x27;</span>)</span><br><span class="line">    plt.legend([<span class="string">&#x27;原始信号&#x27;</span>, <span class="string">&#x27;sigma:5,r:2高斯滤波&#x27;</span>, <span class="string">&#x27;sigma:20,r:2高斯滤波&#x27;</span>])</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    test_1()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_4.png" style="zoom:60%"></p>
+<p>从上图可以看到，σ值越大，相比较于原始随机信号，滤波结果越平滑。从频域角度描述就是高频信号分量越少。</p>
+<h2 id="3-二维高斯滤波例子"><a href="#3-二维高斯滤波例子" class="headerlink" title="3.二维高斯滤波例子"></a>3.二维高斯滤波例子</h2><p>二维高斯滤波是一维高斯滤波的扩展，从原理上来说没有区别。相比较于一维高斯滤波，不同点在于：</p>
+<ul>
+<li>原始信号维度；</li>
+<li>高斯核；</li>
+</ul>
+<p>二维高斯函数：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210150457822.png" style="zoom:50%"></p>
+<p>高纬高斯函数：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210150543339.png" style="zoom:50%"></p>
+<p>下面是使用scipy的一个简单例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> misc</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy.ndimage <span class="keyword">import</span> gaussian_filter</span><br><span class="line"><span class="comment"># </span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.gray()  <span class="comment"># show the filtered result in grayscale</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">121</span>)  <span class="comment"># left side</span></span><br><span class="line">ax2 = fig.add_subplot(<span class="number">122</span>)  <span class="comment"># right side</span></span><br><span class="line">ascent = misc.ascent()</span><br><span class="line">result = gaussian_filter(ascent, sigma=<span class="number">5</span>)</span><br><span class="line">ax1.imshow(ascent)</span><br><span class="line">ax2.imshow(result)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_1.png"></p>
+<p>关于二维高斯滤波具体原理参考<a class="link"   href="https://www.cs.auckland.ac.nz/courses/compsci373s1c/PatricesLectures/Gaussian Filtering_1up.pdf" >Microsoft PowerPoint - Image Filtering-6.ppt Compatibility Mode] (auckland.ac.nz)<i class="fas fa-external-link-alt"></i></a>。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a class="link"   href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html" >scipy.ndimage.gaussian_filter — SciPy v1.7.1 Manual<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.cs.auckland.ac.nz/courses/compsci373s1c/PatricesLectures/Gaussian Filtering_1up.pdf" >Microsoft PowerPoint - Image Filtering-6.ppt [Compatibility Mode] (auckland.ac.nz)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.sci.utah.edu/~gerig/CS7960-S2010/handouts/03 The Gaussian kernel.pdf" >03 The Gaussian kernel.pdf (utah.edu)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html" >高斯模糊的算法 - 阮一峰的网络日志 (ruanyifeng.com)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.cnblogs.com/shine-lee/p/9671253.html" >如何确定高斯滤波的标准差和窗口大小 - shine-lee - 博客园 (cnblogs.com)<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Using dominate to Generate Web Page</title>
+    <url>/2021/10/29/dominate/</url>
+    <content><![CDATA[<h1 id="Dominate学习笔记"><a href="#Dominate学习笔记" class="headerlink" title="Dominate学习笔记"></a>Dominate学习笔记</h1><h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1. 问题背景"></a>1. 问题背景</h2><p>​    算法调试、文档输出等需要有相应的文档记录。常用的记录保存方式：markdown、office、html等多种方式。个人常用的方式还是偏向于MarkDown文档（Typora），但是在使用的过程中，还是遇到一些问题。比如：MarkDown相比较于其他两种记录方式较为简洁，自定义程度不高，在需要输出一些复杂度要求高的文档时会显得有些无力。因此，在一些情况下会选择使用html作为记录方式。理所当然，出现了一个新的问题，html是一种结构化文档，能够很方便地通过自己写代码自动修改、生成文档。Python的 <a class="link"   href="https://pypi.org/project/dominate/"  style="font-family: Source Sans Pro,Helvetica,Arial,sans-serif;font-size: 1rem;font-weight: 400;color: #006dad;cursor: pointer;">dominate<i class="fas fa-external-link-alt"></i></a>库能够是一个封装得很好的库，对于dominate库学习、使用，是以为记。</p>
+<h2 id="2-Dominate"><a href="#2-Dominate" class="headerlink" title="2. Dominate"></a>2. Dominate</h2><h3 id="2-1-dominate简介"><a href="#2-1-dominate简介" class="headerlink" title="2.1 dominate简介"></a>2.1 dominate简介</h3><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>是一个使用DOM api创建和修改HTML(HyperText Markup Language)${^{[1]}}$文件的python库。通过dominate能够很方便的用python地写html网页，且无需深入学习模板语言(css，html等)。</p>
+<h2 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h2><p>官方推荐安装方法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo pip install dominate</span><br></pre></td></tr></table></figure>
+<h2 id="4-示例"><a href="#4-示例" class="headerlink" title="4. 示例"></a>4. 示例</h2><p>开始使用之前需要导入适当的HTML标签或者直接导入整个HTML标签(tag set)集，HTML的标签有<code>div</code>、<code>a</code>、<code>p</code>、<code>h1</code>等，相关标签详细介绍参考[1]。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.tags <span class="keyword">import</span> * </span><br></pre></td></tr></table></figure>
+<h3 id="4-1-Hello-World"><a href="#4-1-Hello-World" class="headerlink" title="4.1 Hello,World"></a>4.1 Hello,World</h3><h4 id="4-1-1-使用dominate输出第一个网页内容。"><a href="#4-1-1-使用dominate输出第一个网页内容。" class="headerlink" title="4.1.1 使用dominate输出第一个网页内容。"></a>4.1.1 使用dominate输出第一个网页内容。</h4><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>最基本的功能是，为每个HTML元素提供了一个实现类。在<code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>中对应的HTML元素类的构造函数能够将该元素的子元素、文本、关键字属性参数。dominate节点通过<code>__str__()</code>、<code>__unicode__()</code>、<code>__render()__</code>方法返回HTML对应的表达式。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.tags <span class="keyword">import</span> *</span><br><span class="line">mainpage = html(body(h1(<span class="string">&#x27;Hello, World!&#x27;</span>)))</span><br><span class="line">htmlRepreStrI = mainpage.__str__()</span><br><span class="line">htmlRepreStrII = mainpage.__unicode__()</span><br><span class="line">htmlRepreStrIII = mainpage.render()</span><br><span class="line"><span class="built_in">print</span>(mainpage)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Hello, World!&lt;/h1&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4-1-2-class-html和class-dominate-document"><a href="#4-1-2-class-html和class-dominate-document" class="headerlink" title="4.1.2 class:html和class:dominate.document"></a>4.1.2 class:html和class:dominate.document</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> dominate</span><br><span class="line"><span class="keyword">from</span> dominate.tags <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">mainpageI = dominate.document()</span><br><span class="line">mainpageII = html()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;# dominate.document&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(mainpageI)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;------------------\n&#x27;</span>, <span class="string">&#x27;# html&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(mainpageII)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># dominate.document</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Dominate&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">------------------</span><br><span class="line"> # html</span><br><span class="line">&lt;html&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>document类相比于html类，document能够输出标准的HTML结构。实例化过程中，构造函数无参数输入，document能够生成带有网页title的head、body的html标签。而html仅生成html标签。这是因为html类是document的父类，document类在继承了html类，且其构造函数中丰富了相关内容。</p>
+<p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>库中的<strong>document.py</strong>构造函数。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">document</span>(<span class="params">tags.html</span>):</span></span><br><span class="line">  tagname = <span class="string">&#x27;html&#x27;</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, title=<span class="string">&#x27;Dominate&#x27;</span>, doctype=<span class="string">&#x27;&lt;!DOCTYPE html&gt;&#x27;</span>, request=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Creates a new document instance. Accepts `title`, `doctype`, and `request` keyword arguments.</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="built_in">super</span>(document, self).__init__()</span><br><span class="line">    self.doctype    = doctype</span><br><span class="line">    self.head       = <span class="built_in">super</span>(document, self).add(tags.head())</span><br><span class="line">    self.body       = <span class="built_in">super</span>(document, self).add(tags.body())</span><br><span class="line">    self.title_node = self.head.add(tags.title(title))</span><br><span class="line">    self._entry     = self.body</span><br></pre></td></tr></table></figure>
+<h2 id="5-属性"><a href="#5-属性" class="headerlink" title="5. 属性"></a>5. 属性</h2><h3 id="5-1-关键字参数修改属性"><a href="#5-1-关键字参数修改属性" class="headerlink" title="5.1 关键字参数修改属性"></a>5.1 关键字参数修改属性</h3><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code> 可以使用关键字参数将属性(attribute)附加到标签(tag)上。大多数属性都是从HTML规范复制过来的仅有很少的差异。因为<code>class</code>和<code>for</code>属性关键词和Python保留关键词冲突，因此可以使用下面的别名。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">_class</td>
+<td style="text-align:left">_for</td>
+</tr>
+<tr>
+<td style="text-align:left">cls</td>
+<td style="text-align:left">fr</td>
+</tr>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left">htmlFor</td>
+</tr>
+<tr>
+<td style="text-align:left">class_name</td>
+<td style="text-align:left">html_for</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">test = label(cls=<span class="string">&#x27;classname anothername&#x27;</span>, fr=<span class="string">&#x27;someinput&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(test)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;label class=&quot;classname anothername&quot; for=&quot;someinput&quot;&gt;&lt;/label&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="5-1-使用data-修改HTML5数据属性："><a href="#5-1-使用data-修改HTML5数据属性：" class="headerlink" title="5.1 使用data_*修改HTML5数据属性："></a>5.1 使用<code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">data_*</code>修改HTML5数据属性：</h3><p>在HTML5中data属性是“xx-xx”的形式。<del>如background-color属性。</del>但是python中“-”是数学运算符号“减”。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">test = div(data_employee=<span class="string">&#x27;101011&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(test)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div data-employee=&quot;101011&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><code>todo</code>：background-color如何处理。</p>
+<p>尝试使用下划线的方式处理，则结果如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">test = div(background_color=<span class="string">&#x27;#ffffff&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(test)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div background_color=&quot;#ffffff&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-使用类似于字典的接口修改标签属性"><a href="#5-3-使用类似于字典的接口修改标签属性" class="headerlink" title="5.3 使用类似于字典的接口修改标签属性"></a>5.3 使用类似于字典的接口修改标签属性</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">header = div()</span><br><span class="line">header[<span class="string">&#x27;id&#x27;</span>] = <span class="string">&#x27;header&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(header)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="6-构造复杂网页结构"><a href="#6-构造复杂网页结构" class="headerlink" title="6.构造复杂网页结构"></a>6.构造复杂网页结构</h2><h3 id="6-1-amp-add"><a href="#6-1-amp-add" class="headerlink" title="6.1 +=&amp;.add()"></a>6.1 <code>+=</code>&amp;<code>.add()</code></h3><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code> 支持<code>+=</code> 运算符和<code>.add()</code>方法，通过上述方法能够很轻易地创建出更复杂的网页结构。</p>
+<p>例如，创建一个简单的无序列表(list)容器:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">list</span> = ul()</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    <span class="built_in">list</span> += li(<span class="string">&#x27;Item #&#x27;</span>, item)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;Item #0&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;Item #1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;Item #2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;Item #3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>同样也可以使用这种方式创建多个<code>&lt;div&gt;</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">bd = body()</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    bd += div(<span class="string">&#x27;Item #&#x27;</span>, item)</span><br><span class="line"><span class="built_in">print</span>(bd)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div&gt;Item #0&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;Item #1&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;Item #2&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;Item #3&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>复杂网页种，通常存在一些重复的模块，使用<code>+=</code>或者<code>.add()</code> 能够使代码更为简便。</p>
+<p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>支持使用迭代的方式简化代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">menu_items = ([<span class="string">&#x27;home&#x27;</span>, <span class="string">r&#x27;/home/&#x27;</span>], [<span class="string">&#x27;about&#x27;</span>, <span class="string">&#x27;/about&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(ul(li(a(name, href=link), __pretty=<span class="literal">False</span>) <span class="keyword">for</span> name, link <span class="keyword">in</span> menu_items))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;&lt;a href=&quot;/home/&quot;&gt;home&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;&lt;a href=&quot;/about&quot;&gt;about&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>一个简单HTML文件树如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">_html = html()</span><br><span class="line">_head = _html.add(head(title(<span class="string">&quot;Simple Document Tree&quot;</span>)))</span><br><span class="line">_body = _html.add(body())</span><br><span class="line">header = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;header&#x27;</span>))</span><br><span class="line">content = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;content&#x27;</span>))</span><br><span class="line">footer = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;footer&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(_html)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Simple Document Tree&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>上面实现生成HTML文件树的方式是通过<code>.add()</code>方法，调用 <code>.add()</code> 方法后，其通过元胞的方式返回子标签。上面的实现方式可以简化为如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">_html = html()</span><br><span class="line">_head, _body = _html.add(head(title(<span class="string">&#x27;Simple Document Tree&#x27;</span>)), body())</span><br><span class="line">names = [<span class="string">&#x27;header&#x27;</span>, <span class="string">&#x27;content&#x27;</span>, <span class="string">&#x27;footer&#x27;</span>]</span><br><span class="line">header, content, footer = _body.add([div(<span class="built_in">id</span>=name) <span class="keyword">for</span> name <span class="keyword">in</span> names])</span><br><span class="line"><span class="built_in">print</span>(_html)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Simple Document Tree&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>代码种的_head, _body 都是通过<code>.add()</code> 方法添加到 _html类中的，从属关系为父子。使用<code>.add()</code> 方法生成HTML文件树的时候，内部并没有根据标签类型进行文件格式调整，只是按照先后顺序进行添加，一个典型的HTML文件XX.html应该包含&lt; head &gt; &lt; body &gt;且为了方便阅读，&lt; head &gt;通常在文件的前面。</p>
+<p>如果按照以下方式实现生成一个简单的HTML文件树：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">_html = html()</span><br><span class="line">_body = _html.add(body())</span><br><span class="line">_head = _html.add(head(title(<span class="string">&quot;Simple Document Tree&quot;</span>)))</span><br><span class="line">header = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;header&#x27;</span>))</span><br><span class="line">content = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;content&#x27;</span>))</span><br><span class="line">footer = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;footer&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(_html)</span><br></pre></td></tr></table></figure>
+<p>则最终输出为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;footer&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Simple Document Tree&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-使用类数组接口修改标签子项"><a href="#6-2-使用类数组接口修改标签子项" class="headerlink" title="6.2 使用类数组接口修改标签子项"></a>6.2 使用类数组接口修改标签子项</h3><p>5.3中提到过，可以通过类字典方式修改标签的属性，<code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>也支持通过类数组方式修改标签下子标签的属性。</p>
+<p><strong>Todo:</strong> 文档中说的是通过类数组方式修改children of a tag 实际代码中修改的是tag自身的属性。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">header = div(<span class="string">&#x27;Test&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(header)</span><br><span class="line">header[<span class="number">0</span>] = <span class="string">&#x27;Hello World&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(header)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;Test&lt;/div&gt;</span><br><span class="line">&lt;div&gt;Hello World&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-使用commit类为HTML文件添加注释"><a href="#6-3-使用commit类为HTML文件添加注释" class="headerlink" title="6.3 使用commit类为HTML文件添加注释"></a>6.3 使用commit类为HTML文件添加注释</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(comment(<span class="string">&#x27;this is a piece of commit&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--this is a piece of commit--&gt;</span><br><span class="line">&lt;!--[if lt IE9]&gt;</span><br><span class="line">&lt;p&gt;Upgrade to newer IE!&lt;/p&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="7-渲染网页文本-render"><a href="#7-渲染网页文本-render" class="headerlink" title="7. 渲染网页文本(render)"></a>7. 渲染网页文本(render)</h2><p>render()函数输出标签的文本字符串，可以用于后面生成本地html网页文件。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = div(span(<span class="string">&#x27;Hello World&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(a.render(), <span class="string">&#x27;\n&#x27;</span>, <span class="built_in">type</span>(a.render()))</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test.html&#x27;</span>,mode=<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(a.render())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;span&gt;Hello World&lt;/span&gt;</span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;class &#x27;str&#x27;&gt;</span><br></pre></td></tr></table></figure>
+<p><code>render()</code>默认输出的每个HTML元素单独占一行和两个空格的缩进。</p>
+<p>网页文本的渲染结果由创建HTML元素的<code>__pretty</code>属性决定，使用<code>render()</code>时候可以修改属性值包括：<code>pretty</code>（默认值：<code>True</code>，出来某些元素类型，比如pre）、<code>indent</code> （默认值：<code>&#39;&#39;</code>）、<code>xhtml</code>(默认值：<code>False</code>)。<code>render()</code>渲染选项设置后，其所有的子节点同样有效。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = div(span(<span class="string">&#x27;Hello World&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(a.render())</span><br><span class="line"><span class="built_in">print</span>(a.render(pretty=<span class="literal">False</span>))</span><br><span class="line"><span class="built_in">print</span>(a.render(indent=<span class="string">&#x27;\t&#x27;</span>))</span><br><span class="line">a = div(span(<span class="string">&#x27;Hello World&#x27;</span>), __pretty=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(a.render())</span><br><span class="line">d = div()</span><br><span class="line"><span class="keyword">with</span> d:</span><br><span class="line">    hr()</span><br><span class="line">    p(<span class="string">&quot;Test&quot;</span>)</span><br><span class="line">    br()</span><br><span class="line"><span class="built_in">print</span>(d.render())</span><br><span class="line"><span class="built_in">print</span>(d.render(xhtml=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">--------------</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;span&gt;Hello World&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;&lt;span&gt;Hello World&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;span&gt;Hello World&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;&lt;span&gt;Hello World&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;hr&gt;</span><br><span class="line">  &lt;p&gt;Test&lt;/p&gt;&lt;br&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;hr /&gt;</span><br><span class="line">  &lt;p&gt;Test&lt;/p&gt;&lt;br /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="8-HTML文件上下文管理"><a href="#8-HTML文件上下文管理" class="headerlink" title="8.HTML文件上下文管理"></a>8.HTML文件上下文管理</h2><h3 id="8-1-with添加子标签"><a href="#8-1-with添加子标签" class="headerlink" title="8.1 with添加子标签"></a>8.1 with添加子标签</h3><p>使用Python的<code>with</code>添加子标签：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个无序列表标签</span></span><br><span class="line">h = ul()</span><br><span class="line"><span class="comment"># 使用with给无序列表添加列表项目</span></span><br><span class="line"><span class="keyword">with</span> h:</span><br><span class="line">    li(<span class="string">&#x27;One&#x27;</span>)</span><br><span class="line">    li(<span class="string">&#x27;Two&#x27;</span>)</span><br><span class="line">    li(<span class="string">&#x27;Three&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(h)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;One&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;Two&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;Three&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>同样，可以通过嵌套使用<code>with</code>生成更复杂的网页：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">h = html()</span><br><span class="line"><span class="keyword">with</span> h.add(body()).add(div(<span class="built_in">id</span>=<span class="string">&#x27;content&#x27;</span>)):</span><br><span class="line">    h1(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">    p(<span class="string">&#x27;Lorem ipsum ...&#x27;</span>)</span><br><span class="line">    <span class="keyword">with</span> table().add(tbody()):</span><br><span class="line">        l = tr()</span><br><span class="line">        l += td(<span class="string">&#x27;One&#x27;</span>)</span><br><span class="line">        l.add(td(<span class="string">&#x27;Two&#x27;</span>))</span><br><span class="line">        <span class="keyword">with</span> l:</span><br><span class="line">            td(<span class="string">&#x27;Three&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(h)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;content&quot;&gt;</span><br><span class="line">      &lt;h1&gt;Hello World!&lt;/h1&gt;</span><br><span class="line">      &lt;p&gt;Lorem ipsum ...&lt;/p&gt;</span><br><span class="line">      &lt;table&gt;</span><br><span class="line">        &lt;tbody&gt;</span><br><span class="line">          &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;One&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;Two&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;Three&lt;/td&gt;</span><br><span class="line">          &lt;/tr&gt;</span><br><span class="line">        &lt;/tbody&gt;</span><br><span class="line">      &lt;/table&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-attr添加属性"><a href="#8-2-attr添加属性" class="headerlink" title="8.2 attr添加属性"></a>8.2 attr添加属性</h3><p>使用<code>with</code>的方式打开节点，通过<code>attr</code>函数为节点添加属性。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">d = div()</span><br><span class="line"><span class="keyword">with</span> d:</span><br><span class="line">    attr(<span class="built_in">id</span>=<span class="string">&#x27;header&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-text函数为文本节点添加文本"><a href="#8-3-text函数为文本节点添加文本" class="headerlink" title="8.3 text函数为文本节点添加文本"></a>8.3 text函数为文本节点添加文本</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.util <span class="keyword">import</span> text</span><br><span class="line">para = p(<span class="string">&quot;This is a paragraph,&quot;</span>, __pretty=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(para)</span><br><span class="line"><span class="keyword">with</span> para:</span><br><span class="line">    text(<span class="string">&#x27;Have a look at our &#x27;</span>)</span><br><span class="line">    a(<span class="string">&#x27;other products&#x27;</span>, href=<span class="string">&#x27;/products&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(para)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;This is a paragraph,&lt;/p&gt;</span><br><span class="line">&lt;p&gt;This is a paragraph,Have a look at our &lt;a href=&quot;/products&quot;&gt;other products&lt;/a&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>从上面结果看，<code>dominate.util.text</code>函数修改文本节点的文本内容时，并不是对原有文本内容进行替换，而是添加原有文本的后面。</p>
+<h2 id="9-装饰器-Decorators"><a href="#9-装饰器-Decorators" class="headerlink" title="9.装饰器(Decorators)"></a>9.装饰器(Decorators)</h2><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>非常适合为页面部分创建可复用的小部件，一种实现方式如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="keyword">with</span> div() <span class="keyword">as</span> d:</span><br><span class="line">        p(<span class="string">&#x27;Hello, %s&#x27;</span> % name)</span><br><span class="line">    <span class="keyword">return</span> d</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(greeting(<span class="string">&#x27;Bob&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p>上面这种实现方式抽象成模板：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">widget</span>(<span class="params">parameters</span>):</span></span><br><span class="line">    <span class="keyword">with</span> tag() <span class="keyword">as</span> t:</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">return</span> t</span><br></pre></td></tr></table></figure>
+<p>通过使用标签（对象和实例）作为装饰器，可以避免模板中再引入相应标签，</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@div</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span>(<span class="params">name</span>):</span></span><br><span class="line">    p(<span class="string">&#x27;Hello %s&#x27;</span> % name)</span><br><span class="line"><span class="built_in">print</span>(greeting(<span class="string">&#x27;Bob&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;p&gt;Hello Bob&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>被标签(tag)装饰的函数会返回一个用来装饰标签的实例，比如用div标签装饰的函数则返回一个div实例。并且由于在函数内部隐式调用with语句，返回的实例会包含函数中创建的节点。</p>
+<p>如果需要将属性或其他数据添加到窗口小部件的根节点中，则还可以使用标签的实例作为装饰器。每个调用被装饰函数将返回用于装饰它的节点的副本。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@div(<span class="params">h2(<span class="params"><span class="string">&#x27;Welcome&#x27;</span></span>), cls=<span class="string">&#x27;greeting&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span>(<span class="params">name</span>):</span></span><br><span class="line">    p(<span class="string">&#x27;Hello %s&#x27;</span> % name)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(greeting(<span class="string">&#x27;Bob&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;greeting&quot;&gt;</span><br><span class="line">  &lt;h2&gt;Welcome&lt;/h2&gt;</span><br><span class="line">  &lt;p&gt;Hello Bob&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="10-创建文件-Creating-Documents"><a href="#10-创建文件-Creating-Documents" class="headerlink" title="10.创建文件(Creating Documents)"></a>10.创建文件(Creating Documents)</h2><p>每次创建一个通用结构的HTML文档是很繁琐的事情，<code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code> 的<code>document</code>类能够很轻松地地解决这个问题。</p>
+<p>新建一个document类时，其类成员包括基本的HTML标签。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">d = document()</span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">       &lt;title&gt;Dominate&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><code>document</code>类接收<code>title</code>、<code>doctype</code>、<code>request</code>这几个关键字，其对应的默认值分别为：<code>Dominate</code>、<code>&lt;!DOCTYPE html&gt;</code>和<code>None</code>。同时<code>document</code>类能够直接访问<code>title</code>、<code>head</code>和<code>body</code>节点。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">d = document()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.head</span><br><span class="line">&lt;dominate.tags.head: <span class="number">0</span> attributes, <span class="number">1</span> children&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.body</span><br><span class="line">&lt;dominate.tags.body: <span class="number">0</span> attributes, <span class="number">0</span> children&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.title</span><br><span class="line"><span class="string">u&#x27;Dominate&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><code>document</code>类也的基本用法同其他节点一样。</p>
+<h2 id="11-SVG"><a href="#11-SVG" class="headerlink" title="11.SVG"></a>11.SVG</h2><p><code>dominate.svg</code> 模块包含SVG标签。SVG元素会将’_’自动转换为’-‘。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.svg <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(circle(stroke_width=<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1.<a class="link"   href="https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Introduction_to_HTML/Getting_started" >开始学习 HTML - 学习 Web 开发 | MDN (mozilla.org)<i class="fas fa-external-link-alt"></i></a></p>
+<p>2.<a class="link"   href="https://vegibit.com/html5-data-attributes/#:~:text=HTML5 Data Attributes 1 Data Attributes are Awesome.,can see%2C data attributes are very flexible." >HTML5 Data Attributes - Vegibit<i class="fas fa-external-link-alt"></i></a></p>
+<p>3.<a class="link"   href="https://realpython.com/python-with-statement/" >Context Managers and Python’s with Statement – Real Python<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>Html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派制作影音系统</title>
+    <url>/2021/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%B6%E4%BD%9C%E5%BD%B1%E9%9F%B3%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="树莓派4b打造影音系统-LibreELEC"><a href="#树莓派4b打造影音系统-LibreELEC" class="headerlink" title="树莓派4b打造影音系统(LibreELEC)"></a>树莓派4b打造影音系统(LibreELEC)</h1><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/icon-release-k19.jpg" alt="icon-release-k19"></p>
+<span id="more"></span>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一个不是很智能的电视+一个闭源的机顶盒+随便造的树莓派 = 把树莓派打造成多媒体电视盒子，使用树莓派替代那个闭源的机顶盒。思路其实很简单，树莓派是一个廉价的电脑，包括USB、Ethernet接口、hdmi等接口，支持多种Linux操作系统。这其中就有像<strong>LibreELEC、OSMC这种适合做媒体服务器</strong>的专用系统。将这些系统在树莓派上安装、运行就能实现目的，本篇主要记录安装过程和安装过程遇到的部分问题及解决方法。</p>
+<p><strong>LibreELEC</strong></p>
+<p>LibreELEC是一个开源的Linux发行版，核心软件是Kodi，也安装了足够多的软件包。该项目是现已被放弃的 OpenELEC 项目的一个分支。LibreELEC旨在提供一个包含运行Kodi媒体中心软件的基本必需品的操作系统。Libreelec简单来说就是最小限度满足Kodi运行的Linux，Libreelec是把精简版linux与kodi集成的媒体中心系统。系统非常精简，整个系统就是Kodi。开机直接进入Kodi，速度快，cpu占用率低，非常适合性能较差的主机。也许原来的系统里装Kodi播放卡顿，刷成Libreelec播放会更流畅。</p>
+<h2 id="1-软硬件准备"><a href="#1-软硬件准备" class="headerlink" title="1.软硬件准备"></a>1.软硬件准备</h2><h3 id="1-1硬件："><a href="#1-1硬件：" class="headerlink" title="1.1硬件："></a>1.1硬件：</h3><ul>
+<li>树莓派(Raspberry 4b)+电源+外设(键盘鼠标)</li>
+<li>读卡器(SD 卡)</li>
+<li>HDMI+显示器</li>
+</ul>
+<h3 id="1-2软件"><a href="#1-2软件" class="headerlink" title="1.2软件:"></a>1.2软件:</h3><ul>
+<li>Raspberry Pi Imager—树莓派官方烧写工具</li>
+</ul>
+<h2 id="2-升级Raspberry-4b-Bootloader-手动"><a href="#2-升级Raspberry-4b-Bootloader-手动" class="headerlink" title="2.升级Raspberry 4b Bootloader(手动)"></a>2.升级Raspberry 4b Bootloader(手动)</h2><p>Bootloader(引导启动程序)，又叫引导程序（boot program 或者引导加载程序（bootstrap loader），是一种特殊的系统程序(operating system software)，在硬件设备上电后被加载到计算机的内存中运行。通俗的解释就是，Bootloader是硬件在上电后执行的第一段代码，在它完成CPU和相关硬件的初始化之后，再将操作系统映像或固化的应用程序装载到内存中然后跳转到操作系统所在的空间。</p>
+<p><strong>为什么需要升级Bootloader?</strong></p>
+<p>一般情况下，是不需要升级Bootloader的，之前在用树莓派安装Win10操作系统的时候，提示：</p>
+<p><code>如果要从USB驱动器启动您的Raspberry Pi 4/400或使用GPT分区方案，则必须将Bootloader更新至最新版本。</code></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211228105821877.png" alt="image-20211228105821877"></p>
+<p>所以为了减少不必要的麻烦还是决定把Bootloader更新了，使用Raspberry Pi Imager更新方法参考树莓派官方文档<a class="link"   href="https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-boot-eeprom" >Raspberry Pi Documentation - Raspberry Pi Hardware<i class="fas fa-external-link-alt"></i></a>，具体步骤如下：</p>
+<ol>
+<li>从<a class="link"   href="https://www.raspberrypi.com/software/" >Raspberry Pi OS – Raspberry Pi<i class="fas fa-external-link-alt"></i></a>下载安装Raspberry Pi Imager软件；</li>
+<li>选择一张SD卡，SD卡需要先格式化；</li>
+<li>运行 Raspberry Pi Imager，依次选择：(1)Operating System：Misc utility images ➤ Bootloader  ➤  boot-mode i.e. SD (recommended), USB or Network (2) Storage: SD卡 (3)Write</li>
+<li>将SD卡插入并启动树莓派并等待至少 10 秒。</li>
+<li>更新成功后，树莓派绿色LED将稳定闪烁，如果接了显示器，则会显示绿色。</li>
+<li>关闭树莓派电源并取出 SD 卡。 </li>
+</ol>
+<div style=text-align:center;>
+    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/bootloader.gif">
+    <p>更新过程</p>
+</div>
+
+<h2 id="3-通过Raspberry-Pi-Imager烧写LibreELEC系统"><a href="#3-通过Raspberry-Pi-Imager烧写LibreELEC系统" class="headerlink" title="3.通过Raspberry Pi Imager烧写LibreELEC系统"></a>3.通过Raspberry Pi Imager烧写LibreELEC系统</h2><h3 id="3-1-格式化SD卡"><a href="#3-1-格式化SD卡" class="headerlink" title="3.1 格式化SD卡"></a>3.1 格式化SD卡</h3><p>烧写系统前需要将SD卡格式化，具体格式化过程参照下图：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/erase.gif" alt="erase"></p>
+<h3 id="3-2-烧写LibreELEC"><a href="#3-2-烧写LibreELEC" class="headerlink" title="3.2 烧写LibreELEC"></a>3.2 烧写LibreELEC</h3><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/boot.gif" alt="boot"></p>
+<h3 id="3-3-LibreELEC设置"><a href="#3-3-LibreELEC设置" class="headerlink" title="3.3 LibreELEC设置"></a>3.3 LibreELEC设置</h3><p>LibreELEC系统烧录完成之后，将SD卡插入树莓派，使用Micro HDMI将树莓派连接到显示器后上电。</p>
+<p>等待系统加载完成，加载完成后按照导引完成设置。</p>
+<p>树莓派插入刚安装的系统并开机，进入图中页面，进行网络和SSH的配置。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/%E5%9F%BA%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84LibreELEC%E5%AE%89%E8%A3%852-1024x628.png" alt="基于树莓派的LibreELEC安装2-1024x628"></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/%E5%9F%BA%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84LibreELEC%E5%AE%89%E8%A3%853-1024x606.png" alt="基于树莓派的LibreELEC安装3-1024x606"></p>
+<p><strong>注：</strong></p>
+<p>如果将系统设置为中文，需要先将字体设置为 <a style="font-size:18px; color:'red';">Arial</a>，否则会出现乱码；</p>
+<p>System ➤ Interface ➤ Skin ➤ Fonts ➤ Arial</p>
+<p><img src="https://www.xiangquba.cn/wp-content/uploads/2020/03/基于树莓派的LibreELEC安装4-1024x576.png" alt="img"></p>
+<h2 id="4-安装过程中出现的问题"><a href="#4-安装过程中出现的问题" class="headerlink" title="4.安装过程中出现的问题"></a>4.安装过程中出现的问题</h2><h3 id="4-1-Error-in-mount-storage"><a href="#4-1-Error-in-mount-storage" class="headerlink" title="4.1 Error in mount_storage"></a>4.1 Error in mount_storage</h3><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211228142850745.png" alt="image-20211228142850745"></p>
+<p>原因分析：可能是在使用Raspberry pi imager 烧写完成之后校验失败，然后直接上电使用。</p>
+<p>解决方法：重新烧写</p>
+<h3 id="4-2-Raspberry-pi-imager-校验失败"><a href="#4-2-Raspberry-pi-imager-校验失败" class="headerlink" title="4.2 Raspberry pi imager 校验失败"></a>4.2 Raspberry pi imager 校验失败</h3><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211228112419315.png" alt="image-20211228112419315"></p>
+<p>原因分析：Unknown</p>
+<p>解决方法：重新格式化</p>
+<h2 id="5-参考"><a href="#5-参考" class="headerlink" title="5.参考"></a>5.参考</h2><p>1.<a class="link"   href="https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-boot-eeprom" >Raspberry Pi Documentation - Raspberry Pi Hardware<i class="fas fa-external-link-alt"></i></a></p>
+<p>2.<a class="link"   href="https://zhuanlan.zhihu.com/p/141068779" >用于各种用途的最佳树莓派操作系统 | Linux 中国 - 知乎 (zhihu.com)<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+      <tags>
+        <tag>raspberry</tag>
+        <tag>Kodi</tag>
+        <tag>instruction</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/10/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> dominate</span><br><span class="line"><span class="keyword">from</span> dominate <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(html(body(div(cls=<span class="string">&quot;header1&quot;</span>,<span class="string">&quot;this is a div&quot;</span>))))</span><br></pre></td></tr></table></figure>
+<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><script type="math/tex; mode=display">
+\begin{align}
+& f(x,y) = x+y\\
+\end{align}</script><p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>搜索技巧</title>
+    <url>/2022/03/19/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/1c7a57458a2d4281a12bb816f51e2876.PNG"></p>
+<span id="more"></span>
+<h1 id="1-写在前面"><a href="#1-写在前面" class="headerlink" title="1 写在前面"></a>1 写在前面</h1><h2 id="1-1-何为搜索"><a href="#1-1-何为搜索" class="headerlink" title="1.1 何为搜索"></a>1.1 何为搜索</h2><p>​    先做解释，搜索的学术名词叫<a class="link"   href="https://zh.wikipedia.org/wiki/信息檢索" >信息检索<i class="fas fa-external-link-alt"></i></a>，通俗的解释就是基于搜索引擎、根据一定的搜索思路、应用相关的搜索技巧在互联网上找到想要的信息。互联网上信息很多，但也不是任何信息都能够找到，比如想要通过常规手段在互联网查找身份证信息就几乎不可能。</p>
+<h2 id="1-2-搜索的重要性"><a href="#1-2-搜索的重要性" class="headerlink" title="1.2 搜索的重要性"></a>1.2 搜索的重要性</h2><p>​    搜索就是一个主动获取信息的过程。个人认为，人的认知、接触的信息、思维模型之间的关系是这样的：首先，一个聪明的人或者说是明事理的人，其内化了的信息一定是广泛且深刻的，大量内化了的高质量信息能够很大程度上影响人的认知，认知决定思维模型，思维模型反过来又会影响人的认知，认知又影响对信息的接收度。这段话很绕，关键点就是认知、信息、思维是互相作用于人的因子。</p>
+<p>​    获取信息的方式有很多，包括但是不限于：阅读、学习、与人交谈、反思等；</p>
+<h2 id="1-3-源起"><a href="#1-3-源起" class="headerlink" title="1.3 源起"></a>1.3 源起</h2><p>​    这篇思考源于我一个朋友提的问题，具体问题就是能不能找到一个行业PPT，同时也和我个人的学习、工作相关。一开始并没有动手写，先是在<a class="link"   href="https://www.chongbuluo.com/" >虫部落 - 让搜索更简单 (chongbuluo.com)<i class="fas fa-external-link-alt"></i></a>上看了一些搜索案例、技巧分析，工作的间隙偶尔会有想法蹦出来也就一并记下来了。一来能帮助回答我朋友的问题，二来对自己的搜索方式进行重新认知，希望有所提升，是以为记。</p>
+<h1 id="2-搜索技巧"><a href="#2-搜索技巧" class="headerlink" title="2.搜索技巧"></a>2.搜索技巧</h1><p>​    接下来的内容主要是参考：</p>
+<ul>
+<li><p><a class="link"   href="https://zhuanlan.zhihu.com/p/64991124" >搜索术基础-信息搜索心法+资源搜索技巧 - 知乎 (zhihu.com)<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   href="https://www.chongbuluo.com/forum.php?mod=viewthread&amp;tid=5942" >朱丹超级搜索术笔记：百度搜索相关的技巧 - Keyword - 虫部落 (chongbuluo.com)<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>自己对搜索技巧认知的结合；</p>
+<p>ps：两个参考链接都是源于朱丹《超级搜索术》</p>
+</li>
+</ul>
+<h2 id="2-1-搜索引擎选择"><a href="#2-1-搜索引擎选择" class="headerlink" title="2.1 搜索引擎选择"></a>2.1 搜索引擎选择</h2><p>搜索引擎很多，包括通用搜索引擎和垂直搜索引擎，比如</p>
+<p>通用搜索引擎：</p>
+<ul>
+<li><a class="link"   href="https://www.google.com/" >Google<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://cn.bing.com/?mkt=zh-CN" >必应 (bing.com)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://yandex.com/" >Yandex<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.yahoo.com/?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAAK4OQbhaMLVFb24F7JzlyPnXgVYrifdAdwX_KkoBmZftoUQjWtenUnw6APvdcFHT-pJqOTvyWStfib_oRMgJjszWMlPX0qlrlv7LIMHFm1ytZkrds7Gd0x9Od030Izmp6AVTCBYUDDR_2zRdvrO4BoTqB-zajl_ieqH9OpZe_D5f" >Yahoo<i class="fas fa-external-link-alt"></i></a></li>
+<li>….</li>
+</ul>
+<p>垂直搜索引擎：</p>
+<ul>
+<li><a class="link"   href="https://zh.wikipedia.org/zh-hans/Wikipedia:首页" >维基百科<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://scholar.google.com/" >Google 学术搜索<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://cn.bing.com/academic/?mkt=zh-CN" >搜索 学术 (bing.com)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.zhihu.com/signin?next=%2F" >知乎 - 有问题，就会有答案 (zhihu.com)<i class="fas fa-external-link-alt"></i></a></li>
+<li>…</li>
+</ul>
+<p>不同的搜索引擎有各自的特色，搜索结果也就差异很大，具体效果有一句话是这样说的，“百度看病 癌症起步”。你在搜索的时候也许只是想问，“维C片的功效”。对于通用引擎，一直是使用频率最高的，个人用Google偶尔不想<code>翻墙</code>就用必应。找论文或者其他资料的时候就用垂直搜索引擎。我也强烈建议把默认搜索引擎至少换成必应，百度不推荐。</p>
+<p><strong>这里再次推荐一下虫部落，一个专注于搜索的高品质、小众BBS。里面的wiki有基本所有常用的搜索引擎相关介绍和入口。</strong></p>
+<div style="text-align:center;">
+    <a class="link"   href="https://www.chongbuluo.com/"  style="font-size:25px;fong-weight:bold;">虫部落 - 让搜索更简单<i class="fas fa-external-link-alt"></i></a>
+    <hr>
+    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20220318225604.png">
+</div>
+
+
+<h2 id="2-2-搜索逻辑"><a href="#2-2-搜索逻辑" class="headerlink" title="2.2 搜索逻辑"></a>2.2 搜索逻辑</h2><p>​    简而言之，搜索就是一个有目的的信息收集过程。虽然可能每天都有会经历很多次，但是很少仔细想过究竟是怎样一个过程。比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.想找到一些搜索技巧方面的教程</span><br><span class="line">2.然后你就会打浏览器</span><br><span class="line">3.输入关键字然后对结果进行筛选</span><br></pre></td></tr></table></figure>
+<p>上述过程的本质就是：找什么→哪里找→怎么找；更详尽的解释是包括：</p>
+<ol>
+<li>提取关键词</li>
+<li>选择合适的搜索工具(引擎)</li>
+<li>构造检索式</li>
+<li>筛选结果</li>
+<li>根据结果调整策略</li>
+</ol>
+<h3 id="2-2-1-提取关键词"><a href="#2-2-1-提取关键词" class="headerlink" title="2.2.1 提取关键词"></a>2.2.1 提取关键词</h3><p>​    搜索的第一步，<strong>口语化搜索转化为关键词</strong>；</p>
+<p>比如：“哪里有搜索技巧相关教程？”</p>
+<p>搜索的时候其实只需要输入：搜索技巧+教程</p>
+<h3 id="2-2-2-选择合适的搜索工具"><a href="#2-2-2-选择合适的搜索工具" class="headerlink" title="2.2.2 选择合适的搜索工具"></a>2.2.2 选择合适的搜索工具</h3><p>​    这一步，我认为至关重要，“工欲善其事必先利其器”。大家都知道论文得上知网，不是“百度一下，你就知道。”根据你对需要搜索信息结果的分析，再在相关的专业引擎上去搜索往往能更快的找到想要的结果。</p>
+<p>比如，编码技术问题上stackoverflow、github。搜索技术问题上虫部落。论文就上专业的论文网站。</p>
+<h3 id="2-2-3-构建检索式"><a href="#2-2-3-构建检索式" class="headerlink" title="2.2.3 构建检索式"></a>2.2.3 构建检索式</h3><p>​    这块的东西就涉及到搜索指令方面的了，用得比较多有：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">搜索指令</th>
+<th style="text-align:center">解释</th>
+<th style="text-align:center">语法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">“”</td>
+<td style="text-align:center">精确搜索：双引号</td>
+<td style="text-align:center">“keywords”</td>
+</tr>
+<tr>
+<td style="text-align:center">site</td>
+<td style="text-align:center">站内搜索</td>
+<td style="text-align:center">site:stackoverflow.com</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">通配符搜索</td>
+<td style="text-align:center">keywo<em>ds </em></td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">减号排除，缩小范围</td>
+<td style="text-align:center">- 排除内容</td>
+</tr>
+<tr>
+<td style="text-align:center">filetype</td>
+<td style="text-align:center">搜索指定类型文件</td>
+<td style="text-align:center">filetype:filetypies</td>
+</tr>
+<tr>
+<td style="text-align:center">link</td>
+<td style="text-align:center">查找连接到某个特定网页的网页</td>
+<td style="text-align:center">link:baidu.com</td>
+</tr>
+<tr>
+<td style="text-align:center">OR</td>
+<td style="text-align:center">或逻辑</td>
+<td style="text-align:center">python OR html</td>
+</tr>
+<tr>
+<td style="text-align:center">AND\</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">搜索包含两个关键词的搜索结果</td>
+<td>python AND css \</td>
+<td>python+css</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="精准搜索"><a href="#精准搜索" class="headerlink" title="精准搜索"></a><strong>精准搜索</strong></h4><p>比方说在搜索「Joe Bloggs」的时候，在没有给关键词加上双引号的情况，搜索引擎会显示所有分别和「Joe」以及「Bloggs」相关的信息，但这些显然并不是我们想要的结果。但在加上双引号后，搜索引擎则仅会在页面上反馈和「Joe Bloggs」相吻合的信息。</p>
+<h4 id="site"><a href="#site" class="headerlink" title="site"></a><strong>site</strong></h4><p>比如搜索虫部落里面的相关搜索技巧的文章：<code>搜索技巧 site:chongbuluo.com</code></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20220319144125.png" style="width:800px;height:600px;"></p>
+<h4 id=""><a href="#" class="headerlink" title="*"></a><strong>*</strong></h4><p>通配符搜索，比如突然脑子里冒出一句歌词，但是想不起歌名的时候：</p>
+<p><code>全都怪我， 该沉默时*</code></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20220319144350.png"></p>
+<h4 id="-1"><a href="#-1" class="headerlink" title="-"></a><strong>-</strong></h4><p>排除搜索范围，比如我搜技术问题的时候最讨厌的网站CSDN和博客园：</p>
+<p><code>pip no matching distribution found for -csdn.net -cnblogs</code></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220319144848322.png" alt="image-20220319144848322"></p>
+<h4 id="filetype"><a href="#filetype" class="headerlink" title="filetype"></a><strong>filetype</strong></h4><p>指定搜索结果包含特定格式的文件，比如想找到与快速减肥有关的 PowerPoint 演示文稿。</p>
+<p><code>“Quickly lose weight”  filetype:ppt</code></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220319145104972.png" alt="image-20220319145104972"></p>
+<p>当然上述搜索语法是可以混合使用的。详细的相关语法参阅下面两篇文章。</p>
+<p><a class="link"   href="https://yangjiantao.github.io/2018/05/09/Google搜索技巧/" >Google搜索技巧 | Jiantao (yangjiantao.github.io)<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   href="https://www.xnbeast.com/google-advanced-search-tips/" >如何在谷歌上搜索: 31个 Google 高级搜索技巧 | 埃克森数字营销 (xnbeast.com)<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="3-写在最后"><a href="#3-写在最后" class="headerlink" title="3.写在最后"></a>3.写在最后</h1><p>搜索技巧及思路是一个需要不断在实际场景中完善和丰富的过程。</p>
+]]></content>
+      <tags>
+        <tag>search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5和ROS</title>
+    <url>/2021/11/23/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85Ubuntu%E5%92%8CROS/</url>
+    <content><![CDATA[<div>
+    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20220110111619.png">
+</div>
+
+<span id="more"></span>
+<h1 id="树莓派-Raspberry-Pi-4-Model-B-安装Ubuntu18-04-5"><a href="#树莓派-Raspberry-Pi-4-Model-B-安装Ubuntu18-04-5" class="headerlink" title="树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5"></a>树莓派(Raspberry Pi 4 Model B)安装Ubuntu18.04.5</h1><p>最近需要用ROS控制机器人运动(阿克曼小车)，机器人的硬件构成中没有树莓派，因此需要自己搭建树莓派环境配置ROS，由于手上的树莓派操作系统版本过低，需要手动对树莓派进行升级到18.04.5。最初的思路是，看网上有没有相关的在线升级教程，搜了一下找到了[1]中的方法，但是由于不熟悉Linux系统以失败告终。所以回到了最常用的方式，通过SD读卡器烧写Ubuntu镜像升级，以下为烧写的记录。</p>
+<h2 id="1-硬件准备"><a href="#1-硬件准备" class="headerlink" title="1.硬件准备"></a>1.硬件准备</h2><ol>
+<li>树莓派型号：Raspberry Pi 4 Model B</li>
+<li>SD卡及读卡器</li>
+</ol>
+<h2 id="2-软件准备"><a href="#2-软件准备" class="headerlink" title="2.软件准备"></a>2.软件准备</h2><ol>
+<li><p>SDFormatter（SD卡格式化工具）</p>
+<p>下载链接 <a class="link"   href="https://www.sdcard.org/downloads/formatter/sd-memory-card-formatter-for-windows-download/" >SD Memory Card Formatter for Windows Download | SD Association (sdcard.org)<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>Win32DiskImager (镜像烧录工具)</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116154457.png"></p>
+</li>
+</ol>
+<h2 id="3-系统镜像源"><a href="#3-系统镜像源" class="headerlink" title="3.系统镜像源"></a>3.系统镜像源</h2><p>1.清华源备份镜像</p>
+<p><a class="link"   href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cdimage/ubuntu/releases/18.04.5/release/" >Index of /ubuntu-cdimage/ubuntu/releases/18.04.5/release/ | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror<i class="fas fa-external-link-alt"></i></a></p>
+<p>2.ubuntu镜像</p>
+<p><a class="link"   href="http://cdimage.ubuntu.com/releases/" >Index of /releases (ubuntu.com)<i class="fas fa-external-link-alt"></i></a></p>
+<p>3.树莓派官方镜像</p>
+<p><a class="link"   href="https://www.raspberrypi.com/software/operating-systems/" >Operating system images – Raspberry Pi<i class="fas fa-external-link-alt"></i></a></p>
+<p>笔者用的镜像版本是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ubuntu-18.04.5-preinstalled-server-arm64+raspi4.img</span><br></pre></td></tr></table></figure>
+<p>PS:</p>
+<ul>
+<li>下载镜像的时候要根据树莓派型号选择对应的系统版本</li>
+<li>下载的镜像通常后缀是<code>.xz</code>，<code>.xz</code>就是一种压缩文件格式，解压后就能获取到<code>.img</code> 格式的镜像</li>
+</ul>
+<h2 id="4-SD卡格式化"><a href="#4-SD卡格式化" class="headerlink" title="4.SD卡格式化"></a>4.SD卡格式化</h2><p>在对SD卡烧录系统镜像前，必须先对SD卡进行格式化操作，具体操作是</p>
+<ol>
+<li><p>将SD卡插入读卡器中，然后连接上电脑；</p>
+</li>
+<li><p>如果SD卡里面烧录有镜像(笔者的情形)，读卡器插入电脑后会弹出</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116152501.png"></p>
+<p>这个时候需要先”格式化磁盘”才能正常使用，格式化的时候按照默认选项进行格式化操作即可，</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116152613.png"></p>
+<p>格式化之前，SD卡插入电脑上的时候会看到两个SD卡的盘：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116152735.png"></p>
+<p>boot(F:)是系统引导盘，U盘(G:)则是U盘的剩余内容。格式完之后则只剩下一个盘。</p>
+<p><strong>格式完成之后，将SD读卡器从电脑上拔掉然后再连接上，检查是否格式化成功</strong>，如果格式化成功则对应上述格式后描述，格式化完成后再使用SD卡格式化工具进行格式化操作。</p>
+</li>
+<li><p>使用SD卡格式化工具格式化：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116153122.png"></p>
+<p>点击”更新”会自动选中内存卡，默认是快速格式化模式，点击”格式化”案件。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116153820.png"></p>
+</li>
+</ol>
+<p>这里会弹出一个快速格式化提醒，点击”确定”</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116153852.png"></p>
+<p>开始格式化</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116153957.png"></p>
+<p>如果遇到格式化失败（失败的可能原因是SD卡名字太长，改一个简单的名字），重新操作上述步骤就行了</p>
+<div style="text-align:center;">
+    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116154107.png"><hr>
+    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116154248.png">
+</div>
+
+<p>格式化完成结果</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116155729.png"></p>
+<h2 id="5-镜像烧录"><a href="#5-镜像烧录" class="headerlink" title="5.镜像烧录"></a>5.镜像烧录</h2><p>​    完成了上述准备工作后就可以开始镜像烧录，镜像烧录操作很简单：</p>
+<ul>
+<li>选择镜像文件</li>
+<li>写入镜像，等待烧写完成</li>
+</ul>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116160012.png"></p>
+<p>点击”Write”后弹出复写警告，点击”Yes”就可以了，</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20211116160101.png"></p>
+<p>写入成功之后，由于SD卡被写入了系统会弹出格式化提醒的弹窗，这时候不要点击格式化，不然就又回到烧写之前格式化SD卡的最初的起点了。</p>
+<p><strong>至此，系统烧录工作已经完成。</strong></p>
+<h2 id="6-开启SSH"><a href="#6-开启SSH" class="headerlink" title="6.开启SSH"></a>6.开启SSH</h2><p>安装的系统由于没有桌面程序，需要通过SSH来进行接下来的操作。打开 Micro SD 卡根目录，在根目录下新建一个记事本文件，并命名为SSH。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20200404152056536.png" alt="img"></p>
+<p>安全弹出内存卡。</p>
+<h2 id="7-启动系统"><a href="#7-启动系统" class="headerlink" title="7.启动系统"></a>7.启动系统</h2><p>拔出内存卡，把内存卡插到树莓派中，树莓派跟电脑连接到同一个网络，使用SSH连接树莓派，首先查看树莓派的ip地址。笔者的树莓派是通过网线连接到路由器上的，因此通过登录路由器首页就可以查看连接设备的IP地址。路由器登录页面链接为：<a class="link"   href="http://192.168.1.1/" >JCG Q8 - 首页<i class="fas fa-external-link-alt"></i></a>。当然也可以使用IP Scanner扫描工具查看ip地址。</p>
+<h2 id="8-系统登录"><a href="#8-系统登录" class="headerlink" title="8.系统登录"></a>8.系统登录</h2><p>通过PuTTY连接上树莓派后，使用默认账号密码登录。</p>
+<p>默认账号：<code>ubuntu</code> 默认密码：<code>ubuntu</code></p>
+<p>第一次登录会要求更改登录密码，更改完成之后使用新密码登录。这个密码一定要注意，在这一步笔者因为多次输错密码出现<code>access denied</code>，由于没有找到好的方法解决，只能重新烧录系统。</p>
+<p>登录成功后的界面如下：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/20200324164713387.png" alt="img"></p>
+<h2 id="9-换源"><a href="#9-换源" class="headerlink" title="9.换源"></a>9.换源</h2><p>换源是Linux装系统后的基本操作，因为系统中自带的源访问很慢。</p>
+<p>更换步骤：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.备份</span></span><br><span class="line">sudo cp -r /etc/apt/sources.list /etc/apt/sources.list.bf</span><br><span class="line"><span class="comment"># 2.替换源(中科大源)</span></span><br><span class="line">sudo sed -i -e <span class="string">&#x27;s/https\?:\/\/[^/]*\/ubuntu/http:\/\/mirrors.ustc.edu.cn\/ubuntu/g&#x27;</span> /etc/apt/sources.list</span><br><span class="line"><span class="comment"># 3.更新软件源</span></span><br><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+<h2 id="10-安装ubuntu18-04-4的桌面"><a href="#10-安装ubuntu18-04-4的桌面" class="headerlink" title="10.安装ubuntu18.04.4的桌面"></a>10.安装ubuntu18.04.4的桌面</h2><p>可选择：xubuntu-desktop、lubuntu-desktop、kubuntu-desktop</p>
+<p>使用PuTTY登录，登录进去后，打开终端，输入安装桌面的命令:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install xubuntu-desktop</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211116181815428.png" alt="image-20211116181815428"></p>
+<p>等待…….我已经等了5h了💀。</p>
+<p><strong>P.S</strong>: <strong>没有显示器不建议安装，有显示器建议直接烧录桌面版程序。</strong></p>
+<h2 id="11-安装ROS"><a href="#11-安装ROS" class="headerlink" title="11.安装ROS"></a>11.安装ROS</h2><p><code>这一步的坑太多了，各种莫名其妙的坑，一招不慎，怀疑人生。</code> 对于不熟悉Linux和ROS的人来说的，找到一篇靠谱的安装指南能节约很多时间。</p>
+<p>列举一下我在这一步里面踩到的坑吧，</p>
+<ul>
+<li>安装过程中硬件不小心掉电→系统报错”Read-only file system” →尝试解决→重新烧系统；</li>
+<li>sudo rosdep init→raw.githubusercontent.com报错→尝试修改hosts→尝试开VPN→:bomb:；</li>
+<li>rosdep update → 报错 →参考最常用的修改源代码重定向下载文件 →:bomb:；</li>
+<li>在非树莓派完整系统上运行sudo raspi-config → :bomb:；</li>
+<li>在Ubuntu 20.05上安装melodic→:bomb:</li>
+</ul>
+<p>踩了这么多的坑，到最后终于在ubuntu18.04上安装了melodic，是因为找到了大神写的工具，能帮忙避开那些因为各种原因出现的坑。就几行命令就完成安装了。参考链接如下：</p>
+<p><strong><a class="link"   href="https://mp.weixin.qq.com/s/8hTrKL0N5y9i6s9ujhp0UA" >玩着游戏听着歌，就把ROS装好了！一行代码搞定系列！ (qq.com)<i class="fas fa-external-link-alt"></i></a></strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 一行指令安装ROS</span></span><br><span class="line">sudo wget http://fishros.com/install -O fishros &amp;&amp; sudo bash fishros</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 第一次安装完成后，尝试运行roscore检验安装是否完成→报错</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###############################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 开始以下尝试</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置环境变量</span></span><br><span class="line">sudo echo &quot;source /opt/ros/melodic/setup.bash&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装ROS编译依赖包</span></span><br><span class="line">sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次尝试运行roscore</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">############################## 成功 ##############################</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>到此结束，终于成功安装ros，浪费了很多时间。总结一下自己在这个过程中做得不好的吧，希望看到这篇博客的人能少踩点坑：</strong></p>
+<ol>
+<li><strong>无脑参考网上博客，甚至没有仔细阅读Linux版本支持的ROS版本。</strong></li>
+<li><strong>出现问题时候没有认真分析报错的原因，”欲速则不达”。</strong></li>
+<li><strong>最好的参考文档是官方文档。</strong></li>
+</ol>
+<h2 id="12-配置无线网络"><a href="#12-配置无线网络" class="headerlink" title="12.配置无线网络"></a>12.配置无线网络</h2><p>以上的步骤都是通过Ethernet口连接网线实现的，树莓派4B有支持WiFi模块，如果是桌面版的系统，或者有raspi-config，能够通过GUI轻松实现WiFi配置，以下为通过命令行(Command Line)配置无线网络的过程。</p>
+<h3 id="iwconfig"><a href="#iwconfig" class="headerlink" title="iwconfig"></a>iwconfig</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ iwconfig</span><br><span class="line"><span class="comment"># Command &#x27;iwconfig&#x27; not found, but can be installed with:</span></span><br><span class="line"></span><br><span class="line">$ sudo apt install wireless-tools</span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------使用iwconfig配置wlan----------------#</span></span><br><span class="line"><span class="comment"># 1.看无线设备名，一般无线设备的名称都是wlan0</span></span><br><span class="line">$ iwconfig</span><br><span class="line">&gt;&gt; eth0      no wireless extensions.</span><br><span class="line"></span><br><span class="line">&gt;&gt; lo        no wireless extensions.</span><br><span class="line"></span><br><span class="line">&gt;&gt; wlan0     IEEE 802.11  ESSID:off/any</span><br><span class="line">          Mode:Managed  Access Point: Not-Associated</span><br><span class="line">          Retry short <span class="built_in">limit</span>:7   RTS thr:off   Fragment thr:off</span><br><span class="line">          Power Management:on</span><br><span class="line"><span class="comment"># 2.打开无线网络</span></span><br><span class="line">$ sudo ifconfig wlan0 up</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.查找附近网络,然后在列表中找到想接入的无线接入点AP，一般是根据“ESSID”，也就是无线路由接入点名字</span></span><br><span class="line">$ sudo iwlist wlan0 scan</span><br><span class="line">&gt;&gt;Cell 15 - Address: CC:2D:21:8D:4D:61</span><br><span class="line">&gt;&gt;                    Channel:4</span><br><span class="line">&gt;&gt;                    Frequency:2.427 GHz (Channel 4)</span><br><span class="line">&gt;&gt;                    Quality=70/70  Signal level=-22 dBm</span><br><span class="line">&gt;&gt;                    Encryption key:on</span><br><span class="line">&gt;&gt;                    ESSID:<span class="string">&quot;ROS&quot;</span></span><br><span class="line">&gt;&gt;                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 6 Mb/s</span><br><span class="line">&gt;&gt;                              9 Mb/s; 12 Mb/s; 18 Mb/s</span><br><span class="line">&gt;&gt;                    Bit Rates:24 Mb/s; 36 Mb/s; 48 Mb/s; 54 Mb/s</span><br><span class="line">&gt;&gt;                    Mode:Master</span><br><span class="line">&gt;&gt; 					.</span><br><span class="line">&gt;&gt; 					.</span><br><span class="line">&gt;&gt; 					.</span><br><span class="line">&gt;&gt;                    IE: Unknown: 7F080000000000000000</span><br><span class="line"><span class="comment"># 4.使用iwconfig wlan0 essid &quot;ROS&quot;命令完成无线网络的接入，也可以使用iwconfig wlan0 ap CC:2D:21:8D:4D:61，后面是无线路由器的物理地址；</span></span><br><span class="line"><span class="comment"># sudo iwconfig wlan0 essid &quot;NAME&quot; key 0:password</span></span><br><span class="line">$ sudo iwconfig wlan0 essid <span class="string">&quot;ROS&quot;</span> key 0:1234abcd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.通过DHCP动态获取IP地址</span></span><br><span class="line">$ sudo dhcp wlan0 <span class="comment"># dhcp: command not found</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.测试连通性</span></span><br><span class="line">$ ping www.baidu.com</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="wpa-passphrase"><a href="#wpa-passphrase" class="headerlink" title="wpa_passphrase"></a>wpa_passphrase</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 请注意用你自己的密码替换ESSID和Wi-Fi密码：</span></span><br><span class="line">wpa_passphrase <span class="string">&quot;Mi10&quot;</span> <span class="string">&quot;mi101010&quot;</span> | sudo tee /etc/wpa_supplicant.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令将无线卡连接到无线接入点：</span></span><br><span class="line">sudo wpa_supplicant -c /etc/wpa_supplicant.conf -i wlan0</span><br><span class="line"><span class="comment"># CTRL+C来停止当前的wpa_supplicant进程并通过添加-B选项在后台运行它：</span></span><br><span class="line">sudo wpa_supplicant -B -c /etc/wpa_supplicant.conf -i wlan0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 虽然我们已经过身份验证并连接到无线网络，但我们还没有IP地址，要从DHCP服务器获取专用IP地址，请使用以下命令：</span></span><br><span class="line">sudo dhclient wlan0</span><br><span class="line"><span class="comment"># 现在你的无线接口有一个私有IP地址，可以显示如下：</span></span><br><span class="line">ip addr show wlan0</span><br></pre></td></tr></table></figure>
+<h2 id="12-问题记录"><a href="#12-问题记录" class="headerlink" title="12.问题记录"></a>12.问题记录</h2><h3 id="12-1-树莓派白屏"><a href="#12-1-树莓派白屏" class="headerlink" title="12.1 树莓派白屏"></a>12.1 树莓派白屏</h3><p>树莓派白屏是因为缺少显示驱动，解决方法就是安装显示驱动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在线安装方法</span></span><br><span class="line"><span class="comment"># 1.从github上下载驱动</span></span><br><span class="line">sudo git <span class="built_in">clone</span> https://github.com/waveshare/LCD-show.git</span><br><span class="line"><span class="comment"># 2. 安装</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">cd</span> LCD-show/</span><br><span class="line"> </span><br><span class="line">sudo chmod +x LCD35-show</span><br><span class="line"> </span><br><span class="line">sudo ./LCD35-show</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下命令是使用hdmi显示</span></span><br><span class="line"></span><br><span class="line">sudo ./LCD-hdmi</span><br></pre></td></tr></table></figure>
+<h3 id="12-2-VNC-Viewer远程连接超时"><a href="#12-2-VNC-Viewer远程连接超时" class="headerlink" title="12.2 VNC Viewer远程连接超时"></a>12.2 VNC Viewer远程连接超时</h3><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211117091922942.png" alt="image-20211117091922942"></p>
+<p>可能原因：</p>
+<ol>
+<li><p>ip地址错误</p>
+</li>
+<li><p>树莓派没有开启VNC服务</p>
+<p>如果使用SSH远程登录则：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br><span class="line"><span class="comment"># 开启VNC服务</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="12-3-sudo-raspi-config-command-not-found"><a href="#12-3-sudo-raspi-config-command-not-found" class="headerlink" title="12.3 sudo: raspi-config: command not found"></a>12.3 sudo: raspi-config: command not found</h3><p>raspi-config 一般在树莓派官方系统是预装的，而在kali、ubuntu mate、osmc、等第三方系统中则是没有内置raspi-config的。</p>
+<p>raspi-config树莓派官网deb安装包列表：<a class="link"   href="http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/" >Index of /debian/pool/main/r/raspi-config (raspberrypi.org)<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1、安装依赖</span></span><br><span class="line">sudo apt install whiptail parted lua5.1 alsa-utils psmisc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、从Raspberrypi官网下载最新的deb安装包</span></span><br><span class="line"><span class="comment"># 在http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/找到需要安装的包的连接 </span></span><br><span class="line">wget http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20211203_all.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、安装Deb安装包</span></span><br><span class="line">sudo dpkg -i raspi-config_20211203_all.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、装好软件还是提示缺少依赖执行错误</span></span><br><span class="line">sudo apt install -f -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、运行raspi-config，需要sudo或以上权限</span></span><br><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+<p>参考[8] <a class="link"   href="https://blog.csdn.net/no1xium/article/details/107477055" >树莓派安装非官方系统没有raspi-config命令的解决方法_Linux I Tell U-CSDN博客_raspi-config安装<i class="fas fa-external-link-alt"></i></a>。</p>
+<h3 id="12-4-换源报错"><a href="#12-4-换源报错" class="headerlink" title="12.4 换源报错"></a>12.4 换源报错</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 更换中科大源后，更新软件源</span></span><br><span class="line">sudo apt update </span><br><span class="line"><span class="meta">#</span><span class="bash"> 错误描述</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> W: GPG error: https://mirrors.sjtug.sjtu.edu.cn/ros/ubuntu bionic InRelease: The following</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> signatures couldn<span class="string">&#x27;t be verified because the public key is not available: NO_PUBKEY F42ED6FBAB17C654</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string"> E: The repository &#x27;</span>http://mirrors.sjtug.sjtu.edu.cn/ros/ubuntu bionic InRelease<span class="string">&#x27; is not signed.</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string"> 原因分析，公钥（F42ED6FBAB17C654）校验失败，解决就是手动添加公钥</span></span></span><br><span class="line">sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com F42ED6FBAB17C654</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a class="link"   href="https://cloud.tencent.com/developer/article/1174343" >如何将Ubuntu升级到18.04最新版 - 云+社区 - 腾讯云 (tencent.com)<i class="fas fa-external-link-alt"></i></a></p>
+<p>[2] <a class="link"   href="https://blog.csdn.net/qq_35898865/article/details/105065259" >树莓派4B安装ubuntu18.04.4和ROS并测试激光雷达_蜗小侠的博客-CSDN博客<i class="fas fa-external-link-alt"></i></a></p>
+<p>[3] <a class="link"   href="https://blog.csdn.net/qq_27149279/article/details/105359840" >树莓派4B安装Ubuntu 18.04.4 LTS （or）Ubuntu 19.10_六五酥的博客-CSDN博客<i class="fas fa-external-link-alt"></i></a></p>
+<p>[4] <a class="link"   href="https://blog.csdn.net/lovely_yoshino/article/details/109448556" >树莓派4安装 18.04ubuntu server（2020.11.2）_lovely_yoshino的博客-CSDN博客_树莓派ubuntu18.04<i class="fas fa-external-link-alt"></i></a></p>
+<p>[5] <a class="link"   href="https://blog.csdn.net/blueisman/article/details/104048628" >树莓派Raspberry Pi图形桌面安装_blueisman的专栏-CSDN博客_树莓派安装图形界面<i class="fas fa-external-link-alt"></i></a></p>
+<p>[6] <a class="link"   href="https://www.jianshu.com/p/1b50ba46175e" >树莓派加装3.5寸触摸屏方法和触摸屏问题处理 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/157340205#:~:text=直接上电后，屏幕,要按照相关的驱动)<i class="fas fa-external-link-alt"></i></a></p>
+<p>[7] <a class="link"   href="https://www.jianshu.com/p/2b2a7955a8ef" >Linux查看系统基本信息 - 简书 (jianshu.com)<i class="fas fa-external-link-alt"></i></a></p>
+<p>[8] <a class="link"   href="https://www.cnblogs.com/swjian/p/10487007.html" >树莓派配置wifi链接 - 没事儿写个bug - 博客园 (cnblogs.com)<i class="fas fa-external-link-alt"></i></a></p>
+<p>[9] <a class="link"   href="https://linux.cn/article-9287-1.html" >桌面应用|在 Linux 字符界面中获取天气预报<i class="fas fa-external-link-alt"></i></a></p>
+<p>[10] <a class="link"   href="http://wiki.ros.org/ROS/Installation" >ROS/Installation - ROS Wiki<i class="fas fa-external-link-alt"></i></a></p>
+<p>[11] <a class="link"   href="https://linuxconfig.org/how-to-install-gnome-on-ubuntu-18-04-bionic-beaver-linux" >How to install Gnome on Ubuntu 18.04 Bionic Beaver Linux - Linux Tutorials - Learn Linux Configuration<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+      <tags>
+        <tag>raspberry</tag>
+        <tag>Linux</tag>
+        <tag>ros</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MATLAB近邻算法分类指南</title>
+    <url>/2022/01/11/classification-using-nearest-neighbors-instruction-matlab/</url>
+    <content><![CDATA[<div style="text-align:center;">
+    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/KNN-1.gif" style="zoom:50%;">
+</div>
+
+<span id="more"></span>
+<h1 id="近邻算法分类"><a href="#近邻算法分类" class="headerlink" title="近邻算法分类"></a>近邻算法分类</h1><p style="text-align:left;">
+    原文:<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#bsfjytu-1" >Classification Using Nearest Neighbors<i class="fas fa-external-link-alt"></i></a>
+</p>
+
+<h2 id="1-距离度量指标"><a href="#1-距离度量指标" class="headerlink" title="1.距离度量指标"></a>1.距离度量指标</h2><p>将待查询数据和训练数据集的距离作为分类依据是一种简单有效的分类方法。可以使用多种指标来确定距离。</p>
+<p>常用的距离度量有：</p>
+<ul>
+<li>欧式距离</li>
+<li>归一化欧式距离</li>
+<li>马（马哈拉诺比斯）氏距离</li>
+<li>城市街区距离</li>
+<li>闵可夫斯基距离</li>
+<li>切比雪夫距离</li>
+<li>余弦距离</li>
+<li>相关距离</li>
+<li>汉明距离</li>
+<li>杰卡德距离</li>
+<li>斯皮尔曼距离</li>
+</ul>
+<p>对于给定的${m_x}$ x $n$ 矩阵 $X$，将其看作是$m_x$ 行的行向量， $x_1,x_2,…x_{mx}$ 。同理对于给定的$m_y$ x $n$ 矩阵 $Y$，将其看作是 $m_y$ 行的行向量，向量 $x_s$ 和 $y_t$ 之间的不同距离度量定义如下：</p>
+<p><strong>欧式距离(Euclidean distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110212806751.png" alt="image-20220110212806751"></p>
+<p>欧几里得距离是 闵可夫斯基距离的一个特例，其中 p = 2。 </p>
+<p><strong>归一化欧氏距离(Standardized Euclidean distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213015362.png" alt="image-20220110213015362"></p>
+<p>其中 $V$ 是$n×n$对角矩阵，其第$j$个对角元素是$(S(j))^2$，其中$S$ 是每个维度的缩放因子向量。 </p>
+<p><strong>马（马哈拉诺比斯）氏距离(Mahalanobis distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213307164.png" alt="image-20220110213307164"></p>
+<p>其中$C$是协方差矩阵。</p>
+<p><strong>城市街区距离(City block distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213439402.png" alt="image-20220110213439402"></p>
+<p>城市街区距离是 Minkowski 距离的一个特例，其中 p = 1。</p>
+<p><strong>闵可夫斯基距离(Minkowski distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213602515.png" alt="image-20220110213602515"></p>
+<p>对于 p = 1 的特殊情况，Minkowski 距离表示城市街区距离；</p>
+<p> 对于 p = 2 的特殊情况，Minkowski 距离表示欧几里得距离；</p>
+<p> 对于 p = ∞ 的特殊情况，Minkowski 距离表示切比雪夫距离； </p>
+<p><strong>切比雪夫距离(Chebychev distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213739381.png" alt="image-20220110213739381"></p>
+<p>切比雪夫距离是 Minkowski 距离的一个特例，其中 p = ∞。 </p>
+<p><strong>余弦距离(Cosine distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213907637.png" alt="image-20220110213907637"></p>
+<p><strong>相关距离(Correlation distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214026302.png" alt="image-20220110214026302"></p>
+<p><strong>汉明距离(Hamming distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214114274.png" alt="image-20220110214114274"></p>
+<p>汉明距离表示的是两个向量$x_s$ 和 $y_t$ 相同位置上元素不相同和向量长度的比值。比如$x_s=[1,2,3,4]$ $y_t=[1,2,3,3]$ 则$d_{st} = 0.25$</p>
+<p><strong>杰卡德距离(Jaccard distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214225480.png" alt="image-20220110214225480"></p>
+<p><strong>斯皮尔曼距离(Spearman distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214240166.png" alt="image-20220110214240166"></p>
+<p>MATLAB中用<a class="link"   href="https://ww2.mathworks.cn/help/stats/pdist2.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">pdist2<i class="fas fa-external-link-alt"></i></a>函数计算不同距离度量。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">X = [<span class="number">1</span>,<span class="number">3</span>];</span><br><span class="line">Y = [<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line">D1 = pdist2(X,Y,<span class="string">&#x27;cityblock&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D3 = pdist2(X,Y,<span class="string">&#x27;euclidean&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D4 = pdist2(X,Y,<span class="string">&#x27;minkowski&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">D5 = pdist2(X,Y,<span class="string">&#x27;hamming&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D6 = pdist2(X,Y,<span class="string">&#x27;chebychev&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D7 = pdist2(X,Y,<span class="string">&#x27;cosine&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-k近邻搜索和半径搜索"><a href="#2-k近邻搜索和半径搜索" class="headerlink" title="2.k近邻搜索和半径搜索"></a>2.k近邻搜索和半径搜索</h2><p>给定一组包含 n 个点的$X $和一个距离函数，k-近邻 (kNN) 搜索可以找到 $X$ 中与查询点或点集 $Y$ 最接近的 k 个点。kNN 算法和基于 kNN 的算法被广泛用作不同学习算法的基准。 kNN 算法相对简单且可解释性使得将其他分类技术的结果与 kNN 结果进行比较容易。</p>
+<p> kNN 算法可以用在其他机器学习算法中，例如：</p>
+<ul>
+<li>kNN分类 </li>
+<li>局部加权回归</li>
+<li>缺失数据插补和插值</li>
+<li>密度估计</li>
+</ul>
+<p>kNN可以与许多基于距离的学习的算法一起使用，例如 K-means 聚类。 相反，对于正实数 r，范围搜索 <a class="link"   href="https://ww2.mathworks.cn/help/stats/rangesearch.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">rangsearch<i class="fas fa-external-link-alt"></i></a>查找 X 中与 Y 中每个点的距离为 r 的所有点。这种固定半径搜索与 kNN 搜索密切相关，因为它支持相同的距离度量和搜索类别 ，并使用相同的搜索算法。 </p>
+<h3 id="2-1-KNN-穷举搜索"><a href="#2-1-KNN-穷举搜索" class="headerlink" title="2.1 KNN-穷举搜索"></a>2.1 KNN-穷举搜索</h3><p>在matlab中，可以使用多种底层搜索算法实现kNN算法的搜索过程，当满足以下条件时默认使用穷举搜索方式：</p>
+<ul>
+<li>$X$ 的列数超过 10；</li>
+<li>$X$ 是稀疏的；</li>
+<li>距离度量使用：苏氏距离、马氏距离、余弦距离、相关距离、斯皮尔曼距离、汉明距离、杰卡德距离、自定义距离函数 ；</li>
+</ul>
+<p>如果搜索对象是<a class="link"   href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;" >ExhaustiveSearcher <i class="fas fa-external-link-alt"></i></a> 模型对象，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a> 也会使用穷举搜索方法。 穷举搜索方法是找到每个查询点到$X$中每个点的距离，按升序排列，返回距离最小的k个点。 例如，此图显示了 k = 3 个最近邻。 </p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/exhaustivesearch.gif" alt="img"></p>
+<h3 id="2-2-KNN-Kd树搜索"><a href="#2-2-KNN-Kd树搜索" class="headerlink" title="2.2 KNN-Kd树搜索"></a>2.2 KNN-Kd树搜索</h3><p>当输入数据满足以下所有条件时，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>默认会创建一个 Kd树来查找：</p>
+<ul>
+<li>$X$ 的列数<strong>不</strong>超过 10；</li>
+<li>$X$ 是非稀疏的；</li>
+<li>欧式距离（默认）、城市街区距离、闵可夫斯基距离、切比雪夫距离</li>
+</ul>
+<p>如果搜索对象是 <a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher <i class="fas fa-external-link-alt"></i></a>模型对象，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>也会使用 Kd-树。 </p>
+<p>Kd-树根据坐标（而不是类别）将数据划分为每个节点最多 <em>BucketSize</em>（默认为 50）个点的节点。 下图中不同的颜色块对应的是不同的节点。 </p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelines.png" alt="img"></p>
+<p>查找给定查询点的 k 最近邻时，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>执行以下操作：</p>
+<ol>
+<li>确定查询点所属的节点。 在以下示例中，查询点 (32,90) 属于节点 4。</li>
+<li>查找该节点内最近的 k 个点及其到查询点的距离。 在以下示例中，红色圆圈中的点与查询点等距，并且是节点 4 内离查询点最近的点。</li>
+<li>选择从查询点到第 k 个最近点在任何方向上具有相同距离内的任何区域的所有其他节点。 在此示例中，只有节点 3 与以查询点为中心的实心黑色圆圈重叠，其半径等于到节点 4 内最近点的距离。</li>
+<li>在该范围内的节点中搜索更接近查询点的任何点。 在以下示例中，红色方块中的点比节点 4 中的点更靠近查询点。 </li>
+</ol>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelinesnewpoint.png" alt="img"></p>
+<p>对少于 10 个维度（列）的大型数据集使用 Kd-树可能比使用穷举搜索方法更有效，因为<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>只需要计算距离的子集。 为了最大限度地提高 Kd树的效率，请使用<a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher<i class="fas fa-external-link-alt"></i></a>模型。 </p>
+<h3 id="2-3-搜索模型对象"><a href="#2-3-搜索模型对象" class="headerlink" title="2.3 搜索模型对象"></a>2.3 搜索模型对象</h3><p>通常来说，模型对象是一种存储信息的便捷方式。相关模型具有与指定搜索方法相关的值和类型的相同属性。 除了在模型中存储信息之外，还可以对模型执行某些操作。可以使用<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>在搜索模型上高效地执行 k 近邻搜索。 或者，可以使用搜索模型和范围搜索搜索指定半径内的所有邻居。 此外，还有一个通用的<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em></a> 和<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>函数可以在不创建或使用模型的情况下进行搜索。 </p>
+<p>可以从以下方向考虑使用哪种类型的模型和搜索方法最适合给定的数据：</p>
+<ul>
+<li>数据列数；</li>
+<li>数据是否稀疏；</li>
+<li>距离度量方式；</li>
+</ul>
+<h2 id="3-对数据进行分类—Kd树"><a href="#3-对数据进行分类—Kd树" class="headerlink" title="3.对数据进行分类—Kd树"></a>3.对数据进行分类—Kd树</h2><p>使用Kd树方式对查询数据进行分类包括以下步骤：</p>
+<ol>
+<li>构建 Kd 树；</li>
+<li>使用Kd树进行 k 近邻搜索； </li>
+<li>确定待查询数据所属的类；</li>
+</ol>
+<p>示例根据 Fisher iris 数据的最后两列对新点进行分类。</p>
+<blockquote>
+<p><strong>Step- 1 导入数据并对最后两列绘图</strong> </p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">x = meas(:,<span class="number">3</span>:<span class="number">4</span>);</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;Location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_01.png" alt="Figure contains an axes object. The axes object contains 3 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>Step-2 绘制待查询数据</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">newpoint = [<span class="number">5</span> <span class="number">1.45</span>];</span><br><span class="line">line(newpoint(<span class="number">1</span>),newpoint(<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_02.png" alt="Figure contains an axes object. The axes object contains 4 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>Step-3 构建Kd树近邻搜索模型</strong> </p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl = KDTreeSearcher(x)</span><br></pre></td></tr></table></figure>
+<p>Mdl 是一个<a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher<i class="fas fa-external-link-alt"></i></a>模型。 默认情况下，它用于搜索邻居的距离度量是欧氏距离。 </p>
+<blockquote>
+<p><strong>Step-4 找出到待查询点最近的10个点</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[n,d] = knnsearch(Mdl,newpoint,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n,<span class="number">1</span>),x(n,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">    <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">xlim([<span class="number">4.5</span> <span class="number">5.5</span>]);</span><br><span class="line">ylim([<span class="number">1</span> <span class="number">2</span>]);</span><br><span class="line">axis square</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_04.png" alt="Figure contains an axes object. The axes object contains 5 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>Step-5 找出到待查询点最近的10个点的特征</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">tabulate(species(n))</span><br><span class="line">       Value    Count   Percent</span><br><span class="line">   virginica        <span class="number">2</span>     <span class="number">20.00</span><span class="comment">%</span></span><br><span class="line">  versicolor        <span class="number">8</span>     <span class="number">80.00</span><span class="comment">%</span></span><br></pre></td></tr></table></figure>
+<p>可以依据不同的分类依据将此新点归类到不同的类别。 </p>
+<blockquote>
+<p><strong>Step-6 在一组近邻点周围画一个圆圈来直观地识别近邻点</strong></p>
+</blockquote>
+<p>根据新点的位置定义圆的中心和直径 。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">ctr = newpoint - d(<span class="keyword">end</span>);</span><br><span class="line">diameter = <span class="number">2</span>*d(<span class="keyword">end</span>);</span><br><span class="line"><span class="comment">% Draw a circle around the 10 nearest neighbors.</span></span><br><span class="line">h = rectangle(<span class="string">&#x27;position&#x27;</span>,[ctr,diameter,diameter],...</span><br><span class="line">   <span class="string">&#x27;curvature&#x27;</span>,[<span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">h.LineStyle = <span class="string">&#x27;:&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_05.png" alt="Figure contains an axes object. The axes object contains 6 objects of type line, rectangle. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>step-7</strong> 多个数据点分类</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">figure</span> </span><br><span class="line">newpoint2 = [<span class="number">5</span> <span class="number">1.45</span>;<span class="number">6</span> <span class="number">2</span>;<span class="number">2.75</span> <span class="number">.75</span>];</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">[n2,d2] = knnsearch(Mdl,newpoint2,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n2,<span class="number">1</span>),x(n2,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">line(newpoint2(:,<span class="number">1</span>),newpoint2(:,<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_06.png" alt="Figure contains an axes object. The axes object contains 5 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_kd_tree.mlx" >完整代码：Position/knn_kd_tree.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="4-使用自定义距离度量查找最近的邻居"><a href="#4-使用自定义距离度量查找最近的邻居" class="headerlink" title="4.使用自定义距离度量查找最近的邻居"></a>4.使用自定义距离度量查找最近的邻居</h2><p>示例说明如何找到与 X 中的三个最近卡方距离(chi-square distance)数据的索引。卡方距离常用于相关性分析(correspondence analysis)，特别是在生态应用中。 </p>
+<p>$j$ 维向量 $x$ 和 $z$ 之间的卡方距离定义为：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220111105413617.png" alt="image-20220111105413617"></p>
+<p>其中$w_j$是于维度相关的权重系数；</p>
+<blockquote>
+<p><strong>Step-1</strong> 随机生成两个正态分布矩阵，矩阵的行数可以变化，但列数必须相等。因为矩阵$X$ 表示训练数据集，$Y$ 表示待分类数据集合；</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">rng(<span class="number">1</span>) <span class="comment">% For reproducibility</span></span><br><span class="line">X = <span class="built_in">randn</span>(<span class="number">50</span>,<span class="number">2</span>);</span><br><span class="line">Y = <span class="built_in">randn</span>(<span class="number">4</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">h = <span class="built_in">zeros</span>(<span class="number">3</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">h(<span class="number">1</span>) = <span class="built_in">plot</span>(X(:,<span class="number">1</span>),X(:,<span class="number">2</span>),<span class="string">&#x27;bx&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">h(<span class="number">2</span>) = <span class="built_in">plot</span>(Y(:,<span class="number">1</span>),Y(:,<span class="number">2</span>),<span class="string">&#x27;rs&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_01.png" alt="Figure contains an axes object. The axes object with title Heterogeneous Data contains 2 objects of type line."></p>
+<blockquote>
+<p><strong>Step2-定义距离函数</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% distance function</span></span><br><span class="line">w = [<span class="number">0.4</span>; <span class="number">0.6</span>];</span><br><span class="line">chiSqrDist = @(x,Z)<span class="built_in">sqrt</span>((<span class="built_in">bsxfun</span>(@minus,x,Z).^<span class="number">2</span>)*w);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step3-找出Y中每个到 X 中三个最近观测值的索引</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">k = <span class="number">3</span>;</span><br><span class="line">[Idx,D] = knnsearch(X,Y,<span class="string">&#x27;Distance&#x27;</span>,chiSqrDist,<span class="string">&#x27;k&#x27;</span>,k);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step4- 确定图中最近的观测值</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:k</span><br><span class="line">    h(<span class="number">3</span>) = <span class="built_in">plot</span>(X(Idx(:,<span class="built_in">j</span>),<span class="number">1</span>),X(Idx(:,<span class="built_in">j</span>),<span class="number">2</span>),<span class="string">&#x27;ko&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">legend</span>(h,&#123;<span class="string">&#x27;\texttt&#123;X&#125;&#x27;</span>,<span class="string">&#x27;\texttt&#123;Y&#125;&#x27;</span>,<span class="string">&#x27;Nearest Neighbor&#x27;</span>&#125;,<span class="string">&#x27;Interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data and Nearest Neighbors&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_02.png" alt="Figure contains an axes object. The axes object with title Heterogeneous Data and Nearest Neighbors contains 5 objects of type line. These objects represent \texttt{X}, \texttt{Y}, Nearest Neighbor."></p>
+<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/using_custom_distance_metric.mlx" >完整代码：Position/using_custom_distance_metric.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="5-有监督学习的-K-近邻分类"><a href="#5-有监督学习的-K-近邻分类" class="headerlink" title="5.有监督学习的 K-近邻分类"></a>5.有监督学习的 K-近邻分类</h2><h3 id="5-1-说明"><a href="#5-1-说明" class="headerlink" title="5.1 说明"></a>5.1 说明</h3><p>使用<a class="link"   href="https://ww2.mathworks.cn/help/stats/classificationknn.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">ClassificationKNN <i class="fas fa-external-link-alt"></i></a>分类模型实现k-近邻分类具体可以分为以下几步：</p>
+<ol>
+<li>构造 KNN 分类器<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7k2"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Construct KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>检查 KNN 分类器<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7l_"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Examine Quality of KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>使用 KNN 分类器进行预测分类 <a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7nm"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Predict Classification Using KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>修改 KNN 分类器 <a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap_jn"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Modify KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
+<h3 id="5-2-示例"><a href="#5-2-示例" class="headerlink" title="5.2 示例"></a>5.2 示例</h3><p>例子展示了如何为 Fisher iris 数据构建一个 k 最近邻分类器。 </p>
+<blockquote>
+<p><strong>Step1- 导入数据</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">X = meas;    <span class="comment">% Use all data for fitting</span></span><br><span class="line">Y = species; <span class="comment">% Response data</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step2- 使用knn构造分类器</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl = fitcknn(X,Y)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step3- 修改邻域大小</strong></p>
+</blockquote>
+<p>默认的 k 近邻分类器仅使用一个临近值。将 Mdl 的邻域大小更改为 4</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl.NumNeighbors = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step4- 重新替换和交叉验证检查 k 最近邻分类器 </strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">loss = resubLoss(Mdl)</span><br><span class="line">rng(<span class="number">10</span>); <span class="comment">% For reproducibility</span></span><br><span class="line">CVMdl = crossval(Mdl,<span class="string">&#x27;KFold&#x27;</span>,<span class="number">5</span>);</span><br><span class="line">kloss = kfoldLoss(CVMdl)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step5- 使用kNN构造预测分类</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">flwr = <span class="built_in">mean</span>(X); <span class="comment">% an average flower</span></span><br><span class="line">flwrClass = predict(Mdl,flwr)</span><br><span class="line"><span class="comment">% 预测结果</span></span><br><span class="line"><span class="comment">% flwrClass = 1x1 cell array</span></span><br><span class="line"><span class="comment">%    &#123;&#x27;versicolor&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_supervised_learn.mlx" >完整代码：Position/knn_supervised_learn.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="6-kNN开发流程总结"><a href="#6-kNN开发流程总结" class="headerlink" title="6.kNN开发流程总结"></a>6.kNN开发流程总结</h2><p><strong>机器学习算法通用流程</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kaifaliucheng.png" alt="kaifaliucheng"></p>
+<p>收集数据：任何方法<br>准备数据：距离计算所需要的数值，最好是结构化的数据格式<br>分析数据：任何方法<br>训练算法：此步骤不适用于 k-近邻算法，k-近邻算法是在搜索过程中训练算法；<br>测试算法：计算错误率<br>使用算法：输入样本数据和结构化的输出结果，然后运行 k-近邻算法判断输入数据分类属于哪个分类，最后对计算出的分类执行后续处理。</p>
+<hr>
+
+<p style="text-align:right;">2022-01-11 15:10</p>
+
+]]></content>
+      <tags>
+        <tag>algorithm</tag>
+        <tag>matlab</tag>
+        <tag>kNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>正则表达式学习笔记</title>
+    <url>/2020/12/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式（regular expression）描述了一种字符串匹配的模式（pattern）。正则表达式是由普通字符以及特殊字符构成的文字模式。</p>
+<p>构建正则表达式和写数学表达式一样，通过元字符和运算符将小的表达式构建为更大的表达式。</p>
+<span id="more"></span>
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><p>正则表达式主要依赖元字符， 元字符不代表其本身的含义而是具有特殊的含义。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>句号匹配任意单个字符除了换行符。</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td><code>字符种类</code>。匹配方括号内的任意字符。</td>
+</tr>
+<tr>
+<td><sup><a href="#fn_ " id="reffn_ "> </a></sup></td>
+<td>否定的字符种类。匹配除了方括号里的任意字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配&gt;=0个重复的在*号之前的字符。</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配&gt;=1个重复的+号前的字符。</td>
+</tr>
+<tr>
+<td>?</td>
+<td>标记?之前的字符为可选（0次或者1次）.</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m).</td>
+</tr>
+<tr>
+<td>(xyz)</td>
+<td><code>字符集</code>，匹配与 xyz 完全相等的字符串.</td>
+</tr>
+<tr>
+<td>\</td>
+<td></td>
+<td>或运算符，匹配符号前或后的字符.</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义字符,用于匹配一些保留的字符 `[ ] ( ) { } . * + ? ^ $ \</td>
+<td>`</td>
+</tr>
+<tr>
+<td>^</td>
+<td>从开始行开始匹配.</td>
+</tr>
+<tr>
+<td>$</td>
+<td>从末端开始匹配.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="简写字符集"><a href="#简写字符集" class="headerlink" title="简写字符集"></a>简写字符集</h3><p>正则表达式提供一些常用的字符集简写。如下:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>简写</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>除换行符外的所有字符</td>
+</tr>
+<tr>
+<td>\\w</td>
+<td>匹配所有字母数字，等同于 <code>[a-zA-Z0-9_]</code></td>
+</tr>
+<tr>
+<td>\\W</td>
+<td>匹配所有非字母数字，即符号，等同于： <code>[^\w]</code></td>
+</tr>
+<tr>
+<td>\\d</td>
+<td>匹配数字： <code>[0-9]</code></td>
+</tr>
+<tr>
+<td>\\D</td>
+<td>匹配非数字： <code>[^\d]</code></td>
+</tr>
+<tr>
+<td>\\s</td>
+<td>匹配所有空格字符，等同于： <code>[\t\n\f\r\p&#123;Z&#125;]</code></td>
+</tr>
+<tr>
+<td>\\S</td>
+<td>匹配所有非空格字符： <code>[^\s]</code></td>
+</tr>
+<tr>
+<td>\\f</td>
+<td>匹配一个换页符</td>
+</tr>
+<tr>
+<td>\\n</td>
+<td>匹配一个换行符</td>
+</tr>
+<tr>
+<td>\\r</td>
+<td>匹配一个回车符</td>
+</tr>
+<tr>
+<td>\\t</td>
+<td>匹配一个制表符</td>
+</tr>
+<tr>
+<td>\\v</td>
+<td>匹配一个垂直制表符</td>
+</tr>
+<tr>
+<td>\\p</td>
+<td>匹配 CR/LF（等同于 <code>\r\n</code>），用来匹配 DOS 行终止符</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h3><p>​    定位符能将正则表达式固定到行首或行尾。同时能将正则表达式固定在单词内部，单词的开头或结尾。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与 \n 或 \r 之后的位置匹配。</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与 \n 或 \r 之前的位置匹配。</td>
+</tr>
+<tr>
+<td style="text-align:left">\\b</td>
+<td style="text-align:left">匹配一个单词边界，即字与空格间的位置。</td>
+</tr>
+<tr>
+<td style="text-align:left">\\B</td>
+<td style="text-align:left">非单词边界匹配。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="修饰符（标志）"><a href="#修饰符（标志）" class="headerlink" title="修饰符（标志）"></a>修饰符（标志）</h3><p>​    标志也叫模式修正符，因为它可以用来修改表达式的搜索结果。 这些标志可以任意的组合使用，它也是整个正则表达式的一部分。标记不写在正则表达式里，标记位于表达式之外，格式如下：</p>
+<p><code>/pattern/flags</code></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>忽略大小写。</td>
+</tr>
+<tr>
+<td>g</td>
+<td>全局搜索。</td>
+</tr>
+<tr>
+<td>m</td>
+<td>多行修饰符：锚点元字符 <code>^</code> <code>$</code> 工作范围在每行的起始。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="运算优先级"><a href="#运算优先级" class="headerlink" title="运算优先级"></a>运算优先级</h3><p>正则表达式从左到右进行计算，并遵循优先级顺序，这与算术表达式非常类似。</p>
+<p>相同优先级的从左到右进行运算，不同优先级的运算先高后低。下表从最高到最低说明了各种正则表达式运算符的优先级顺序：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\</td>
+<td style="text-align:left">转义符</td>
+</tr>
+<tr>
+<td style="text-align:left">(), (?:), (?=), []</td>
+<td style="text-align:left">圆括号和方括号</td>
+</tr>
+<tr>
+<td style="text-align:left">*, +, ?, {n}, {n,}, {n,m}</td>
+<td style="text-align:left">限定符</td>
+</tr>
+<tr>
+<td style="text-align:left">^, $, \任何元字符、任何字符</td>
+<td style="text-align:left">定位点和序列（即：位置和顺序）</td>
+</tr>
+<tr>
+<td style="text-align:left">\</td>
+<td style="text-align:left"></td>
+<td>替换，”或”操作 字符具有高于替换运算符的优先级，使得”m\</td>
+<td>food”匹配”m”或”food”。若要匹配”mood”或”food”，请使用括号创建子表达式，从而产生”(m\</td>
+<td>f)ood”。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="零宽度断言"><a href="#零宽度断言" class="headerlink" title="零宽度断言"></a>零宽度断言</h3><p>先行断言和后发断言都属于<strong>非捕获簇</strong>（不捕获文本 ，也不针对组合计进行计数）。 先行断言用于判断所匹配的格式是否在另一个确定的格式之前，匹配结果不包含该确定格式（仅作为约束）。</p>
+<h4 id="正先行断言"><a href="#正先行断言" class="headerlink" title="?=... 正先行断言"></a><code>?=...</code> 正先行断言</h4><p><code>?=...</code> 正先行断言，表示第一部分表达式之后必须跟着 <code>?=...</code>定义的表达式。</p>
+<p>返回结果只包含满足匹配条件的第一部分表达式。 定义一个正先行断言要使用 <code>()</code>。在括号内部使用一个问号和等号： <code>(?=...)</code>。</p>
+<p>正先行断言的内容写在括号中的等号后面。 例如，表达式 <code>(T|t)he(?=\sfat)</code> 匹配 <code>The</code> 和 <code>the</code>，在括号中我们又定义了正先行断言 <code>(?=\sfat)</code> ，即 <code>The</code> 和 <code>the</code> 后面紧跟着 <code>(空格)fat</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;(T|t)he(?=\sfat)&quot; =&gt; The fat cat sat on the mat.</span><br></pre></td></tr></table></figure>
+<h4 id="负先行断言"><a href="#负先行断言" class="headerlink" title="?!... 负先行断言"></a><code>?!...</code> 负先行断言</h4><p>负先行断言 <code>?!</code> 用于筛选所有匹配结果，筛选条件为 其后不跟随着断言中定义的格式。 <code>正先行断言</code> 定义和 <code>负先行断言</code> 一样，区别就是 <code>=</code> 替换成 <code>!</code> 也就是 <code>(?!...)</code>。</p>
+<p>表达式 <code>(T|t)he(?!\sfat)</code> 匹配 <code>The</code> 和 <code>the</code>，且其后不跟着 <code>(空格)fat</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;(T|t)he(?!\sfat)&quot; =&gt; The fat cat sat on the mat.</span><br></pre></td></tr></table></figure>
+<h4 id="lt-正后发断言"><a href="#lt-正后发断言" class="headerlink" title="?&lt;= ... 正后发断言"></a><code>?&lt;= ...</code> 正后发断言</h4><p>正后发断言 记作<code>(?&lt;=...)</code> 用于筛选所有匹配结果，筛选条件为 其前跟随着断言中定义的格式。 例如，表达式 <code>(?&lt;=(T|t)he\s)(fat|mat)</code> 匹配 <code>fat</code> 和 <code>mat</code>，且其前跟着 <code>The</code> 或 <code>the</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;(?&lt;=(T|t)he\s)(fat|mat)&quot; =&gt; The fat cat sat on the mat.</span><br></pre></td></tr></table></figure>
+<h4 id="lt-负后发断言"><a href="#lt-负后发断言" class="headerlink" title="?&lt;!... 负后发断言"></a><code>?&lt;!...</code> 负后发断言</h4><p>负后发断言 记作 <code>(?&lt;!...)</code> 用于筛选所有匹配结果，筛选条件为 其前不跟随着断言中定义的格式。 例如，表达式 <code>(?&lt;!(T|t)he\s)(cat)</code> 匹配 <code>cat</code>，且其前不跟着 <code>The</code> 或 <code>the</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;(?&lt;!(T|t)he\s)(cat)&quot; =&gt; The cat sat on cat.</span><br></pre></td></tr></table></figure>
+<h3 id="贪婪和惰性匹配（Greedy-vs-lazy-）"><a href="#贪婪和惰性匹配（Greedy-vs-lazy-）" class="headerlink" title="贪婪和惰性匹配（Greedy vs lazy ）"></a>贪婪和惰性匹配（Greedy vs lazy ）</h3><p><strong>*</strong> 匹配&gt;=0个重复的在*号之前的字符。</p>
+<p><strong>+</strong> 匹配&gt;=1个重复的+号前的字符。</p>
+<p><strong>?</strong> 标记?之前的字符为可选（0次或者1次）。</p>
+<p>正则表达式默认采用贪婪匹配模式，在该模式下意味着会匹配尽可能长的子串。我们可以使用 <code>?</code> 将贪婪匹配模式转化为惰性匹配模式。</p>
+<p style= "font-family:Consolas;font-size:20px;">
+  To be continued...  
+</p>
+
+
+
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p>1.<a class="link"   href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md#learn-regex" >learn-regex<i class="fas fa-external-link-alt"></i></a> </p>
+<p>2.<a class="link"   href="https://www.runoob.com/regexp/regexp-tutorial.html" >正则表达式-教程<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+      <categories>
+        <category>Learning Note</category>
+      </categories>
+      <tags>
+        <tag>reg</tag>
+      </tags>
+  </entry>
+</search>

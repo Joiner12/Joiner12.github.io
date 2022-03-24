@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="Hexo Theme Keep">
     <meta name="description" content="dominate是一个使用DOM api创建和修改HTML(HyperText Markup Language)文件的python库。">
-    <meta name="author" content="Wh.吴昊🛰️">
+    <meta name="author" content="Wh.🛰️">
     
     <title>
         
@@ -16,14 +16,14 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/favicon-16x16-monkey.png">
+    <link rel="shortcut icon" href="/images/logo-wh.svg">
     
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN"};
-    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/favicon-16x16-monkey.png","favicon":"/images/favicon-16x16-monkey.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"你在我的心里永远是故乡"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/favicon-32x32-monkey.svg","favicon":"/images/logo-wh.svg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"你在我的心里永远是故乡"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -50,7 +50,7 @@
         <div class="left">
             
                 <a class="logo-image" href="/">
-                    <img src="/images/favicon-16x16-monkey.png">
+                    <img src="/images/favicon-32x32-monkey.svg">
                 </a>
             
             <a class="logo-title" href="/">
@@ -95,9 +95,15 @@
                         </li>
                     
                     
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
                 </ul>
             </div>
             <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
                 <div class="icon-item menu-bar">
                     <div class="menu-bar-middle"></div>
@@ -154,11 +160,11 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/favicon-16x16-monkey.png">
+                    <img src="/images/favicon-32x32-monkey.svg">
                 </div>
                 <div class="info">
                     <div class="author">
-                        <span class="name">Wh.吴昊🛰️</span>
+                        <span class="name">Wh.🛰️</span>
                         
                             <span class="author-label">Lv2</span>
                         
@@ -382,6 +388,85 @@
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: '43FQrt5PWMN34LAODEHoFf4V-gzGzoHsz',
+                    appKey: 'uwFbb0FxazQHNqTpFIS7gP1C',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: 'Say something',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wh.🛰️';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
@@ -400,7 +485,7 @@
               <span>2020</span>
               -
             
-            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wh.吴昊🛰️</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wh.🛰️</a>
         </div>
         
         <div class="theme-info info-item">
@@ -420,8 +505,16 @@
     <ul class="tools-list">
         <!-- TOC aside toggle -->
         
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
 
         <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
         
     </ul>
 </div>
@@ -473,11 +566,48 @@
     </div>
 
     
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dominate%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-text">Dominate学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-text">1. 问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Dominate"><span class="nav-text">2. Dominate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-dominate%E7%AE%80%E4%BB%8B"><span class="nav-text">2.1 dominate简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85"><span class="nav-text">3. 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%A4%BA%E4%BE%8B"><span class="nav-text">4. 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Hello-World"><span class="nav-text">4.1 Hello,World</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-%E4%BD%BF%E7%94%A8dominate%E8%BE%93%E5%87%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9%E3%80%82"><span class="nav-text">4.1.1 使用dominate输出第一个网页内容。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2-class-html%E5%92%8Cclass-dominate-document"><span class="nav-text">4.1.2 class:html和class:dominate.document</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%B1%9E%E6%80%A7"><span class="nav-text">5. 属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%82%E6%95%B0%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7"><span class="nav-text">5.1 关键字参数修改属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E4%BD%BF%E7%94%A8data-%E4%BF%AE%E6%94%B9HTML5%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="nav-text">5.1 使用data_*修改HTML5数据属性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E4%BD%BF%E7%94%A8%E7%B1%BB%E4%BC%BC%E4%BA%8E%E5%AD%97%E5%85%B8%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%BF%AE%E6%94%B9%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7"><span class="nav-text">5.3 使用类似于字典的接口修改标签属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%9E%84%E9%80%A0%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84"><span class="nav-text">6.构造复杂网页结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-amp-add"><span class="nav-text">6.1 +&#x3D;&amp;.add()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E4%BD%BF%E7%94%A8%E7%B1%BB%E6%95%B0%E7%BB%84%E6%8E%A5%E5%8F%A3%E4%BF%AE%E6%94%B9%E6%A0%87%E7%AD%BE%E5%AD%90%E9%A1%B9"><span class="nav-text">6.2 使用类数组接口修改标签子项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E4%BD%BF%E7%94%A8commit%E7%B1%BB%E4%B8%BAHTML%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E6%B3%A8%E9%87%8A"><span class="nav-text">6.3 使用commit类为HTML文件添加注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%B8%B2%E6%9F%93%E7%BD%91%E9%A1%B5%E6%96%87%E6%9C%AC-render"><span class="nav-text">7. 渲染网页文本(render)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-HTML%E6%96%87%E4%BB%B6%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86"><span class="nav-text">8.HTML文件上下文管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-with%E6%B7%BB%E5%8A%A0%E5%AD%90%E6%A0%87%E7%AD%BE"><span class="nav-text">8.1 with添加子标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-attr%E6%B7%BB%E5%8A%A0%E5%B1%9E%E6%80%A7"><span class="nav-text">8.2 attr添加属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-text%E5%87%BD%E6%95%B0%E4%B8%BA%E6%96%87%E6%9C%AC%E8%8A%82%E7%82%B9%E6%B7%BB%E5%8A%A0%E6%96%87%E6%9C%AC"><span class="nav-text">8.3 text函数为文本节点添加文本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E8%A3%85%E9%A5%B0%E5%99%A8-Decorators"><span class="nav-text">9.装饰器(Decorators)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6-Creating-Documents"><span class="nav-text">10.创建文件(Creating Documents)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-SVG"><span class="nav-text">11.SVG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
 
     <div class="image-viewer-container">
     <img src="">
 </div>
 
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
     
 
@@ -498,12 +628,24 @@
 
 
 
+    
+<script src="/js/local-search.js"></script>
+
+
 
 
 
 
 
 <div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
     
 </div>
 
