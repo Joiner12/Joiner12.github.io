@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Gaussian Filtering</title>
+    <url>/2021/12/09/Gaussian-Filtering/</url>
+    <content><![CDATA[<h1 id="高斯平滑"><a href="#高斯平滑" class="headerlink" title="高斯平滑"></a>高斯平滑</h1><p>高斯平滑又叫高斯滤波，是一种<a class="link"   href="https://en.wikipedia.org/wiki/Smoothing" >数据平滑技术<i class="fas fa-external-link-alt"></i></a>， 常用在图像模糊(Blur)中去除噪声和细节。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_5.png" style="zoom:60%"></p>
+<span id="more"></span>
+<h2 id="1-高斯函数"><a href="#1-高斯函数" class="headerlink" title="1.高斯函数"></a>1.高斯函数</h2><p>高斯函数就是我们常说的高斯分布(Gaussian Distribution)，一维中，高斯函数如下：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211209211532311.png" style="zoom:40%"></p>
+<p>上式中标准差为σ，平均值μ为0。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211209214731127.png" style="zoom:80%"></p>
+<p>如图所示，高斯分布是对称的钟形，上图为均值为0，标准差为1的高斯分布也即正态分布，高斯函数的标准差在其滤波中起着重要作用。位于±σ之间的值占集合的68%，而位于±2σ之间的值占集合的95%，±3σ占99.7%，这在设计固定长度的高斯核时非常重要。</p>
+<p>其他性质：</p>
+<ul>
+<li>高斯函数在实数域的积分x∈(-∞，+∞)为1，从概率学的角度看表示所有事件集合；</li>
+<li>高斯函数的值不为零；</li>
+<li>高斯函数是对称函数，对称轴为均值。</li>
+</ul>
+<p>高斯分布的特点是在均值μ两边的概率都很大，离之越远的概率越小，所以高斯函数用在滤波上体现的思想就是：离某个点越近的点对其产生的影响越大，所以让其权重大，越远的产生的影响越小，让其权重越小。高斯滤波的关键是生成高斯核(Gaussian Kernel)。</p>
+<h2 id="2-高斯核-Gaussian-Kernel"><a href="#2-高斯核-Gaussian-Kernel" class="headerlink" title="2.高斯核(Gaussian Kernel)"></a>2.高斯核(Gaussian Kernel)</h2><p>数字滤波领域信号一般都是离散的，如一维数字信号用f(nT)进行描述，其中T为采样周期，n为时间序列。f(nT)表示第n个采样时刻的信号值。</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_3.png" style="zoom:70%"></p>
+<p><strong>所谓高斯滤波操作，其实就是用高斯函数对原始信号做<a class="link"   href="https://zh.wikipedia.org/zh/%E5%8D%B7%E7%A7%AF" >卷积<i class="fas fa-external-link-alt"></i></a>计算</strong>。而高斯函数是连续函数，所以我们要从连续高斯函数中采样生成离散的权重系数，即Gaussian Kernel。 高斯核是对连续高斯函数的离散近似，通常对高斯函数进行离散采样和归一化得出，这里，归一化指的是卷积核所有元素（权重系数）之和为1。下面分别为为一维和二维高斯核的例子：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210100939019.png" style="zoom:80%"></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210100905664.png" style="zoom:%80;"></p>
+<p>计算高斯核中，有两个重要参数：σ、$r$ 。σ为高斯函数的标准差；$r$ 为核大小。不同的σ和$r$ 会有不同的滤波结果。</p>
+<p>高斯核可以看成是与中心距离负相关的权重。平滑时，调整σ实际是在调整周围像素对当前像素的影响程度，<strong>调大σ即提高了远处像素对中心像素的影响程度</strong>，滤波结果也就越平滑${^{4}}$。高斯曲线随σ变化的曲线如下：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/izOixs.png" style="zoom:60%"></p>
+<p>高斯核是对连续高斯的离散近似，窗口越大自然近似越好，但高斯函数是钟形曲线，距离中心越远数值越小，足够远处可以忽略不计，钟型曲线在区间(μ−σ,μ+σ)(μ−σ,μ+σ)范围内的面积占曲线下总面积的68%，(μ−2σ,μ+2σ)范围占95%，(μ−3σ,μ+3σ)范围占99.7%，一般3σ外的数值已接近于0，可忽略，半径为3σ即窗口大小为6σ×6σ即可，通常取最近的奇数。</p>
+<h2 id="3-一维高斯滤波例子"><a href="#3-一维高斯滤波例子" class="headerlink" title="3.一维高斯滤波例子"></a>3.一维高斯滤波例子</h2><p><code>Python</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Created on Thu Dec  9 22:22:11 2021</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: W-H</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> mpl</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;STZhongsong&#x27;</span>]    <span class="comment"># 指定默认字体：解决plot不能显示中文问题</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span>           <span class="comment"># 解决保存图像是负号&#x27;-&#x27;显示为方块的问题</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gauss_kernel</span>(<span class="params">r, sigma, *args, **kwargs</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; 生成一维高斯滤波高斯核</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    r:float</span></span><br><span class="line"><span class="string">        核大小，通常为基数</span></span><br><span class="line"><span class="string">    sigma: float</span></span><br><span class="line"><span class="string">        标准差</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    输出</span></span><br><span class="line"><span class="string">    gauss_weight:array</span></span><br><span class="line"><span class="string">        高斯核</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    gauss_weight = np.zeros(<span class="number">2</span>*r+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">2</span>*(r+<span class="number">1</span>), <span class="number">1</span>):</span><br><span class="line">        gauss_weight[i-<span class="number">1</span>] = np.exp(-<span class="number">1</span>*<span class="built_in">pow</span>((i-r), <span class="number">2</span>) /</span><br><span class="line">                                   (<span class="number">2</span>*<span class="built_in">pow</span>(sigma, <span class="number">2</span>))) / (sigma*np.sqrt(<span class="number">2</span>*np.pi))</span><br><span class="line">    <span class="keyword">return</span> gauss_weight</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gaussian_filtering_1</span>(<span class="params">data, kernel_cof, r</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; 一维高斯滤波</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    data: array</span></span><br><span class="line"><span class="string">        原始数据</span></span><br><span class="line"><span class="string">    kernel_cof: array</span></span><br><span class="line"><span class="string">        高斯核</span></span><br><span class="line"><span class="string">    r: float</span></span><br><span class="line"><span class="string">        核大小，通常为基数</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    输出</span></span><br><span class="line"><span class="string">    data_f: array</span></span><br><span class="line"><span class="string">        滤波后数据</span></span><br><span class="line"><span class="string">    说明</span></span><br><span class="line"><span class="string">    高斯滤波是对原始数据进行核卷积运算，滤波中边界不进行处理</span></span><br><span class="line"><span class="string">    data = [1,2,3,4,5]</span></span><br><span class="line"><span class="string">    kernel_cof = [a1,a0,a1]</span></span><br><span class="line"><span class="string">    data_f[0] = 1 # 保留原始数据</span></span><br><span class="line"><span class="string">    data_f[1] = a1*data[1-1] + a0*data[1] + a1*data[1+1]</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    data[4] = 5</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    data_y = np.zeros(data.size)</span><br><span class="line">    data_len = data.size</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(data_len):</span><br><span class="line">        <span class="keyword">if</span> k &lt; r <span class="keyword">or</span> k &gt; data_len-r-<span class="number">1</span>:</span><br><span class="line">            data_y[k] = data[k]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp = np.dot(data[k-r:k+r+<span class="number">1</span>], kernel_cof)</span><br><span class="line">            data_y[k] = temp</span><br><span class="line">    <span class="keyword">return</span> data_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_1</span>():</span></span><br><span class="line">    <span class="comment"># 生成测试数据</span></span><br><span class="line">    data = np.random.rand(<span class="number">100</span>)</span><br><span class="line">    r = <span class="number">2</span></span><br><span class="line">    sigma = <span class="number">5</span></span><br><span class="line">    gauss_cof = gauss_kernel(r, sigma)</span><br><span class="line">    data_y1 = gaussian_filtering_1(data, gauss_cof, r)</span><br><span class="line">    r = <span class="number">2</span></span><br><span class="line">    sigma = <span class="number">20</span></span><br><span class="line">    gauss_cof = gauss_kernel(r, sigma)</span><br><span class="line">    data_y2 = gaussian_filtering_1(data, gauss_cof, r)</span><br><span class="line">    plt.plot(data, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.plot(data_y1, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.plot(data_y2, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;采样周期T&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">    plt.grid(axis=<span class="string">&#x27;x&#x27;</span>, color=<span class="string">&#x27;0.95&#x27;</span>)</span><br><span class="line">    plt.legend([<span class="string">&#x27;原始信号&#x27;</span>, <span class="string">&#x27;sigma:5,r:2高斯滤波&#x27;</span>, <span class="string">&#x27;sigma:20,r:2高斯滤波&#x27;</span>])</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    test_1()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_4.png" style="zoom:60%"></p>
+<p>从上图可以看到，σ值越大，相比较于原始随机信号，滤波结果越平滑。从频域角度描述就是高频信号分量越少。</p>
+<h2 id="3-二维高斯滤波例子"><a href="#3-二维高斯滤波例子" class="headerlink" title="3.二维高斯滤波例子"></a>3.二维高斯滤波例子</h2><p>二维高斯滤波是一维高斯滤波的扩展，从原理上来说没有区别。相比较于一维高斯滤波，不同点在于：</p>
+<ul>
+<li>原始信号维度；</li>
+<li>高斯核；</li>
+</ul>
+<p>二维高斯函数：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210150457822.png" style="zoom:50%"></p>
+<p>高纬高斯函数：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210150543339.png" style="zoom:50%"></p>
+<p>下面是使用scipy的一个简单例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> misc</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy.ndimage <span class="keyword">import</span> gaussian_filter</span><br><span class="line"><span class="comment"># </span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.gray()  <span class="comment"># show the filtered result in grayscale</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">121</span>)  <span class="comment"># left side</span></span><br><span class="line">ax2 = fig.add_subplot(<span class="number">122</span>)  <span class="comment"># right side</span></span><br><span class="line">ascent = misc.ascent()</span><br><span class="line">result = gaussian_filter(ascent, sigma=<span class="number">5</span>)</span><br><span class="line">ax1.imshow(ascent)</span><br><span class="line">ax2.imshow(result)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_1.png"></p>
+<p>关于二维高斯滤波具体原理参考<a class="link"   href="https://www.cs.auckland.ac.nz/courses/compsci373s1c/PatricesLectures/Gaussian Filtering_1up.pdf" >Microsoft PowerPoint - Image Filtering-6.ppt Compatibility Mode] (auckland.ac.nz)<i class="fas fa-external-link-alt"></i></a>。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a class="link"   href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html" >scipy.ndimage.gaussian_filter — SciPy v1.7.1 Manual<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.cs.auckland.ac.nz/courses/compsci373s1c/PatricesLectures/Gaussian Filtering_1up.pdf" >Microsoft PowerPoint - Image Filtering-6.ppt [Compatibility Mode] (auckland.ac.nz)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.sci.utah.edu/~gerig/CS7960-S2010/handouts/03 The Gaussian kernel.pdf" >03 The Gaussian kernel.pdf (utah.edu)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html" >高斯模糊的算法 - 阮一峰的网络日志 (ruanyifeng.com)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.cnblogs.com/shine-lee/p/9671253.html" >如何确定高斯滤波的标准差和窗口大小 - shine-lee - 博客园 (cnblogs.com)<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MATLAB绘图高级指南</title>
     <url>/2021/11/02/MATLAB%E7%BB%98%E5%9B%BE%E9%AB%98%E7%BA%A7%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<div style="text-align:center;">
@@ -60,60 +116,237 @@
       </tags>
   </entry>
   <entry>
-    <title>Gaussian Filtering</title>
-    <url>/2021/12/09/Gaussian-Filtering/</url>
-    <content><![CDATA[<h1 id="高斯平滑"><a href="#高斯平滑" class="headerlink" title="高斯平滑"></a>高斯平滑</h1><p>高斯平滑又叫高斯滤波，是一种<a class="link"   href="https://en.wikipedia.org/wiki/Smoothing" >数据平滑技术<i class="fas fa-external-link-alt"></i></a>， 常用在图像模糊(Blur)中去除噪声和细节。</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_5.png" style="zoom:60%"></p>
+    <title>MATLAB近邻算法分类指南</title>
+    <url>/2022/01/11/classification-using-nearest-neighbors-instruction-matlab/</url>
+    <content><![CDATA[<div style="text-align:center;">
+    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/KNN-1.gif" style="zoom:50%;">
+</div>
+
 <span id="more"></span>
-<h2 id="1-高斯函数"><a href="#1-高斯函数" class="headerlink" title="1.高斯函数"></a>1.高斯函数</h2><p>高斯函数就是我们常说的高斯分布(Gaussian Distribution)，一维中，高斯函数如下：</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211209211532311.png" style="zoom:40%"></p>
-<p>上式中标准差为σ，平均值μ为0。</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211209214731127.png" style="zoom:80%"></p>
-<p>如图所示，高斯分布是对称的钟形，上图为均值为0，标准差为1的高斯分布也即正态分布，高斯函数的标准差在其滤波中起着重要作用。位于±σ之间的值占集合的68%，而位于±2σ之间的值占集合的95%，±3σ占99.7%，这在设计固定长度的高斯核时非常重要。</p>
-<p>其他性质：</p>
+<h1 id="近邻算法分类"><a href="#近邻算法分类" class="headerlink" title="近邻算法分类"></a>近邻算法分类</h1><p style="text-align:left;">
+    原文:<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#bsfjytu-1" >Classification Using Nearest Neighbors<i class="fas fa-external-link-alt"></i></a>
+</p>
+
+<h2 id="1-距离度量指标"><a href="#1-距离度量指标" class="headerlink" title="1.距离度量指标"></a>1.距离度量指标</h2><p>将待查询数据和训练数据集的距离作为分类依据是一种简单有效的分类方法。可以使用多种指标来确定距离。</p>
+<p>常用的距离度量有：</p>
 <ul>
-<li>高斯函数在实数域的积分x∈(-∞，+∞)为1，从概率学的角度看表示所有事件集合；</li>
-<li>高斯函数的值不为零；</li>
-<li>高斯函数是对称函数，对称轴为均值。</li>
+<li>欧式距离</li>
+<li>归一化欧式距离</li>
+<li>马（马哈拉诺比斯）氏距离</li>
+<li>城市街区距离</li>
+<li>闵可夫斯基距离</li>
+<li>切比雪夫距离</li>
+<li>余弦距离</li>
+<li>相关距离</li>
+<li>汉明距离</li>
+<li>杰卡德距离</li>
+<li>斯皮尔曼距离</li>
 </ul>
-<p>高斯分布的特点是在均值μ两边的概率都很大，离之越远的概率越小，所以高斯函数用在滤波上体现的思想就是：离某个点越近的点对其产生的影响越大，所以让其权重大，越远的产生的影响越小，让其权重越小。高斯滤波的关键是生成高斯核(Gaussian Kernel)。</p>
-<h2 id="2-高斯核-Gaussian-Kernel"><a href="#2-高斯核-Gaussian-Kernel" class="headerlink" title="2.高斯核(Gaussian Kernel)"></a>2.高斯核(Gaussian Kernel)</h2><p>数字滤波领域信号一般都是离散的，如一维数字信号用f(nT)进行描述，其中T为采样周期，n为时间序列。f(nT)表示第n个采样时刻的信号值。</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_3.png" style="zoom:70%"></p>
-<p><strong>所谓高斯滤波操作，其实就是用高斯函数对原始信号做<a class="link"   href="https://zh.wikipedia.org/zh/%E5%8D%B7%E7%A7%AF" >卷积<i class="fas fa-external-link-alt"></i></a>计算</strong>。而高斯函数是连续函数，所以我们要从连续高斯函数中采样生成离散的权重系数，即Gaussian Kernel。 高斯核是对连续高斯函数的离散近似，通常对高斯函数进行离散采样和归一化得出，这里，归一化指的是卷积核所有元素（权重系数）之和为1。下面分别为为一维和二维高斯核的例子：</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210100939019.png" style="zoom:80%"></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210100905664.png" style="zoom:%80;"></p>
-<p>计算高斯核中，有两个重要参数：σ、$r$ 。σ为高斯函数的标准差；$r$ 为核大小。不同的σ和$r$ 会有不同的滤波结果。</p>
-<p>高斯核可以看成是与中心距离负相关的权重。平滑时，调整σ实际是在调整周围像素对当前像素的影响程度，<strong>调大σ即提高了远处像素对中心像素的影响程度</strong>，滤波结果也就越平滑${^{4}}$。高斯曲线随σ变化的曲线如下：</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/izOixs.png" style="zoom:60%"></p>
-<p>高斯核是对连续高斯的离散近似，窗口越大自然近似越好，但高斯函数是钟形曲线，距离中心越远数值越小，足够远处可以忽略不计，钟型曲线在区间(μ−σ,μ+σ)(μ−σ,μ+σ)范围内的面积占曲线下总面积的68%，(μ−2σ,μ+2σ)范围占95%，(μ−3σ,μ+3σ)范围占99.7%，一般3σ外的数值已接近于0，可忽略，半径为3σ即窗口大小为6σ×6σ即可，通常取最近的奇数。</p>
-<h2 id="3-一维高斯滤波例子"><a href="#3-一维高斯滤波例子" class="headerlink" title="3.一维高斯滤波例子"></a>3.一维高斯滤波例子</h2><p><code>Python</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Created on Thu Dec  9 22:22:11 2021</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: W-H</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> mpl</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;STZhongsong&#x27;</span>]    <span class="comment"># 指定默认字体：解决plot不能显示中文问题</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span>           <span class="comment"># 解决保存图像是负号&#x27;-&#x27;显示为方块的问题</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gauss_kernel</span>(<span class="params">r, sigma, *args, **kwargs</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; 生成一维高斯滤波高斯核</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    r:float</span></span><br><span class="line"><span class="string">        核大小，通常为基数</span></span><br><span class="line"><span class="string">    sigma: float</span></span><br><span class="line"><span class="string">        标准差</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    输出</span></span><br><span class="line"><span class="string">    gauss_weight:array</span></span><br><span class="line"><span class="string">        高斯核</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    gauss_weight = np.zeros(<span class="number">2</span>*r+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">2</span>*(r+<span class="number">1</span>), <span class="number">1</span>):</span><br><span class="line">        gauss_weight[i-<span class="number">1</span>] = np.exp(-<span class="number">1</span>*<span class="built_in">pow</span>((i-r), <span class="number">2</span>) /</span><br><span class="line">                                   (<span class="number">2</span>*<span class="built_in">pow</span>(sigma, <span class="number">2</span>))) / (sigma*np.sqrt(<span class="number">2</span>*np.pi))</span><br><span class="line">    <span class="keyword">return</span> gauss_weight</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gaussian_filtering_1</span>(<span class="params">data, kernel_cof, r</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; 一维高斯滤波</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    data: array</span></span><br><span class="line"><span class="string">        原始数据</span></span><br><span class="line"><span class="string">    kernel_cof: array</span></span><br><span class="line"><span class="string">        高斯核</span></span><br><span class="line"><span class="string">    r: float</span></span><br><span class="line"><span class="string">        核大小，通常为基数</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    输出</span></span><br><span class="line"><span class="string">    data_f: array</span></span><br><span class="line"><span class="string">        滤波后数据</span></span><br><span class="line"><span class="string">    说明</span></span><br><span class="line"><span class="string">    高斯滤波是对原始数据进行核卷积运算，滤波中边界不进行处理</span></span><br><span class="line"><span class="string">    data = [1,2,3,4,5]</span></span><br><span class="line"><span class="string">    kernel_cof = [a1,a0,a1]</span></span><br><span class="line"><span class="string">    data_f[0] = 1 # 保留原始数据</span></span><br><span class="line"><span class="string">    data_f[1] = a1*data[1-1] + a0*data[1] + a1*data[1+1]</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    data[4] = 5</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    data_y = np.zeros(data.size)</span><br><span class="line">    data_len = data.size</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(data_len):</span><br><span class="line">        <span class="keyword">if</span> k &lt; r <span class="keyword">or</span> k &gt; data_len-r-<span class="number">1</span>:</span><br><span class="line">            data_y[k] = data[k]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp = np.dot(data[k-r:k+r+<span class="number">1</span>], kernel_cof)</span><br><span class="line">            data_y[k] = temp</span><br><span class="line">    <span class="keyword">return</span> data_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_1</span>():</span></span><br><span class="line">    <span class="comment"># 生成测试数据</span></span><br><span class="line">    data = np.random.rand(<span class="number">100</span>)</span><br><span class="line">    r = <span class="number">2</span></span><br><span class="line">    sigma = <span class="number">5</span></span><br><span class="line">    gauss_cof = gauss_kernel(r, sigma)</span><br><span class="line">    data_y1 = gaussian_filtering_1(data, gauss_cof, r)</span><br><span class="line">    r = <span class="number">2</span></span><br><span class="line">    sigma = <span class="number">20</span></span><br><span class="line">    gauss_cof = gauss_kernel(r, sigma)</span><br><span class="line">    data_y2 = gaussian_filtering_1(data, gauss_cof, r)</span><br><span class="line">    plt.plot(data, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.plot(data_y1, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.plot(data_y2, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;采样周期T&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">    plt.grid(axis=<span class="string">&#x27;x&#x27;</span>, color=<span class="string">&#x27;0.95&#x27;</span>)</span><br><span class="line">    plt.legend([<span class="string">&#x27;原始信号&#x27;</span>, <span class="string">&#x27;sigma:5,r:2高斯滤波&#x27;</span>, <span class="string">&#x27;sigma:20,r:2高斯滤波&#x27;</span>])</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    test_1()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_4.png" style="zoom:60%"></p>
-<p>从上图可以看到，σ值越大，相比较于原始随机信号，滤波结果越平滑。从频域角度描述就是高频信号分量越少。</p>
-<h2 id="3-二维高斯滤波例子"><a href="#3-二维高斯滤波例子" class="headerlink" title="3.二维高斯滤波例子"></a>3.二维高斯滤波例子</h2><p>二维高斯滤波是一维高斯滤波的扩展，从原理上来说没有区别。相比较于一维高斯滤波，不同点在于：</p>
+<p>对于给定的${m_x}$ x $n$ 矩阵 $X$，将其看作是$m_x$ 行的行向量， $x_1,x_2,…x_{mx}$ 。同理对于给定的$m_y$ x $n$ 矩阵 $Y$，将其看作是 $m_y$ 行的行向量，向量 $x_s$ 和 $y_t$ 之间的不同距离度量定义如下：</p>
+<p><strong>欧式距离(Euclidean distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110212806751.png" alt="image-20220110212806751"></p>
+<p>欧几里得距离是 闵可夫斯基距离的一个特例，其中 p = 2。 </p>
+<p><strong>归一化欧氏距离(Standardized Euclidean distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213015362.png" alt="image-20220110213015362"></p>
+<p>其中 $V$ 是$n×n$对角矩阵，其第$j$个对角元素是$(S(j))^2$，其中$S$ 是每个维度的缩放因子向量。 </p>
+<p><strong>马（马哈拉诺比斯）氏距离(Mahalanobis distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213307164.png" alt="image-20220110213307164"></p>
+<p>其中$C$是协方差矩阵。</p>
+<p><strong>城市街区距离(City block distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213439402.png" alt="image-20220110213439402"></p>
+<p>城市街区距离是 Minkowski 距离的一个特例，其中 p = 1。</p>
+<p><strong>闵可夫斯基距离(Minkowski distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213602515.png" alt="image-20220110213602515"></p>
+<p>对于 p = 1 的特殊情况，Minkowski 距离表示城市街区距离；</p>
+<p> 对于 p = 2 的特殊情况，Minkowski 距离表示欧几里得距离；</p>
+<p> 对于 p = ∞ 的特殊情况，Minkowski 距离表示切比雪夫距离； </p>
+<p><strong>切比雪夫距离(Chebychev distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213739381.png" alt="image-20220110213739381"></p>
+<p>切比雪夫距离是 Minkowski 距离的一个特例，其中 p = ∞。 </p>
+<p><strong>余弦距离(Cosine distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213907637.png" alt="image-20220110213907637"></p>
+<p><strong>相关距离(Correlation distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214026302.png" alt="image-20220110214026302"></p>
+<p><strong>汉明距离(Hamming distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214114274.png" alt="image-20220110214114274"></p>
+<p>汉明距离表示的是两个向量$x_s$ 和 $y_t$ 相同位置上元素不相同和向量长度的比值。比如$x_s=[1,2,3,4]$ $y_t=[1,2,3,3]$ 则$d_{st} = 0.25$</p>
+<p><strong>杰卡德距离(Jaccard distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214225480.png" alt="image-20220110214225480"></p>
+<p><strong>斯皮尔曼距离(Spearman distance)</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214240166.png" alt="image-20220110214240166"></p>
+<p>MATLAB中用<a class="link"   href="https://ww2.mathworks.cn/help/stats/pdist2.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">pdist2<i class="fas fa-external-link-alt"></i></a>函数计算不同距离度量。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">X = [<span class="number">1</span>,<span class="number">3</span>];</span><br><span class="line">Y = [<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line">D1 = pdist2(X,Y,<span class="string">&#x27;cityblock&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D3 = pdist2(X,Y,<span class="string">&#x27;euclidean&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D4 = pdist2(X,Y,<span class="string">&#x27;minkowski&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">D5 = pdist2(X,Y,<span class="string">&#x27;hamming&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D6 = pdist2(X,Y,<span class="string">&#x27;chebychev&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D7 = pdist2(X,Y,<span class="string">&#x27;cosine&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-k近邻搜索和半径搜索"><a href="#2-k近邻搜索和半径搜索" class="headerlink" title="2.k近邻搜索和半径搜索"></a>2.k近邻搜索和半径搜索</h2><p>给定一组包含 n 个点的$X $和一个距离函数，k-近邻 (kNN) 搜索可以找到 $X$ 中与查询点或点集 $Y$ 最接近的 k 个点。kNN 算法和基于 kNN 的算法被广泛用作不同学习算法的基准。 kNN 算法相对简单且可解释性使得将其他分类技术的结果与 kNN 结果进行比较容易。</p>
+<p> kNN 算法可以用在其他机器学习算法中，例如：</p>
 <ul>
-<li>原始信号维度；</li>
-<li>高斯核；</li>
+<li>kNN分类 </li>
+<li>局部加权回归</li>
+<li>缺失数据插补和插值</li>
+<li>密度估计</li>
 </ul>
-<p>二维高斯函数：</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210150457822.png" style="zoom:50%"></p>
-<p>高纬高斯函数：</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211210150543339.png" style="zoom:50%"></p>
-<p>下面是使用scipy的一个简单例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> misc</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy.ndimage <span class="keyword">import</span> gaussian_filter</span><br><span class="line"><span class="comment"># </span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.gray()  <span class="comment"># show the filtered result in grayscale</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">121</span>)  <span class="comment"># left side</span></span><br><span class="line">ax2 = fig.add_subplot(<span class="number">122</span>)  <span class="comment"># right side</span></span><br><span class="line">ascent = misc.ascent()</span><br><span class="line">result = gaussian_filter(ascent, sigma=<span class="number">5</span>)</span><br><span class="line">ax1.imshow(ascent)</span><br><span class="line">ax2.imshow(result)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/Figure_1.png"></p>
-<p>关于二维高斯滤波具体原理参考<a class="link"   href="https://www.cs.auckland.ac.nz/courses/compsci373s1c/PatricesLectures/Gaussian Filtering_1up.pdf" >Microsoft PowerPoint - Image Filtering-6.ppt Compatibility Mode] (auckland.ac.nz)<i class="fas fa-external-link-alt"></i></a>。</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a class="link"   href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html" >scipy.ndimage.gaussian_filter — SciPy v1.7.1 Manual<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.cs.auckland.ac.nz/courses/compsci373s1c/PatricesLectures/Gaussian Filtering_1up.pdf" >Microsoft PowerPoint - Image Filtering-6.ppt [Compatibility Mode] (auckland.ac.nz)<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.sci.utah.edu/~gerig/CS7960-S2010/handouts/03 The Gaussian kernel.pdf" >03 The Gaussian kernel.pdf (utah.edu)<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html" >高斯模糊的算法 - 阮一峰的网络日志 (ruanyifeng.com)<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.cnblogs.com/shine-lee/p/9671253.html" >如何确定高斯滤波的标准差和窗口大小 - shine-lee - 博客园 (cnblogs.com)<i class="fas fa-external-link-alt"></i></a></li>
+<p>kNN可以与许多基于距离的学习的算法一起使用，例如 K-means 聚类。 相反，对于正实数 r，范围搜索 <a class="link"   href="https://ww2.mathworks.cn/help/stats/rangesearch.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">rangsearch<i class="fas fa-external-link-alt"></i></a>查找 X 中与 Y 中每个点的距离为 r 的所有点。这种固定半径搜索与 kNN 搜索密切相关，因为它支持相同的距离度量和搜索类别 ，并使用相同的搜索算法。 </p>
+<h3 id="2-1-KNN-穷举搜索"><a href="#2-1-KNN-穷举搜索" class="headerlink" title="2.1 KNN-穷举搜索"></a>2.1 KNN-穷举搜索</h3><p>在matlab中，可以使用多种底层搜索算法实现kNN算法的搜索过程，当满足以下条件时默认使用穷举搜索方式：</p>
+<ul>
+<li>$X$ 的列数超过 10；</li>
+<li>$X$ 是稀疏的；</li>
+<li>距离度量使用：苏氏距离、马氏距离、余弦距离、相关距离、斯皮尔曼距离、汉明距离、杰卡德距离、自定义距离函数 ；</li>
+</ul>
+<p>如果搜索对象是<a class="link"   href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;" >ExhaustiveSearcher <i class="fas fa-external-link-alt"></i></a> 模型对象，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a> 也会使用穷举搜索方法。 穷举搜索方法是找到每个查询点到$X$中每个点的距离，按升序排列，返回距离最小的k个点。 例如，此图显示了 k = 3 个最近邻。 </p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/exhaustivesearch.gif" alt="img"></p>
+<h3 id="2-2-KNN-Kd树搜索"><a href="#2-2-KNN-Kd树搜索" class="headerlink" title="2.2 KNN-Kd树搜索"></a>2.2 KNN-Kd树搜索</h3><p>当输入数据满足以下所有条件时，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>默认会创建一个 Kd树来查找：</p>
+<ul>
+<li>$X$ 的列数<strong>不</strong>超过 10；</li>
+<li>$X$ 是非稀疏的；</li>
+<li>欧式距离（默认）、城市街区距离、闵可夫斯基距离、切比雪夫距离</li>
+</ul>
+<p>如果搜索对象是 <a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher <i class="fas fa-external-link-alt"></i></a>模型对象，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>也会使用 Kd-树。 </p>
+<p>Kd-树根据坐标（而不是类别）将数据划分为每个节点最多 <em>BucketSize</em>（默认为 50）个点的节点。 下图中不同的颜色块对应的是不同的节点。 </p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelines.png" alt="img"></p>
+<p>查找给定查询点的 k 最近邻时，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>执行以下操作：</p>
+<ol>
+<li>确定查询点所属的节点。 在以下示例中，查询点 (32,90) 属于节点 4。</li>
+<li>查找该节点内最近的 k 个点及其到查询点的距离。 在以下示例中，红色圆圈中的点与查询点等距，并且是节点 4 内离查询点最近的点。</li>
+<li>选择从查询点到第 k 个最近点在任何方向上具有相同距离内的任何区域的所有其他节点。 在此示例中，只有节点 3 与以查询点为中心的实心黑色圆圈重叠，其半径等于到节点 4 内最近点的距离。</li>
+<li>在该范围内的节点中搜索更接近查询点的任何点。 在以下示例中，红色方块中的点比节点 4 中的点更靠近查询点。 </li>
 </ol>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelinesnewpoint.png" alt="img"></p>
+<p>对少于 10 个维度（列）的大型数据集使用 Kd-树可能比使用穷举搜索方法更有效，因为<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>只需要计算距离的子集。 为了最大限度地提高 Kd树的效率，请使用<a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher<i class="fas fa-external-link-alt"></i></a>模型。 </p>
+<h3 id="2-3-搜索模型对象"><a href="#2-3-搜索模型对象" class="headerlink" title="2.3 搜索模型对象"></a>2.3 搜索模型对象</h3><p>通常来说，模型对象是一种存储信息的便捷方式。相关模型具有与指定搜索方法相关的值和类型的相同属性。 除了在模型中存储信息之外，还可以对模型执行某些操作。可以使用<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>在搜索模型上高效地执行 k 近邻搜索。 或者，可以使用搜索模型和范围搜索搜索指定半径内的所有邻居。 此外，还有一个通用的<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em></a> 和<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>函数可以在不创建或使用模型的情况下进行搜索。 </p>
+<p>可以从以下方向考虑使用哪种类型的模型和搜索方法最适合给定的数据：</p>
+<ul>
+<li>数据列数；</li>
+<li>数据是否稀疏；</li>
+<li>距离度量方式；</li>
+</ul>
+<h2 id="3-对数据进行分类—Kd树"><a href="#3-对数据进行分类—Kd树" class="headerlink" title="3.对数据进行分类—Kd树"></a>3.对数据进行分类—Kd树</h2><p>使用Kd树方式对查询数据进行分类包括以下步骤：</p>
+<ol>
+<li>构建 Kd 树；</li>
+<li>使用Kd树进行 k 近邻搜索； </li>
+<li>确定待查询数据所属的类；</li>
+</ol>
+<p>示例根据 Fisher iris 数据的最后两列对新点进行分类。</p>
+<blockquote>
+<p><strong>Step- 1 导入数据并对最后两列绘图</strong> </p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">x = meas(:,<span class="number">3</span>:<span class="number">4</span>);</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;Location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_01.png" alt="Figure contains an axes object. The axes object contains 3 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>Step-2 绘制待查询数据</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">newpoint = [<span class="number">5</span> <span class="number">1.45</span>];</span><br><span class="line">line(newpoint(<span class="number">1</span>),newpoint(<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_02.png" alt="Figure contains an axes object. The axes object contains 4 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>Step-3 构建Kd树近邻搜索模型</strong> </p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl = KDTreeSearcher(x)</span><br></pre></td></tr></table></figure>
+<p>Mdl 是一个<a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher<i class="fas fa-external-link-alt"></i></a>模型。 默认情况下，它用于搜索邻居的距离度量是欧氏距离。 </p>
+<blockquote>
+<p><strong>Step-4 找出到待查询点最近的10个点</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[n,d] = knnsearch(Mdl,newpoint,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n,<span class="number">1</span>),x(n,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">    <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">xlim([<span class="number">4.5</span> <span class="number">5.5</span>]);</span><br><span class="line">ylim([<span class="number">1</span> <span class="number">2</span>]);</span><br><span class="line">axis square</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_04.png" alt="Figure contains an axes object. The axes object contains 5 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>Step-5 找出到待查询点最近的10个点的特征</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">tabulate(species(n))</span><br><span class="line">       Value    Count   Percent</span><br><span class="line">   virginica        <span class="number">2</span>     <span class="number">20.00</span><span class="comment">%</span></span><br><span class="line">  versicolor        <span class="number">8</span>     <span class="number">80.00</span><span class="comment">%</span></span><br></pre></td></tr></table></figure>
+<p>可以依据不同的分类依据将此新点归类到不同的类别。 </p>
+<blockquote>
+<p><strong>Step-6 在一组近邻点周围画一个圆圈来直观地识别近邻点</strong></p>
+</blockquote>
+<p>根据新点的位置定义圆的中心和直径 。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">ctr = newpoint - d(<span class="keyword">end</span>);</span><br><span class="line">diameter = <span class="number">2</span>*d(<span class="keyword">end</span>);</span><br><span class="line"><span class="comment">% Draw a circle around the 10 nearest neighbors.</span></span><br><span class="line">h = rectangle(<span class="string">&#x27;position&#x27;</span>,[ctr,diameter,diameter],...</span><br><span class="line">   <span class="string">&#x27;curvature&#x27;</span>,[<span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">h.LineStyle = <span class="string">&#x27;:&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_05.png" alt="Figure contains an axes object. The axes object contains 6 objects of type line, rectangle. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>step-7</strong> 多个数据点分类</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">figure</span> </span><br><span class="line">newpoint2 = [<span class="number">5</span> <span class="number">1.45</span>;<span class="number">6</span> <span class="number">2</span>;<span class="number">2.75</span> <span class="number">.75</span>];</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">[n2,d2] = knnsearch(Mdl,newpoint2,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n2,<span class="number">1</span>),x(n2,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">line(newpoint2(:,<span class="number">1</span>),newpoint2(:,<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_06.png" alt="Figure contains an axes object. The axes object contains 5 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_kd_tree.mlx" >完整代码：Position/knn_kd_tree.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="4-使用自定义距离度量查找最近的邻居"><a href="#4-使用自定义距离度量查找最近的邻居" class="headerlink" title="4.使用自定义距离度量查找最近的邻居"></a>4.使用自定义距离度量查找最近的邻居</h2><p>示例说明如何找到与 X 中的三个最近卡方距离(chi-square distance)数据的索引。卡方距离常用于相关性分析(correspondence analysis)，特别是在生态应用中。 </p>
+<p>$j$ 维向量 $x$ 和 $z$ 之间的卡方距离定义为：</p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220111105413617.png" alt="image-20220111105413617"></p>
+<p>其中$w_j$是于维度相关的权重系数；</p>
+<blockquote>
+<p><strong>Step-1</strong> 随机生成两个正态分布矩阵，矩阵的行数可以变化，但列数必须相等。因为矩阵$X$ 表示训练数据集，$Y$ 表示待分类数据集合；</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">rng(<span class="number">1</span>) <span class="comment">% For reproducibility</span></span><br><span class="line">X = <span class="built_in">randn</span>(<span class="number">50</span>,<span class="number">2</span>);</span><br><span class="line">Y = <span class="built_in">randn</span>(<span class="number">4</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">h = <span class="built_in">zeros</span>(<span class="number">3</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">h(<span class="number">1</span>) = <span class="built_in">plot</span>(X(:,<span class="number">1</span>),X(:,<span class="number">2</span>),<span class="string">&#x27;bx&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">h(<span class="number">2</span>) = <span class="built_in">plot</span>(Y(:,<span class="number">1</span>),Y(:,<span class="number">2</span>),<span class="string">&#x27;rs&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_01.png" alt="Figure contains an axes object. The axes object with title Heterogeneous Data contains 2 objects of type line."></p>
+<blockquote>
+<p><strong>Step2-定义距离函数</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% distance function</span></span><br><span class="line">w = [<span class="number">0.4</span>; <span class="number">0.6</span>];</span><br><span class="line">chiSqrDist = @(x,Z)<span class="built_in">sqrt</span>((<span class="built_in">bsxfun</span>(@minus,x,Z).^<span class="number">2</span>)*w);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step3-找出Y中每个到 X 中三个最近观测值的索引</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">k = <span class="number">3</span>;</span><br><span class="line">[Idx,D] = knnsearch(X,Y,<span class="string">&#x27;Distance&#x27;</span>,chiSqrDist,<span class="string">&#x27;k&#x27;</span>,k);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step4- 确定图中最近的观测值</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:k</span><br><span class="line">    h(<span class="number">3</span>) = <span class="built_in">plot</span>(X(Idx(:,<span class="built_in">j</span>),<span class="number">1</span>),X(Idx(:,<span class="built_in">j</span>),<span class="number">2</span>),<span class="string">&#x27;ko&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">legend</span>(h,&#123;<span class="string">&#x27;\texttt&#123;X&#125;&#x27;</span>,<span class="string">&#x27;\texttt&#123;Y&#125;&#x27;</span>,<span class="string">&#x27;Nearest Neighbor&#x27;</span>&#125;,<span class="string">&#x27;Interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data and Nearest Neighbors&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_02.png" alt="Figure contains an axes object. The axes object with title Heterogeneous Data and Nearest Neighbors contains 5 objects of type line. These objects represent \texttt{X}, \texttt{Y}, Nearest Neighbor."></p>
+<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/using_custom_distance_metric.mlx" >完整代码：Position/using_custom_distance_metric.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="5-有监督学习的-K-近邻分类"><a href="#5-有监督学习的-K-近邻分类" class="headerlink" title="5.有监督学习的 K-近邻分类"></a>5.有监督学习的 K-近邻分类</h2><h3 id="5-1-说明"><a href="#5-1-说明" class="headerlink" title="5.1 说明"></a>5.1 说明</h3><p>使用<a class="link"   href="https://ww2.mathworks.cn/help/stats/classificationknn.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">ClassificationKNN <i class="fas fa-external-link-alt"></i></a>分类模型实现k-近邻分类具体可以分为以下几步：</p>
+<ol>
+<li>构造 KNN 分类器<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7k2"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Construct KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>检查 KNN 分类器<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7l_"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Examine Quality of KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>使用 KNN 分类器进行预测分类 <a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7nm"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Predict Classification Using KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+<li>修改 KNN 分类器 <a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap_jn"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Modify KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
+<h3 id="5-2-示例"><a href="#5-2-示例" class="headerlink" title="5.2 示例"></a>5.2 示例</h3><p>例子展示了如何为 Fisher iris 数据构建一个 k 最近邻分类器。 </p>
+<blockquote>
+<p><strong>Step1- 导入数据</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">X = meas;    <span class="comment">% Use all data for fitting</span></span><br><span class="line">Y = species; <span class="comment">% Response data</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step2- 使用knn构造分类器</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl = fitcknn(X,Y)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step3- 修改邻域大小</strong></p>
+</blockquote>
+<p>默认的 k 近邻分类器仅使用一个临近值。将 Mdl 的邻域大小更改为 4</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl.NumNeighbors = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step4- 重新替换和交叉验证检查 k 最近邻分类器 </strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">loss = resubLoss(Mdl)</span><br><span class="line">rng(<span class="number">10</span>); <span class="comment">% For reproducibility</span></span><br><span class="line">CVMdl = crossval(Mdl,<span class="string">&#x27;KFold&#x27;</span>,<span class="number">5</span>);</span><br><span class="line">kloss = kfoldLoss(CVMdl)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step5- 使用kNN构造预测分类</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">flwr = <span class="built_in">mean</span>(X); <span class="comment">% an average flower</span></span><br><span class="line">flwrClass = predict(Mdl,flwr)</span><br><span class="line"><span class="comment">% 预测结果</span></span><br><span class="line"><span class="comment">% flwrClass = 1x1 cell array</span></span><br><span class="line"><span class="comment">%    &#123;&#x27;versicolor&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_supervised_learn.mlx" >完整代码：Position/knn_supervised_learn.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="6-kNN开发流程总结"><a href="#6-kNN开发流程总结" class="headerlink" title="6.kNN开发流程总结"></a>6.kNN开发流程总结</h2><p><strong>机器学习算法通用流程</strong></p>
+<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kaifaliucheng.png" alt="kaifaliucheng"></p>
+<p>收集数据：任何方法<br>准备数据：距离计算所需要的数值，最好是结构化的数据格式<br>分析数据：任何方法<br>训练算法：此步骤不适用于 k-近邻算法，k-近邻算法是在搜索过程中训练算法；<br>测试算法：计算错误率<br>使用算法：输入样本数据和结构化的输出结果，然后运行 k-近邻算法判断输入数据分类属于哪个分类，最后对计算出的分类执行后续处理。</p>
+<hr>
+
+<p style="text-align:right;">2022-01-11 15:10</p>
+
 ]]></content>
       <tags>
-        <tag>算法</tag>
+        <tag>algorithm</tag>
+        <tag>matlab</tag>
+        <tag>kNN</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/10/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> dominate</span><br><span class="line"><span class="keyword">from</span> dominate <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(html(body(div(cls=<span class="string">&quot;header1&quot;</span>,<span class="string">&quot;this is a div&quot;</span>))))</span><br></pre></td></tr></table></figure>
+<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><script type="math/tex; mode=display">
+\begin{align}
+& f(x,y) = x+y\\
+\end{align}</script><p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
   </entry>
   <entry>
     <title>Using dominate to Generate Web Page</title>
@@ -310,25 +543,6 @@
         <tag>Kodi</tag>
         <tag>instruction</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/10/25/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<span id="more"></span>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> dominate</span><br><span class="line"><span class="keyword">from</span> dominate <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(html(body(div(cls=<span class="string">&quot;header1&quot;</span>,<span class="string">&quot;this is a div&quot;</span>))))</span><br></pre></td></tr></table></figure>
-<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><script type="math/tex; mode=display">
-\begin{align}
-& f(x,y) = x+y\\
-\end{align}</script><p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
-]]></content>
   </entry>
   <entry>
     <title>搜索技巧</title>
@@ -618,220 +832,6 @@
         <tag>raspberry</tag>
         <tag>Linux</tag>
         <tag>ros</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MATLAB近邻算法分类指南</title>
-    <url>/2022/01/11/classification-using-nearest-neighbors-instruction-matlab/</url>
-    <content><![CDATA[<div style="text-align:center;">
-    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/KNN-1.gif" style="zoom:50%;">
-</div>
-
-<span id="more"></span>
-<h1 id="近邻算法分类"><a href="#近邻算法分类" class="headerlink" title="近邻算法分类"></a>近邻算法分类</h1><p style="text-align:left;">
-    原文:<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#bsfjytu-1" >Classification Using Nearest Neighbors<i class="fas fa-external-link-alt"></i></a>
-</p>
-
-<h2 id="1-距离度量指标"><a href="#1-距离度量指标" class="headerlink" title="1.距离度量指标"></a>1.距离度量指标</h2><p>将待查询数据和训练数据集的距离作为分类依据是一种简单有效的分类方法。可以使用多种指标来确定距离。</p>
-<p>常用的距离度量有：</p>
-<ul>
-<li>欧式距离</li>
-<li>归一化欧式距离</li>
-<li>马（马哈拉诺比斯）氏距离</li>
-<li>城市街区距离</li>
-<li>闵可夫斯基距离</li>
-<li>切比雪夫距离</li>
-<li>余弦距离</li>
-<li>相关距离</li>
-<li>汉明距离</li>
-<li>杰卡德距离</li>
-<li>斯皮尔曼距离</li>
-</ul>
-<p>对于给定的${m_x}$ x $n$ 矩阵 $X$，将其看作是$m_x$ 行的行向量， $x_1,x_2,…x_{mx}$ 。同理对于给定的$m_y$ x $n$ 矩阵 $Y$，将其看作是 $m_y$ 行的行向量，向量 $x_s$ 和 $y_t$ 之间的不同距离度量定义如下：</p>
-<p><strong>欧式距离(Euclidean distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110212806751.png" alt="image-20220110212806751"></p>
-<p>欧几里得距离是 闵可夫斯基距离的一个特例，其中 p = 2。 </p>
-<p><strong>归一化欧氏距离(Standardized Euclidean distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213015362.png" alt="image-20220110213015362"></p>
-<p>其中 $V$ 是$n×n$对角矩阵，其第$j$个对角元素是$(S(j))^2$，其中$S$ 是每个维度的缩放因子向量。 </p>
-<p><strong>马（马哈拉诺比斯）氏距离(Mahalanobis distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213307164.png" alt="image-20220110213307164"></p>
-<p>其中$C$是协方差矩阵。</p>
-<p><strong>城市街区距离(City block distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213439402.png" alt="image-20220110213439402"></p>
-<p>城市街区距离是 Minkowski 距离的一个特例，其中 p = 1。</p>
-<p><strong>闵可夫斯基距离(Minkowski distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213602515.png" alt="image-20220110213602515"></p>
-<p>对于 p = 1 的特殊情况，Minkowski 距离表示城市街区距离；</p>
-<p> 对于 p = 2 的特殊情况，Minkowski 距离表示欧几里得距离；</p>
-<p> 对于 p = ∞ 的特殊情况，Minkowski 距离表示切比雪夫距离； </p>
-<p><strong>切比雪夫距离(Chebychev distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213739381.png" alt="image-20220110213739381"></p>
-<p>切比雪夫距离是 Minkowski 距离的一个特例，其中 p = ∞。 </p>
-<p><strong>余弦距离(Cosine distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110213907637.png" alt="image-20220110213907637"></p>
-<p><strong>相关距离(Correlation distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214026302.png" alt="image-20220110214026302"></p>
-<p><strong>汉明距离(Hamming distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214114274.png" alt="image-20220110214114274"></p>
-<p>汉明距离表示的是两个向量$x_s$ 和 $y_t$ 相同位置上元素不相同和向量长度的比值。比如$x_s=[1,2,3,4]$ $y_t=[1,2,3,3]$ 则$d_{st} = 0.25$</p>
-<p><strong>杰卡德距离(Jaccard distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214225480.png" alt="image-20220110214225480"></p>
-<p><strong>斯皮尔曼距离(Spearman distance)</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220110214240166.png" alt="image-20220110214240166"></p>
-<p>MATLAB中用<a class="link"   href="https://ww2.mathworks.cn/help/stats/pdist2.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">pdist2<i class="fas fa-external-link-alt"></i></a>函数计算不同距离度量。</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">X = [<span class="number">1</span>,<span class="number">3</span>];</span><br><span class="line">Y = [<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line">D1 = pdist2(X,Y,<span class="string">&#x27;cityblock&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D3 = pdist2(X,Y,<span class="string">&#x27;euclidean&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D4 = pdist2(X,Y,<span class="string">&#x27;minkowski&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">D5 = pdist2(X,Y,<span class="string">&#x27;hamming&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D6 = pdist2(X,Y,<span class="string">&#x27;chebychev&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D7 = pdist2(X,Y,<span class="string">&#x27;cosine&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="2-k近邻搜索和半径搜索"><a href="#2-k近邻搜索和半径搜索" class="headerlink" title="2.k近邻搜索和半径搜索"></a>2.k近邻搜索和半径搜索</h2><p>给定一组包含 n 个点的$X $和一个距离函数，k-近邻 (kNN) 搜索可以找到 $X$ 中与查询点或点集 $Y$ 最接近的 k 个点。kNN 算法和基于 kNN 的算法被广泛用作不同学习算法的基准。 kNN 算法相对简单且可解释性使得将其他分类技术的结果与 kNN 结果进行比较容易。</p>
-<p> kNN 算法可以用在其他机器学习算法中，例如：</p>
-<ul>
-<li>kNN分类 </li>
-<li>局部加权回归</li>
-<li>缺失数据插补和插值</li>
-<li>密度估计</li>
-</ul>
-<p>kNN可以与许多基于距离的学习的算法一起使用，例如 K-means 聚类。 相反，对于正实数 r，范围搜索 <a class="link"   href="https://ww2.mathworks.cn/help/stats/rangesearch.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">rangsearch<i class="fas fa-external-link-alt"></i></a>查找 X 中与 Y 中每个点的距离为 r 的所有点。这种固定半径搜索与 kNN 搜索密切相关，因为它支持相同的距离度量和搜索类别 ，并使用相同的搜索算法。 </p>
-<h3 id="2-1-KNN-穷举搜索"><a href="#2-1-KNN-穷举搜索" class="headerlink" title="2.1 KNN-穷举搜索"></a>2.1 KNN-穷举搜索</h3><p>在matlab中，可以使用多种底层搜索算法实现kNN算法的搜索过程，当满足以下条件时默认使用穷举搜索方式：</p>
-<ul>
-<li>$X$ 的列数超过 10；</li>
-<li>$X$ 是稀疏的；</li>
-<li>距离度量使用：苏氏距离、马氏距离、余弦距离、相关距离、斯皮尔曼距离、汉明距离、杰卡德距离、自定义距离函数 ；</li>
-</ul>
-<p>如果搜索对象是<a class="link"   href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;" >ExhaustiveSearcher <i class="fas fa-external-link-alt"></i></a> 模型对象，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a> 也会使用穷举搜索方法。 穷举搜索方法是找到每个查询点到$X$中每个点的距离，按升序排列，返回距离最小的k个点。 例如，此图显示了 k = 3 个最近邻。 </p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/exhaustivesearch.gif" alt="img"></p>
-<h3 id="2-2-KNN-Kd树搜索"><a href="#2-2-KNN-Kd树搜索" class="headerlink" title="2.2 KNN-Kd树搜索"></a>2.2 KNN-Kd树搜索</h3><p>当输入数据满足以下所有条件时，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>默认会创建一个 Kd树来查找：</p>
-<ul>
-<li>$X$ 的列数<strong>不</strong>超过 10；</li>
-<li>$X$ 是非稀疏的；</li>
-<li>欧式距离（默认）、城市街区距离、闵可夫斯基距离、切比雪夫距离</li>
-</ul>
-<p>如果搜索对象是 <a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher <i class="fas fa-external-link-alt"></i></a>模型对象，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>也会使用 Kd-树。 </p>
-<p>Kd-树根据坐标（而不是类别）将数据划分为每个节点最多 <em>BucketSize</em>（默认为 50）个点的节点。 下图中不同的颜色块对应的是不同的节点。 </p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelines.png" alt="img"></p>
-<p>查找给定查询点的 k 最近邻时，<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>执行以下操作：</p>
-<ol>
-<li>确定查询点所属的节点。 在以下示例中，查询点 (32,90) 属于节点 4。</li>
-<li>查找该节点内最近的 k 个点及其到查询点的距离。 在以下示例中，红色圆圈中的点与查询点等距，并且是节点 4 内离查询点最近的点。</li>
-<li>选择从查询点到第 k 个最近点在任何方向上具有相同距离内的任何区域的所有其他节点。 在此示例中，只有节点 3 与以查询点为中心的实心黑色圆圈重叠，其半径等于到节点 4 内最近点的距离。</li>
-<li>在该范围内的节点中搜索更接近查询点的任何点。 在以下示例中，红色方块中的点比节点 4 中的点更靠近查询点。 </li>
-</ol>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kdtreelinesnewpoint.png" alt="img"></p>
-<p>对少于 10 个维度（列）的大型数据集使用 Kd-树可能比使用穷举搜索方法更有效，因为<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>只需要计算距离的子集。 为了最大限度地提高 Kd树的效率，请使用<a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher<i class="fas fa-external-link-alt"></i></a>模型。 </p>
-<h3 id="2-3-搜索模型对象"><a href="#2-3-搜索模型对象" class="headerlink" title="2.3 搜索模型对象"></a>2.3 搜索模型对象</h3><p>通常来说，模型对象是一种存储信息的便捷方式。相关模型具有与指定搜索方法相关的值和类型的相同属性。 除了在模型中存储信息之外，还可以对模型执行某些操作。可以使用<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>在搜索模型上高效地执行 k 近邻搜索。 或者，可以使用搜索模型和范围搜索搜索指定半径内的所有邻居。 此外，还有一个通用的<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em></a> 和<a href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>函数可以在不创建或使用模型的情况下进行搜索。 </p>
-<p>可以从以下方向考虑使用哪种类型的模型和搜索方法最适合给定的数据：</p>
-<ul>
-<li>数据列数；</li>
-<li>数据是否稀疏；</li>
-<li>距离度量方式；</li>
-</ul>
-<h2 id="3-对数据进行分类—Kd树"><a href="#3-对数据进行分类—Kd树" class="headerlink" title="3.对数据进行分类—Kd树"></a>3.对数据进行分类—Kd树</h2><p>使用Kd树方式对查询数据进行分类包括以下步骤：</p>
-<ol>
-<li>构建 Kd 树；</li>
-<li>使用Kd树进行 k 近邻搜索； </li>
-<li>确定待查询数据所属的类；</li>
-</ol>
-<p>示例根据 Fisher iris 数据的最后两列对新点进行分类。</p>
-<blockquote>
-<p><strong>Step- 1 导入数据并对最后两列绘图</strong> </p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">x = meas(:,<span class="number">3</span>:<span class="number">4</span>);</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;Location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_01.png" alt="Figure contains an axes object. The axes object contains 3 objects of type line. These objects represent setosa, versicolor, virginica."></p>
-<blockquote>
-<p><strong>Step-2 绘制待查询数据</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">newpoint = [<span class="number">5</span> <span class="number">1.45</span>];</span><br><span class="line">line(newpoint(<span class="number">1</span>),newpoint(<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_02.png" alt="Figure contains an axes object. The axes object contains 4 objects of type line. These objects represent setosa, versicolor, virginica."></p>
-<blockquote>
-<p><strong>Step-3 构建Kd树近邻搜索模型</strong> </p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl = KDTreeSearcher(x)</span><br></pre></td></tr></table></figure>
-<p>Mdl 是一个<a class="link"   href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher<i class="fas fa-external-link-alt"></i></a>模型。 默认情况下，它用于搜索邻居的距离度量是欧氏距离。 </p>
-<blockquote>
-<p><strong>Step-4 找出到待查询点最近的10个点</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[n,d] = knnsearch(Mdl,newpoint,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n,<span class="number">1</span>),x(n,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">    <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">xlim([<span class="number">4.5</span> <span class="number">5.5</span>]);</span><br><span class="line">ylim([<span class="number">1</span> <span class="number">2</span>]);</span><br><span class="line">axis square</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_04.png" alt="Figure contains an axes object. The axes object contains 5 objects of type line. These objects represent setosa, versicolor, virginica."></p>
-<blockquote>
-<p><strong>Step-5 找出到待查询点最近的10个点的特征</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">tabulate(species(n))</span><br><span class="line">       Value    Count   Percent</span><br><span class="line">   virginica        <span class="number">2</span>     <span class="number">20.00</span><span class="comment">%</span></span><br><span class="line">  versicolor        <span class="number">8</span>     <span class="number">80.00</span><span class="comment">%</span></span><br></pre></td></tr></table></figure>
-<p>可以依据不同的分类依据将此新点归类到不同的类别。 </p>
-<blockquote>
-<p><strong>Step-6 在一组近邻点周围画一个圆圈来直观地识别近邻点</strong></p>
-</blockquote>
-<p>根据新点的位置定义圆的中心和直径 。</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">ctr = newpoint - d(<span class="keyword">end</span>);</span><br><span class="line">diameter = <span class="number">2</span>*d(<span class="keyword">end</span>);</span><br><span class="line"><span class="comment">% Draw a circle around the 10 nearest neighbors.</span></span><br><span class="line">h = rectangle(<span class="string">&#x27;position&#x27;</span>,[ctr,diameter,diameter],...</span><br><span class="line">   <span class="string">&#x27;curvature&#x27;</span>,[<span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">h.LineStyle = <span class="string">&#x27;:&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_05.png" alt="Figure contains an axes object. The axes object contains 6 objects of type line, rectangle. These objects represent setosa, versicolor, virginica."></p>
-<blockquote>
-<p><strong>step-7</strong> 多个数据点分类</p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">figure</span> </span><br><span class="line">newpoint2 = [<span class="number">5</span> <span class="number">1.45</span>;<span class="number">6</span> <span class="number">2</span>;<span class="number">2.75</span> <span class="number">.75</span>];</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">[n2,d2] = knnsearch(Mdl,newpoint2,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n2,<span class="number">1</span>),x(n2,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">line(newpoint2(:,<span class="number">1</span>),newpoint2(:,<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/ClassifyingQueryDataUsingKnnsearchExample_06.png" alt="Figure contains an axes object. The axes object contains 5 objects of type line. These objects represent setosa, versicolor, virginica."></p>
-<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_kd_tree.mlx" >完整代码：Position/knn_kd_tree.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="4-使用自定义距离度量查找最近的邻居"><a href="#4-使用自定义距离度量查找最近的邻居" class="headerlink" title="4.使用自定义距离度量查找最近的邻居"></a>4.使用自定义距离度量查找最近的邻居</h2><p>示例说明如何找到与 X 中的三个最近卡方距离(chi-square distance)数据的索引。卡方距离常用于相关性分析(correspondence analysis)，特别是在生态应用中。 </p>
-<p>$j$ 维向量 $x$ 和 $z$ 之间的卡方距离定义为：</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20220111105413617.png" alt="image-20220111105413617"></p>
-<p>其中$w_j$是于维度相关的权重系数；</p>
-<blockquote>
-<p><strong>Step-1</strong> 随机生成两个正态分布矩阵，矩阵的行数可以变化，但列数必须相等。因为矩阵$X$ 表示训练数据集，$Y$ 表示待分类数据集合；</p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">rng(<span class="number">1</span>) <span class="comment">% For reproducibility</span></span><br><span class="line">X = <span class="built_in">randn</span>(<span class="number">50</span>,<span class="number">2</span>);</span><br><span class="line">Y = <span class="built_in">randn</span>(<span class="number">4</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">h = <span class="built_in">zeros</span>(<span class="number">3</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">h(<span class="number">1</span>) = <span class="built_in">plot</span>(X(:,<span class="number">1</span>),X(:,<span class="number">2</span>),<span class="string">&#x27;bx&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">h(<span class="number">2</span>) = <span class="built_in">plot</span>(Y(:,<span class="number">1</span>),Y(:,<span class="number">2</span>),<span class="string">&#x27;rs&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_01.png" alt="Figure contains an axes object. The axes object with title Heterogeneous Data contains 2 objects of type line."></p>
-<blockquote>
-<p><strong>Step2-定义距离函数</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% distance function</span></span><br><span class="line">w = [<span class="number">0.4</span>; <span class="number">0.6</span>];</span><br><span class="line">chiSqrDist = @(x,Z)<span class="built_in">sqrt</span>((<span class="built_in">bsxfun</span>(@minus,x,Z).^<span class="number">2</span>)*w);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Step3-找出Y中每个到 X 中三个最近观测值的索引</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">k = <span class="number">3</span>;</span><br><span class="line">[Idx,D] = knnsearch(X,Y,<span class="string">&#x27;Distance&#x27;</span>,chiSqrDist,<span class="string">&#x27;k&#x27;</span>,k);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Step4- 确定图中最近的观测值</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:k</span><br><span class="line">    h(<span class="number">3</span>) = <span class="built_in">plot</span>(X(Idx(:,<span class="built_in">j</span>),<span class="number">1</span>),X(Idx(:,<span class="built_in">j</span>),<span class="number">2</span>),<span class="string">&#x27;ko&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">legend</span>(h,&#123;<span class="string">&#x27;\texttt&#123;X&#125;&#x27;</span>,<span class="string">&#x27;\texttt&#123;Y&#125;&#x27;</span>,<span class="string">&#x27;Nearest Neighbor&#x27;</span>&#125;,<span class="string">&#x27;Interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data and Nearest Neighbors&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/FindNearestNeighborUsingACustomDistanceMetricExample_02.png" alt="Figure contains an axes object. The axes object with title Heterogeneous Data and Nearest Neighbors contains 5 objects of type line. These objects represent \texttt{X}, \texttt{Y}, Nearest Neighbor."></p>
-<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/using_custom_distance_metric.mlx" >完整代码：Position/using_custom_distance_metric.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="5-有监督学习的-K-近邻分类"><a href="#5-有监督学习的-K-近邻分类" class="headerlink" title="5.有监督学习的 K-近邻分类"></a>5.有监督学习的 K-近邻分类</h2><h3 id="5-1-说明"><a href="#5-1-说明" class="headerlink" title="5.1 说明"></a>5.1 说明</h3><p>使用<a class="link"   href="https://ww2.mathworks.cn/help/stats/classificationknn.html"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">ClassificationKNN <i class="fas fa-external-link-alt"></i></a>分类模型实现k-近邻分类具体可以分为以下几步：</p>
-<ol>
-<li>构造 KNN 分类器<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7k2"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Construct KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
-<li>检查 KNN 分类器<a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7l_"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Examine Quality of KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
-<li>使用 KNN 分类器进行预测分类 <a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7nm"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Predict Classification Using KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
-<li>修改 KNN 分类器 <a class="link"   href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap_jn"  style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Modify KNN Classifier<i class="fas fa-external-link-alt"></i></a></li>
-</ol>
-<h3 id="5-2-示例"><a href="#5-2-示例" class="headerlink" title="5.2 示例"></a>5.2 示例</h3><p>例子展示了如何为 Fisher iris 数据构建一个 k 最近邻分类器。 </p>
-<blockquote>
-<p><strong>Step1- 导入数据</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">X = meas;    <span class="comment">% Use all data for fitting</span></span><br><span class="line">Y = species; <span class="comment">% Response data</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Step2- 使用knn构造分类器</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl = fitcknn(X,Y)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Step3- 修改邻域大小</strong></p>
-</blockquote>
-<p>默认的 k 近邻分类器仅使用一个临近值。将 Mdl 的邻域大小更改为 4</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Mdl.NumNeighbors = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Step4- 重新替换和交叉验证检查 k 最近邻分类器 </strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">loss = resubLoss(Mdl)</span><br><span class="line">rng(<span class="number">10</span>); <span class="comment">% For reproducibility</span></span><br><span class="line">CVMdl = crossval(Mdl,<span class="string">&#x27;KFold&#x27;</span>,<span class="number">5</span>);</span><br><span class="line">kloss = kfoldLoss(CVMdl)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Step5- 使用kNN构造预测分类</strong></p>
-</blockquote>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">flwr = <span class="built_in">mean</span>(X); <span class="comment">% an average flower</span></span><br><span class="line">flwrClass = predict(Mdl,flwr)</span><br><span class="line"><span class="comment">% 预测结果</span></span><br><span class="line"><span class="comment">% flwrClass = 1x1 cell array</span></span><br><span class="line"><span class="comment">%    &#123;&#x27;versicolor&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
-<p><a class="link"   href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_supervised_learn.mlx" >完整代码：Position/knn_supervised_learn.mlx at develop · Joiner12/Position (github.com)<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="6-kNN开发流程总结"><a href="#6-kNN开发流程总结" class="headerlink" title="6.kNN开发流程总结"></a>6.kNN开发流程总结</h2><p><strong>机器学习算法通用流程</strong></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/kaifaliucheng.png" alt="kaifaliucheng"></p>
-<p>收集数据：任何方法<br>准备数据：距离计算所需要的数值，最好是结构化的数据格式<br>分析数据：任何方法<br>训练算法：此步骤不适用于 k-近邻算法，k-近邻算法是在搜索过程中训练算法；<br>测试算法：计算错误率<br>使用算法：输入样本数据和结构化的输出结果，然后运行 k-近邻算法判断输入数据分类属于哪个分类，最后对计算出的分类执行后续处理。</p>
-<hr>
-
-<p style="text-align:right;">2022-01-11 15:10</p>
-
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
-        <tag>matlab</tag>
-        <tag>kNN</tag>
       </tags>
   </entry>
   <entry>
