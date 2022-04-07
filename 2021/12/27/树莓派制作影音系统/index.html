@@ -166,7 +166,7 @@
                     <div class="author">
                         <span class="name">Wh.🛰️</span>
                         
-                            <span class="author-label">Lv2</span>
+                            <span class="author-label">Lv1</span>
                         
                     </div>
                     <div class="meta-info">
@@ -210,7 +210,12 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="树莓派4b打造影音系统-LibreELEC"><a href="#树莓派4b打造影音系统-LibreELEC" class="headerlink" title="树莓派4b打造影音系统(LibreELEC)"></a>树莓派4b打造影音系统(LibreELEC)</h1><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/icon-release-k19.jpg" alt="icon-release-k19"></p>
+            <h1 id="树莓派4b打造影音系统-LibreELEC"><a href="#树莓派4b打造影音系统-LibreELEC" class="headerlink" title="树莓派4b打造影音系统(LibreELEC)"></a>树莓派4b打造影音系统(LibreELEC)</h1><div style="text-align:center;">
+    <img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/icon-release-k19.jpg" style="width:400px;height:250px;"/>
+</div>
+
+
+
 <span id="more"></span>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一个不是很智能的电视+一个闭源的机顶盒+随便造的树莓派 = 把树莓派打造成多媒体电视盒子，使用树莓派替代那个闭源的机顶盒。思路其实很简单，树莓派是一个廉价的电脑，包括USB、Ethernet接口、hdmi等接口，支持多种Linux操作系统。这其中就有像<strong>LibreELEC、OSMC这种适合做媒体服务器</strong>的专用系统。将这些系统在树莓派上安装、运行就能实现目的，本篇主要记录安装过程和安装过程遇到的部分问题及解决方法。</p>
 <p><strong>LibreELEC</strong></p>
@@ -227,7 +232,6 @@
 <p><strong>为什么需要升级Bootloader?</strong></p>
 <p>一般情况下，是不需要升级Bootloader的，之前在用树莓派安装Win10操作系统的时候，提示：</p>
 <p><code>如果要从USB驱动器启动您的Raspberry Pi 4/400或使用GPT分区方案，则必须将Bootloader更新至最新版本。</code></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211228105821877.png" alt="image-20211228105821877"></p>
 <p>所以为了减少不必要的麻烦还是决定把Bootloader更新了，使用Raspberry Pi Imager更新方法参考树莓派官方文档<a class="link"   target="_blank" rel="noopener" href="https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-boot-eeprom" >Raspberry Pi Documentation - Raspberry Pi Hardware<i class="fas fa-external-link-alt"></i></a>，具体步骤如下：</p>
 <ol>
 <li>从<a class="link"   target="_blank" rel="noopener" href="https://www.raspberrypi.com/software/" >Raspberry Pi OS – Raspberry Pi<i class="fas fa-external-link-alt"></i></a>下载安装Raspberry Pi Imager软件；</li>
@@ -237,28 +241,17 @@
 <li>更新成功后，树莓派绿色LED将稳定闪烁，如果接了显示器，则会显示绿色。</li>
 <li>关闭树莓派电源并取出 SD 卡。 </li>
 </ol>
-<div style=text-align:center;>
-    <img src="https://gitee.com/RiskyJR/pic-bed/raw/master/bootloader.gif">
-    <p>更新过程</p>
-</div>
-
 <h2 id="3-通过Raspberry-Pi-Imager烧写LibreELEC系统"><a href="#3-通过Raspberry-Pi-Imager烧写LibreELEC系统" class="headerlink" title="3.通过Raspberry Pi Imager烧写LibreELEC系统"></a>3.通过Raspberry Pi Imager烧写LibreELEC系统</h2><h3 id="3-1-格式化SD卡"><a href="#3-1-格式化SD卡" class="headerlink" title="3.1 格式化SD卡"></a>3.1 格式化SD卡</h3><p>烧写系统前需要将SD卡格式化，具体格式化过程参照下图：</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/erase.gif" alt="erase"></p>
-<h3 id="3-2-烧写LibreELEC"><a href="#3-2-烧写LibreELEC" class="headerlink" title="3.2 烧写LibreELEC"></a>3.2 烧写LibreELEC</h3><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/boot.gif" alt="boot"></p>
-<h3 id="3-3-LibreELEC设置"><a href="#3-3-LibreELEC设置" class="headerlink" title="3.3 LibreELEC设置"></a>3.3 LibreELEC设置</h3><p>LibreELEC系统烧录完成之后，将SD卡插入树莓派，使用Micro HDMI将树莓派连接到显示器后上电。</p>
+<h3 id="3-2-烧写LibreELEC"><a href="#3-2-烧写LibreELEC" class="headerlink" title="3.2 烧写LibreELEC"></a>3.2 烧写LibreELEC</h3><h3 id="3-3-LibreELEC设置"><a href="#3-3-LibreELEC设置" class="headerlink" title="3.3 LibreELEC设置"></a>3.3 LibreELEC设置</h3><p>LibreELEC系统烧录完成之后，将SD卡插入树莓派，使用Micro HDMI将树莓派连接到显示器后上电。</p>
 <p>等待系统加载完成，加载完成后按照导引完成设置。</p>
 <p>树莓派插入刚安装的系统并开机，进入图中页面，进行网络和SSH的配置。</p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/%E5%9F%BA%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84LibreELEC%E5%AE%89%E8%A3%852-1024x628.png" alt="基于树莓派的LibreELEC安装2-1024x628"></p>
-<p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/%E5%9F%BA%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84LibreELEC%E5%AE%89%E8%A3%853-1024x606.png" alt="基于树莓派的LibreELEC安装3-1024x606"></p>
 <p><strong>注：</strong></p>
 <p>如果将系统设置为中文，需要先将字体设置为 <a style="font-size:18px; color:'red';">Arial</a>，否则会出现乱码；</p>
 <p>System ➤ Interface ➤ Skin ➤ Fonts ➤ Arial</p>
 <p><img src="https://www.xiangquba.cn/wp-content/uploads/2020/03/基于树莓派的LibreELEC安装4-1024x576.png" alt="img"></p>
-<h2 id="4-安装过程中出现的问题"><a href="#4-安装过程中出现的问题" class="headerlink" title="4.安装过程中出现的问题"></a>4.安装过程中出现的问题</h2><h3 id="4-1-Error-in-mount-storage"><a href="#4-1-Error-in-mount-storage" class="headerlink" title="4.1 Error in mount_storage"></a>4.1 Error in mount_storage</h3><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211228142850745.png" alt="image-20211228142850745"></p>
-<p>原因分析：可能是在使用Raspberry pi imager 烧写完成之后校验失败，然后直接上电使用。</p>
+<h2 id="4-安装过程中出现的问题"><a href="#4-安装过程中出现的问题" class="headerlink" title="4.安装过程中出现的问题"></a>4.安装过程中出现的问题</h2><h3 id="4-1-Error-in-mount-storage"><a href="#4-1-Error-in-mount-storage" class="headerlink" title="4.1 Error in mount_storage"></a>4.1 Error in mount_storage</h3><p>原因分析：可能是在使用Raspberry pi imager 烧写完成之后校验失败，然后直接上电使用。</p>
 <p>解决方法：重新烧写</p>
-<h3 id="4-2-Raspberry-pi-imager-校验失败"><a href="#4-2-Raspberry-pi-imager-校验失败" class="headerlink" title="4.2 Raspberry pi imager 校验失败"></a>4.2 Raspberry pi imager 校验失败</h3><p><img src="https://gitee.com/RiskyJR/pic-bed/raw/master/image-20211228112419315.png" alt="image-20211228112419315"></p>
-<p>原因分析：Unknown</p>
+<h3 id="4-2-Raspberry-pi-imager-校验失败"><a href="#4-2-Raspberry-pi-imager-校验失败" class="headerlink" title="4.2 Raspberry pi imager 校验失败"></a>4.2 Raspberry pi imager 校验失败</h3><p>原因分析：Unknown</p>
 <p>解决方法：重新格式化</p>
 <h2 id="5-参考"><a href="#5-参考" class="headerlink" title="5.参考"></a>5.参考</h2><p>1.<a class="link"   target="_blank" rel="noopener" href="https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-boot-eeprom" >Raspberry Pi Documentation - Raspberry Pi Hardware<i class="fas fa-external-link-alt"></i></a></p>
 <p>2.<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141068779" >用于各种用途的最佳树莓派操作系统 | Linux 中国 - 知乎 (zhihu.com)<i class="fas fa-external-link-alt"></i></a></p>
