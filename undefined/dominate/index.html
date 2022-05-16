@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<head>
+  <!-- Google Analytics -->
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxx-xx"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-xxxxxx-xx');
+    </script>
+  
+
+  <!-- Baidu Tongji -->
+  
+    <script type="text/javascript">
+      // Originial
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  <!-- Baidu Push -->
+  
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+    </script>
+  
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
+  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="脑海中起毛球的记忆"/>
+  <meta name="keyword" content="Wh,Blog"/>
+  <link rel="shortcut icon" href="/img/avatar/favicon.jpg"/>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/beantech.min.css"/>
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css"/>
+    <link rel="stylesheet" href="/css/widget.css"/>
+    <link rel="stylesheet" href="/css/rocket.css"/>
+    <link rel="stylesheet" href="/css/signature.css"/>
+    <link rel="stylesheet" href="/css/catalog.css"/>
+    <link rel="stylesheet" href="/css/livemylife.css"/>
+
+    
+      <!-- wave start -->
+      <link rel="stylesheet" href="/css/wave.css"/>
+      <!-- wave end -->
+    
+
+    
+      <!-- top start (article top hot config) -->
+      <link rel="stylesheet" href="/css/top.css"/>
+      <!-- top end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/scroll.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+      <!-- viewer start (Picture preview) -->
+      <link rel="stylesheet" href="/css/viewer.min.css"/>
+      <!-- viewer end -->
+    
+
+    
+      <!-- Search start -->
+      <link rel="stylesheet" href="/css/search.css"/>
+      <!-- Search end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/themecolor.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+      <!-- gitalk start -->
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"> -->
+      <link rel="stylesheet" href="/css/gitalk.css"/>
+      <!-- gitalk end -->
+    
+  
+
+  <!-- Custom Fonts -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- Hux change font-awesome CDN to qiniu -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
+  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <link rel="canonical" href="http://yoursite-url/undefined/dominate/">
+  <title>
+    
+      Using dominate to Generate Web Page - Wh.🛰️&#39;s Blogs
+    
+  </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+
+	<body ontouchstart="" class="body--light body--dark">
+
+
+		<!-- ThemeColor -->
+		
+		<!-- ThemeColor -->
+<style type="text/css">
+  .body--light {
+    --light-mode: none;
+    --dark-mode: block;
+  }
+  .body--dark {
+    --light-mode: block;
+    --dark-mode: none;
+  }
+  i.mdui-icon.material-icons.light-mode {
+    display: var(--light-mode);
+  }
+  i.mdui-icon.material-icons.dark-mode {
+    display: var(--dark-mode);
+  }
+</style>
+<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
+  <i class="mdui-icon material-icons light-mode"></i>
+  <i class="mdui-icon material-icons dark-mode"></i>
+</div>
+<script>
+  //getCookieValue
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b
+      ? b.pop()
+      : '';
+  }
+  let themeMode = 'dark';
+  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
+    let dbody = document.body.classList;
+    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
+  }
+
+  //setCookieValue
+  var toggleBtn = document.querySelector(".toggle");
+  toggleBtn.addEventListener("click", function () {
+    var e = document.body.classList.contains("body--dark");
+    var cookieString = e
+      ? "dark"
+      : "light";
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
+    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
+  });
+</script>
+
+		
+
+		<!-- Gitter -->
+		
+		<!-- Gitter -->
+<!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'your-community/your-room'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+		
+
+		<!-- Navigation (contains search)-->
+		<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">你在我的心里</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/">首页</a>
+          </li>
+
+          
+          
+          
+          
+          <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              标签
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a class="popup-trigger">
+              <span class="search-icon"></span>搜索</a>
+          </li>
+          
+
+          <!-- LangSelect -->
+          
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- progress -->
+<div id="progress">
+  <div class="line" style="width: 0%;"></div>
+</div>
+
+<script>
+  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = "0px"
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+</script>
+
+
+		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
+		<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+
+  <style type="text/css">
+    .body--light {
+      /* intro-header */
+      --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
+      --intro-header-background-image-url-post: url('');
+      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+    }
+    .body--dark {
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+    }
+
+    header.intro-header {
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url(''); */
+      
+    }
+
+    
+  </style>
+
+
+
+
+
+<header class="intro-header">
+  <!-- Signature -->
+  <div id="signature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#Python" title="Python">Python</a>
+              
+              <a class="tag" href="/tags/#Html" title="Html">Html</a>
+              
+            </div>
+            <h1>Using dominate to Generate Web Page</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by Wh on
+              2021-10-29
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">16</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">3.3k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+            <!-- 不蒜子统计 start -->
+            <span class="meta" id="busuanzi_container_page_pv">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            
+
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- waveoverlay start -->
+  <div class="preview-overlay">
+    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="preview-parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
+      </g>
+    </svg>
+  </div>
+  <!-- waveoverlay end -->
+  
+
+</header>
+
+
+
+		<!-- Main Content (Post contains
+	Pager、
+	tip、
+	socialshare、
+	gitalk、gitment、disqus-comment、
+	Catalog、
+	Sidebar、
+	Featured-Tags、
+	Friends Blog、
+	anchorjs、
+	) -->
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <h1 id="Dominate学习笔记"><a href="#Dominate学习笔记" class="headerlink" title="Dominate学习笔记"></a>Dominate学习笔记</h1><h2 id="1-问题背景"><a href="#1-问题背景" class="headerlink" title="1. 问题背景"></a>1. 问题背景</h2><p>​    算法调试、文档输出等需要有相应的文档记录。常用的记录保存方式：markdown、office、html等多种方式。个人常用的方式还是偏向于MarkDown文档（Typora），但是在使用的过程中，还是遇到一些问题。比如：MarkDown相比较于其他两种记录方式较为简洁，自定义程度不高，在需要输出一些复杂度要求高的文档时会显得有些无力。因此，在一些情况下会选择使用html作为记录方式。理所当然，出现了一个新的问题，html是一种结构化文档，能够很方便地通过自己写代码自动修改、生成文档。Python的 <a target="_blank" rel="noopener" href="https://pypi.org/project/dominate/" style="font-family: Source Sans Pro,Helvetica,Arial,sans-serif;font-size: 1rem;font-weight: 400;color: #006dad;cursor: pointer;">dominate</a>库能够是一个封装得很好的库，对于dominate库学习、使用，是以为记。</p>
+<h2 id="2-Dominate"><a href="#2-Dominate" class="headerlink" title="2. Dominate"></a>2. Dominate</h2><h3 id="2-1-dominate简介"><a href="#2-1-dominate简介" class="headerlink" title="2.1 dominate简介"></a>2.1 dominate简介</h3><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>是一个使用DOM api创建和修改HTML(HyperText Markup Language)${^{[1]}}$文件的python库。通过dominate能够很方便的用python地写html网页，且无需深入学习模板语言(css，html等)。</p>
+<h2 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h2><p>官方推荐安装方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install dominate</span><br></pre></td></tr></table></figure>
+<h2 id="4-示例"><a href="#4-示例" class="headerlink" title="4. 示例"></a>4. 示例</h2><p>开始使用之前需要导入适当的HTML标签或者直接导入整个HTML标签(tag set)集，HTML的标签有<code>div</code>、<code>a</code>、<code>p</code>、<code>h1</code>等，相关标签详细介绍参考[1]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.tags <span class="keyword">import</span> * </span><br></pre></td></tr></table></figure>
+<h3 id="4-1-Hello-World"><a href="#4-1-Hello-World" class="headerlink" title="4.1 Hello,World"></a>4.1 Hello,World</h3><h4 id="4-1-1-使用dominate输出第一个网页内容。"><a href="#4-1-1-使用dominate输出第一个网页内容。" class="headerlink" title="4.1.1 使用dominate输出第一个网页内容。"></a>4.1.1 使用dominate输出第一个网页内容。</h4><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>最基本的功能是，为每个HTML元素提供了一个实现类。在<code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>中对应的HTML元素类的构造函数能够将该元素的子元素、文本、关键字属性参数。dominate节点通过<code>__str__()</code>、<code>__unicode__()</code>、<code>__render()__</code>方法返回HTML对应的表达式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.tags <span class="keyword">import</span> *</span><br><span class="line">mainpage = html(body(h1(<span class="string">&#x27;Hello, World!&#x27;</span>)))</span><br><span class="line">htmlRepreStrI = mainpage.__str__()</span><br><span class="line">htmlRepreStrII = mainpage.__unicode__()</span><br><span class="line">htmlRepreStrIII = mainpage.render()</span><br><span class="line"><span class="built_in">print</span>(mainpage)</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;html&gt;</span></span><br><span class="line">  <span class="section">&lt;body&gt;</span></span><br><span class="line">    <span class="section">&lt;h1&gt;</span><span class="attribute">Hello</span>, World!&lt;/h<span class="number">1</span>&gt;</span><br><span class="line">  <span class="section">&lt;/body&gt;</span></span><br><span class="line"><span class="section">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-1-2-class-html和class-dominate-document"><a href="#4-1-2-class-html和class-dominate-document" class="headerlink" title="4.1.2 class:html和class:dominate.document"></a>4.1.2 class:html和class:dominate.document</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dominate</span><br><span class="line"><span class="keyword">from</span> dominate.tags <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">mainpageI = dominate.document()</span><br><span class="line">mainpageII = html()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;# dominate.document&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(mainpageI)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;------------------\n&#x27;</span>, <span class="string">&#x27;# html&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(mainpageII)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># dominate.document</span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Dominate<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">------------------</span><br><span class="line"> # html</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>document类相比于html类，document能够输出标准的HTML结构。实例化过程中，构造函数无参数输入，document能够生成带有网页title的head、body的html标签。而html仅生成html标签。这是因为html类是document的父类，document类在继承了html类，且其构造函数中丰富了相关内容。</p>
+<p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>库中的<strong>document.py</strong>构造函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">document</span>(<span class="params">tags.html</span>):</span></span><br><span class="line">  tagname = <span class="string">&#x27;html&#x27;</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, title=<span class="string">&#x27;Dominate&#x27;</span>, doctype=<span class="string">&#x27;&lt;!DOCTYPE html&gt;&#x27;</span>, request=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Creates a new document instance. Accepts `title`, `doctype`, and `request` keyword arguments.</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="built_in">super</span>(document, self).__init__()</span><br><span class="line">    self.doctype    = doctype</span><br><span class="line">    self.head       = <span class="built_in">super</span>(document, self).add(tags.head())</span><br><span class="line">    self.body       = <span class="built_in">super</span>(document, self).add(tags.body())</span><br><span class="line">    self.title_node = self.head.add(tags.title(title))</span><br><span class="line">    self._entry     = self.body</span><br></pre></td></tr></table></figure>
+<h2 id="5-属性"><a href="#5-属性" class="headerlink" title="5. 属性"></a>5. 属性</h2><h3 id="5-1-关键字参数修改属性"><a href="#5-1-关键字参数修改属性" class="headerlink" title="5.1 关键字参数修改属性"></a>5.1 关键字参数修改属性</h3><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code> 可以使用关键字参数将属性(attribute)附加到标签(tag)上。大多数属性都是从HTML规范复制过来的仅有很少的差异。因为<code>class</code>和<code>for</code>属性关键词和Python保留关键词冲突，因此可以使用下面的别名。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">_class</td>
+<td style="text-align:left">_for</td>
+</tr>
+<tr>
+<td style="text-align:left">cls</td>
+<td style="text-align:left">fr</td>
+</tr>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left">htmlFor</td>
+</tr>
+<tr>
+<td style="text-align:left">class_name</td>
+<td style="text-align:left">html_for</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test = label(cls=<span class="string">&#x27;classname anothername&#x27;</span>, fr=<span class="string">&#x27;someinput&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(test)</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;label <span class="keyword">class</span>=&quot;<span class="symbol">classname</span> <span class="symbol">anothername</span>&quot; <span class="symbol">for</span>=&quot;<span class="symbol">someinput</span>&quot;&gt;&lt;/<span class="symbol">label</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="5-1-使用data-修改HTML5数据属性："><a href="#5-1-使用data-修改HTML5数据属性：" class="headerlink" title="5.1 使用data_*修改HTML5数据属性："></a>5.1 使用<code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">data_*</code>修改HTML5数据属性：</h3><p>在HTML5中data属性是“xx-xx”的形式。<del>如background-color属性。</del>但是python中“-”是数学运算符号“减”。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test = div(data_employee=<span class="string">&#x27;101011&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(test)</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> data-employee=<span class="string">&quot;101011&quot;</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><code>todo</code>：background-color如何处理。</p>
+<p>尝试使用下划线的方式处理，则结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test = div(background_color=<span class="string">&#x27;#ffffff&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(test)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="symbol">background_color</span>=<span class="string">&quot;#ffffff&quot;</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-使用类似于字典的接口修改标签属性"><a href="#5-3-使用类似于字典的接口修改标签属性" class="headerlink" title="5.3 使用类似于字典的接口修改标签属性"></a>5.3 使用类似于字典的接口修改标签属性</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">header = div()</span><br><span class="line">header[<span class="string">&#x27;id&#x27;</span>] = <span class="string">&#x27;header&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(header)</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">&quot;header&quot;</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="6-构造复杂网页结构"><a href="#6-构造复杂网页结构" class="headerlink" title="6.构造复杂网页结构"></a>6.构造复杂网页结构</h2><h3 id="6-1-amp-add"><a href="#6-1-amp-add" class="headerlink" title="6.1 +=&amp;.add()"></a>6.1 <code>+=</code>&amp;<code>.add()</code></h3><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code> 支持<code>+=</code> 运算符和<code>.add()</code>方法，通过上述方法能够很轻易地创建出更复杂的网页结构。</p>
+<p>例如，创建一个简单的无序列表(list)容器:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = ul()</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    <span class="built_in">list</span> += li(<span class="string">&#x27;Item #&#x27;</span>, item)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;ul&gt;</span></span><br><span class="line">  <span class="section">&lt;li&gt;</span><span class="attribute">Item</span> #<span class="number">0</span>&lt;/li&gt;</span><br><span class="line">  <span class="section">&lt;li&gt;</span><span class="attribute">Item</span> #<span class="number">1</span>&lt;/li&gt;</span><br><span class="line">  <span class="section">&lt;li&gt;</span><span class="attribute">Item</span> #<span class="number">2</span>&lt;/li&gt;</span><br><span class="line">  <span class="section">&lt;li&gt;</span><span class="attribute">Item</span> #<span class="number">3</span>&lt;/li&gt;</span><br><span class="line"><span class="section">&lt;/ul&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同样也可以使用这种方式创建多个<code>&lt;div&gt;</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bd = body()</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    bd += div(<span class="string">&#x27;Item #&#x27;</span>, item)</span><br><span class="line"><span class="built_in">print</span>(bd)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;<span class="keyword">div</span>&gt;Item <span class="string">#0</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  &lt;<span class="keyword">div</span>&gt;Item <span class="string">#1</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  &lt;<span class="keyword">div</span>&gt;Item <span class="string">#2</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  &lt;<span class="keyword">div</span>&gt;Item <span class="string">#3</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>复杂网页种，通常存在一些重复的模块，使用<code>+=</code>或者<code>.add()</code> 能够使代码更为简便。</p>
+<p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>支持使用迭代的方式简化代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">menu_items = ([<span class="string">&#x27;home&#x27;</span>, <span class="string">r&#x27;/home/&#x27;</span>], [<span class="string">&#x27;about&#x27;</span>, <span class="string">&#x27;/about&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(ul(li(a(name, href=link), __pretty=<span class="literal">False</span>) <span class="keyword">for</span> name, link <span class="keyword">in</span> menu_items))</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/home/&quot;</span>&gt;</span>home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/about&quot;</span>&gt;</span>about<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一个简单HTML文件树如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_html = html()</span><br><span class="line">_head = _html.add(head(title(<span class="string">&quot;Simple Document Tree&quot;</span>)))</span><br><span class="line">_body = _html.add(body())</span><br><span class="line">header = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;header&#x27;</span>))</span><br><span class="line">content = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;content&#x27;</span>))</span><br><span class="line">footer = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;footer&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(_html)</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Simple Document Tree<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;header&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;footer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面实现生成HTML文件树的方式是通过<code>.add()</code>方法，调用 <code>.add()</code> 方法后，其通过元胞的方式返回子标签。上面的实现方式可以简化为如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_html = html()</span><br><span class="line">_head, _body = _html.add(head(title(<span class="string">&#x27;Simple Document Tree&#x27;</span>)), body())</span><br><span class="line">names = [<span class="string">&#x27;header&#x27;</span>, <span class="string">&#x27;content&#x27;</span>, <span class="string">&#x27;footer&#x27;</span>]</span><br><span class="line">header, content, footer = _body.add([div(<span class="built_in">id</span>=name) <span class="keyword">for</span> name <span class="keyword">in</span> names])</span><br><span class="line"><span class="built_in">print</span>(_html)</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Simple Document Tree<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;header&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;footer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码种的_head, _body 都是通过<code>.add()</code> 方法添加到 _html类中的，从属关系为父子。使用<code>.add()</code> 方法生成HTML文件树的时候，内部并没有根据标签类型进行文件格式调整，只是按照先后顺序进行添加，一个典型的HTML文件XX.html应该包含&lt; head &gt; &lt; body &gt;且为了方便阅读，&lt; head &gt;通常在文件的前面。</p>
+<p>如果按照以下方式实现生成一个简单的HTML文件树：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_html = html()</span><br><span class="line">_body = _html.add(body())</span><br><span class="line">_head = _html.add(head(title(<span class="string">&quot;Simple Document Tree&quot;</span>)))</span><br><span class="line">header = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;header&#x27;</span>))</span><br><span class="line">content = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;content&#x27;</span>))</span><br><span class="line">footer = _body.add(div(<span class="built_in">id</span>=<span class="string">&#x27;footer&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(_html)</span><br></pre></td></tr></table></figure>
+<p>则最终输出为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;header&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;footer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Simple Document Tree<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-2-使用类数组接口修改标签子项"><a href="#6-2-使用类数组接口修改标签子项" class="headerlink" title="6.2 使用类数组接口修改标签子项"></a>6.2 使用类数组接口修改标签子项</h3><p>5.3中提到过，可以通过类字典方式修改标签的属性，<code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>也支持通过类数组方式修改标签下子标签的属性。</p>
+<p><strong>Todo:</strong> 文档中说的是通过类数组方式修改children of a tag 实际代码中修改的是tag自身的属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">header = div(<span class="string">&#x27;Test&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(header)</span><br><span class="line">header[<span class="number">0</span>] = <span class="string">&#x27;Hello World&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(header)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span>&gt;<span class="keyword">Test</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;<span class="keyword">div</span>&gt;Hello World&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-使用commit类为HTML文件添加注释"><a href="#6-3-使用commit类为HTML文件添加注释" class="headerlink" title="6.3 使用commit类为HTML文件添加注释"></a>6.3 使用commit类为HTML文件添加注释</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(comment(<span class="string">&#x27;this is a piece of commit&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--this is a piece of commit--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if lt IE9]&gt;</span></span><br><span class="line"><span class="comment">&lt;p&gt;Upgrade to newer IE!&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-渲染网页文本-render"><a href="#7-渲染网页文本-render" class="headerlink" title="7. 渲染网页文本(render)"></a>7. 渲染网页文本(render)</h2><p>render()函数输出标签的文本字符串，可以用于后面生成本地html网页文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = div(span(<span class="string">&#x27;Hello World&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(a.render(), <span class="string">&#x27;\n&#x27;</span>, <span class="built_in">type</span>(a.render()))</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test.html&#x27;</span>,mode=<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(a.render())</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">class</span> &#x27;<span class="attr">str</span>&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>render()</code>默认输出的每个HTML元素单独占一行和两个空格的缩进。</p>
+<p>网页文本的渲染结果由创建HTML元素的<code>__pretty</code>属性决定，使用<code>render()</code>时候可以修改属性值包括：<code>pretty</code>（默认值：<code>True</code>，出来某些元素类型，比如pre）、<code>indent</code> （默认值：<code>&#39;&#39;</code>）、<code>xhtml</code>(默认值：<code>False</code>)。<code>render()</code>渲染选项设置后，其所有的子节点同样有效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = div(span(<span class="string">&#x27;Hello World&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(a.render())</span><br><span class="line"><span class="built_in">print</span>(a.render(pretty=<span class="literal">False</span>))</span><br><span class="line"><span class="built_in">print</span>(a.render(indent=<span class="string">&#x27;\t&#x27;</span>))</span><br><span class="line">a = div(span(<span class="string">&#x27;Hello World&#x27;</span>), __pretty=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(a.render())</span><br><span class="line">d = div()</span><br><span class="line"><span class="keyword">with</span> d:</span><br><span class="line">    hr()</span><br><span class="line">    p(<span class="string">&quot;Test&quot;</span>)</span><br><span class="line">    br()</span><br><span class="line"><span class="built_in">print</span>(d.render())</span><br><span class="line"><span class="built_in">print</span>(d.render(xhtml=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">--------------</span><br><span class="line">&lt;div&gt;</span><br><span class="line"><span class="code">  &lt;span&gt;Hello World&lt;/span&gt;</span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;&lt;span&gt;Hello World&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;</span><br><span class="line"><span class="code">	&lt;span&gt;Hello World&lt;/span&gt;</span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;&lt;span&gt;Hello World&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;</span><br><span class="line"><span class="code">  &lt;hr&gt;</span></span><br><span class="line"><span class="code">  &lt;p&gt;Test&lt;/p&gt;&lt;br&gt;</span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">--------------</span><br><span class="line">&lt;div&gt;</span><br><span class="line"><span class="code">  &lt;hr /&gt;</span></span><br><span class="line"><span class="code">  &lt;p&gt;Test&lt;/p&gt;&lt;br /&gt;</span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="8-HTML文件上下文管理"><a href="#8-HTML文件上下文管理" class="headerlink" title="8.HTML文件上下文管理"></a>8.HTML文件上下文管理</h2><h3 id="8-1-with添加子标签"><a href="#8-1-with添加子标签" class="headerlink" title="8.1 with添加子标签"></a>8.1 with添加子标签</h3><p>使用Python的<code>with</code>添加子标签：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个无序列表标签</span></span><br><span class="line">h = ul()</span><br><span class="line"><span class="comment"># 使用with给无序列表添加列表项目</span></span><br><span class="line"><span class="keyword">with</span> h:</span><br><span class="line">    li(<span class="string">&#x27;One&#x27;</span>)</span><br><span class="line">    li(<span class="string">&#x27;Two&#x27;</span>)</span><br><span class="line">    li(<span class="string">&#x27;Three&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(h)</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>One<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Three<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同样，可以通过嵌套使用<code>with</code>生成更复杂的网页：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">h = html()</span><br><span class="line"><span class="keyword">with</span> h.add(body()).add(div(<span class="built_in">id</span>=<span class="string">&#x27;content&#x27;</span>)):</span><br><span class="line">    h1(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">    p(<span class="string">&#x27;Lorem ipsum ...&#x27;</span>)</span><br><span class="line">    <span class="keyword">with</span> table().add(tbody()):</span><br><span class="line">        l = tr()</span><br><span class="line">        l += td(<span class="string">&#x27;One&#x27;</span>)</span><br><span class="line">        l.add(td(<span class="string">&#x27;Two&#x27;</span>))</span><br><span class="line">        <span class="keyword">with</span> l:</span><br><span class="line">            td(<span class="string">&#x27;Three&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(h)</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum ...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>One<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>Three<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-2-attr添加属性"><a href="#8-2-attr添加属性" class="headerlink" title="8.2 attr添加属性"></a>8.2 attr添加属性</h3><p>使用<code>with</code>的方式打开节点，通过<code>attr</code>函数为节点添加属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">d = div()</span><br><span class="line"><span class="keyword">with</span> d:</span><br><span class="line">    attr(<span class="built_in">id</span>=<span class="string">&#x27;header&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">&quot;header&quot;</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-text函数为文本节点添加文本"><a href="#8-3-text函数为文本节点添加文本" class="headerlink" title="8.3 text函数为文本节点添加文本"></a>8.3 text函数为文本节点添加文本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.util <span class="keyword">import</span> text</span><br><span class="line">para = p(<span class="string">&quot;This is a paragraph,&quot;</span>, __pretty=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(para)</span><br><span class="line"><span class="keyword">with</span> para:</span><br><span class="line">    text(<span class="string">&#x27;Have a look at our &#x27;</span>)</span><br><span class="line">    a(<span class="string">&#x27;other products&#x27;</span>, href=<span class="string">&#x27;/products&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(para)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;This is <span class="keyword">a</span> <span class="keyword">paragraph</span>,&lt;/p&gt;</span><br><span class="line">&lt;p&gt;This is <span class="keyword">a</span> <span class="keyword">paragraph</span>,Have <span class="keyword">a</span> look <span class="keyword">at</span> our &lt;<span class="keyword">a</span> href=<span class="string">&quot;/products&quot;</span>&gt;other products&lt;/<span class="keyword">a</span>&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>从上面结果看，<code>dominate.util.text</code>函数修改文本节点的文本内容时，并不是对原有文本内容进行替换，而是添加原有文本的后面。</p>
+<h2 id="9-装饰器-Decorators"><a href="#9-装饰器-Decorators" class="headerlink" title="9.装饰器(Decorators)"></a>9.装饰器(Decorators)</h2><p><code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code>非常适合为页面部分创建可复用的小部件，一种实现方式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="keyword">with</span> div() <span class="keyword">as</span> d:</span><br><span class="line">        p(<span class="string">&#x27;Hello, %s&#x27;</span> % name)</span><br><span class="line">    <span class="keyword">return</span> d</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(greeting(<span class="string">&#x27;Bob&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p>上面这种实现方式抽象成模板：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">widget</span>(<span class="params">parameters</span>):</span></span><br><span class="line">    <span class="keyword">with</span> tag() <span class="keyword">as</span> t:</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">return</span> t</span><br></pre></td></tr></table></figure>
+<p>通过使用标签（对象和实例）作为装饰器，可以避免模板中再引入相应标签，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@div</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span>(<span class="params">name</span>):</span></span><br><span class="line">    p(<span class="string">&#x27;Hello %s&#x27;</span> % name)</span><br><span class="line"><span class="built_in">print</span>(greeting(<span class="string">&#x27;Bob&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello Bob<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>被标签(tag)装饰的函数会返回一个用来装饰标签的实例，比如用div标签装饰的函数则返回一个div实例。并且由于在函数内部隐式调用with语句，返回的实例会包含函数中创建的节点。</p>
+<p>如果需要将属性或其他数据添加到窗口小部件的根节点中，则还可以使用标签的实例作为装饰器。每个调用被装饰函数将返回用于装饰它的节点的副本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@div(<span class="params">h2(<span class="params"><span class="string">&#x27;Welcome&#x27;</span></span>), cls=<span class="string">&#x27;greeting&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span>(<span class="params">name</span>):</span></span><br><span class="line">    p(<span class="string">&#x27;Hello %s&#x27;</span> % name)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(greeting(<span class="string">&#x27;Bob&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=&quot;<span class="symbol">greeting</span>&quot;&gt;</span><br><span class="line">  &lt;<span class="symbol">h2</span>&gt;<span class="symbol">Welcome</span>&lt;/<span class="symbol">h2</span>&gt;</span><br><span class="line">  &lt;<span class="symbol">p</span>&gt;<span class="symbol">Hello</span> <span class="symbol">Bob</span>&lt;/<span class="symbol">p</span>&gt;</span><br><span class="line">&lt;/<span class="symbol">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="10-创建文件-Creating-Documents"><a href="#10-创建文件-Creating-Documents" class="headerlink" title="10.创建文件(Creating Documents)"></a>10.创建文件(Creating Documents)</h2><p>每次创建一个通用结构的HTML文档是很繁琐的事情，<code style="font-family: Source Code Pro,monospace;background-color: #f9f9f9;border: 1px solid #d3d3d3;padding: 0 2px 1px;font-size: .85rem;color: #6c6c6c;">Dominate</code> 的<code>document</code>类能够很轻松地地解决这个问题。</p>
+<p>新建一个document类时，其类成员包括基本的HTML标签。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = document()</span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">title</span>&gt;</span>Dominate<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>document</code>类接收<code>title</code>、<code>doctype</code>、<code>request</code>这几个关键字，其对应的默认值分别为：<code>Dominate</code>、<code>&lt;!DOCTYPE html&gt;</code>和<code>None</code>。同时<code>document</code>类能够直接访问<code>title</code>、<code>head</code>和<code>body</code>节点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">d = document()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.head</span><br><span class="line">&lt;dominate.tags.head: <span class="number">0</span> attributes, <span class="number">1</span> children&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.body</span><br><span class="line">&lt;dominate.tags.body: <span class="number">0</span> attributes, <span class="number">0</span> children&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.title</span><br><span class="line"><span class="string">u&#x27;Dominate&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><code>document</code>类也的基本用法同其他节点一样。</p>
+<h2 id="11-SVG"><a href="#11-SVG" class="headerlink" title="11.SVG"></a>11.SVG</h2><p><code>dominate.svg</code> 模块包含SVG标签。SVG元素会将’_’自动转换为’-‘。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dominate.svg <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(circle(stroke_width=<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1.<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Introduction_to_HTML/Getting_started">开始学习 HTML - 学习 Web 开发 | MDN (mozilla.org)</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://vegibit.com/html5-data-attributes/#:~:text=HTML5 Data Attributes 1 Data Attributes are Awesome.,can see%2C data attributes are very flexible.">HTML5 Data Attributes - Vegibit</a></p>
+<p>3.<a target="_blank" rel="noopener" href="https://realpython.com/python-with-statement/">Context Managers and Python’s with Statement – Real Python</a></p>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/undefined/MATLAB绘图高级指南/" data-toggle="tooltip" data-placement="top" title="MATLAB绘图高级指南">&larr; Previous Post</a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/undefined/正则表达式学习笔记/" data-toggle="tooltip" data-placement="top" title="正则表达式学习笔记">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Using dominate to Generate Web Page&body=Hi,I found this website and thought you might like it http://yoursite-url/undefined/dominate/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+  <!-- gitalk start -->
+  <!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+  <div id="gitalk-container"></div>
+
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+    <script src="/js/comment/gitalk.js"></script>
+  
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '',
+      clientSecret: '',
+      repo: '',
+      owner: '',
+      admin: '',
+      id: 'Fri Oct 29 2021 16:41:00 GMT+0800', // Ensure uniqueness and length less than 50
+      distractionFreeMode: false, // Facebook-like distraction free mode
+      perPage: 10,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      language: 'en',
+      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    });
+    gitalk.render('gitalk-container');
+
+    var gtFolded = () => {
+      setTimeout(function () {
+        let markdownBody = document.getElementsByClassName("markdown-body");
+        let list = Array.from(markdownBody);
+        list.forEach(item => {
+          if (item.clientHeight > 250) {
+            item.classList.add('gt-comment-body-folded');
+            item.style.maxHeight = '250px';
+            item.title = 'Click to Expand';
+            item.onclick = function () {
+              item.classList.remove('gt-comment-body-folded');
+              item.style.maxHeight = '';
+              item.title = '';
+              item.onclick = null;
+            };
+          }
+        })
+      }, 800);
+    }
+  </script>
+
+  <!-- gitalk end -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Python" title="Python">Python</a>
+            
+            <a class="tag" href="/tags/#Html" title="Html">Html</a>
+            
+          </div>
+        </section>
+        
+
+        <!-- Friends Blog -->
+        
+        <hr>
+        <h5>链友</h5>
+        <ul class="list-inline">
+
+          
+          <li>
+            <a href="https://riskyjr.gitee.io" target="_blank">Gitee Blog</a>
+          </li>
+          
+          <li>
+            <a href="https://joiner12.github.io/" target="_blank">Git Blog</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
+
+
+		<!-- Footer (contains ThemeColor、viewer) -->
+		<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+          
+
+          
+            <li>
+              <a target="_blank" href="https://github.com/Joiner12">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+            <li>
+              <a target="_blank" href="https://twitter.com/RiskyJoiner">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+            <li>
+              <a target="_blank" href="https://www.instagram.com/RiskyJoiner">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy;
+          Wh
+          2022
+          <br>
+          Theme by
+          <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
+          <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+          </span>
+          re-Ported by
+          <a target="_blank" rel="noopener" href="https://v-vincen.life/">Live My Life</a>
+          |
+          <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=V-Vincen&repo=V-Vincen.github.io&type=star&count=true"></iframe>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="rocket" href="#top" class=""></a>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
+  <!-- catalog -->
+  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
+  <!-- totop(rocket) -->
+  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+
+  
+    <!-- Busuanzi JavaScript -->
+    <script async="async" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <!-- Scroll start -->
+    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
+    <!-- Scroll end -->
+  
+
+  
+
+  
+
+  
+    <!-- ribbon -->
+    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
+  
+
+  
+
+
+
+
+
+
+  <!-- viewer start -->
+  <!-- viewer start (Picture preview) -->
+  
+    <script async="async" type="text/javascript" src="/js/viewer/viewer.min.js"></script>
+    <script async="async" type="text/javascript" src="/js/viewer/pic-viewer.js"></script>
+  
+
+  <!-- viewer end -->
+
+
+<script>
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function (e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  // fastClick.js
+  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+    var $nav = document.querySelector("nav");
+    if ($nav)
+      FastClick.attach($nav);
+    }
+  )
+</script>
+
+<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
+<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
+
+<!-- jquery.tagcloud.js -->
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("http://yoursite-url/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
+
+
+		<!-- Search -->
+		
+		<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
+
+        <div class="local-search-header clearfix">
+
+          <div class="local-search-input-wrapper">
+            <span class="search-icon">
+              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
+            </span>
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
+          </div>
+        </div>
+        <div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    <script src="/js/ziploader.js"></script>
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // get search zip version
+    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson() {
+      initLoad(['/search.flv'], {
+        loadOptions: {
+          success: function (obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function (e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions: {
+          'json': 'application/json'
+        }
+      })
+    }
+    // search function;
+    var searchFunc = function (search_id, content_id) {
+      'use strict';
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      // console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function () {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function (data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title
+              ? data.title.trim()
+              : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content
+              ? data.content.trim().replace(/<[^>]+>/g, "")
+              : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+
+            var date = data.date;
+            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
+            var imgUrl = data.header_img;
+            
+
+
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function (keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0,
+                  position = [],
+                  index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+            // show search results
+            if (isMatch) {
+              // sort index by position of keyword
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+              // merge hits into slices
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+                  // move to next position of hit
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
+              }
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if (start < 0) {
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if (end > content.length) {
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+              // sort slices in content by search text's count and hits' count
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+              // select top N slices in content
+              var upperBound = parseInt('1');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+              // highlight title and content
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+              var resultItem = '';
+
+              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
+              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
+              // "...</p></a>"; }); resultItem += "</li>";
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              } else {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              }
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
+
+              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
+            }
+          })
+        };
+
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<div class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</div>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+      // remove loading animation
+      $('body').css('overflow', '');
+      proceedsearch();
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function (e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function (e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      var _con = document.querySelector(".local-search-content");
+      if (_con) {
+        if (!_con.contains(e.target)) {
+          onPopupClose();
+        }
+      }
+    });
+  </script>
+
+
+		
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

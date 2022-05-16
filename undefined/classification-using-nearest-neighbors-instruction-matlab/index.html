@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<head>
+  <!-- Google Analytics -->
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxx-xx"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-xxxxxx-xx');
+    </script>
+  
+
+  <!-- Baidu Tongji -->
+  
+    <script type="text/javascript">
+      // Originial
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  <!-- Baidu Push -->
+  
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+    </script>
+  
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
+  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="脑海中起毛球的记忆"/>
+  <meta name="keyword" content="Wh,Blog"/>
+  <link rel="shortcut icon" href="/img/avatar/favicon.jpg"/>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/beantech.min.css"/>
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css"/>
+    <link rel="stylesheet" href="/css/widget.css"/>
+    <link rel="stylesheet" href="/css/rocket.css"/>
+    <link rel="stylesheet" href="/css/signature.css"/>
+    <link rel="stylesheet" href="/css/catalog.css"/>
+    <link rel="stylesheet" href="/css/livemylife.css"/>
+
+    
+      <!-- wave start -->
+      <link rel="stylesheet" href="/css/wave.css"/>
+      <!-- wave end -->
+    
+
+    
+      <!-- top start (article top hot config) -->
+      <link rel="stylesheet" href="/css/top.css"/>
+      <!-- top end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/scroll.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+      <!-- viewer start (Picture preview) -->
+      <link rel="stylesheet" href="/css/viewer.min.css"/>
+      <!-- viewer end -->
+    
+
+    
+      <!-- Search start -->
+      <link rel="stylesheet" href="/css/search.css"/>
+      <!-- Search end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/themecolor.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+      <!-- gitalk start -->
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"> -->
+      <link rel="stylesheet" href="/css/gitalk.css"/>
+      <!-- gitalk end -->
+    
+  
+
+  <!-- Custom Fonts -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- Hux change font-awesome CDN to qiniu -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
+  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <link rel="canonical" href="http://yoursite-url/undefined/classification-using-nearest-neighbors-instruction-matlab/">
+  <title>
+    
+      MATLAB近邻算法分类指南 - Wh.🛰️&#39;s Blogs
+    
+  </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+
+	<body ontouchstart="" class="body--light body--dark">
+
+
+		<!-- ThemeColor -->
+		
+		<!-- ThemeColor -->
+<style type="text/css">
+  .body--light {
+    --light-mode: none;
+    --dark-mode: block;
+  }
+  .body--dark {
+    --light-mode: block;
+    --dark-mode: none;
+  }
+  i.mdui-icon.material-icons.light-mode {
+    display: var(--light-mode);
+  }
+  i.mdui-icon.material-icons.dark-mode {
+    display: var(--dark-mode);
+  }
+</style>
+<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
+  <i class="mdui-icon material-icons light-mode"></i>
+  <i class="mdui-icon material-icons dark-mode"></i>
+</div>
+<script>
+  //getCookieValue
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b
+      ? b.pop()
+      : '';
+  }
+  let themeMode = 'dark';
+  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
+    let dbody = document.body.classList;
+    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
+  }
+
+  //setCookieValue
+  var toggleBtn = document.querySelector(".toggle");
+  toggleBtn.addEventListener("click", function () {
+    var e = document.body.classList.contains("body--dark");
+    var cookieString = e
+      ? "dark"
+      : "light";
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
+    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
+  });
+</script>
+
+		
+
+		<!-- Gitter -->
+		
+		<!-- Gitter -->
+<!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'your-community/your-room'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+		
+
+		<!-- Navigation (contains search)-->
+		<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">你在我的心里</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/">首页</a>
+          </li>
+
+          
+          
+          
+          
+          <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              标签
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a class="popup-trigger">
+              <span class="search-icon"></span>搜索</a>
+          </li>
+          
+
+          <!-- LangSelect -->
+          
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- progress -->
+<div id="progress">
+  <div class="line" style="width: 0%;"></div>
+</div>
+
+<script>
+  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = "0px"
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+</script>
+
+
+		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
+		<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+
+  <style type="text/css">
+    .body--light {
+      /* intro-header */
+      --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
+      --intro-header-background-image-url-post: url('');
+      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+    }
+    .body--dark {
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+    }
+
+    header.intro-header {
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url(''); */
+      
+    }
+
+    
+  </style>
+
+
+
+
+
+<header class="intro-header">
+  <!-- Signature -->
+  <div id="signature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#algorithm" title="algorithm">algorithm</a>
+              
+              <a class="tag" href="/tags/#matlab" title="matlab">matlab</a>
+              
+              <a class="tag" href="/tags/#kNN" title="kNN">kNN</a>
+              
+            </div>
+            <h1>MATLAB近邻算法分类指南</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by Wh on
+              2022-01-11
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">11</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">2.9k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+            <!-- 不蒜子统计 start -->
+            <span class="meta" id="busuanzi_container_page_pv">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            
+
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- waveoverlay start -->
+  <div class="preview-overlay">
+    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="preview-parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
+      </g>
+    </svg>
+  </div>
+  <!-- waveoverlay end -->
+  
+
+</header>
+
+
+
+		<!-- Main Content (Post contains
+	Pager、
+	tip、
+	socialshare、
+	gitalk、gitment、disqus-comment、
+	Catalog、
+	Sidebar、
+	Featured-Tags、
+	Friends Blog、
+	anchorjs、
+	) -->
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <div style="text-align:center;">
+    <img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/KNN-1.gif" style="width:400px;height:250px;">
+</div>
+
+<span id="more"></span>
+<h1 id="近邻算法分类"><a href="#近邻算法分类" class="headerlink" title="近邻算法分类"></a>近邻算法分类</h1><p style="text-align:left;">
+    原文:<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#bsfjytu-1">Classification Using Nearest Neighbors</a>
+</p>
+
+<h2 id="1-距离度量指标"><a href="#1-距离度量指标" class="headerlink" title="1.距离度量指标"></a>1.距离度量指标</h2><p>将待查询数据和训练数据集的距离作为分类依据是一种简单有效的分类方法。可以使用多种指标来确定距离。</p>
+<p>常用的距离度量有：</p>
+<ul>
+<li>欧式距离</li>
+<li>归一化欧式距离</li>
+<li>马（马哈拉诺比斯）氏距离</li>
+<li>城市街区距离</li>
+<li>闵可夫斯基距离</li>
+<li>切比雪夫距离</li>
+<li>余弦距离</li>
+<li>相关距离</li>
+<li>汉明距离</li>
+<li>杰卡德距离</li>
+<li>斯皮尔曼距离</li>
+</ul>
+<p>对于给定的${m<em>x}$ x $n$ 矩阵 $X$，将其看作是$m_x$ 行的行向量， $x_1,x_2,…x</em>{mx}$ 。同理对于给定的$m_y$ x $n$ 矩阵 $Y$，将其看作是 $m_y$ 行的行向量，向量 $x_s$ 和 $y_t$ 之间的不同距离度量定义如下：</p>
+<p><strong>欧式距离(Euclidean distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110212806751.png" alt="image-20220110212806751"></p>
+<p>欧几里得距离是 闵可夫斯基距离的一个特例，其中 p = 2。 </p>
+<p><strong>归一化欧氏距离(Standardized Euclidean distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213015362.png" alt="image-20220110213015362"></p>
+<p>其中 $V$ 是$n×n$对角矩阵，其第$j$个对角元素是$(S(j))^2$，其中$S$ 是每个维度的缩放因子向量。 </p>
+<p><strong>马（马哈拉诺比斯）氏距离(Mahalanobis distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213307164.png" alt="image-20220110213307164"></p>
+<p>其中$C$是协方差矩阵。</p>
+<p><strong>城市街区距离(City block distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213439402.png" alt="image-20220110213439402"></p>
+<p>城市街区距离是 Minkowski 距离的一个特例，其中 p = 1。</p>
+<p><strong>闵可夫斯基距离(Minkowski distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213602515.png" alt="image-20220110213602515"></p>
+<p>对于 p = 1 的特殊情况，Minkowski 距离表示城市街区距离；</p>
+<p> 对于 p = 2 的特殊情况，Minkowski 距离表示欧几里得距离；</p>
+<p> 对于 p = ∞ 的特殊情况，Minkowski 距离表示切比雪夫距离； </p>
+<p><strong>切比雪夫距离(Chebychev distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213739381.png" alt="image-20220110213739381"></p>
+<p>切比雪夫距离是 Minkowski 距离的一个特例，其中 p = ∞。 </p>
+<p><strong>余弦距离(Cosine distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213907637.png" alt="image-20220110213907637"></p>
+<p><strong>相关距离(Correlation distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110214026302.png" alt="image-20220110214026302"></p>
+<p><strong>汉明距离(Hamming distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110214114274.png" alt="image-20220110214114274"></p>
+<p>汉明距离表示的是两个向量$x<em>s$ 和 $y_t$ 相同位置上元素不相同和向量长度的比值。比如$x_s=[1,2,3,4]$ $y_t=[1,2,3,3]$ 则$d</em>{st} = 0.25$</p>
+<p><strong>杰卡德距离(Jaccard distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110214225480.png" alt="image-20220110214225480"></p>
+<p><strong>斯皮尔曼距离(Spearman distance)</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110214240166.png" alt="image-20220110214240166"></p>
+<p>MATLAB中用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/pdist2.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">pdist2</a>函数计算不同距离度量。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">X = [<span class="number">1</span>,<span class="number">3</span>];</span><br><span class="line">Y = [<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line">D1 = pdist2(X,Y,<span class="string">&#x27;cityblock&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D3 = pdist2(X,Y,<span class="string">&#x27;euclidean&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D4 = pdist2(X,Y,<span class="string">&#x27;minkowski&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">D5 = pdist2(X,Y,<span class="string">&#x27;hamming&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D6 = pdist2(X,Y,<span class="string">&#x27;chebychev&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D7 = pdist2(X,Y,<span class="string">&#x27;cosine&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-k近邻搜索和半径搜索"><a href="#2-k近邻搜索和半径搜索" class="headerlink" title="2.k近邻搜索和半径搜索"></a>2.k近邻搜索和半径搜索</h2><p>给定一组包含 n 个点的$X $和一个距离函数，k-近邻 (kNN) 搜索可以找到 $X$ 中与查询点或点集 $Y$ 最接近的 k 个点。kNN 算法和基于 kNN 的算法被广泛用作不同学习算法的基准。 kNN 算法相对简单且可解释性使得将其他分类技术的结果与 kNN 结果进行比较容易。</p>
+<p> kNN 算法可以用在其他机器学习算法中，例如：</p>
+<ul>
+<li>kNN分类 </li>
+<li>局部加权回归</li>
+<li>缺失数据插补和插值</li>
+<li>密度估计</li>
+</ul>
+<p>kNN可以与许多基于距离的学习的算法一起使用，例如 K-means 聚类。 相反，对于正实数 r，范围搜索 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">rangsearch</a>查找 X 中与 Y 中每个点的距离为 r 的所有点。这种固定半径搜索与 kNN 搜索密切相关，因为它支持相同的距离度量和搜索类别 ，并使用相同的搜索算法。 </p>
+<h3 id="2-1-KNN-穷举搜索"><a href="#2-1-KNN-穷举搜索" class="headerlink" title="2.1 KNN-穷举搜索"></a>2.1 KNN-穷举搜索</h3><p>在matlab中，可以使用多种底层搜索算法实现kNN算法的搜索过程，当满足以下条件时默认使用穷举搜索方式：</p>
+<ul>
+<li>$X$ 的列数超过 10；</li>
+<li>$X$ 是稀疏的；</li>
+<li>距离度量使用：苏氏距离、马氏距离、余弦距离、相关距离、斯皮尔曼距离、汉明距离、杰卡德距离、自定义距离函数 ；</li>
+</ul>
+<p>如果搜索对象是<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;" >ExhaustiveSearcher </a> 模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a> 也会使用穷举搜索方法。 穷举搜索方法是找到每个查询点到$X$中每个点的距离，按升序排列，返回距离最小的k个点。 例如，此图显示了 k = 3 个最近邻。 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/exhaustivesearch.gif" alt="img"></p>
+<h3 id="2-2-KNN-Kd树搜索"><a href="#2-2-KNN-Kd树搜索" class="headerlink" title="2.2 KNN-Kd树搜索"></a>2.2 KNN-Kd树搜索</h3><p>当输入数据满足以下所有条件时，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>默认会创建一个 Kd树来查找：</p>
+<ul>
+<li>$X$ 的列数<strong>不</strong>超过 10；</li>
+<li>$X$ 是非稀疏的；</li>
+<li>欧式距离（默认）、城市街区距离、闵可夫斯基距离、切比雪夫距离</li>
+</ul>
+<p>如果搜索对象是 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher </a>模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>也会使用 Kd-树。 </p>
+<p>Kd-树根据坐标（而不是类别）将数据划分为每个节点最多 <em>BucketSize</em>（默认为 50）个点的节点。 下图中不同的颜色块对应的是不同的节点。 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/kdtreelines.png" alt="img"></p>
+<p>查找给定查询点的 k 最近邻时，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>执行以下操作：</p>
+<ol>
+<li>确定查询点所属的节点。 在以下示例中，查询点 (32,90) 属于节点 4。</li>
+<li>查找该节点内最近的 k 个点及其到查询点的距离。 在以下示例中，红色圆圈中的点与查询点等距，并且是节点 4 内离查询点最近的点。</li>
+<li>选择从查询点到第 k 个最近点在任何方向上具有相同距离内的任何区域的所有其他节点。 在此示例中，只有节点 3 与以查询点为中心的实心黑色圆圈重叠，其半径等于到节点 4 内最近点的距离。</li>
+<li>在该范围内的节点中搜索更接近查询点的任何点。 在以下示例中，红色方块中的点比节点 4 中的点更靠近查询点。 </li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/kdtreelinesnewpoint.png" alt="img"></p>
+<p>对少于 10 个维度（列）的大型数据集使用 Kd-树可能比使用穷举搜索方法更有效，因为<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>只需要计算距离的子集。 为了最大限度地提高 Kd树的效率，请使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher</a>模型。 </p>
+<h3 id="2-3-搜索模型对象"><a href="#2-3-搜索模型对象" class="headerlink" title="2.3 搜索模型对象"></a>2.3 搜索模型对象</h3><p>通常来说，模型对象是一种存储信息的便捷方式。相关模型具有与指定搜索方法相关的值和类型的相同属性。 除了在模型中存储信息之外，还可以对模型执行某些操作。可以使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>在搜索模型上高效地执行 k 近邻搜索。 或者，可以使用搜索模型和范围搜索搜索指定半径内的所有邻居。 此外，还有一个通用的<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em></a> 和<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>函数可以在不创建或使用模型的情况下进行搜索。 </p>
+<p>可以从以下方向考虑使用哪种类型的模型和搜索方法最适合给定的数据：</p>
+<ul>
+<li>数据列数；</li>
+<li>数据是否稀疏；</li>
+<li>距离度量方式；</li>
+</ul>
+<h2 id="3-对数据进行分类—Kd树"><a href="#3-对数据进行分类—Kd树" class="headerlink" title="3.对数据进行分类—Kd树"></a>3.对数据进行分类—Kd树</h2><p>使用Kd树方式对查询数据进行分类包括以下步骤：</p>
+<ol>
+<li>构建 Kd 树；</li>
+<li>使用Kd树进行 k 近邻搜索； </li>
+<li>确定待查询数据所属的类；</li>
+</ol>
+<p>示例根据 Fisher iris 数据的最后两列对新点进行分类。</p>
+<blockquote>
+<p><strong>Step- 1 导入数据并对最后两列绘图</strong> </p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">x = meas(:,<span class="number">3</span>:<span class="number">4</span>);</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;Location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/ClassifyingQueryDataUsingKnnsearchExample_01.png" alt="Figure contains an axes object. The axes object contains 3 objects of type line. These objects represent setosa, versicolor, virginica."></p>
+<blockquote>
+<p><strong>Step-2 绘制待查询数据</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">newpoint = [<span class="number">5</span> <span class="number">1.45</span>];</span><br><span class="line">line(newpoint(<span class="number">1</span>),newpoint(<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="C:/Users/W-H/Desktop/pic-bed/ClassifyingQueryDataUsingKnnsearchExample_02.png" alt="ClassifyingQueryDataUsingKnnsearchExample_02"></p>
+<blockquote>
+<p><strong>Step-3 构建Kd树近邻搜索模型</strong> </p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mdl = KDTreeSearcher(x)</span><br></pre></td></tr></table></figure>
+<p>Mdl 是一个<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher</a>模型。 默认情况下，它用于搜索邻居的距离度量是欧氏距离。 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/ClassifyingQueryDataUsingKnnsearchExample_03.png" alt="ClassifyingQueryDataUsingKnnsearchExample_03"></p>
+<blockquote>
+<p><strong>Step-4 找出到待查询点最近的10个点</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[n,d] = knnsearch(Mdl,newpoint,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n,<span class="number">1</span>),x(n,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">    <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">xlim([<span class="number">4.5</span> <span class="number">5.5</span>]);</span><br><span class="line">ylim([<span class="number">1</span> <span class="number">2</span>]);</span><br><span class="line">axis square</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/ClassifyingQueryDataUsingKnnsearchExample_04.png" alt="ClassifyingQueryDataUsingKnnsearchExample_04"></p>
+<blockquote>
+<p><strong>Step-5 找出到待查询点最近的10个点的特征</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tabulate(species(n))</span><br><span class="line">       Value    Count   Percent</span><br><span class="line">   virginica        <span class="number">2</span>     <span class="number">20.00</span><span class="comment">%</span></span><br><span class="line">  versicolor        <span class="number">8</span>     <span class="number">80.00</span><span class="comment">%</span></span><br></pre></td></tr></table></figure>
+<p>可以依据不同的分类依据将此新点归类到不同的类别。 </p>
+<blockquote>
+<p><strong>Step-6 在一组近邻点周围画一个圆圈来直观地识别近邻点</strong></p>
+</blockquote>
+<p>根据新点的位置定义圆的中心和直径 。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ctr = newpoint - d(<span class="keyword">end</span>);</span><br><span class="line">diameter = <span class="number">2</span>*d(<span class="keyword">end</span>);</span><br><span class="line"><span class="comment">% Draw a circle around the 10 nearest neighbors.</span></span><br><span class="line">h = rectangle(<span class="string">&#x27;position&#x27;</span>,[ctr,diameter,diameter],...</span><br><span class="line">   <span class="string">&#x27;curvature&#x27;</span>,[<span class="number">1</span> <span class="number">1</span>]);</span><br><span class="line">h.LineStyle = <span class="string">&#x27;:&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/ClassifyingQueryDataUsingKnnsearchExample_05.png" alt="ClassifyingQueryDataUsingKnnsearchExample_05"></p>
+<blockquote>
+<p><strong>step-7</strong> 多个数据点分类</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">figure</span> </span><br><span class="line">newpoint2 = [<span class="number">5</span> <span class="number">1.45</span>;<span class="number">6</span> <span class="number">2</span>;<span class="number">2.75</span> <span class="number">.75</span>];</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">[n2,d2] = knnsearch(Mdl,newpoint2,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n2,<span class="number">1</span>),x(n2,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">line(newpoint2(:,<span class="number">1</span>),newpoint2(:,<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/ClassifyingQueryDataUsingKnnsearchExample_06.png" alt="ClassifyingQueryDataUsingKnnsearchExample_06"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_kd_tree.mlx">完整代码：Position/knn_kd_tree.mlx at develop · Joiner12/Position (github.com)</a></p>
+<h2 id="4-使用自定义距离度量查找最近的邻居"><a href="#4-使用自定义距离度量查找最近的邻居" class="headerlink" title="4.使用自定义距离度量查找最近的邻居"></a>4.使用自定义距离度量查找最近的邻居</h2><p>示例说明如何找到与 X 中的三个最近卡方距离(chi-square distance)数据的索引。卡方距离常用于相关性分析(correspondence analysis)，特别是在生态应用中。 </p>
+<p>$j$ 维向量 $x$ 和 $z$ 之间的卡方距离定义为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-202201sd5413617.png" alt="image-202201sd5413617"></p>
+<p>其中$w_j$是于维度相关的权重系数；</p>
+<blockquote>
+<p><strong>Step-1</strong> 随机生成两个正态分布矩阵，矩阵的行数可以变化，但列数必须相等。因为矩阵$X$ 表示训练数据集，$Y$ 表示待分类数据集合；</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rng(<span class="number">1</span>) <span class="comment">% For reproducibility</span></span><br><span class="line">X = <span class="built_in">randn</span>(<span class="number">50</span>,<span class="number">2</span>);</span><br><span class="line">Y = <span class="built_in">randn</span>(<span class="number">4</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">h = <span class="built_in">zeros</span>(<span class="number">3</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">h(<span class="number">1</span>) = <span class="built_in">plot</span>(X(:,<span class="number">1</span>),X(:,<span class="number">2</span>),<span class="string">&#x27;bx&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">h(<span class="number">2</span>) = <span class="built_in">plot</span>(Y(:,<span class="number">1</span>),Y(:,<span class="number">2</span>),<span class="string">&#x27;rs&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/FindNearestNeighborUsingACustomDistanceMetricExample_01.png" alt="FindNearestNeighborUsingACustomDistanceMetricExample_01"></p>
+<blockquote>
+<p><strong>Step2-定义距离函数</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% distance function</span></span><br><span class="line">w = [<span class="number">0.4</span>; <span class="number">0.6</span>];</span><br><span class="line">chiSqrDist = @(x,Z)<span class="built_in">sqrt</span>((<span class="built_in">bsxfun</span>(@minus,x,Z).^<span class="number">2</span>)*w);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step3-找出Y中每个到 X 中三个最近观测值的索引</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">k = <span class="number">3</span>;</span><br><span class="line">[Idx,D] = knnsearch(X,Y,<span class="string">&#x27;Distance&#x27;</span>,chiSqrDist,<span class="string">&#x27;k&#x27;</span>,k);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step4- 确定图中最近的观测值</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:k</span><br><span class="line">    h(<span class="number">3</span>) = <span class="built_in">plot</span>(X(Idx(:,<span class="built_in">j</span>),<span class="number">1</span>),X(Idx(:,<span class="built_in">j</span>),<span class="number">2</span>),<span class="string">&#x27;ko&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">legend</span>(h,&#123;<span class="string">&#x27;\texttt&#123;X&#125;&#x27;</span>,<span class="string">&#x27;\texttt&#123;Y&#125;&#x27;</span>,<span class="string">&#x27;Nearest Neighbor&#x27;</span>&#125;,<span class="string">&#x27;Interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data and Nearest Neighbors&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/FindNearestNeighborUsingACustomDistanceMetricExample_02.png" alt="FindNearestNeighborUsingACustomDistanceMetricExample_02"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/using_custom_distance_metric.mlx">完整代码：Position/using_custom_distance_metric.mlx at develop · Joiner12/Position (github.com)</a></p>
+<h2 id="5-有监督学习的-K-近邻分类"><a href="#5-有监督学习的-K-近邻分类" class="headerlink" title="5.有监督学习的 K-近邻分类"></a>5.有监督学习的 K-近邻分类</h2><h3 id="5-1-说明"><a href="#5-1-说明" class="headerlink" title="5.1 说明"></a>5.1 说明</h3><p>使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classificationknn.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">ClassificationKNN </a>分类模型实现k-近邻分类具体可以分为以下几步：</p>
+<ol>
+<li>构造 KNN 分类器<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7k2" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Construct KNN Classifier</a></li>
+<li>检查 KNN 分类器<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7l_" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Examine Quality of KNN Classifier</a></li>
+<li>使用 KNN 分类器进行预测分类 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7nm" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Predict Classification Using KNN Classifier</a></li>
+<li>修改 KNN 分类器 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap_jn" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Modify KNN Classifier</a></li>
+</ol>
+<h3 id="5-2-示例"><a href="#5-2-示例" class="headerlink" title="5.2 示例"></a>5.2 示例</h3><p>例子展示了如何为 Fisher iris 数据构建一个 k 最近邻分类器。 </p>
+<blockquote>
+<p><strong>Step1- 导入数据</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">X = meas;    <span class="comment">% Use all data for fitting</span></span><br><span class="line">Y = species; <span class="comment">% Response data</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step2- 使用knn构造分类器</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mdl = fitcknn(X,Y)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step3- 修改邻域大小</strong></p>
+</blockquote>
+<p>默认的 k 近邻分类器仅使用一个临近值。将 Mdl 的邻域大小更改为 4</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mdl.NumNeighbors = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step4- 重新替换和交叉验证检查 k 最近邻分类器 </strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">loss = resubLoss(Mdl)</span><br><span class="line">rng(<span class="number">10</span>); <span class="comment">% For reproducibility</span></span><br><span class="line">CVMdl = crossval(Mdl,<span class="string">&#x27;KFold&#x27;</span>,<span class="number">5</span>);</span><br><span class="line">kloss = kfoldLoss(CVMdl)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Step5- 使用kNN构造预测分类</strong></p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flwr = <span class="built_in">mean</span>(X); <span class="comment">% an average flower</span></span><br><span class="line">flwrClass = predict(Mdl,flwr)</span><br><span class="line"><span class="comment">% 预测结果</span></span><br><span class="line"><span class="comment">% flwrClass = 1x1 cell array</span></span><br><span class="line"><span class="comment">%    &#123;&#x27;versicolor&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_supervised_learn.mlx">完整代码：Position/knn_supervised_learn.mlx at develop · Joiner12/Position (github.com)</a></p>
+<h2 id="6-kNN开发流程总结"><a href="#6-kNN开发流程总结" class="headerlink" title="6.kNN开发流程总结"></a>6.kNN开发流程总结</h2><p><strong>机器学习算法通用流程</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/kaifaliucheng.png" alt="kaifaliucheng"></p>
+<p>收集数据：任何方法<br>准备数据：距离计算所需要的数值，最好是结构化的数据格式<br>分析数据：任何方法<br>训练算法：此步骤不适用于 k-近邻算法，k-近邻算法是在搜索过程中训练算法；<br>测试算法：计算错误率<br>使用算法：输入样本数据和结构化的输出结果，然后运行 k-近邻算法判断输入数据分类属于哪个分类，最后对计算出的分类执行后续处理。</p>
+<hr>
+
+<p style="text-align:right;">2022-01-11 15:10</p>
+
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/undefined/搜索技巧/" data-toggle="tooltip" data-placement="top" title="搜索技巧">&larr; Previous Post</a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/undefined/树莓派制作影音系统/" data-toggle="tooltip" data-placement="top" title="树莓派制作影音系统">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=MATLAB近邻算法分类指南&body=Hi,I found this website and thought you might like it http://yoursite-url/undefined/classification-using-nearest-neighbors-instruction-matlab/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+  <!-- gitalk start -->
+  <!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+  <div id="gitalk-container"></div>
+
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+    <script src="/js/comment/gitalk.js"></script>
+  
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '',
+      clientSecret: '',
+      repo: '',
+      owner: '',
+      admin: '',
+      id: 'Tue Jan 11 2022 15:11:39 GMT+0800', // Ensure uniqueness and length less than 50
+      distractionFreeMode: false, // Facebook-like distraction free mode
+      perPage: 10,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      language: 'en',
+      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    });
+    gitalk.render('gitalk-container');
+
+    var gtFolded = () => {
+      setTimeout(function () {
+        let markdownBody = document.getElementsByClassName("markdown-body");
+        let list = Array.from(markdownBody);
+        list.forEach(item => {
+          if (item.clientHeight > 250) {
+            item.classList.add('gt-comment-body-folded');
+            item.style.maxHeight = '250px';
+            item.title = 'Click to Expand';
+            item.onclick = function () {
+              item.classList.remove('gt-comment-body-folded');
+              item.style.maxHeight = '';
+              item.title = '';
+              item.onclick = null;
+            };
+          }
+        })
+      }, 800);
+    }
+  </script>
+
+  <!-- gitalk end -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#algorithm" title="algorithm">algorithm</a>
+            
+            <a class="tag" href="/tags/#matlab" title="matlab">matlab</a>
+            
+            <a class="tag" href="/tags/#kNN" title="kNN">kNN</a>
+            
+          </div>
+        </section>
+        
+
+        <!-- Friends Blog -->
+        
+        <hr>
+        <h5>链友</h5>
+        <ul class="list-inline">
+
+          
+          <li>
+            <a href="https://riskyjr.gitee.io" target="_blank">Gitee Blog</a>
+          </li>
+          
+          <li>
+            <a href="https://joiner12.github.io/" target="_blank">Git Blog</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
+
+
+		<!-- Footer (contains ThemeColor、viewer) -->
+		<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+          
+
+          
+            <li>
+              <a target="_blank" href="https://github.com/Joiner12">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+            <li>
+              <a target="_blank" href="https://twitter.com/RiskyJoiner">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+            <li>
+              <a target="_blank" href="https://www.instagram.com/RiskyJoiner">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy;
+          Wh
+          2022
+          <br>
+          Theme by
+          <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
+          <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+          </span>
+          re-Ported by
+          <a target="_blank" rel="noopener" href="https://v-vincen.life/">Live My Life</a>
+          |
+          <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=V-Vincen&repo=V-Vincen.github.io&type=star&count=true"></iframe>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="rocket" href="#top" class=""></a>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
+  <!-- catalog -->
+  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
+  <!-- totop(rocket) -->
+  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+
+  
+    <!-- Busuanzi JavaScript -->
+    <script async="async" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <!-- Scroll start -->
+    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
+    <!-- Scroll end -->
+  
+
+  
+
+  
+
+  
+    <!-- ribbon -->
+    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
+  
+
+  
+
+
+
+
+
+
+  <!-- viewer start -->
+  <!-- viewer start (Picture preview) -->
+  
+    <script async="async" type="text/javascript" src="/js/viewer/viewer.min.js"></script>
+    <script async="async" type="text/javascript" src="/js/viewer/pic-viewer.js"></script>
+  
+
+  <!-- viewer end -->
+
+
+<script>
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function (e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  // fastClick.js
+  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+    var $nav = document.querySelector("nav");
+    if ($nav)
+      FastClick.attach($nav);
+    }
+  )
+</script>
+
+<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
+<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
+
+<!-- jquery.tagcloud.js -->
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("http://yoursite-url/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
+
+
+		<!-- Search -->
+		
+		<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
+
+        <div class="local-search-header clearfix">
+
+          <div class="local-search-input-wrapper">
+            <span class="search-icon">
+              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
+            </span>
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
+          </div>
+        </div>
+        <div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    <script src="/js/ziploader.js"></script>
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // get search zip version
+    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson() {
+      initLoad(['/search.flv'], {
+        loadOptions: {
+          success: function (obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function (e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions: {
+          'json': 'application/json'
+        }
+      })
+    }
+    // search function;
+    var searchFunc = function (search_id, content_id) {
+      'use strict';
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      // console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function () {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function (data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title
+              ? data.title.trim()
+              : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content
+              ? data.content.trim().replace(/<[^>]+>/g, "")
+              : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+
+            var date = data.date;
+            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
+            var imgUrl = data.header_img;
+            
+
+
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function (keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0,
+                  position = [],
+                  index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+            // show search results
+            if (isMatch) {
+              // sort index by position of keyword
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+              // merge hits into slices
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+                  // move to next position of hit
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
+              }
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if (start < 0) {
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if (end > content.length) {
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+              // sort slices in content by search text's count and hits' count
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+              // select top N slices in content
+              var upperBound = parseInt('1');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+              // highlight title and content
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+              var resultItem = '';
+
+              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
+              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
+              // "...</p></a>"; }); resultItem += "</li>";
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              } else {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              }
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
+
+              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
+            }
+          })
+        };
+
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<div class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</div>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+      // remove loading animation
+      $('body').css('overflow', '');
+      proceedsearch();
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function (e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function (e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      var _con = document.querySelector(".local-search-content");
+      if (_con) {
+        if (!_con.contains(e.target)) {
+          onPopupClose();
+        }
+      }
+    });
+  </script>
+
+
+		
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
