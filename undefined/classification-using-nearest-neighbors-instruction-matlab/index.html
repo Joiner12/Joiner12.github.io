@@ -244,8 +244,6 @@
 
           
           
-          
-          
           <li>
             <a href="/archive/">
               
@@ -254,6 +252,19 @@
               
             </a>
           </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
           
           
           
@@ -272,17 +283,6 @@
             <a href="/tags/">
               
               标签
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/categories/">
-              
-              分类
               
               
             </a>
@@ -469,13 +469,13 @@
         <div style="text-align:center;">
     <img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/KNN-1.gif" style="width:400px;height:250px;">
 </div>
-
 <span id="more"></span>
-<h1 id="近邻算法分类"><a href="#近邻算法分类" class="headerlink" title="近邻算法分类"></a>近邻算法分类</h1><p style="text-align:left;">
+<h1>近邻算法分类</h1>
+<p style="text-align:left;">
     原文:<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#bsfjytu-1">Classification Using Nearest Neighbors</a>
 </p>
-
-<h2 id="1-距离度量指标"><a href="#1-距离度量指标" class="headerlink" title="1.距离度量指标"></a>1.距离度量指标</h2><p>将待查询数据和训练数据集的距离作为分类依据是一种简单有效的分类方法。可以使用多种指标来确定距离。</p>
+<h2 id="1-距离度量指标">1.距离度量指标</h2>
+<p>将待查询数据和训练数据集的距离作为分类依据是一种简单有效的分类方法。可以使用多种指标来确定距离。</p>
 <p>常用的距离度量有：</p>
 <ul>
 <li>欧式距离</li>
@@ -490,13 +490,13 @@
 <li>杰卡德距离</li>
 <li>斯皮尔曼距离</li>
 </ul>
-<p>对于给定的${m<em>x}$ x $n$ 矩阵 $X$，将其看作是$m_x$ 行的行向量， $x_1,x_2,…x</em>{mx}$ 。同理对于给定的$m_y$ x $n$ 矩阵 $Y$，将其看作是 $m_y$ 行的行向量，向量 $x_s$ 和 $y_t$ 之间的不同距离度量定义如下：</p>
+<p>对于给定的${m_x}$ x $n$ 矩阵 $X$，将其看作是$m_x$ 行的行向量， $x_1,x_2,…x_{mx}$ 。同理对于给定的$m_y$ x $n$ 矩阵 $Y$，将其看作是 $m_y$ 行的行向量，向量 $x_s$ 和 $y_t$ 之间的不同距离度量定义如下：</p>
 <p><strong>欧式距离(Euclidean distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110212806751.png" alt="image-20220110212806751"></p>
-<p>欧几里得距离是 闵可夫斯基距离的一个特例，其中 p = 2。 </p>
+<p>欧几里得距离是 闵可夫斯基距离的一个特例，其中 p = 2。</p>
 <p><strong>归一化欧氏距离(Standardized Euclidean distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213015362.png" alt="image-20220110213015362"></p>
-<p>其中 $V$ 是$n×n$对角矩阵，其第$j$个对角元素是$(S(j))^2$，其中$S$ 是每个维度的缩放因子向量。 </p>
+<p>其中 $V$ 是$n×n$对角矩阵，其第$j$个对角元素是$(S(j))^2$，其中$S$ 是每个维度的缩放因子向量。</p>
 <p><strong>马（马哈拉诺比斯）氏距离(Mahalanobis distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213307164.png" alt="image-20220110213307164"></p>
 <p>其中$C$是协方差矩阵。</p>
@@ -506,75 +506,80 @@
 <p><strong>闵可夫斯基距离(Minkowski distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213602515.png" alt="image-20220110213602515"></p>
 <p>对于 p = 1 的特殊情况，Minkowski 距离表示城市街区距离；</p>
-<p> 对于 p = 2 的特殊情况，Minkowski 距离表示欧几里得距离；</p>
-<p> 对于 p = ∞ 的特殊情况，Minkowski 距离表示切比雪夫距离； </p>
+<p>对于 p = 2 的特殊情况，Minkowski 距离表示欧几里得距离；</p>
+<p>对于 p = ∞ 的特殊情况，Minkowski 距离表示切比雪夫距离；</p>
 <p><strong>切比雪夫距离(Chebychev distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213739381.png" alt="image-20220110213739381"></p>
-<p>切比雪夫距离是 Minkowski 距离的一个特例，其中 p = ∞。 </p>
+<p>切比雪夫距离是 Minkowski 距离的一个特例，其中 p = ∞。</p>
 <p><strong>余弦距离(Cosine distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110213907637.png" alt="image-20220110213907637"></p>
 <p><strong>相关距离(Correlation distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110214026302.png" alt="image-20220110214026302"></p>
 <p><strong>汉明距离(Hamming distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110214114274.png" alt="image-20220110214114274"></p>
-<p>汉明距离表示的是两个向量$x<em>s$ 和 $y_t$ 相同位置上元素不相同和向量长度的比值。比如$x_s=[1,2,3,4]$ $y_t=[1,2,3,3]$ 则$d</em>{st} = 0.25$</p>
+<p>汉明距离表示的是两个向量$x_s$ 和 $y_t$ 相同位置上元素不相同和向量长度的比值。比如$x_s=[1,2,3,4]$ $y_t=[1,2,3,3]$ 则$d_{st} = 0.25$</p>
 <p><strong>杰卡德距离(Jaccard distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110214225480.png" alt="image-20220110214225480"></p>
 <p><strong>斯皮尔曼距离(Spearman distance)</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220110214240166.png" alt="image-20220110214240166"></p>
 <p>MATLAB中用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/pdist2.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">pdist2</a>函数计算不同距离度量。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">X = [<span class="number">1</span>,<span class="number">3</span>];</span><br><span class="line">Y = [<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line">D1 = pdist2(X,Y,<span class="string">&#x27;cityblock&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D3 = pdist2(X,Y,<span class="string">&#x27;euclidean&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D4 = pdist2(X,Y,<span class="string">&#x27;minkowski&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">D5 = pdist2(X,Y,<span class="string">&#x27;hamming&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D6 = pdist2(X,Y,<span class="string">&#x27;chebychev&#x27;</span>)</span><br><span class="line"></span><br><span class="line">D7 = pdist2(X,Y,<span class="string">&#x27;cosine&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="2-k近邻搜索和半径搜索"><a href="#2-k近邻搜索和半径搜索" class="headerlink" title="2.k近邻搜索和半径搜索"></a>2.k近邻搜索和半径搜索</h2><p>给定一组包含 n 个点的$X $和一个距离函数，k-近邻 (kNN) 搜索可以找到 $X$ 中与查询点或点集 $Y$ 最接近的 k 个点。kNN 算法和基于 kNN 的算法被广泛用作不同学习算法的基准。 kNN 算法相对简单且可解释性使得将其他分类技术的结果与 kNN 结果进行比较容易。</p>
-<p> kNN 算法可以用在其他机器学习算法中，例如：</p>
+<h2 id="2-k近邻搜索和半径搜索">2.k近邻搜索和半径搜索</h2>
+<p>给定一组包含 n 个点的$X $和一个距离函数，k-近邻 (kNN) 搜索可以找到 $X$ 中与查询点或点集 $Y$ 最接近的 k 个点。kNN 算法和基于 kNN 的算法被广泛用作不同学习算法的基准。 kNN 算法相对简单且可解释性使得将其他分类技术的结果与 kNN 结果进行比较容易。</p>
+<p>kNN 算法可以用在其他机器学习算法中，例如：</p>
 <ul>
-<li>kNN分类 </li>
+<li>kNN分类</li>
 <li>局部加权回归</li>
 <li>缺失数据插补和插值</li>
 <li>密度估计</li>
 </ul>
-<p>kNN可以与许多基于距离的学习的算法一起使用，例如 K-means 聚类。 相反，对于正实数 r，范围搜索 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">rangsearch</a>查找 X 中与 Y 中每个点的距离为 r 的所有点。这种固定半径搜索与 kNN 搜索密切相关，因为它支持相同的距离度量和搜索类别 ，并使用相同的搜索算法。 </p>
-<h3 id="2-1-KNN-穷举搜索"><a href="#2-1-KNN-穷举搜索" class="headerlink" title="2.1 KNN-穷举搜索"></a>2.1 KNN-穷举搜索</h3><p>在matlab中，可以使用多种底层搜索算法实现kNN算法的搜索过程，当满足以下条件时默认使用穷举搜索方式：</p>
+<p>kNN可以与许多基于距离的学习的算法一起使用，例如 K-means 聚类。 相反，对于正实数 r，范围搜索 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">rangsearch</a>查找 X 中与 Y 中每个点的距离为 r 的所有点。这种固定半径搜索与 kNN 搜索密切相关，因为它支持相同的距离度量和搜索类别 ，并使用相同的搜索算法。</p>
+<h3 id="2-1-KNN-穷举搜索">2.1 KNN-穷举搜索</h3>
+<p>在matlab中，可以使用多种底层搜索算法实现kNN算法的搜索过程，当满足以下条件时默认使用穷举搜索方式：</p>
 <ul>
 <li>$X$ 的列数超过 10；</li>
 <li>$X$ 是稀疏的；</li>
 <li>距离度量使用：苏氏距离、马氏距离、余弦距离、相关距离、斯皮尔曼距离、汉明距离、杰卡德距离、自定义距离函数 ；</li>
 </ul>
-<p>如果搜索对象是<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;" >ExhaustiveSearcher </a> 模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a> 也会使用穷举搜索方法。 穷举搜索方法是找到每个查询点到$X$中每个点的距离，按升序排列，返回距离最小的k个点。 例如，此图显示了 k = 3 个最近邻。 </p>
+<p>如果搜索对象是<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;" >ExhaustiveSearcher </a> 模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a> 也会使用穷举搜索方法。 穷举搜索方法是找到每个查询点到$X$中每个点的距离，按升序排列，返回距离最小的k个点。 例如，此图显示了 k = 3 个最近邻。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/exhaustivesearch.gif" alt="img"></p>
-<h3 id="2-2-KNN-Kd树搜索"><a href="#2-2-KNN-Kd树搜索" class="headerlink" title="2.2 KNN-Kd树搜索"></a>2.2 KNN-Kd树搜索</h3><p>当输入数据满足以下所有条件时，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>默认会创建一个 Kd树来查找：</p>
+<h3 id="2-2-KNN-Kd树搜索">2.2 KNN-Kd树搜索</h3>
+<p>当输入数据满足以下所有条件时，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>默认会创建一个 Kd树来查找：</p>
 <ul>
 <li>$X$ 的列数<strong>不</strong>超过 10；</li>
 <li>$X$ 是非稀疏的；</li>
 <li>欧式距离（默认）、城市街区距离、闵可夫斯基距离、切比雪夫距离</li>
 </ul>
-<p>如果搜索对象是 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher </a>模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>也会使用 Kd-树。 </p>
-<p>Kd-树根据坐标（而不是类别）将数据划分为每个节点最多 <em>BucketSize</em>（默认为 50）个点的节点。 下图中不同的颜色块对应的是不同的节点。 </p>
+<p>如果搜索对象是 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher </a>模型对象，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>也会使用 Kd-树。</p>
+<p>Kd-树根据坐标（而不是类别）将数据划分为每个节点最多 <em>BucketSize</em>（默认为 50）个点的节点。 下图中不同的颜色块对应的是不同的节点。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/kdtreelines.png" alt="img"></p>
 <p>查找给定查询点的 k 最近邻时，<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>执行以下操作：</p>
 <ol>
 <li>确定查询点所属的节点。 在以下示例中，查询点 (32,90) 属于节点 4。</li>
 <li>查找该节点内最近的 k 个点及其到查询点的距离。 在以下示例中，红色圆圈中的点与查询点等距，并且是节点 4 内离查询点最近的点。</li>
 <li>选择从查询点到第 k 个最近点在任何方向上具有相同距离内的任何区域的所有其他节点。 在此示例中，只有节点 3 与以查询点为中心的实心黑色圆圈重叠，其半径等于到节点 4 内最近点的距离。</li>
-<li>在该范围内的节点中搜索更接近查询点的任何点。 在以下示例中，红色方块中的点比节点 4 中的点更靠近查询点。 </li>
+<li>在该范围内的节点中搜索更接近查询点的任何点。 在以下示例中，红色方块中的点比节点 4 中的点更靠近查询点。</li>
 </ol>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/kdtreelinesnewpoint.png" alt="img"></p>
-<p>对少于 10 个维度（列）的大型数据集使用 Kd-树可能比使用穷举搜索方法更有效，因为<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>只需要计算距离的子集。 为了最大限度地提高 Kd树的效率，请使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher</a>模型。 </p>
-<h3 id="2-3-搜索模型对象"><a href="#2-3-搜索模型对象" class="headerlink" title="2.3 搜索模型对象"></a>2.3 搜索模型对象</h3><p>通常来说，模型对象是一种存储信息的便捷方式。相关模型具有与指定搜索方法相关的值和类型的相同属性。 除了在模型中存储信息之外，还可以对模型执行某些操作。可以使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>在搜索模型上高效地执行 k 近邻搜索。 或者，可以使用搜索模型和范围搜索搜索指定半径内的所有邻居。 此外，还有一个通用的<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em></a> 和<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>函数可以在不创建或使用模型的情况下进行搜索。 </p>
+<p>对少于 10 个维度（列）的大型数据集使用 Kd-树可能比使用穷举搜索方法更有效，因为<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em> </a>只需要计算距离的子集。 为了最大限度地提高 Kd树的效率，请使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher</a>模型。</p>
+<h3 id="2-3-搜索模型对象">2.3 搜索模型对象</h3>
+<p>通常来说，模型对象是一种存储信息的便捷方式。相关模型具有与指定搜索方法相关的值和类型的相同属性。 除了在模型中存储信息之外，还可以对模型执行某些操作。可以使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>在搜索模型上高效地执行 k 近邻搜索。 或者，可以使用搜索模型和范围搜索搜索指定半径内的所有邻居。 此外，还有一个通用的<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.knnsearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"><em>knnsearch</em></a> 和<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/exhaustivesearcher.rangesearch.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;"> <em>rangesearch</em> </a>函数可以在不创建或使用模型的情况下进行搜索。</p>
 <p>可以从以下方向考虑使用哪种类型的模型和搜索方法最适合给定的数据：</p>
 <ul>
 <li>数据列数；</li>
 <li>数据是否稀疏；</li>
 <li>距离度量方式；</li>
 </ul>
-<h2 id="3-对数据进行分类—Kd树"><a href="#3-对数据进行分类—Kd树" class="headerlink" title="3.对数据进行分类—Kd树"></a>3.对数据进行分类—Kd树</h2><p>使用Kd树方式对查询数据进行分类包括以下步骤：</p>
+<h2 id="3-对数据进行分类—Kd树">3.对数据进行分类—Kd树</h2>
+<p>使用Kd树方式对查询数据进行分类包括以下步骤：</p>
 <ol>
 <li>构建 Kd 树；</li>
-<li>使用Kd树进行 k 近邻搜索； </li>
+<li>使用Kd树进行 k 近邻搜索；</li>
 <li>确定待查询数据所属的类；</li>
 </ol>
 <p>示例根据 Fisher iris 数据的最后两列对新点进行分类。</p>
 <blockquote>
-<p><strong>Step- 1 导入数据并对最后两列绘图</strong> </p>
+<p><strong>Step- 1 导入数据并对最后两列绘图</strong></p>
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">load fisheriris</span><br><span class="line">x = meas(:,<span class="number">3</span>:<span class="number">4</span>);</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;Location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/ClassifyingQueryDataUsingKnnsearchExample_01.png" alt="Figure contains an axes object. The axes object contains 3 objects of type line. These objects represent setosa, versicolor, virginica."></p>
@@ -584,10 +589,10 @@
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">newpoint = [<span class="number">5</span> <span class="number">1.45</span>];</span><br><span class="line">line(newpoint(<span class="number">1</span>),newpoint(<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="C:/Users/W-H/Desktop/pic-bed/ClassifyingQueryDataUsingKnnsearchExample_02.png" alt="ClassifyingQueryDataUsingKnnsearchExample_02"></p>
 <blockquote>
-<p><strong>Step-3 构建Kd树近邻搜索模型</strong> </p>
+<p><strong>Step-3 构建Kd树近邻搜索模型</strong></p>
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mdl = KDTreeSearcher(x)</span><br></pre></td></tr></table></figure>
-<p>Mdl 是一个<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher</a>模型。 默认情况下，它用于搜索邻居的距离度量是欧氏距离。 </p>
+<p>Mdl 是一个<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/kdtreesearcher.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">KDTreeSearcher</a>模型。 默认情况下，它用于搜索邻居的距离度量是欧氏距离。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/ClassifyingQueryDataUsingKnnsearchExample_03.png" alt="ClassifyingQueryDataUsingKnnsearchExample_03"></p>
 <blockquote>
 <p><strong>Step-4 找出到待查询点最近的10个点</strong></p>
@@ -598,7 +603,7 @@
 <p><strong>Step-5 找出到待查询点最近的10个点的特征</strong></p>
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tabulate(species(n))</span><br><span class="line">       Value    Count   Percent</span><br><span class="line">   virginica        <span class="number">2</span>     <span class="number">20.00</span><span class="comment">%</span></span><br><span class="line">  versicolor        <span class="number">8</span>     <span class="number">80.00</span><span class="comment">%</span></span><br></pre></td></tr></table></figure>
-<p>可以依据不同的分类依据将此新点归类到不同的类别。 </p>
+<p>可以依据不同的分类依据将此新点归类到不同的类别。</p>
 <blockquote>
 <p><strong>Step-6 在一组近邻点周围画一个圆圈来直观地识别近邻点</strong></p>
 </blockquote>
@@ -611,7 +616,8 @@
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">figure</span> </span><br><span class="line">newpoint2 = [<span class="number">5</span> <span class="number">1.45</span>;<span class="number">6</span> <span class="number">2</span>;<span class="number">2.75</span> <span class="number">.75</span>];</span><br><span class="line">gscatter(x(:,<span class="number">1</span>),x(:,<span class="number">2</span>),species)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;location&#x27;</span>,<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">[n2,d2] = knnsearch(Mdl,newpoint2,<span class="string">&#x27;k&#x27;</span>,<span class="number">10</span>);</span><br><span class="line">line(x(n2,<span class="number">1</span>),x(n2,<span class="number">2</span>),<span class="string">&#x27;color&#x27;</span>,[<span class="number">.5</span> <span class="number">.5</span> <span class="number">.5</span>],<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>,<span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>)</span><br><span class="line">line(newpoint2(:,<span class="number">1</span>),newpoint2(:,<span class="number">2</span>),<span class="string">&#x27;marker&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,...</span><br><span class="line">   <span class="string">&#x27;markersize&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;linestyle&#x27;</span>,<span class="string">&#x27;none&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/ClassifyingQueryDataUsingKnnsearchExample_06.png" alt="ClassifyingQueryDataUsingKnnsearchExample_06"></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_kd_tree.mlx">完整代码：Position/knn_kd_tree.mlx at develop · Joiner12/Position (github.com)</a></p>
-<h2 id="4-使用自定义距离度量查找最近的邻居"><a href="#4-使用自定义距离度量查找最近的邻居" class="headerlink" title="4.使用自定义距离度量查找最近的邻居"></a>4.使用自定义距离度量查找最近的邻居</h2><p>示例说明如何找到与 X 中的三个最近卡方距离(chi-square distance)数据的索引。卡方距离常用于相关性分析(correspondence analysis)，特别是在生态应用中。 </p>
+<h2 id="4-使用自定义距离度量查找最近的邻居">4.使用自定义距离度量查找最近的邻居</h2>
+<p>示例说明如何找到与 X 中的三个最近卡方距离(chi-square distance)数据的索引。卡方距离常用于相关性分析(correspondence analysis)，特别是在生态应用中。</p>
 <p>$j$ 维向量 $x$ 和 $z$ 之间的卡方距离定义为：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-202201sd5413617.png" alt="image-202201sd5413617"></p>
 <p>其中$w_j$是于维度相关的权重系数；</p>
@@ -634,14 +640,17 @@
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:k</span><br><span class="line">    h(<span class="number">3</span>) = <span class="built_in">plot</span>(X(Idx(:,<span class="built_in">j</span>),<span class="number">1</span>),X(Idx(:,<span class="built_in">j</span>),<span class="number">2</span>),<span class="string">&#x27;ko&#x27;</span>,<span class="string">&#x27;MarkerSize&#x27;</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">legend</span>(h,&#123;<span class="string">&#x27;\texttt&#123;X&#125;&#x27;</span>,<span class="string">&#x27;\texttt&#123;Y&#125;&#x27;</span>,<span class="string">&#x27;Nearest Neighbor&#x27;</span>&#125;,<span class="string">&#x27;Interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;Heterogeneous Data and Nearest Neighbors&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/FindNearestNeighborUsingACustomDistanceMetricExample_02.png" alt="FindNearestNeighborUsingACustomDistanceMetricExample_02"></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/using_custom_distance_metric.mlx">完整代码：Position/using_custom_distance_metric.mlx at develop · Joiner12/Position (github.com)</a></p>
-<h2 id="5-有监督学习的-K-近邻分类"><a href="#5-有监督学习的-K-近邻分类" class="headerlink" title="5.有监督学习的 K-近邻分类"></a>5.有监督学习的 K-近邻分类</h2><h3 id="5-1-说明"><a href="#5-1-说明" class="headerlink" title="5.1 说明"></a>5.1 说明</h3><p>使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classificationknn.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">ClassificationKNN </a>分类模型实现k-近邻分类具体可以分为以下几步：</p>
+<h2 id="5-有监督学习的-K-近邻分类">5.有监督学习的 K-近邻分类</h2>
+<h3 id="5-1-说明">5.1 说明</h3>
+<p>使用<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classificationknn.html" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">ClassificationKNN </a>分类模型实现k-近邻分类具体可以分为以下几步：</p>
 <ol>
 <li>构造 KNN 分类器<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7k2" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Construct KNN Classifier</a></li>
 <li>检查 KNN 分类器<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7l_" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Examine Quality of KNN Classifier</a></li>
 <li>使用 KNN 分类器进行预测分类 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap7nm" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Predict Classification Using KNN Classifier</a></li>
 <li>修改 KNN 分类器 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/classification-using-nearest-neighbors.html#btap_jn" style="color:#0076A8;font-family: Menlo, Monaco, Consolas, 'Courier New, monospace;">Modify KNN Classifier</a></li>
 </ol>
-<h3 id="5-2-示例"><a href="#5-2-示例" class="headerlink" title="5.2 示例"></a>5.2 示例</h3><p>例子展示了如何为 Fisher iris 数据构建一个 k 最近邻分类器。 </p>
+<h3 id="5-2-示例">5.2 示例</h3>
+<p>例子展示了如何为 Fisher iris 数据构建一个 k 最近邻分类器。</p>
 <blockquote>
 <p><strong>Step1- 导入数据</strong></p>
 </blockquote>
@@ -656,7 +665,7 @@
 <p>默认的 k 近邻分类器仅使用一个临近值。将 Mdl 的邻域大小更改为 4</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mdl.NumNeighbors = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><strong>Step4- 重新替换和交叉验证检查 k 最近邻分类器 </strong></p>
+<p>**Step4- 重新替换和交叉验证检查 k 最近邻分类器 **</p>
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">loss = resubLoss(Mdl)</span><br><span class="line">rng(<span class="number">10</span>); <span class="comment">% For reproducibility</span></span><br><span class="line">CVMdl = crossval(Mdl,<span class="string">&#x27;KFold&#x27;</span>,<span class="number">5</span>);</span><br><span class="line">kloss = kfoldLoss(CVMdl)</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -664,13 +673,17 @@
 </blockquote>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flwr = <span class="built_in">mean</span>(X); <span class="comment">% an average flower</span></span><br><span class="line">flwrClass = predict(Mdl,flwr)</span><br><span class="line"><span class="comment">% 预测结果</span></span><br><span class="line"><span class="comment">% flwrClass = 1x1 cell array</span></span><br><span class="line"><span class="comment">%    &#123;&#x27;versicolor&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://github.com/Joiner12/Position/blob/develop/Fingerprinting/MatScript/knn_supervised_learn.mlx">完整代码：Position/knn_supervised_learn.mlx at develop · Joiner12/Position (github.com)</a></p>
-<h2 id="6-kNN开发流程总结"><a href="#6-kNN开发流程总结" class="headerlink" title="6.kNN开发流程总结"></a>6.kNN开发流程总结</h2><p><strong>机器学习算法通用流程</strong></p>
+<h2 id="6-kNN开发流程总结">6.kNN开发流程总结</h2>
+<p><strong>机器学习算法通用流程</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/kaifaliucheng.png" alt="kaifaliucheng"></p>
-<p>收集数据：任何方法<br>准备数据：距离计算所需要的数值，最好是结构化的数据格式<br>分析数据：任何方法<br>训练算法：此步骤不适用于 k-近邻算法，k-近邻算法是在搜索过程中训练算法；<br>测试算法：计算错误率<br>使用算法：输入样本数据和结构化的输出结果，然后运行 k-近邻算法判断输入数据分类属于哪个分类，最后对计算出的分类执行后续处理。</p>
+<p>收集数据：任何方法<br>
+准备数据：距离计算所需要的数值，最好是结构化的数据格式<br>
+分析数据：任何方法<br>
+训练算法：此步骤不适用于 k-近邻算法，k-近邻算法是在搜索过程中训练算法；<br>
+测试算法：计算错误率<br>
+使用算法：输入样本数据和结构化的输出结果，然后运行 k-近邻算法判断输入数据分类属于哪个分类，最后对计算出的分类执行后续处理。</p>
 <hr>
-
 <p style="text-align:right;">2022-01-11 15:10</p>
-
 
 
         <hr>

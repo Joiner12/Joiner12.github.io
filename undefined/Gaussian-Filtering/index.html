@@ -244,8 +244,6 @@
 
           
           
-          
-          
           <li>
             <a href="/archive/">
               
@@ -254,6 +252,19 @@
               
             </a>
           </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
           
           
           
@@ -272,17 +283,6 @@
             <a href="/tags/">
               
               标签
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/categories/">
-              
-              分类
               
               
             </a>
@@ -462,13 +462,15 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1 id="高斯平滑"><a href="#高斯平滑" class="headerlink" title="高斯平滑"></a>高斯平滑</h1><p>高斯平滑又叫高斯滤波，是一种<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Smoothing">数据平滑技术</a>， 常用在图像模糊(Blur)中去除噪声和细节。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/Figure_5.png" style="width:250px;height:250px;"></p>
+        <h1>高斯平滑</h1>
+<p>高斯平滑又叫高斯滤波，是一种<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Smoothing">数据平滑技术</a>， 常用在图像模糊(Blur)中去除噪声和细节。</p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/Figure_5.png" style="width:250px;height:250px;">
 <span id="more"></span>
-<h2 id="1-高斯函数"><a href="#1-高斯函数" class="headerlink" title="1.高斯函数"></a>1.高斯函数</h2><p>高斯函数就是我们常说的高斯分布(Gaussian Distribution)，一维中，高斯函数如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211209211532311.png" style="zoom:40%"></p>
+<h2 id="1-高斯函数">1.高斯函数</h2>
+<p>高斯函数就是我们常说的高斯分布(Gaussian Distribution)，一维中，高斯函数如下：</p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211209211532311.png" style="zoom:40%">
 <p>上式中标准差为σ，平均值μ为0。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211209214731127.png" style="zoom:80%"></p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211209214731127.png" style="zoom:80%">
 <p>如图所示，高斯分布是对称的钟形，上图为均值为0，标准差为1的高斯分布也即正态分布，高斯函数的标准差在其滤波中起着重要作用。位于±σ之间的值占集合的68%，而位于±2σ之间的值占集合的95%，±3σ占99.7%，这在设计固定长度的高斯核时非常重要。</p>
 <p>其他性质：</p>
 <ul>
@@ -477,33 +479,37 @@
 <li>高斯函数是对称函数，对称轴为均值。</li>
 </ul>
 <p>高斯分布的特点是在均值μ两边的概率都很大，离之越远的概率越小，所以高斯函数用在滤波上体现的思想就是：离某个点越近的点对其产生的影响越大，所以让其权重大，越远的产生的影响越小，让其权重越小。高斯滤波的关键是生成高斯核(Gaussian Kernel)。</p>
-<h2 id="2-高斯核-Gaussian-Kernel"><a href="#2-高斯核-Gaussian-Kernel" class="headerlink" title="2.高斯核(Gaussian Kernel)"></a>2.高斯核(Gaussian Kernel)</h2><p>数字滤波领域信号一般都是离散的，如一维数字信号用f(nT)进行描述，其中T为采样周期，n为时间序列。f(nT)表示第n个采样时刻的信号值。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/Figure_3.png" style="zoom:70%"></p>
+<h2 id="2-高斯核-Gaussian-Kernel">2.高斯核(Gaussian Kernel)</h2>
+<p>数字滤波领域信号一般都是离散的，如一维数字信号用f(nT)进行描述，其中T为采样周期，n为时间序列。f(nT)表示第n个采样时刻的信号值。</p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/Figure_3.png" style="zoom:70%">
 <p><strong>所谓高斯滤波操作，其实就是用高斯函数对原始信号做<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh/%E5%8D%B7%E7%A7%AF">卷积</a>计算</strong>。而高斯函数是连续函数，所以我们要从连续高斯函数中采样生成离散的权重系数，即Gaussian Kernel。 高斯核是对连续高斯函数的离散近似，通常对高斯函数进行离散采样和归一化得出，这里，归一化指的是卷积核所有元素（权重系数）之和为1。下面分别为为一维和二维高斯核的例子：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211210100939019.png" style="zoom:80%"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211210100905664.png" style="zoom:%80;"></p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211210100939019.png" style="zoom:80%">
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211210100905664.png" style="zoom:%80;">
 <p>计算高斯核中，有两个重要参数：σ、$r$ 。σ为高斯函数的标准差；$r$ 为核大小。不同的σ和$r$ 会有不同的滤波结果。</p>
 <p>高斯核可以看成是与中心距离负相关的权重。平滑时，调整σ实际是在调整周围像素对当前像素的影响程度，<strong>调大σ即提高了远处像素对中心像素的影响程度</strong>，滤波结果也就越平滑${^{4}}$。高斯曲线随σ变化的曲线如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/izOixs.png" style="zoom:60%"></p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/izOixs.png" style="zoom:60%">
 <p>高斯核是对连续高斯的离散近似，窗口越大自然近似越好，但高斯函数是钟形曲线，距离中心越远数值越小，足够远处可以忽略不计，钟型曲线在区间(μ−σ,μ+σ)(μ−σ,μ+σ)范围内的面积占曲线下总面积的68%，(μ−2σ,μ+2σ)范围占95%，(μ−3σ,μ+3σ)范围占99.7%，一般3σ外的数值已接近于0，可忽略，半径为3σ即窗口大小为6σ×6σ即可，通常取最近的奇数。</p>
-<h2 id="3-一维高斯滤波例子"><a href="#3-一维高斯滤波例子" class="headerlink" title="3.一维高斯滤波例子"></a>3.一维高斯滤波例子</h2><p><code>Python</code></p>
+<h2 id="3-一维高斯滤波例子">3.一维高斯滤波例子</h2>
+<p><code>Python</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Created on Thu Dec  9 22:22:11 2021</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: W-H</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> mpl</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;STZhongsong&#x27;</span>]    <span class="comment"># 指定默认字体：解决plot不能显示中文问题</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span>           <span class="comment"># 解决保存图像是负号&#x27;-&#x27;显示为方块的问题</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gauss_kernel</span>(<span class="params">r, sigma, *args, **kwargs</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; 生成一维高斯滤波高斯核</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    r:float</span></span><br><span class="line"><span class="string">        核大小，通常为基数</span></span><br><span class="line"><span class="string">    sigma: float</span></span><br><span class="line"><span class="string">        标准差</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    输出</span></span><br><span class="line"><span class="string">    gauss_weight:array</span></span><br><span class="line"><span class="string">        高斯核</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    gauss_weight = np.zeros(<span class="number">2</span>*r+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">2</span>*(r+<span class="number">1</span>), <span class="number">1</span>):</span><br><span class="line">        gauss_weight[i-<span class="number">1</span>] = np.exp(-<span class="number">1</span>*<span class="built_in">pow</span>((i-r), <span class="number">2</span>) /</span><br><span class="line">                                   (<span class="number">2</span>*<span class="built_in">pow</span>(sigma, <span class="number">2</span>))) / (sigma*np.sqrt(<span class="number">2</span>*np.pi))</span><br><span class="line">    <span class="keyword">return</span> gauss_weight</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gaussian_filtering_1</span>(<span class="params">data, kernel_cof, r</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; 一维高斯滤波</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    data: array</span></span><br><span class="line"><span class="string">        原始数据</span></span><br><span class="line"><span class="string">    kernel_cof: array</span></span><br><span class="line"><span class="string">        高斯核</span></span><br><span class="line"><span class="string">    r: float</span></span><br><span class="line"><span class="string">        核大小，通常为基数</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    输出</span></span><br><span class="line"><span class="string">    data_f: array</span></span><br><span class="line"><span class="string">        滤波后数据</span></span><br><span class="line"><span class="string">    说明</span></span><br><span class="line"><span class="string">    高斯滤波是对原始数据进行核卷积运算，滤波中边界不进行处理</span></span><br><span class="line"><span class="string">    data = [1,2,3,4,5]</span></span><br><span class="line"><span class="string">    kernel_cof = [a1,a0,a1]</span></span><br><span class="line"><span class="string">    data_f[0] = 1 # 保留原始数据</span></span><br><span class="line"><span class="string">    data_f[1] = a1*data[1-1] + a0*data[1] + a1*data[1+1]</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    .</span></span><br><span class="line"><span class="string">    data[4] = 5</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    data_y = np.zeros(data.size)</span><br><span class="line">    data_len = data.size</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(data_len):</span><br><span class="line">        <span class="keyword">if</span> k &lt; r <span class="keyword">or</span> k &gt; data_len-r-<span class="number">1</span>:</span><br><span class="line">            data_y[k] = data[k]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp = np.dot(data[k-r:k+r+<span class="number">1</span>], kernel_cof)</span><br><span class="line">            data_y[k] = temp</span><br><span class="line">    <span class="keyword">return</span> data_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_1</span>():</span></span><br><span class="line">    <span class="comment"># 生成测试数据</span></span><br><span class="line">    data = np.random.rand(<span class="number">100</span>)</span><br><span class="line">    r = <span class="number">2</span></span><br><span class="line">    sigma = <span class="number">5</span></span><br><span class="line">    gauss_cof = gauss_kernel(r, sigma)</span><br><span class="line">    data_y1 = gaussian_filtering_1(data, gauss_cof, r)</span><br><span class="line">    r = <span class="number">2</span></span><br><span class="line">    sigma = <span class="number">20</span></span><br><span class="line">    gauss_cof = gauss_kernel(r, sigma)</span><br><span class="line">    data_y2 = gaussian_filtering_1(data, gauss_cof, r)</span><br><span class="line">    plt.plot(data, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.plot(data_y1, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.plot(data_y2, <span class="string">&#x27;o-&#x27;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;采样周期T&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">    plt.grid(axis=<span class="string">&#x27;x&#x27;</span>, color=<span class="string">&#x27;0.95&#x27;</span>)</span><br><span class="line">    plt.legend([<span class="string">&#x27;原始信号&#x27;</span>, <span class="string">&#x27;sigma:5,r:2高斯滤波&#x27;</span>, <span class="string">&#x27;sigma:20,r:2高斯滤波&#x27;</span>])</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    test_1()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/Figure_4.png" style="zoom:60%"></p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/Figure_4.png" style="zoom:60%">
 <p>从上图可以看到，σ值越大，相比较于原始随机信号，滤波结果越平滑。从频域角度描述就是高频信号分量越少。</p>
-<h2 id="3-二维高斯滤波例子"><a href="#3-二维高斯滤波例子" class="headerlink" title="3.二维高斯滤波例子"></a>3.二维高斯滤波例子</h2><p>二维高斯滤波是一维高斯滤波的扩展，从原理上来说没有区别。相比较于一维高斯滤波，不同点在于：</p>
+<h2 id="3-二维高斯滤波例子">3.二维高斯滤波例子</h2>
+<p>二维高斯滤波是一维高斯滤波的扩展，从原理上来说没有区别。相比较于一维高斯滤波，不同点在于：</p>
 <ul>
 <li>原始信号维度；</li>
 <li>高斯核；</li>
 </ul>
 <p>二维高斯函数：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211210150457822.png" style="zoom:50%"></p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211210150457822.png" style="zoom:50%">
 <p>高纬高斯函数：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211210150543339.png" style="zoom:50%"></p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20211210150543339.png" style="zoom:50%">
 <p>下面是使用scipy的一个简单例子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> misc</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy.ndimage <span class="keyword">import</span> gaussian_filter</span><br><span class="line"><span class="comment"># </span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.gray()  <span class="comment"># show the filtered result in grayscale</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">121</span>)  <span class="comment"># left side</span></span><br><span class="line">ax2 = fig.add_subplot(<span class="number">122</span>)  <span class="comment"># right side</span></span><br><span class="line">ascent = misc.ascent()</span><br><span class="line">result = gaussian_filter(ascent, sigma=<span class="number">5</span>)</span><br><span class="line">ax1.imshow(ascent)</span><br><span class="line">ax2.imshow(result)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/Figure_1.png"></p>
+<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/Figure_1.png">
 <p>关于二维高斯滤波具体原理参考<a target="_blank" rel="noopener" href="https://www.cs.auckland.ac.nz/courses/compsci373s1c/PatricesLectures/Gaussian Filtering_1up.pdf">Microsoft PowerPoint - Image Filtering-6.ppt Compatibility Mode (auckland.ac.nz)</a></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<h2 id="Reference">Reference</h2>
+<ol>
 <li><a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html">scipy.ndimage.gaussian_filter — SciPy v1.7.1 Manual</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.cs.auckland.ac.nz/courses/compsci373s1c/PatricesLectures/Gaussian Filtering_1up.pdf">Microsoft PowerPoint - Image Filtering-6.ppt Compatibility Mode (auckland.ac.nz)</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.sci.utah.edu/~gerig/CS7960-S2010/handouts/03 The Gaussian kernel.pdf">03 The Gaussian kernel.pdf (utah.edu)</a></li>
