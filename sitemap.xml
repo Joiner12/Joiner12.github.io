@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite-url/undefined/TheNatureOfCode-ParticleSystem/</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/categories/index.html</loc>
     
     <lastmod>2022-05-25</lastmod>
@@ -231,6 +238,13 @@
   
   <url>
     <loc>http://yoursite-url/categories/Learning-Note/</loc>
+    <lastmod>2022-05-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/categories/Processing/</loc>
     <lastmod>2022-05-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

@@ -139,10 +139,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/undefined/target/">
+  <link rel="canonical" href="http://yoursite-url/undefined/TheNatureOfCode-ParticleSystem/">
   <title>
     
-      Target - Wh.🛰️&#39;s Blogs
+      The Nature of Code:Particle System - Wh.🛰️&#39;s Blogs
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -348,19 +348,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('/img/header_img/qgRoad.jpg');
-      --intro-header-background-image-url-page: url('//img/header_img/qgRoad.jpg');
+      --intro-header-background-image-url-post: url('The Nature of Code.jpg');
+      --intro-header-background-image-url-page: url('/The Nature of Code.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/qgRoad.jpg');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/qgRoad.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('The Nature of Code.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/The Nature of Code.jpg');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url('/img/header_img/qgRoad.jpg'); */
+        /* background-image: url('The Nature of Code.jpg'); */
       
     }
 
@@ -382,11 +382,11 @@
             <div class="tags">
               
             </div>
-            <h1>Target</h1>
+            <h1>The Nature of Code:Particle System</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by Wh on
-              2022-05-24
+              2022-05-25
             </span>
 
 
@@ -394,11 +394,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">7</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">39</span> In Total
+              Words <span class="post-count">1.8k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -460,28 +460,62 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>人需要给自己定一些可行度高的目标来敦促自己不浪费生命！</h1>
-<hr>
-<h2 id="2022-05-25">2022-05-25</h2>
-<blockquote>
+        <hr>
+<h1>粒子系统(Particle Systems)</h1>
+<p><a target="_blank" rel="noopener" href="https://natureofcode.com/book/chapter-4-particle-systems/">Click Here Jump To Source Page—The Nature of Code</a></p>
+<p>​	粒子系统是由许多单个粒子的集合，所有这些单个粒子的集合用来表示一个模糊的物体。一段时间内，粒子在系统中生成、移动、变化最后消失。粒子系统是一种在计算机图形中非常常见且有用的技术。</p>
+<p>​	自 1980 年代初以来，粒子系统已被用于无数视频游戏、动画、数字艺术作品和装置中，用以模拟各种不规则类型的自然现象，例如火、烟、瀑布、雾、草、气泡等。</p>
+<p>​	本章重点介绍粒子系统编码的实现。包括：</p>
+<ul>
+<li>如何组织代码；</li>
+<li>在哪里存储单个粒子相关信息而不是整个粒子系统的信息；</li>
+<li>…</li>
+</ul>
+<p>​	虽然本章内容为粒子使用简单的形状和最基本的行为(重力)，但是基于此框架应用更复杂的方式构建粒子和行为，可以实现各种不同的效果。</p>
+<h2 id="为什么需要粒子系统？">为什么需要粒子系统？</h2>
 <ol>
-<li><a target="_blank" rel="noopener" href="https://natureofcode.com/book/">The Nature of Code</a> 学习翻译一章</li>
-<li>✔</li>
+<li>
+<p>使用粒子系统能够对例如烟、火、瀑布等已经列出来的自然现象进行建模；</p>
+</li>
+<li>
+<p>更为抽象的意义就是：使用粒子系统的思路来处理需要面对的大量（<em>many</em>）对象编码过程；之前章节在处理大量对象的过程中使用的是数组的方式来实现，粒子系统能够提供一种超越数组的方式‘；</p>
+</li>
+<li>
+<p>编写多个类，以及用以保存其他类实例的类编程思想；</p>
+<p>粒子系统中，需要更加灵活的处理元素数量的方法，除了编写单个粒子的类之外还要实现一个描述粒子集合的类—粒子系统本身。本章的目标是能够实现如下的程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ParticleSystem ps;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">640</span>,<span class="number">360</span>);</span><br><span class="line">  ps = <span class="keyword">new</span> ParticleSystem();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  background(<span class="number">255</span>);</span><br><span class="line">  ps.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码中，没有对单个粒子类进行显示引用，但是能够实现整个粒子系统。这是一种非常有用的面向对象编程方式—编写多个类，以及用以保存其他类实例的类。</p>
+</li>
+<li>
+<p>使用另外两种高级面向对象编程（object-oriented programming）的方法：继承(inheritance )和多态(polymorphism)。</p>
+<p>通过继承（和多态），我们将学习一种方便的方法来存储包含不同类型对象的单个列表。 这样，粒子系统不仅需要是单一类型粒子的系统。</p>
+</li>
 </ol>
-</blockquote>
+<p>​</p>
+<h2 id="单个粒子">单个粒子</h2>
+<p>​	粒子系统是由多个粒子组成的，开始实现系统之前，先实现描述单个粒子的类。第二章中的<code>Mover</code>类可以作为一个很好的模板进行使用。实际上粒子是一个能在屏幕上运动的物体。它具有location、velocity、acceleration，一个用以初始化上述变量的结构体，一个用以显示和更新的函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Particle</span> </span>&#123;</span><br><span class="line">  <span class="comment">//[full] A “Particle” object is just another name for our “Mover.” It has location, velocity, and acceleration.</span></span><br><span class="line">  PVector location;</span><br><span class="line">  PVector velocity;</span><br><span class="line">  PVector acceleration;</span><br><span class="line">  <span class="comment">//[end]</span></span><br><span class="line"></span><br><span class="line">  Particle(PVector l) &#123;</span><br><span class="line">    location = l.get();</span><br><span class="line">    acceleration = <span class="keyword">new</span> PVector();</span><br><span class="line">    velocity = <span class="keyword">new</span> PVector();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    velocity.add(acceleration);</span><br><span class="line">    location.add(velocity);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    stroke(<span class="number">0</span>);</span><br><span class="line">    fill(<span class="number">175</span>);</span><br><span class="line">    ellipse(location.x,location.y,<span class="number">8</span>,<span class="number">8</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>​	上面为一个最简单的单粒子定义，此外可以添加一个*applyfoce()*函数控制粒子的运动。添加变量来描述粒子的颜色和形状，或者引用 PImage 来绘制粒子。接下来重点关注一个附加项：<em><strong>生命周期（lifespan）</strong></em>。</p>
+<p>​	典型的粒子系统涉及一种称为***发射器（emitter）***的东西。发射器是粒子的来源，并控制粒子、位置、速度等的初始设置。发射器可能会发射单个粒子爆发，或连续的粒子流，或两者兼而有之。关键是对于这样的典型实现，粒子在发射器处诞生，但不会永远存在。如果它要永远存在，我们的 Processing 草图最终会随着时间的推移随着粒子数量增加到一个难以处理的数字而停止。随着新粒子的诞生，我们需要旧粒子死亡。这会产生无限粒子流的错觉，并且我们的程序的性能不会受到影响。有许多不同的方法可以决定粒子何时死亡。例如，它可能会接触到另一个物体，或者它可能只是离开屏幕。然而，对于我们的第一个粒子类，我们只是要添加一个寿命变量。计时器将从 255 开始并倒计时至 0，此时粒子将被视为“死亡”。所以我们扩展粒子类如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Particle</span> </span>&#123;</span><br><span class="line">  PVector location;</span><br><span class="line">  PVector velocity;</span><br><span class="line">  PVector acceleration;</span><br><span class="line">  <span class="comment">// A new variable to keep track of how long the particle</span></span><br><span class="line">  <span class="comment">// has been “alive”</span></span><br><span class="line">  <span class="keyword">float</span> lifespan; <span class="comment">//[bold]</span></span><br><span class="line"></span><br><span class="line">  Particle(PVector l) &#123;</span><br><span class="line">    location = l.get();</span><br><span class="line">    acceleration = <span class="keyword">new</span> PVector();</span><br><span class="line">    velocity = <span class="keyword">new</span> PVector();</span><br><span class="line">    <span class="comment">// We start at 255 and count down for convenience</span></span><br><span class="line">    lifespan = <span class="number">255</span>; <span class="comment">//[bold]</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    velocity.add(acceleration);</span><br><span class="line">    location.add(velocity);</span><br><span class="line">    <span class="comment">// Lifespan decreases</span></span><br><span class="line">    lifespan -= <span class="number">2.0</span>; <span class="comment">//[bold]</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//[full] Since our life ranges from 255 to 0 we can use it for alpha</span></span><br><span class="line">    stroke(<span class="number">0</span>, lifespan); <span class="comment">//[bold]</span></span><br><span class="line">    fill(<span class="number">175</span>, lifespan); <span class="comment">//[bold]</span></span><br><span class="line">    <span class="comment">//[end]</span></span><br><span class="line">    ellipse(location.x, location.y, <span class="number">8</span>, <span class="number">8</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 查询函数</span></span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">isDead</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//[full] Is the particle still alive?</span></span><br><span class="line">    <span class="keyword">if</span> (lifespan &lt; <span class="number">0.0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//[end]</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>我们选择从 255 开始生命周期并倒计时到 0 的原因是为了方便。 有了这些值，我们也可以指定<em>lifespan</em>来充当椭圆的Alpha 透明度。 当粒子“死”时，它也会在屏幕上消失。</p>
+<p>​	加上 <em>lifespan</em> 变量，我们还需要一个额外的函数——一个可以查询（判断真假答案）粒子是&quot;活&quot;还是&quot;死&quot;的函数。 这在我们编写 ParticleSystem 类时会派上用场，该类的任务是管理粒子列表本身。 编写这个函数很容易； 我们只需要检查<em>lifespan</em>的值是否小于0。如果是我们返回<em>true</em>，否则返回<em>false</em>。</p>
+<p>验证单粒子运行</p>
+<p><code>Particlesystem.pde</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// import</span></span><br><span class="line">Particle singleParticle;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  size(<span class="number">500</span>, <span class="number">500</span>);</span><br><span class="line">  <span class="comment">// initialization single particle</span></span><br><span class="line">  PVector initialPos = <span class="keyword">new</span> PVector(random(width/<span class="number">2</span>-<span class="number">50</span>, width/<span class="number">2</span>+<span class="number">50</span>), <span class="number">0</span>);</span><br><span class="line">  singleParticle = <span class="keyword">new</span> Particle(initialPos);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  background(<span class="number">255</span>);</span><br><span class="line">  singleParticle.run();</span><br><span class="line">  <span class="keyword">if</span> (singleParticle.isDead()) &#123;</span><br><span class="line">    println(<span class="string">&quot;Particle dead!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>Particle.pde</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Particle</span> </span>&#123;</span><br><span class="line">  PVector location;</span><br><span class="line">  PVector velocity;</span><br><span class="line">  PVector acceleration;</span><br><span class="line">  <span class="comment">// A new variable to keep track of how long the particle</span></span><br><span class="line">  <span class="comment">// has been “alive”</span></span><br><span class="line">  <span class="keyword">float</span> lifespan; <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">  Particle(PVector l) &#123;</span><br><span class="line">    location = l.get();</span><br><span class="line">    acceleration = <span class="keyword">new</span> PVector(<span class="number">0</span>, <span class="number">0.05</span>);</span><br><span class="line">    velocity =  <span class="keyword">new</span> PVector(random(-<span class="number">1</span>, <span class="number">1</span>), random(-<span class="number">2</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="comment">// We start at 255 and count down for convenience</span></span><br><span class="line">    lifespan = <span class="number">255</span>; <span class="comment">//</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    velocity.add(acceleration);</span><br><span class="line">    location.add(velocity);</span><br><span class="line">    <span class="comment">// Lifespan decreases</span></span><br><span class="line">    lifespan -= <span class="number">2.0</span>; <span class="comment">//</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//[full] Since our life ranges from 255 to 0 we can use it for alpha</span></span><br><span class="line">    stroke(<span class="number">0</span>, lifespan); <span class="comment">//</span></span><br><span class="line">    fill(<span class="number">175</span>, lifespan); <span class="comment">//</span></span><br><span class="line">    ellipse(location.x, location.y, <span class="number">8</span>, <span class="number">8</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 查询函数</span></span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">isDead</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//[full] Is the particle still alive?</span></span><br><span class="line">    <span class="keyword">if</span> (lifespan &lt; <span class="number">0.0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//[end]</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    update();</span><br><span class="line">    display();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>现在我们有了一个描述单个粒子的类，我们已经准备好迈出下一步了。 当我们无法确定在任何给定时间我们可能拥有多少粒子时，我们如何跟踪许多粒子？</p>
+<p>:clock12:  2022-05-25 22:58</p>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/undefined/TheNatureOfCode-ParticleSystem/" data-toggle="tooltip" data-placement="top" title="The Nature of Code:Particle System">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/undefined/A-tutorial-on-Euler-and-Quaternions/" data-toggle="tooltip" data-placement="top" title="A Tutorial on Euler and Quaternions">Next Post &rarr;</a>
+            <a href="/undefined/target/" data-toggle="tooltip" data-placement="top" title="Target">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -530,7 +564,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Target&body=Hi,I found this website and thought you might like it http://yoursite-url/undefined/target/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=The Nature of Code:Particle System&body=Hi,I found this website and thought you might like it http://yoursite-url/undefined/TheNatureOfCode-ParticleSystem/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -565,7 +599,7 @@
       repo: '',
       owner: '',
       admin: '',
-      id: 'Tue May 24 2022 21:47:19 GMT+0800', // Ensure uniqueness and length less than 50
+      id: 'Wed May 25 2022 15:39:07 GMT+0800', // Ensure uniqueness and length less than 50
       distractionFreeMode: false, // Facebook-like distraction free mode
       perPage: 10,
       pagerDirection: 'last',
@@ -618,7 +652,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">人需要给自己定一些可行度高的目标来敦促自己不浪费生命！</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2022-05-25"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">2022-05-25</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">粒子系统(Particle Systems)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">为什么需要粒子系统？</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8D%95%E4%B8%AA%E7%B2%92%E5%AD%90"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">单个粒子</span></a></li></ol></li></ol>
         
         </div>
       </aside>
