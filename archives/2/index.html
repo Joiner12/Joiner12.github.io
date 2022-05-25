@@ -139,10 +139,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/undefined/A-tutorial-on-Euler-and-Quaternions/">
+  <link rel="canonical" href="http://yoursite-url/archives/2/">
   <title>
     
-      A Tutorial on Euler and Quaternions - Wh.🛰️&#39;s Blogs
+      Wh.🛰️&#39;s Blogs
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -358,9 +358,9 @@
     }
 
     header.intro-header {
-       /*post*/
-        background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url(''); */
+       /*config*/
+        background-image: var(--intro-header-background-image-url-home);
+        /* background-image: url('/img/header_img/newhome_bg.jpg'); */
       
     }
 
@@ -378,41 +378,10 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="post-heading">
-            <div class="tags">
-              
-              <a class="tag" href="/tags/#笔记" title="笔记">笔记</a>
-              
-            </div>
-            <h1>A Tutorial on Euler and Quaternions</h1>
-            <h2 class="subheading"></h2>
-            <span class="meta">
-              Posted by Wh on
-              2022-05-12
-            </span>
-
-
-            
-            <!-- WordCount start -->
-            <div class="blank_box"></div>
-            <span class="meta">
-              Estimated Reading Time <span class="post-count">6</span> Minutes
-            </span>
-            <div class="blank_box"></div>
-            <span class="meta">
-              Words <span class="post-count">1.5k</span> In Total
-            </span>
-            <div class="blank_box"></div>
-            <!-- WordCount end -->
-            
-            
-            <!-- 不蒜子统计 start -->
-            <span class="meta" id="busuanzi_container_page_pv">
-              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
-            </span>
-            <!-- 不蒜子统计 end -->
-            
-
+          <div class="site-heading">
+            <h1>你在我的心里</h1>
+            <!--<hr class="small">-->
+            <span class="subheading">永远是故乡</span>
 
           </div>
           
@@ -454,392 +423,331 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+		<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    
 
-        <h1>欧拉角和四元数</h1>
-<hr>
-<p>$$<br>
-i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi<br>
-$$</p>
-<hr>
-<h2 id="1-二维空间中的旋转（Rotations-in-two-dimensions）">1.二维空间中的旋转（Rotations in two dimensions）</h2>
-<h3 id="1-1-笛卡尔坐标系-极坐标系-Cartesian-and-polar-coordinates">1.1 笛卡尔坐标系&amp;极坐标系(Cartesian and polar coordinates)</h3>
-<p>二维空间(two-dimensional)中的向量(vector)或者位置(position)(向量的顶点)在笛卡尔坐标系中的表示为${(x,y)}$，极坐标系中表示为${(r,\phi)}$ 。</p>
-<div style="text-align:center;">
-    <img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134602580.png" style="zoom:50%">
+    <!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+      <!-- Main Content -->
+
+
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/undefined/正则表达式学习笔记/">
+    <h2 class="post-title">
+      正则表达式学习笔记
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      正则表达式
+正则表达式（regular expression）描述了一种字符串匹配的模式（pattern）。正则表达式是由普通字符以及特殊字符构成的文字模式。
+构建正则表达式和写数学表达式一样，通过元字符和运算符将小的表达式构建为更大的表达式。
+
+元字符
+正则表达式主要依赖元字符， 元字符不代表其本身的含义而是具有特殊的含义。
+
+
+
+元字符
+描述
+
+
+
+
+.
+句号匹配任意单个字符除了换行符。......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Wh on
+    2020-12-23
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#reg" title="reg">reg</a>
+    
+  </div>
+  
+
 </div>
-<p>笛卡尔坐标系和极坐标系相互转换关系：<br>
-$$<br>
-x = rcos(\phi)\<br>
-y = rsin(\phi)\<br>
-r = \sqrt{x^2+y^2}\<br>
-\phi = tan^{-1}\frac{y}{x}\<br>
-$$</p>
-<h3 id="1-2-旋转向量-rotating-a-vector">1.2 旋转向量(rotating a vector)</h3>
-<p>假设向量逆时针(clockwise)旋转$\theta$ °，</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134623687.png" style="zoom:50%">
-<p>参考坐标系(frame coordinate)不变的前提下，旋转后向量极坐标为${(r,\phi + \theta)}$，通过三角函数关系计算笛卡尔坐标系中的坐标值。</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134639590.png" alt="image-20220513134639590" style="zoom: 67%;" />
-<p>通过旋转角度$\theta$ 位置从${(x,y)}$ 到位置$(x’,y’)$的矩阵表达式为：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134652171.png" alt="image-20220513134652171" style="zoom:67%;" />
-<h3 id="1-3-参考坐标系旋转-rotating-the-frame-of-reference">1.3 参考坐标系旋转(rotating the frame of reference)</h3>
-<p>向量旋转$\theta$ °和旋转坐标系效果一样。同一个向量在不同参考系A、B中的表示如图：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220427164426990.png" alt="image-20220427164426990" style="zoom: 50%;" />
-<p>坐标系A中的点$(x_A,y_A)$ 在坐标系B中的表示为$(x_B,y_B)$ 转换关系为：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134721512.png" alt="image-20220513134721512" style="zoom:67%;" />
-<h3 id="1-4-多次旋转-Multiple-rotations">1.4 多次旋转(Multiple rotations)</h3>
-<p>将坐标系B相对于新坐标系C旋转$\psi$。已知$(x_B,y_B)$，左乘上旋转矩阵(rotation matrix)能够得到新向量在坐标系中的值$(x_C,y_C)$ 。</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134734999.png" alt="image-20220513134734999" style="zoom: 67%;" />
-<p>多次旋转的旋转矩阵之间的关系：<br>
-$$<br>
-R_{<em>}^{</em>_1}:从坐标系<em>到坐标系</em>_1的旋转矩阵\<br>
-p^<em>:坐标系</em>中位置的值\<br>
-$$</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134758715.png" alt="image-20220513134758715" style="zoom: 67%;" />
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134806801.png" alt="image-20220513134806801" style="zoom:67%;" />
-<h2 id="2-三维空间中的旋转-Rotations-in-three-dimensions">2.三维空间中的旋转(Rotations in three dimensions)</h2>
-<p>三维空间坐标变换的概念与二维空间坐标变换的方法相同，只是相对二维来说数学上更为复杂。三维空间中的旋转可以通过绕三个轴分别旋转指定角度(Euler angles)来实现。</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134824146.png" alt="image-20220513134824146" style="zoom: 67%;" />
-<h3 id="2-1-右手法则-the-right-hand-rule">2.1 右手法则(the right hand rule)</h3>
-<p>三维坐标系中，Z轴必须分别垂直X，Y轴。这种情况下，Z轴的正方向如何确定？通常的方式是右手法则，弯曲右手手指，当从一个轴到另外一个轴的距离最短时候大拇指所指的方向就是正方向。具体判断方式是：右手手掌伸向x轴正方向，朝y轴正方向弯曲，大拇指指向就是z轴正方向。下图是不同的右手坐标系。</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134841806.png" alt="image-20220513134841806" style="zoom: 67%;" />
-<h3 id="2-2-三维旋转矩阵-Matrices-for-three-dimensional-rotations">2.2 三维旋转矩阵( Matrices for three-dimensional rotations)</h3>
-<p>三维坐标系中的点有三个坐标$p_x,p_y,p_z$ ，因此三维旋转矩阵是一个$3×3$ 矩阵。三维坐标系中的旋转可以通过分别绕每个轴旋转指定的角度实现：</p>
-<ul>
-<li>
-<p>绕z轴旋转，z坐标不变，旋转矩阵为：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134853312.png" alt="image-20220513134853312" style="zoom:67%;" />
-</li>
-<li>
-<p>绕x轴旋转，x坐标不变，旋转矩阵为：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134903705.png" alt="image-20220513134903705" style="zoom:67%;" />
-</li>
-<li>
-<p>绕y轴旋转，y坐标不变，旋转矩阵为：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134912427.png" alt="image-20220513134912427" style="zoom:67%;" />
-</li>
-</ul>
-<p>旋转顺序为：绕z轴→绕y轴→绕x轴称为$zyx$ 欧拉角旋转。</p>
-<h3 id="3-1-任意旋转矩阵-The-matrix-for-an-arbitrary-rotation">3.1 任意旋转矩阵(The matrix for an arbitrary rotation)</h3>
-<p>绕这些轴的任意旋转的矩阵是通过使用任意角度将每个轴的矩阵相乘获得的：绕z轴旋转$\psi$，绕y轴旋转$\theta$ ，绕 x轴旋转$\phi$。矩阵计算如下。首先将绕 y 轴的旋转左乘以绕 x 轴的旋转矩阵：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134935074.png" alt="image-20220513134935074" style="zoom:67%;" />
-<p>最后将绕z轴旋转矩阵左乘上述结果：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220428095344669.png" alt="image-20220428095344669" style="zoom: 67%;" />
-<p>得到最终的旋转矩阵：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513134959091.png" alt="image-20220513134959091" style="zoom:67%;" />
-<h2 id="3-四元数-quaternions">3.四元数(quaternions)</h2>
-<h3 id="3-1-复数-complex-numbers">3.1 复数(complex numbers)</h3>
-<p>复数是通常以$a+bi$ 形式出现。$a,b$是实数，$i$是复数符号，$i^2=-1$ 。复数有以下性质：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135016025.png" alt="image-20220513135016025" style="zoom:67%;" />
-<p>复数可以用来表示平面中的向量和点。$x+yi$ 表示从$(0,0)$到$(x,y)$的向量。复数相乘用来表示向量旋转。by欧拉公式(Euler’s formula)：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135030041.png" alt="image-20220513135030041" style="zoom:67%;" />
-<p>so:</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220428103802877.png" alt="image-20220428103802877" style="zoom: 67%;" />
-<p>对应二维旋转矩阵：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220428104026541.png" alt="image-20220428104026541" style="zoom: 67%;" />
-<p>数学家威廉·R·汉密尔顿发现三维旋转可以通过称为四元数的复数的推广来描述。</p>
-<h3 id="3-2-四元数的代数-The-algebra-of-quaternions">3.2 四元数的代数(The algebra of quaternions)</h3>
-<p>四元数表示为：$q_0+q_1i+q_2j+q_3k$ ，$q_i$ 是实数，$i,j,k$ 满足以下关系：<br>
-$$<br>
-\begin{align}<br>
-&amp;i^2=j^2=k^2=-1 \\<br>
-&amp;ij=k,ji=-k \\<br>
-&amp;jk=i,kj=-i \\<br>
-&amp;ki=j,ik=-j \\<br>
-\end{align}<br>
-$$<br>
-<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135050972.png" style="text-align:center;">查看公式</a></p>
-<p>上述乘法顺序不可交换。如下图， $i,j,k$ 任意两个相乘的正负符号通过其相对顺序进行判断。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220523162322477.png" alt="image-20220523162322477"></p>
-<p>如果两个符号为顺时针相邻，则相乘结果为正，如果是逆时针相邻，则相乘结果为负。</p>
-<p><strong>四元数加法&amp;乘法</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135105827.png" alt="image-20220513135105827" style="zoom:67%;" />
-<p>四元数的乘法是不可交换的。</p>
-<h3 id="3-3-复数的共轭和绝对值-The-conjugate-and-absolute-value-of-a-complex-number">3.3 复数的共轭和绝对值(The conjugate and absolute value of a complex number)</h3>
-<p>复数形成一个域(yield)，因为乘法是可交换的(commutative)，并且每个非零复数都有一个逆(inverse)：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135119762.png" alt="image-20220513135119762" style="zoom:67%;" />
-<p>复数$z = a+bi$ ，共轭复数$z^<em>=a-bi$ ，模$|z| = \sqrt{a^2+b^2}$ ，逆可表示为：<br>
-$$<br>
-z^{-1}=\frac{z</em>}{|z|^2}<br>
-$$</p>
-<h3 id="3-4-四元数的模和共轭-The-conjugate-and-norm-of-a-quaternion">3.4 四元数的模和共轭(The conjugate and norm of a quaternion)</h3>
-<p>对于给定的四元数$q_0+q_1i+q_2j+q_3k$，其共轭定义为：</p>
-<p>$q^* = q_0-q_1i-q_2j-q_3k$</p>
-<p>模(norm)：</p>
-<p>${|q|=\sqrt{q_0+q_1+q_2+q_3}}$</p>
-<p>逆(conjugate)：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135139088.png" alt="image-20220513135139088" style="zoom:67%;" />
-<p>Quaternions do not form a field because multiplication is not commutative.</p>
-<h3 id="3-5-四元数旋转-Quaternions-for-rotations">3.5 四元数旋转(Quaternions for rotations)</h3>
-<p>三维空间中的向量用实部为0的pure quaternion $q = 0 +xi+yj+zk$表示，旋转由四元数$q_R$表示，附加要求是其模等于1。从一个坐标系 A 到另一个坐标系 B 的旋转由共轭运算给出：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220428110136462.png" alt="image-20220428110136462" style="zoom: 67%;" />
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135201811.png" alt="image-20220513135201811" style="zoom:67%;" />
-<h3 id="3-6-四元数到旋转矩阵-From-a-quaternion-to-a-rotation-matrix">3.6 四元数到旋转矩阵(From a quaternion to a rotation matrix)</h3>
-<p>将3.5中的公式进行简化得到：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220428111600165.png" alt="image-20220428111600165" style="zoom: 67%;" />
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135223620.png" alt="image-20220513135223620" style="zoom:67%;" />
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220428111613150.png" alt="image-20220428111613150" style="zoom: 67%;" />
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135238442.png" alt="image-20220513135238442" style="zoom:67%;" />
-<h3 id="3-7-旋转角矩阵到四元数-From-a-matrix-of-angles-to-a-quaternion">3.7 旋转角矩阵到四元数(From a matrix of angles to a quaternion)</h3>
-<p>求矩阵$M$ 的迹(trace)—矩阵主对角线上元素的和。</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135249361.png" alt="image-20220513135249361" style="zoom:67%;" />
-<p>得$q_0$</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135258432.png" alt="image-20220513135258432" style="zoom:67%;" />
-<p>由$q_0$和$M_{11}$ 求解$q_1$：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135307902.png" alt="image-20220513135307902" style="zoom:67%;" />
-<p>类似的可以求出$q_2,q_3$:</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135323681.png" alt="image-20220513135323681" style="zoom:67%;" />
-<h3 id="3-8-欧拉角到四元数-From-Euler-angles-to-a-quaternion">3.8 欧拉角到四元数(From Euler angles to a quaternion)</h3>
-<p>对于给定的旋转角度矩阵，其对应的四元数可以用3.7中的方法计算得到，例如：绕z轴旋转：</p>
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135336256.png" alt="image-20220513135336256" style="zoom:67%;" />
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135354398.png" alt="image-20220513135354398" style="zoom:67%;" />
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135406944.png" alt="image-20220513135406944" style="zoom:67%;" />
-<img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220513135414575.png" alt="image-20220513135414575" style="zoom:67%;" />
-<h2 id="4-Reference">4.Reference</h2>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/195683958">MPU6050姿态解算2-欧拉角&amp;旋转矩阵 - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.weizmann.ac.il/sci-tea/benari/sites/sci-tea.benari/files/uploads/softwareAndLearningMaterials/quaternion-tutorial-2-0-1.pdf">A tutorial on Euler and Quaternion</a></p>
+<hr>
+
+
+  <!-- Pager -->
+  <ul class="pager">
+    
+    <li class="previous">
+      <a href="/">&larr; 上一页</a>
+    </li>
+    
+    
+  </ul>
+
+
+      <!-- 如果开启评论功能 -->
+      
+    </div>
+
+    <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Visitors -->
+<h5><a href="/">来访者</a></h5>
+
+<div class="widget">
+  <span>
+    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
+  </span>
+  <br />
+  <span>
+    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
+  </span>
+</div>
 
 
         <hr>
-        <!-- Pager -->
-        <ul class="pager">
-          
-          <li class="previous">
-            <a href="/undefined/target/" data-toggle="tooltip" data-placement="top" title="Target">&larr; Previous Post</a>
-          </li>
-          
-          
-          <li class="next">
-            <a href="/undefined/士兵突击—不一样的兵王的故事/" data-toggle="tooltip" data-placement="top" title="士兵突击—不是一个兵王的故事">Next Post &rarr;</a>
-          </li>
-          
-        </ul>
-
-        
-        <!-- tip start -->
-        <!-- tip -->
-<!-- tip start -->
-<div class="tip">
-  <p>
     
-      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+        <!-- Featured Tags -->
+
+<section>
+  <h5><a href="/tags/">特色标签</a></h5>
+  <div class="tags">
     
-  </p>
-</div>
-<!-- tip end -->
+    
+    <a href="/tags/#笔记" title="笔记" rel="1">笔记</a>
+    
+    
+    
+    <a href="/tags/#算法" title="算法" rel="1">算法</a>
+    
+    
+    
+    <a href="/tags/#algorithm" title="algorithm" rel="1">algorithm</a>
+    
+    
+    
+    <a href="/tags/#matlab" title="matlab" rel="1">matlab</a>
+    
+    
+    
+    <a href="/tags/#kNN" title="kNN" rel="1">kNN</a>
+    
+    
+    
+    <a href="/tags/#MATLAB" title="MATLAB" rel="1">MATLAB</a>
+    
+    
+    
+    <a href="/tags/#读书" title="读书" rel="1">读书</a>
+    
+    
+    
+    <a href="/tags/#随想" title="随想" rel="1">随想</a>
+    
+    
+    
+    <a href="/tags/#Python" title="Python" rel="1">Python</a>
+    
+    
+    
+    <a href="/tags/#Html" title="Html" rel="1">Html</a>
+    
+    
+    
+    <a href="/tags/#search" title="search" rel="1">search</a>
+    
+    
+    
+    <a href="/tags/#reg" title="reg" rel="1">reg</a>
+    
+    
+    
+    <a href="/tags/#raspberry" title="raspberry" rel="1">raspberry</a>
+    
+    
+    
+    <a href="/tags/#Kodi" title="Kodi" rel="1">Kodi</a>
+    
+    
+    
+    <a href="/tags/#instruction" title="instruction" rel="1">instruction</a>
+    
+    
+  </div>
+</section>
 
-        <!-- tip end -->
-        
 
-        
-        <!-- Sharing Srtart -->
-        <!-- Social Social Share Post -->
-<!-- Docs:https://github.com/overtrue/share.js -->
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+  <h5><a href="/about/">关于自己</a></h5>
+  <div class="short-about">
 
-<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
-  <ul class="list-inline text-center social-share-ul">
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-twitter">
-        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a class="social-share-icon icon-wechat">
-        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-weibo">
-        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-qq">
-        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=A Tutorial on Euler and Quaternions&body=Hi,I found this website and thought you might like it http://yoursite-url/undefined/A-tutorial-on-Euler-and-Quaternions/">
-        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
+    
+    <img id="avatar_pic" src="/img/avatar/favicon-32x32-monkey.png" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
+    
+
+    
+    <p>你转身向背 侧脸还是很美</p>
+    
+
+    <!-- SNS Link -->
+    <ul class="list-inline">
+      
+
+      
+      <li>
+        <a target="_blank" href="https://github.com/Joiner12">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+      <li>
+        <a target="_blank" href="https://twitter.com/RiskyJoiner">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+      <li>
+        <a target="_blank" href="https://www.instagram.com/RiskyJoiner">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </ul>
+  </div>
+</section>
+
+        <hr>
+    
+        <!-- RECENT POSTS -->
+
+<h5><a href="/">最近博文</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="../../undefined/target/">
+      <li>Target</li>
+    </a>
+    
+    <a href="../../undefined/A-tutorial-on-Euler-and-Quaternions/">
+      <li>A Tutorial on Euler and Quaternions</li>
+    </a>
+    
+    <a href="../../undefined/%E5%A3%AB%E5%85%B5%E7%AA%81%E5%87%BB%E2%80%94%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E5%85%B5%E7%8E%8B%E7%9A%84%E6%95%85%E4%BA%8B/">
+      <li>士兵突击—不是一个兵王的故事</li>
+    </a>
+    
+    <a href="../../undefined/%E3%80%8A%E4%BA%BA%E4%B8%96%E9%97%B4-%E6%91%98%E6%8A%84%E3%80%8B/">
+      <li>《人世间》 摘抄</li>
+    </a>
+    
+    <a href="../../undefined/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/">
+      <li>搜索技巧</li>
+    </a>
+    
   </ul>
 </div>
 
-<!-- css & js -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
-<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <!-- Sharing End -->
-        
         <hr>
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-  <!-- gitalk start -->
-  <!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
-
-  <div id="gitalk-container"></div>
-
-  
-    <!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
-    <script src="/js/comment/gitalk.js"></script>
-  
-
-  <script>
-    var gitalk = new Gitalk({
-      clientID: '',
-      clientSecret: '',
-      repo: '',
-      owner: '',
-      admin: '',
-      id: 'Thu May 12 2022 17:21:29 GMT+0800', // Ensure uniqueness and length less than 50
-      distractionFreeMode: false, // Facebook-like distraction free mode
-      perPage: 10,
-      pagerDirection: 'last',
-      createIssueManually: false,
-      language: 'en',
-      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
-    });
-    gitalk.render('gitalk-container');
-
-    var gtFolded = () => {
-      setTimeout(function () {
-        let markdownBody = document.getElementsByClassName("markdown-body");
-        let list = Array.from(markdownBody);
-        list.forEach(item => {
-          if (item.clientHeight > 250) {
-            item.classList.add('gt-comment-body-folded');
-            item.style.maxHeight = '250px';
-            item.title = 'Click to Expand';
-            item.onclick = function () {
-              item.classList.remove('gt-comment-body-folded');
-              item.style.maxHeight = '';
-              item.title = '';
-              item.onclick = null;
-            };
-          }
-        })
-      }, 800);
-    }
-  </script>
-
-  <!-- gitalk end -->
-
-
-<!-- 2. gitment comment -->
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <hr>
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-        <section>
-          <!-- no hr -->
-          <h5>
-            <a href="/tags/">特色标签</a>
-          </h5>
-          <div class="tags">
-            
-            <a class="tag" href="/tags/#笔记" title="笔记">笔记</a>
-            
-          </div>
-        </section>
-        
-
+    
         <!-- Friends Blog -->
-        
+
+<h5><a href="/">链友</a></h5>
+<ul class="list-inline">
+  
+  <li><a href="https://riskyjr.gitee.io" target="_blank">Gitee Blog</a></li>
+  
+  <li><a href="https://joiner12.github.io/" target="_blank">Git Blog</a></li>
+  
+</ul>
+
+
         <hr>
-        <h5>链友</h5>
-        <ul class="list-inline">
+    
+        <!-- Archives -->
 
-          
-          <li>
-            <a href="https://riskyjr.gitee.io" target="_blank">Gitee Blog</a>
-          </li>
-          
-          <li>
-            <a href="https://joiner12.github.io/" target="_blank">Git Blog</a>
-          </li>
-          
-        </ul>
-        
-      </div>
-    </div>
+<h5><a href="/archives/">archives</a></h5>
+<div class="widget">
+  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2022/01/">January 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2021/12/">December 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2021/11/">November 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2021/10/">October 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/12/">December 2020</a><span class="archive-list-count">1</span></li></ul>
+</div>
+
+
+        <hr>
+    
+        <!-- Categories -->
+
+<h5><a href="/categories/">categories</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="/categories/#Learning Note">
+      <li>Learning Note</li>
+    </a>
+    
+  </ul>
+</div>
+
+
+        <hr>
+    
+</div>
+
+
+    
   </div>
-</article>
-
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
+</div>
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->
