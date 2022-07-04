@@ -437,40 +437,194 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p><a target="_blank" rel="noopener" href="https://natureofcode.com/book/introduction/">The Nature of Code:Introduction</a></p>
+        <h1>Introduction</h1>
+<p><a target="_blank" rel="noopener" href="https://natureofcode.com/book/introduction/">The Nature of Code:Introduction</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/nature-of-code/noc-examples-processing">nature-of-code/noc-examples-processing: Repository for example code from The Nature of Code book (github.com)</a></p>
 <p>本章将会从最简单的运动仿真——随机游走(random walk)开始。</p>
-<h2 id="随机游走-Random-Walks"><a href="#随机游走-Random-Walks" class="headerlink" title="随机游走(Random Walks)"></a>随机游走(Random Walks)</h2><p>随机算法是一种并不复杂的算法，随机算法能够用来为世界中的许多现象建模。比如：气体中分子的运动、赌徒在赌场一天的行为。</p>
+<h2 id="随机游走-Random-Walks">随机游走(Random Walks)</h2>
+<p>随机算法是一种并不复杂的算法，随机算法能够用来为世界中的许多现象建模。比如：气体中分子的运动、赌徒在赌场一天的行为。</p>
 <p>以随机游走开始介绍这本书，需要记住以下三点：</p>
 <ol>
 <li>本书的核心编程思想是——面向对象编程(object-oriented programming)。随机游走器将作为如何使用面向对象设计处理窗口中移动物体的模板；</li>
-<li>随机游走引出两个贯穿全书的问题：<ul>
+<li>随机游走引出两个贯穿全书的问题：
+<ul>
 <li>如何定义控制对象行为的规则；</li>
 <li>如何在Processing中应用这些规则；</li>
 </ul>
 </li>
 <li>本书中，需要对随机性、概率和Perlin噪声有基本的了解。随机游走和它们都有关系；</li>
 </ol>
-<h2 id="随机游走类-The-Random-Walker-Class"><a href="#随机游走类-The-Random-Walker-Class" class="headerlink" title="随机游走类(The Random Walker Class)"></a>随机游走类(The Random Walker Class)</h2><p>面向对象编程基本概念：</p>
+<h2 id="随机游走类-The-Random-Walker-Class">随机游走类(The Random Walker Class)</h2>
+<p>面向对象编程基本概念：</p>
 <ul>
-<li><p><strong>Object</strong></p>
+<li>
+<p><strong>Object</strong></p>
 <p>Processing中的对象(Object)是一个具有数据和功能的实体；</p>
 </li>
-<li><p><strong>Class</strong></p>
+<li>
+<p><strong>Class</strong></p>
 <p>类(Class)是用来创建对象的模板；</p>
 </li>
 </ul>
 <p><code>P.S: processing中类介绍</code></p>
 <p><a target="_blank" rel="noopener" href="http://processing.org/learning/objects/">basics on the Processing website</a></p>
-<h2 id="概率和非正态分布-Probability-and-Non-Uniform-Distributions"><a href="#概率和非正态分布-Probability-and-Non-Uniform-Distributions" class="headerlink" title="概率和非正态分布(Probability and Non-Uniform Distributions)"></a>概率和非正态分布(Probability and Non-Uniform Distributions)</h2><p>计算机图形系统中，产生一个随机数是最很容易的事。然后，我们的目的是使建立的模型更加符合自然界中的特定现象，简单的随机数在这种场景中并不合适，需要调整随机数的使用方法。尤其是在涉及到进化或仿自然仿真(natural-looking simulation)中。仅仅需要一点小技巧就能改变random()方法来产生非正态分布。比如，在进化模型中，该如何选择哪个个体的DNA遗传给下一代？根据达尔文的进化理论——“适者生存”，一个猴群中强壮的、速度快的个体有90%的概率得到繁殖的机会，其余个体只有10%的机会。</p>
+<h2 id="概率和非正态分布-Probability-and-Non-Uniform-Distributions">概率和非正态分布(Probability and Non-Uniform Distributions)</h2>
+<p>计算机图形系统中，产生一个随机数是最很容易的事。然后，我们的目的是使建立的模型更加符合自然界中的特定现象，简单的随机数在这种场景中并不合适，需要调整随机数的使用方法。尤其是在涉及到进化或仿自然仿真(natural-looking simulation)中。仅仅需要一点小技巧就能改变random()方法来产生非正态分布。比如，在进化模型中，该如何选择哪个个体的DNA遗传给下一代？根据达尔文的进化理论——“适者生存”，一个猴群中强壮的、速度快的个体有90%的概率得到繁殖的机会，其余个体只有10%的机会。</p>
 <p>首先对概率(probability)的基本概念进行介绍。在独立事件中，概率就是一个事件发生的可能性(likehood)。一个有限可能结果的系统中，某特定事件的概率等于符合该事件的结果数除以所有可能结果的总数。抛硬币就是一个简单的例子，正面朝上及背面朝上的两种结果看来概率相同，每个的概率都是1/2，也就是正面朝上及背面朝上的概率各有50%。多个独立事件发生的概率等于每个事件的概率相乘。</p>
-<p>比如连续抛掷三次硬币，都是正面朝上的概率表示为：</p>
-<script type="math/tex; mode=display">
-(1/2)*(1/2)*(1/2)=1/8(or0.125)</script><p>有几种方法可以在代码中使用带有概率的 random() 函数。第一种是<strong>数组方式</strong>，将有限结果事件全部存储在一个数组中，然后调用random()产生事件指针，根据数组输出结果，这种实现方式中，事件发生的概率由数组中的内容决定。</p>
+<p>比如连续抛掷三次硬币，都是正面朝上的概率表示为：<br>
+$$<br>
+(1/2)<em>(1/2)</em>(1/2)=1/8(or0.125)<br>
+$$</p>
+<p>有几种方法可以在代码中使用带有概率的 random() 函数。第一种是<strong>数组方式</strong>，将有限结果事件全部存储在一个数组中，然后调用random()产生事件指针，根据数组输出结果，这种实现方式中，事件发生的概率由数组中的内容决定。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> [] stuff = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br><span class="line">stuff[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">stuff[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">stuff[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">stuff[<span class="number">3</span>] = <span class="number">3</span>;</span><br><span class="line">stuff[<span class="number">4</span>] = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">int</span> index = <span class="keyword">int</span>(random(stuff.length));</span><br><span class="line"><span class="keyword">int</span> outcome = stuff[index];</span><br></pre></td></tr></table></figure>
 <p>运行上面的代码，有<code>outcome</code>为1的概率是2/5，2的概率为1/5，3的概率是1/5，4的概率为1/5；</p>
 <p>另外一种方式是生成一个随机数(浮点型0~1)，输出结果有随机数的范围决定。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> num = random(<span class="number">1</span>);</span><br><span class="line"> </span><br><span class="line">If random number is less than <span class="number">0.6</span></span><br><span class="line"><span class="keyword">if</span> (num &lt; <span class="number">0.6</span>) &#123;</span><br><span class="line">  println(<span class="string">&quot;Outcome A&quot;</span>);</span><br><span class="line">Between <span class="number">0.6</span> and <span class="number">0.7</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &lt; <span class="number">0.7</span>) &#123;</span><br><span class="line">  println(<span class="string">&quot;Outcome B&quot;</span>);</span><br><span class="line">Greater than <span class="number">0.7</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  println(<span class="string">&quot;Outcome C&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="随机正态分布-A-Normal-Distribution-of-Random-Numbers">随机正态分布( A Normal Distribution of Random Numbers)</h2>
+<p>自然界中的很多现象能使用正态分布来描述，比如人的身高分布，大部分的人身高在平均身高附近，很高或者很矮的人所占的比例很少，random()函数生成的随机数不能描述这种现象。</p>
+<p>正态分布指的是数值分布聚集在均值附近。也叫高斯分布(Gaussian distribution)。将分布绘制成图就是下面这种钟形图。</p>
+<div style="text-align:center;">
+    <table>
+    <tb>
+        <tr><img src="https://natureofcode.com/book/imgs/intro/intro_02.png"></tr>
+        <tr><img src="https://natureofcode.com/book/imgs/intro/intro_03.png"></tr>
+    </tb>
+</table>
+</div>
+<p>上面的曲线是由一个数学函数生成，该函数将任何给定值出现的概率定义为均值(μ)和标准(σ)的函数。对于上面的曲线，均值决定最高点的位置，方差决定了最高点的值，右边的方差比左边的方差值更大，表示分布离散度更高。高斯分布特点：</p>
+<ul>
+<li>在μ±σ范围的值占比：68%；</li>
+<li>μ±2σ范围的值占比：98%；</li>
+<li>μ±3σ范围的值占比：99.7%；</li>
+</ul>
+<div style=" color: #191919; padding: 1.4em 1.5em;margin: 1.15em 0; background-color: #E9E9E9;">
+    <h5>均值和方差计算</h5>
+    <p>给定以下数值:</p>
+    <p><em>85, 82, 88, 86, 85, 93, 98, 40, 73, 83</em></p>
+    <p>均值:81.3</p>
+    <p>
+        标准差:15.13
+    </p>
+</div>
+<p>$$<br>
+均值: \mu = \frac{1}{m}\sum^m_{i=1}x^{(i)}\<br>
+方差:\sigma^2 = \frac{1}{m}\sum_{i=1}^{m}(x^{(i)} - \hat{\mu})^2\<br>
+标准差:\sigma=\sqrt{\frac{1}{m}\sum_{i=1}^{m}(x^{(i)} - \hat{\mu})^2}<br>
+$$<br>
+Processing提供了<strong>Random</strong>类用以处理随机数。</p>
+<ol>
+<li>
+<p>随机数生成器申明和定义；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Random generator;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">	generator=<span class="keyword">new</span> Random();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>生成服从高斯分布的随机数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// nextGaussian输出的是double类型数据</span></span><br><span class="line">    <span class="keyword">float</span> new_value=(<span class="keyword">float</span>)generator.nextGaussian();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">nextGaussian()</span>函数生成的数服从标准正态分布(均值为0，方差为1)。不同场景下，比如需要绘制均值为200，标准差为60的分布图，只需要将<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">nextGaussian()</span> 生成的数乘标准差，然后再加上均值即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> sd = <span class="number">60</span>;</span><br><span class="line">    <span class="keyword">float</span> mean_v = <span class="number">200</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">float</span> num = (<span class="keyword">float</span>)generator.nextGaussian();</span><br><span class="line">    <span class="keyword">float</span> x = sd*num+mean_v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自定义随机分布-A-Custom-Distribution-of-Random-Numbers">自定义随机分布(A Custom Distribution of Random Numbers)</h2>
+<p>很多时候，我们真正需要的并不是一个正态分布随机数，比如Gaussian。比如，想象一下一个随机游走的寻找食物的过程。在一个范围内随机寻找是一个常用的技巧，毕竟在找到食物之前并不知道它们存放在那里。但是，随机寻找存在一个问题，那就是会回到之前已经到过的地方(过采样,oversampling)。为了避免这种问题，一个经常使用的策略就是每次走很大一步，这允许步行者在特定位置周围随机觅食，同时定期跳得很远以减少过采样。随机游走（称为 Lévy flight）的这种变化需要一组自定义的概率。 虽然不是 Lévy flight的精确实现，但我们可以将概率分布表述如下：步长越长，被选中的可能性越小； 步骤越短，可能性越大。</p>
+<p>在前面序言中，介绍了可以通过用值填充数组（一些值是重复的以便更高频率选择到）或通过比较random() 的结果来生成自定义概率分布。 比如有通过有 1% 的机会迈出一大步来实现 Lévy flight。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> r=random();</span><br><span class="line"><span class="keyword">if</span> (r&lt;<span class="number">0.01</span>)</span><br><span class="line">&#123;</span><br><span class="line">	xstep=random(-<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">	ystep=random(-<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	xstep = random(-<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">	ystep = random(-<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是，这会将概率降低到固定数量的选项。如果想制定一个更普遍的规则——数字越大，被选中的可能性就越大呢？ 3.145 比 3.144 更有可能被选中，即使这种可能性只是稍微大一点。 换句话说，如果 x 是随机数，我们可以用 y = x 在 y 轴上映射概率。</p>
+<img src="https://natureofcode.com/book/imgs/intro/intro_04.png">
+<p>如果我们能够根据上图弄清楚如何生成随机数的分布，那么我们将能够将相同的方法应用于任何曲线。</p>
+<p>一种解决方案是选择两个随机数而不是一个。 第一个随机数作为待比较随机数，第二个是“比较随机值”。 它决定使用第一个还是舍弃并选择另一个。较容易获得资格的号码将被更频繁地挑选，而很少符合资格的号码将不经常被挑选。 以下是步骤（现在，我们只考虑 0 到 1 之间的随机值）：</p>
+<ol>
+<li>生成随机数：R1；</li>
+<li>计算 R1 应该符合条件的概率 P。假设：P = R1；</li>
+<li>生成随机数：R2；</li>
+<li>如果 R2 小于 P，那么选择R1；</li>
+<li>如果 R2 不小于 P，则返回步骤 1 并重新开始；</li>
+</ol>
+<p>在这里，我们说随机值符合条件的可能性等于随机数本身。 假设我们为 R1 选择 0.1。 这意味着 R1 将有 10% 的机会获得资格。 如果我们为 R1 选择 0.83，那么它将有 83% 的机会获得资格。 数字越高，我们实际使用它的可能性就越大。  这是一个实现上述算法的函数（以蒙特卡洛方法命名，以蒙特卡洛赌场命名），返回一个介于 0 和1。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">montecarlo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">float</span> r1=random(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">float</span> probility=r1;</span><br><span class="line">        <span class="keyword">float</span> r2=random(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (r2&lt;probility)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> r1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Perlin噪声-Perlin-Noise-A-Smoother-Approach">Perlin噪声(Perlin Noise (A Smoother Approach))</h2>
+<p>一个好的随机数生成器产生的数字之间没有关系，也没有明显的模式。正如我们开始看到的，在编写有机的、栩栩如生的行为时，一点点随机性可能是一件好事。然而，作为单一指导原则的随机性并不一定是自然的。一种被称为“Perlin 噪声”的算法（以其发明者 Ken Perlin 命名）考虑了这一点。 Perlin 在 1980 年代初制作原始 Tron 电影时开发了噪声功能；它旨在为计算机生成的效果创建程序纹理。 1997 年，佩林因这项工作获得了奥斯卡技术成就奖。 Perlin 噪声可用于生成具有自然品质的各种效果，例如云、风景和大理石等图案纹理。  Perlin 噪声具有更有机的外观，因为它产生自然有序（“平滑”）的伪随机数序列。左下图显示了 Perlin 噪声随时间的变化，x 轴代表时间；注意曲线的平滑度。右图显示随时间变化的纯随机数。</p>
+<div style="text-align:center;">
+    <table>
+    <tb>
+        <tr><img src="https://natureofcode.com/book/imgs/intro/intro_05.png"></tr>
+        <tr><img src="https://natureofcode.com/book/imgs/intro/intro_06.png"></tr>
+    </tb>
+</table>
+</div>
+<p>Processing 有一个 Perlin 噪声算法的内置实现：函数<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>。<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span> 函数可以输入一个、两个或三个参数，因为噪声是在一维、二维或三个维度上计算的。从一维噪声开始。</p>
+<div style=" color: #191919; padding: 1.4em 1.5em;margin: 1.15em 0; background-color: #E9E9E9;">
+    <p>
+        Processing中noise()是在几个“八度音阶”上计算的。 调用 noiseDetail() 函数将改变八度音阶的数量及其相对于彼此的重要性。 这反过来又改变了噪声函数的行为方式。
+    </p>
+    <p><a target="_blank" rel="noopener" href="http://www.noisemachine.com/talk1/"> Perlin Noise Detail </a></p>
+</div>
+<p><span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>函数理解。假如我们需要生成一个在某一范围内的随机数，<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">random()</span>函数输入一个参数，表示生成一个0-参数值范围内的随机数。但是这种方法并不是<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>函数的正确使用方法。如果像<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">random()</span>一样， 给<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>输入一个参数，得到的结果将是一个0-1范围之内的固定值。实际上，Perlin噪声可以认为是一个随时间线性变化的一系列值。例如：</p>
+<div>
+    <table>
+    <thead>
+        <tr>
+            <th>Time </th>
+            <th>Noise Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>0</p>
+            </td>
+            <td>
+                <p>0.365</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>1</p>
+            </td>
+            <td>
+                <p>0.363</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>2</p>
+            </td>
+            <td>
+                <p>0.363</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>3</p>
+            </td>
+            <td>
+                <p>0.364</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>4</p>
+            </td>
+            <td>
+                <p>0.366</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<p>因此在Processing中为了获取特定的噪声值，需要给<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>函数输入一个特定的&quot;时间参数&quot;。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> t_value = <span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> n = noise(t_value);</span><br><span class="line">    println(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码会持续输出固定值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> t_value=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> n = noise(t_value);</span><br><span class="line">    t_value +=<span class="number">1</span>;</span><br><span class="line">    println(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码会输出不同的随机值。</p>
+<p><em>t_value</em> 变化快慢会影响噪声的光滑度；如果我们在时间上有很大的跳跃，那么我们就会向前跳跃，并且值会更加随机。</p>
+<img src="https://natureofcode.com/book/imgs/intro/intro_07.png">
+<h3 id="噪声值映射-Mapping-Noise">噪声值映射(Mapping Noise)</h3>
+<p><span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>函数生成的值范围是0~1，使用<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">map()</span>函数能将这些值映射到任意的范围，<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">map()</span>函数需要五个参数。</p>
+<img src="https://natureofcode.com/book/imgs/intro/intro_08.png">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> t = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> n = noise(t);</span><br><span class="line"><span class="comment">//Using map() to customize the range of Perlin noise</span></span><br><span class="line">  <span class="keyword">float</span> x = map(n,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,width);</span><br><span class="line">  ellipse(x,<span class="number">180</span>,<span class="number">16</span>,<span class="number">16</span>);</span><br><span class="line"> </span><br><span class="line">  t += <span class="number">0.01</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二维噪声-Two-Dimensional-Noise">二维噪声(Two-Dimensional Noise)</h3>
+<p><strong><code>Last Update Time:2022-07-04 17:32:59</code></strong></p>
+<h2 id="Onward">Onward</h2>
 
 
         <hr>
@@ -512,7 +666,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Introduction"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Introduction</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0-Random-Walks"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">随机游走(Random Walks)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0%E7%B1%BB-The-Random-Walker-Class"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">随机游走类(The Random Walker Class)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%A6%82%E7%8E%87%E5%92%8C%E9%9D%9E%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83-Probability-and-Non-Uniform-Distributions"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">概率和非正态分布(Probability and Non-Uniform Distributions)</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Introduction</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0-Random-Walks"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">随机游走(Random Walks)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0%E7%B1%BB-The-Random-Walker-Class"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">随机游走类(The Random Walker Class)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%A6%82%E7%8E%87%E5%92%8C%E9%9D%9E%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83-Probability-and-Non-Uniform-Distributions"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">概率和非正态分布(Probability and Non-Uniform Distributions)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83-A-Normal-Distribution-of-Random-Numbers"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">随机正态分布( A Normal Distribution of Random Numbers)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link"><span class="toc-nav-number">1.4.0.0.1.</span> <span class="toc-nav-text">均值和方差计算</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%9A%8F%E6%9C%BA%E5%88%86%E5%B8%83-A-Custom-Distribution-of-Random-Numbers"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">自定义随机分布(A Custom Distribution of Random Numbers)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Perlin%E5%99%AA%E5%A3%B0-Perlin-Noise-A-Smoother-Approach"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">Perlin噪声(Perlin Noise (A Smoother Approach))</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%99%AA%E5%A3%B0%E5%80%BC%E6%98%A0%E5%B0%84-Mapping-Noise"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">噪声值映射(Mapping Noise)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BA%8C%E7%BB%B4%E5%99%AA%E5%A3%B0-Two-Dimensional-Noise"><span class="toc-nav-number">1.6.2.</span> <span class="toc-nav-text">二维噪声(Two-Dimensional Noise)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Onward"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">Onward</span></a></li></ol></li></ol>
         
         </div>
       </aside>
