@@ -137,7 +137,7 @@
   <link rel="canonical" href="http://yoursite-url/undefined/TheNatureofCode-Vector/">
   <title>
     
-      TheNatureofCode-Pvector - Wh&#39;s 🛰️ Blogs
+      The Nature of Code:Pvector - Wh&#39;s 🛰️ Blogs
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -377,7 +377,7 @@
             <div class="tags">
               
             </div>
-            <h1>TheNatureofCode-Pvector</h1>
+            <h1>The Nature of Code:Pvector</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by Wh on
@@ -437,10 +437,12 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1 id="向量-Vectors"><a href="#向量-Vectors" class="headerlink" title="向量(Vectors)"></a>向量(Vectors)</h1><p><a target="_blank" rel="noopener" href="https://natureofcode.com/book/chapter-1-vectors/">The Nature of Code-Vectors</a></p>
+        <h1>向量(Vectors)</h1>
+<p><a target="_blank" rel="noopener" href="https://natureofcode.com/book/chapter-1-vectors/">The Nature of Code-Vectors</a></p>
 <p>向量是Processing编程中的基本模块，向量又叫矢量(Euler Vector)，定义为有方向和大小的实体。向量通常用箭头表示，箭头的指向就是向量的方向，箭头的长度就是向量的大小。</p>
-<p><img src="https://natureofcode.com/book/imgs/chapter01/ch01_01.png"></p>
-<h2 id="Vectors-You-Complete-Me"><a href="#Vectors-You-Complete-Me" class="headerlink" title="Vectors,You Complete Me."></a>Vectors,You Complete Me.</h2><p>在详细介绍向量之前，先通过一个例子来论证向量的重要性，以至于我们会从向量开始。</p>
+<img src="https://natureofcode.com/book/imgs/chapter01/ch01_01.png">
+<h2 id="Vectors-You-Complete-Me">Vectors,You Complete Me.</h2>
+<p>在详细介绍向量之前，先通过一个例子来论证向量的重要性，以至于我们会从向量开始。</p>
 <p><strong>Example 1.1 Bouncing ball with no Vectors</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> x = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">float</span> y = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">float</span> xspeed = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">float</span> yspeed = <span class="number">3.3</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">640</span>,<span class="number">360</span>);</span><br><span class="line">  background(<span class="number">255</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  background(<span class="number">255</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//Move the ball according to its speed.</span></span><br><span class="line">  x = x + xspeed;</span><br><span class="line">  y = y + yspeed;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//Check for bouncing.</span></span><br><span class="line">  <span class="keyword">if</span> ((x &gt; width) || (x &lt; <span class="number">0</span>)) &#123;</span><br><span class="line">    xspeed = xspeed * -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ((y &gt; height) || (y &lt; <span class="number">0</span>)) &#123;</span><br><span class="line">    yspeed = yspeed * -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  stroke(<span class="number">0</span>);</span><br><span class="line">  fill(<span class="number">175</span>);</span><br><span class="line"><span class="comment">//Display the ball at the location (x,y).</span></span><br><span class="line">  ellipse(x,y,<span class="number">16</span>,<span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的例子实现了一个弹跳球。这个球具有一些属性包括：</p>
@@ -452,15 +454,16 @@
 <p>如果使用Vector表示则可以简化成：</p>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector location<span class="comment">;</span></span><br><span class="line">Vector speed<span class="comment">;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>编程中使用vector并不会让草图出现什么神奇的变化，但是它能简化代码，并且能提供一些数学函数供使用。开始介绍向量的时候，将不会涉及到3维空间，但是这些例子能很简单就扩展到三维空间中，因为向量类—<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span> 支持三维空间向量。</p>
-<h2 id="Vectors-for-Processing-Programmers"><a href="#Vectors-for-Processing-Programmers" class="headerlink" title="Vectors for Processing Programmers"></a>Vectors for Processing Programmers</h2><p>理解向量的一种方法是它和两个点的区别。考虑一下如何按照指示从一个点到另外一个点。下面是一些例子：</p>
-<p><img src="https://natureofcode.com/book/imgs/chapter01/ch01_02.png"></p>
+<h2 id="Vectors-for-Processing-Programmers">Vectors for Processing Programmers</h2>
+<p>理解向量的一种方法是它和两个点的区别。考虑一下如何按照指示从一个点到另外一个点。下面是一些例子：</p>
+<img src="https://natureofcode.com/book/imgs/chapter01/ch01_02.png">
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">-15</span>, <span class="number">3</span>)</span><br><span class="line">Walk fifteen steps west; turn <span class="keyword">and</span> walk <span class="literal">three</span> steps north.</span><br><span class="line"></span><br><span class="line">(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">Walk <span class="literal">three</span> steps east; turn <span class="keyword">and</span> walk <span class="literal">five</span> steps north.</span><br><span class="line"></span><br><span class="line">(<span class="number">2</span>, <span class="number">-1</span>)</span><br><span class="line">Walk <span class="literal">two</span> steps east; turn <span class="keyword">and</span> walk <span class="literal">one</span> step south.</span><br></pre></td></tr></table></figure>
 <p>在之前的Processing编程中可能也接触过类似的情况，比如指示屏幕上的每个对象水平移动一定数量的像素和垂直移动一定数量的像素。</p>
-<p><img src="https://natureofcode.com/book/imgs/chapter01/ch01_03.png"></p>
+<img src="https://natureofcode.com/book/imgs/chapter01/ch01_03.png">
 <p>对于每一帧，有：</p>
 <p><strong>new location = velocity applied to current location</strong></p>
 <p>如果速度(velocity)是一个向量，那么位置(position)到底是不是向量？有的说不是，因为位置描述的是空间中的一个点，这和之前的向量描述怎样从一个点运动到另一个点不同。尽管这样，从另外一个角度看，位置可以看成是从原点到所处位置的路径，因此位置可以表示所处位置和原点的相对位置。</p>
-<p><img src="https://natureofcode.com/book/imgs/chapter01/ch01_04.png"></p>
+<img src="https://natureofcode.com/book/imgs/chapter01/ch01_04.png">
 <p>以弹跳球为例讨论位置(location)和速度(velocity)数据，在上面的代码中：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location x,y</span><br><span class="line"></span><br><span class="line">velocity xspeed,yspeed</span><br></pre></td></tr></table></figure>
 <p>如果我们自己实现一个vector类来保存速度或者位置中的两个变量:</p>
@@ -474,20 +477,23 @@
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">x</span> = x + xspeed<span class="comment">;</span></span><br><span class="line"><span class="attr">y</span> = y + yspeed<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <p>变成：</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">= location</span> + velocity;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>但是在Processing中，”+”号运算符仅能用于原始值(整数、浮点等)的计算，不能直接用作将对两个<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>对象相加，<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>有其自身对应的数学运算函数。</p>
-<h2 id="Vector-Addition"><a href="#Vector-Addition" class="headerlink" title="Vector Addition"></a>Vector Addition</h2><p>正式开始使用<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>类的<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">add()</span>函数之前，先从数学角度简单介绍一下向量的加法。向量通常是用粗体或者符号上带有一个箭头符号来表示。为了区分向量(vector)和标量(scale，表示单个数，比如整数或者浮点)，书中使用的是带箭头的符号。</p>
+<p>但是在Processing中，&quot;+&quot;号运算符仅能用于原始值(整数、浮点等)的计算，不能直接用作将对两个<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>对象相加，<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>有其自身对应的数学运算函数。</p>
+<h2 id="Vector-Addition">Vector Addition</h2>
+<p>正式开始使用<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>类的<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">add()</span>函数之前，先从数学角度简单介绍一下向量的加法。向量通常是用粗体或者符号上带有一个箭头符号来表示。为了区分向量(vector)和标量(scale，表示单个数，比如整数或者浮点)，书中使用的是带箭头的符号。</p>
 <ul>
 <li>向量：$\overrightarrow{x}$</li>
 <li>标量：$x$</li>
 </ul>
 <p>对于如下两个变量：</p>
-<p><img src="https://natureofcode.com/book/imgs/chapter01/ch01_05.png"></p>
+<img src="https://natureofcode.com/book/imgs/chapter01/ch01_05.png">
 <p>每个向量有两个元素，x、y。两个向量相加，只需要简单的讲其各自的x和y相加即可。</p>
-<p><img src="https://natureofcode.com/book/imgs/chapter01/ch01_06.png"></p>
-<p>换句话说，$\overrightarrow{w}=\overrightarrow{u}+\overrightarrow{v}$，可以写成：</p>
-<script type="math/tex; mode=display">
-w_x=u_x+v_x\\
-w_y=u_x+v_x</script><p>既然已经理解了向量的加法，那么就可以在之前自己实现的<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>类中新增一个<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">add()</span>函数。</p>
+<img src="https://natureofcode.com/book/imgs/chapter01/ch01_06.png">
+<p>换句话说，$\overrightarrow{w}=\overrightarrow{u}+\overrightarrow{v}$，可以写成：<br>
+$$<br>
+w_x=u_x+v_x\<br>
+w_y=u_x+v_x<br>
+$$<br>
+既然已经理解了向量的加法，那么就可以在之前自己实现的<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>类中新增一个<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">add()</span>函数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PVector</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">float</span> x;</span><br><span class="line">  <span class="keyword">float</span> y;</span><br><span class="line"> </span><br><span class="line">  PVector(<span class="keyword">float</span> x_, <span class="keyword">float</span> y_) &#123;</span><br><span class="line">    x = x_;</span><br><span class="line">    y = y_;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//New! A function to add another PVector to this PVector. Simply add the x components and the y  components together.</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(PVector v)</span> </span>&#123;</span><br><span class="line">    y = y + v.y;</span><br><span class="line">    x = x + v.x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用向量的思路重新实现例子1.1：</p>
 <p><strong>Example 1.2: Bouncing ball with PVectors!</strong></p>
@@ -498,7 +504,8 @@ w_y=u_x+v_x</script><p>既然已经理解了向量的加法，那么就可以在
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ellipse(location.x,location.y,<span class="number">16</span>,<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
 <p>同样的问题出现在边界判断中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((location.x &gt; width) || (location.x &lt; <span class="number">0</span>)) &#123;</span><br><span class="line">  velocity.x = velocity.x * -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="More-Vector-Math"><a href="#More-Vector-Math" class="headerlink" title="More Vector Math"></a>More Vector Math</h2><p>向量自带许多数学计算函数；</p>
+<h2 id="More-Vector-Math">More Vector Math</h2>
+<p>向量自带许多数学计算函数；</p>
 <ul>
 <li>add() — 向量和；</li>
 <li>sub() — 向量差；</li>
@@ -518,12 +525,15 @@ w_y=u_x+v_x</script><p>既然已经理解了向量的加法，那么就可以在
 <li>random2D() - 生成二维空间随机向量；</li>
 <li>random3D() - 生成三维空间随机向量；</li>
 </ul>
-<h3 id="Vector-subtraction"><a href="#Vector-subtraction" class="headerlink" title="Vector subtraction"></a>Vector subtraction</h3><script type="math/tex; mode=display">
-\begin{align}
-& \overrightarrow{w}=\overrightarrow{u}-\overrightarrow{v}\\
-& w_x=u_x-v_x\\
-& w_y=u_x-v_x
-\end{align}</script><p><img src="https://natureofcode.com/book/imgs/chapter01/ch01_07.png"></p>
+<h3 id="Vector-subtraction">Vector subtraction</h3>
+<p>$$<br>
+\begin{align}<br>
+&amp; \overrightarrow{w}=\overrightarrow{u}-\overrightarrow{v}\<br>
+&amp; w_x=u_x-v_x\<br>
+&amp; w_y=u_x-v_x<br>
+\end{align}<br>
+$$</p>
+<img src="https://natureofcode.com/book/imgs/chapter01/ch01_07.png">
 <p><span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">PVector</span>内部减法实现：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sub</span><span class="params">(PVector v)</span> </span>&#123;</span><br><span class="line">    x = x - v.x;</span><br><span class="line">    y = y - v.y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>向量减法例程：</p>
@@ -533,6 +543,10 @@ w_y=u_x+v_x</script><p>既然已经理解了向量的加法，那么就可以在
         <hr>
         <!-- Pager -->
         <ul class="pager">
+          
+          <li class="previous">
+            <a href="/undefined/free-music/" data-toggle="tooltip" data-placement="top" title="Free Music">&larr; Previous Post</a>
+          </li>
           
           
           <li class="next">
@@ -569,7 +583,7 @@ w_y=u_x+v_x</script><p>既然已经理解了向量的加法，那么就可以在
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E5%90%91%E9%87%8F-Vectors"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">向量(Vectors)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Vectors-You-Complete-Me"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Vectors,You Complete Me.</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Vectors-for-Processing-Programmers"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">Vectors for Processing Programmers</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Vector-Addition"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">Vector Addition</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#More-Vector-Math"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">More Vector Math</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Vector-subtraction"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">Vector subtraction</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">向量(Vectors)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Vectors-You-Complete-Me"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Vectors,You Complete Me.</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Vectors-for-Processing-Programmers"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">Vectors for Processing Programmers</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Vector-Addition"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">Vector Addition</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#More-Vector-Math"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">More Vector Math</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Vector-subtraction"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">Vector subtraction</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
@@ -1156,20 +1170,5 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+	</body>
 </html>
