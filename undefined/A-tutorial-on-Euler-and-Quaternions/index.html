@@ -445,6 +445,13 @@
 i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi<br>
 $$</p>
 <hr>
+<h2 id="Pre">Pre</h2>
+<h3 id="嵌入PDF-1">嵌入PDF-1</h3>
+<embed src="IMU.pdf"  type="application/pdf" width="100%" height="100%" />
+<h3 id="嵌入PDF-2">嵌入PDF-2</h3>
+<iframe src="IMU.pdf" height="100%" width="100%"></iframe>
+<h3 id="嵌入PDF-3">嵌入PDF-3</h3>
+<p><object data="IMU.pdf" height="100%" width="100%"></object></p>
 <h2 id="1-二维空间中的旋转（Rotations-in-two-dimensions）">1.二维空间中的旋转（Rotations in two dimensions）</h2>
 <h3 id="1-1-笛卡尔坐标系-极坐标系-Cartesian-and-polar-coordinates">1.1 笛卡尔坐标系&amp;极坐标系(Cartesian and polar coordinates)</h3>
 <p>二维空间(two-dimensional)中的向量(vector)或者位置(position)(向量的顶点)在笛卡尔坐标系中的表示为${(x,y)}$，极坐标系中表示为${(r,\phi)}$ 。</p>
@@ -1204,5 +1211,20 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

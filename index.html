@@ -671,9 +671,15 @@ $$
 i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi
 $$
 
+Pre
+嵌入PDF-1
+
+嵌入PDF-2
+
+嵌入PDF-3
+
 1.二维空间中的旋转（Rotations in two dimensions）
-1.1 笛卡尔坐标系&amp;极坐标系(Cartesian and polar coordinates)
-二维空间(two-dim......
+1.1 笛卡尔坐标系&amp;极坐标系(Cartesian and ......
     </div>
   </a>
   
@@ -706,11 +712,10 @@ $$
       
     </h3>
     <div class="post-content-preview">
-      人性
-1、遵守是一种惯性，散漫也是一种惯性，人是适应性很强的生物，能适应懒散的惯性也能适应积极的惯性，如果你还能碰到给你惯性的人。
+      人性1、遵守是一种惯性，散漫也是一种惯性，人是适应性很强的生物，能适应懒散的惯性也能适应积极的惯性，如果你还能碰到给你惯性的人。
 2、团结就是从众，从众就是迁就集体的底线，底线就是一根一直掉深不见底的线；
 3、坚持分很多种，有一种我们比较熟悉，就是把全世界推到自己的对立面，把所有投来的目光视为毒箭，做事为打脸，怨恨当源泉。
-4、自卑和怯懦的人在面对新环境时会长期的观察和揣度，表现为一种木讷......
+4、自卑和怯懦的人在面对新环境时会长期的观察和揣度，表现为一种木讷，......
     </div>
   </a>
   
@@ -1619,5 +1624,20 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>
