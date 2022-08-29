@@ -438,25 +438,25 @@
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
         <p>四元数在三维旋转中的是最常用的一种方法，最近在做关于IMU相关的工作，下面就是过程中涉及到的相关资料的收集整理和个人理解记录。</p>
-<p><img src="quaternion-1.png"></p>
-<h1 id="四元数与三维旋转"><a href="#四元数与三维旋转" class="headerlink" title="四元数与三维旋转"></a>四元数与三维旋转</h1><p><a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/">Krasjet的文章</a>从二维复数开始，然后讨论用二维复数和二维空间中向量旋转的关系。然后引出四元数（Quaternion）及用四元数来表示三维空间中向量旋转相关知识。语言通俗、详细地推导了相关的数学公式，是很好的一篇文章，且在附录部分介绍了很多继续深入学习的资料。</p>
+<img src="quaternion-2.png">
+<h1>四元数与三维旋转</h1>
+<p><a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/">Krasjet的文章</a>从二维复数开始，然后讨论用二维复数和二维空间中向量旋转的关系。然后引出四元数（Quaternion）及用四元数来表示三维空间中向量旋转相关知识。语言通俗、详细地推导了相关的数学公式，是很好的一篇文章，且在附录部分介绍了很多继续深入学习的资料。</p>
 <center><embed src="quaternion.pdf" width="780" height="800"></center>
-
-
-
-<h1 id="四元数与欧拉角"><a href="#四元数与欧拉角" class="headerlink" title="四元数与欧拉角"></a>四元数与欧拉角</h1><p>欧拉角：</p>
+<h1>四元数与欧拉角</h1>
+<p>欧拉角：</p>
 <ul>
 <li>Yaw(偏航)，$\psi$</li>
 <li>Roll(横滚)，$\phi$</li>
 <li>Pitch(俯仰)，$\theta$</li>
 </ul>
-<p>向量绕轴${\bold{r}=[a,b,c]^T(a^2+b^2+c^2=1)}$ 旋转$\alpha$ 角度的过程用四元数表示为：</p>
-<script type="math/tex; mode=display">
-\bold{q}(\alpha,\bold{r}) = [cos(\alpha/2)，a*sin(\alpha/2)，b*sin(\alpha/2)，c*sin(\alpha/2)]^T</script><p>欧拉角和四元数转换过程中，需要注意轴旋转顺序，此处旋转顺序为ZYX。根据旋转复合，可得：</p>
-<center><img src="./quaternion/img-1.png"></center>
-
-
-
+<p>向量绕轴$\bold{r}=[a,b,c]^T,(a^2+b^2+c^2=1)$ 旋转$\alpha$ 角度的过程用四元数表示为：</p>
+<p>$$<br>
+\begin{align}<br>
+\bold{q}(\alpha,\bold{r}) = [cos(\alpha/2)，a<em>sin(\alpha/2)，b</em>sin(\alpha/2)，c*sin(\alpha/2)]^T<br>
+\end{align}<br>
+$$<br>
+欧拉角和四元数转换过程中，需要注意轴旋转顺序，此处旋转顺序为ZYX。根据旋转复合，可得：</p>
+<center><img src="img-1.png"></center>
 <p><a target="_blank" rel="noopener" href="https://item.kongfz.com/book/62834881.html">多旋翼飞行器设计与控制</a> P100-103</p>
 
 
@@ -499,7 +499,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0%E4%B8%8E%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">四元数与三维旋转</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0%E4%B8%8E%E6%AC%A7%E6%8B%89%E8%A7%92"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">四元数与欧拉角</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">四元数与三维旋转</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">四元数与欧拉角</span></a></li></ol>
         
         </div>
       </aside>
