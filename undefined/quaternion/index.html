@@ -1,1092 +1,739 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<html lang="cn,default">
 <head>
-  <!-- Google Analytics -->
-  
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxx-xx"></script>
-    <script type="text/javascript">
-      window.dataLayer = window.dataLayer || [];
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="脑海中起毛球的记忆">
+    <meta name="author" content="Wh">
+    
+    <title>
+        
+            quaternion |
+        
+        Wh&#39;s 🛰️ Blogs
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+<link rel="stylesheet" href="../../css/style.css">
 
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'UA-xxxxxx-xx');
-    </script>
-  
-
-  <!-- Baidu Tongji -->
-  
-    <script type="text/javascript">
-      // Originial
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-  
-
-  <!-- Baidu Push -->
-  
-    <script>
-      (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-      })();
-    </script>
-  
-
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
-  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="脑海中起毛球的记忆"/>
-  <meta name="keyword" content="Wh,Blog"/>
-  <link rel="shortcut icon" href="/img/avatar/favicon.jpg"/>
-
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
-
-  
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/beantech.min.css"/>
-
-    <!-- Pygments Highlight CSS -->
-    <link rel="stylesheet" href="/css/highlight.css"/>
-    <link rel="stylesheet" href="/css/widget.css"/>
-    <link rel="stylesheet" href="/css/rocket.css"/>
-    <link rel="stylesheet" href="/css/signature.css"/>
-    <link rel="stylesheet" href="/css/catalog.css"/>
-    <link rel="stylesheet" href="/css/livemylife.css"/>
+    <link rel="shortcut icon" href="../../img/avatar/Jr.png">
+    
+<link rel="stylesheet" href="css/fontawesome.min.css">
 
     
-      <!-- wave start -->
-      <link rel="stylesheet" href="/css/wave.css"/>
-      <!-- wave end -->
+<link rel="stylesheet" href="css/brands.min.css">
+
+    
+<link rel="stylesheet" href="css/solid.min.css">
+
+    
+<link rel="stylesheet" href="css/regular.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="css/css2.css">
+
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"yoursite-url","root":"/","language":["cn","default"],"path":"search.json"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"img/avatar/Jr.png","favicon":"img/avatar/Jr.png","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://evan.beee.top/img/wallhaven-wqery6-light.webp","dark":"https://evan.beee.top/img/wallhaven-wqery6-dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"没有记录 就没有发生"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"0.4.6","friend_links":{"columns":2}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
     
 
     
-      <!-- top start (article top hot config) -->
-      <link rel="stylesheet" href="/css/top.css"/>
-      <!-- top end -->
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
     
-
-    
-      <!-- ThemeColor start -->
-      <link rel="stylesheet" href="/css/scroll.css"/>
-      <!-- ThemeColor end -->
-    
-
-    
-      <!-- viewer start (Picture preview) -->
-      <link rel="stylesheet" href="/css/viewer.min.css"/>
-      <!-- viewer end -->
-    
-
-    
-      <!-- Search start -->
-      <link rel="stylesheet" href="/css/search.css"/>
-      <!-- Search end -->
-    
-
-    
-      <!-- ThemeColor start -->
-      <link rel="stylesheet" href="/css/themecolor.css"/>
-      <!-- ThemeColor end -->
-    
-
-    
-
-    
-  
-
-  <!-- Custom Fonts -->
-  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-  <!-- Hux change font-awesome CDN to qiniu -->
-  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
-  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
-
-  <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/undefined/quaternion/">
-  <title>
-    
-      quaternion - Wh&#39;s 🛰️ Blogs
-    
-  </title>
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-
-<!-- hack iOS CSS :active style -->
-
-	<body ontouchstart="" class="body--light body--dark">
-
-
-		<!-- ThemeColor -->
-		
-		<!-- ThemeColor -->
-<style type="text/css">
-  .body--light {
-    --light-mode: none;
-    --dark-mode: block;
-  }
-  .body--dark {
-    --light-mode: block;
-    --dark-mode: none;
-  }
-  i.mdui-icon.material-icons.light-mode {
-    display: var(--light-mode);
-  }
-  i.mdui-icon.material-icons.dark-mode {
-    display: var(--dark-mode);
-  }
-</style>
-<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
-  <i class="mdui-icon material-icons light-mode"></i>
-  <i class="mdui-icon material-icons dark-mode"></i>
-</div>
-<script>
-  //getCookieValue
-  function getCookieValue(a) {
-    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
-    return b
-      ? b.pop()
-      : '';
-  }
-  let themeMode = 'dark';
-  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
-    let dbody = document.body.classList;
-    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
-  }
-
-  //setCookieValue
-  var toggleBtn = document.querySelector(".toggle");
-  toggleBtn.addEventListener("click", function () {
-    var e = document.body.classList.contains("body--dark");
-    var cookieString = e
-      ? "dark"
-      : "light";
-    var exp = new Date();
-    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
-    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
-  });
-</script>
-
-		
-
-		<!-- Gitter -->
-		
-		<!-- Gitter -->
-<!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
-<script>
-  ((window.gitter = {}).chat = {}).options = {
-    room: 'your-community/your-room'
-  };
-</script>
-<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
-
-		
-
-		<!-- Navigation (contains search)-->
-		<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Wh&#39;s 🛰️ Blogs</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
-    <div id="huxblog_navbar">
-      <div class="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="/">首页</a>
-          </li>
-
-          
-          
-          
-          
-          <li>
-            <a href="/about/">
-              
-              关于
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/archive/">
-              
-              归档
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/categories/">
-              
-              分类
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
-          
-          
-
-          
-          <li>
-            <a class="popup-trigger">
-              <span class="search-icon"></span>搜索</a>
-          </li>
-          
-
-          <!-- LangSelect -->
-          
-        </ul>
-      </div>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container -->
-</nav>
-<!-- progress -->
-<div id="progress">
-  <div class="line" style="width: 0%;"></div>
 </div>
 
-<script>
-  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
-  var $body = document.body;
-  var $toggle = document.querySelector('.navbar-toggle');
-  var $navbar = document.querySelector('#huxblog_navbar');
-  var $collapse = document.querySelector('.navbar-collapse');
 
-  $toggle.addEventListener('click', handleMagic)
-
-  function handleMagic(e) {
-    if ($navbar.className.indexOf('in') > 0) {
-      // CLOSE
-      $navbar.className = " ";
-      // wait until animation end.
-      setTimeout(function() {
-        // prevent frequently toggle
-        if ($navbar.className.indexOf('in') < 0) {
-          $collapse.style.height = "0px"
-        }
-      }, 400)
-    } else {
-      // OPEN
-      $collapse.style.height = "auto"
-      $navbar.className += " in";
-    }
-  }
-</script>
-
-
-		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
-		<!-- Modified by Yu-Hsuan Yen -->
-<!-- Post Header -->
-
-  <style type="text/css">
-    .body--light {
-      /* intro-header */
-      --intro-header-background-image-url-home: url('/img/header_img/newhome_bg-1.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/');
-    }
-    .body--dark {
-      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg-1.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/');
-    }
-
-    header.intro-header {
-       /*post*/
-        background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url(''); */
-      
-    }
+<main class="page-container">
 
     
-  </style>
 
+    <div class="page-main-content">
 
-
-
-
-<header class="intro-header">
-  <!-- Signature -->
-  <div id="signature">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          
-          <div class="post-heading">
-            <div class="tags">
-              
-            </div>
-            <h1>quaternion</h1>
-            <h2 class="subheading"></h2>
-            <span class="meta">
-              Posted by Wh on
-              2022-08-08
-            </span>
-
-
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+    
+    <div class="header-content">
+        <div class="left">
             
+                <a class="logo-image" href="/">
+                    <img src="../../img/avatar/favicon.jpg">
+                </a>
             
-
-
-          </div>
-          
+            <a class="logo-title" href="/">
+                Wh&#39;s 🛰️ Blogs
+            </a>
         </div>
-      </div>
-    </div>
-  </div>
 
-  
-  <!-- waveoverlay start -->
-  <div class="preview-overlay">
-    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-      <defs>
-        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
-      </defs>
-      <g class="preview-parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
-        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
-        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
-        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
-      </g>
-    </svg>
-  </div>
-  <!-- waveoverlay end -->
-  
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <!-- Menu -->
+                            <a class="" 
+                                href="../../index.html" >
+                                
+                                    
+                                        <i class="fa-regular fa-house"></i>
+                                    
+                                    首页
+                                
+                            </a>
+                            <!-- Submenu -->
+                            
+                        </li>
+                    
+                        <li class="menu-item">
+                            <!-- Menu -->
+                            <a class="" 
+                                href="../../archives" >
+                                
+                                    
+                                        <i class="fa-regular fa-archive"></i>
+                                    
+                                    归档
+                                
+                            </a>
+                            <!-- Submenu -->
+                            
+                        </li>
+                    
+                        <li class="menu-item">
+                            <!-- Menu -->
+                            <a class="has-dropdown" 
+                                href="javascript:void(0);">
+                                
+                                    
+                                        <i class="fa-regular fa-user"></i>
+                                    
+                                    关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                
+                            </a>
+                            <!-- Submenu -->
+                            
+                                <ul class="sub-menu">
+                                  
+                                    <li>
+                                      <a href="../../about">ME
+                                      </a>
+                                    </li>
+                                  
+                                    <li>
+                                      <a href="../../https:/joiner12.github.io">GITHUB
+                                      </a>
+                                    </li>
+                                  
+                                </ul>
+                            
+                        </li>
+                    
+                        <li class="menu-item">
+                            <!-- Menu -->
+                            <a class="" 
+                                href="../../categories" >
+                                
+                                    
+                                        <i class="fa-regular fa-link"></i>
+                                    
+                                    分类
+                                
+                            </a>
+                            <!-- Submenu -->
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" 
+                       href="../../index.html" >
+                         
+                            
+                                <i class="fa-regular fa-house"></i>
+                            
+                            首页
+                        
+                    </a>
+                </li>
+                <!-- Submenu -->
+                
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" 
+                       href="../../archives" >
+                         
+                            
+                                <i class="fa-regular fa-archive"></i>
+                            
+                            归档
+                        
+                    </a>
+                </li>
+                <!-- Submenu -->
+                
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="has-dropdown" 
+                       href="javascript:void(0);">
+                        
+                            
+                                <i class="fa-regular fa-user"></i>
+                            
+                            关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                        
+                    </a>
+                </li>
+                <!-- Submenu -->
+                          
+                    
+                        <li class="dropdown-item flex-center">
+                            <a class="dropdown-item" href="../../about">ME</a>
+                        </li>
+                    
+                        <li class="dropdown-item flex-center">
+                            <a class="dropdown-item" href="../../https:/joiner12.github.io">GITHUB</a>
+                        </li>
+                    
+                
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" 
+                       href="../../categories" >
+                         
+                            
+                                <i class="fa-regular fa-link"></i>
+                            
+                            分类
+                        
+                    </a>
+                </li>
+                <!-- Submenu -->
+                
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
 
 </header>
 
 
+        </div>
 
-		<!-- Main Content (Post contains
-	Pager、
-	tip、
-	socialshare、
-	gitalk、gitment、disqus-comment、
-	Catalog、
-	Sidebar、
-	Featured-Tags、
-	Friends Blog、
-	anchorjs、
-	) -->
-		<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+        <div class="page-main-content-middle">
 
-        <p>四元数在三维旋转中的是最常用的一种方法，最近在做关于IMU相关的工作，下面就是过程中涉及到的相关资料的收集整理和个人理解记录。</p>
-<img src="quaternion-2.png">
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+            <div class="article-title">
+                <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">quaternion</h1></span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="../../img/avatar/Jr.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Wh</span>
+                            
+                                <span class="author-label">Lv2</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-08-08 15:43:52</span>
+        <span class="mobile">2022-08-08 15:43</span>
+    </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>279 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>四元数在三维旋转中的是最常用的一种方法，最近在做关于IMU相关的工作，下面就是过程中涉及到的相关资料的收集整理和个人理解记录。</p>
+<img lazyload="" src="/images/loading.svg" data-src="quaternion-2.png">
 <h1>四元数与三维旋转</h1>
-<p><a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/">Krasjet的文章</a>从二维复数开始，然后讨论用二维复数和二维空间中向量旋转的关系。然后引出四元数（Quaternion）及用四元数来表示三维空间中向量旋转相关知识。语言通俗、详细地推导了相关的数学公式，是很好的一篇文章，且在附录部分介绍了很多继续深入学习的资料。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/">Krasjet的文章<i class="fa-solid fa-up-right-from-square"></i></a>从二维复数开始，然后讨论用二维复数和二维空间中向量旋转的关系。然后引出四元数（Quaternion）及用四元数来表示三维空间中向量旋转相关知识。语言通俗、详细地推导了相关的数学公式，是很好的一篇文章，且在附录部分介绍了很多继续深入学习的资料。</p>
 <center><embed src="quaternion.pdf" width="780" height="800"></center>
 <h1>四元数与欧拉角</h1>
 <p>欧拉角：</p>
 <ul>
-<li>Yaw(偏航)，$\psi$</li>
-<li>Roll(横滚)，$\phi$</li>
-<li>Pitch(俯仰)，$\theta$</li>
+<li>Yaw(偏航)，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex;" xmlns="http://www.w3.org/2000/svg" width="1.473ex" height="2.034ex" role="img" focusable="false" viewBox="0 -694 651 899"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D713" d="M161 441Q202 441 226 417T250 358Q250 338 218 252T187 127Q190 85 214 61Q235 43 257 37Q275 29 288 29H289L371 360Q455 691 456 692Q459 694 472 694Q492 694 492 687Q492 678 411 356Q329 28 329 27T335 26Q421 26 498 114T576 278Q576 302 568 319T550 343T532 361T524 384Q524 405 541 424T583 443Q602 443 618 425T634 366Q634 337 623 288T605 220Q573 125 492 57T329 -11H319L296 -104Q272 -198 272 -199Q270 -205 252 -205H239Q233 -199 233 -197Q233 -192 256 -102T279 -9Q272 -8 265 -8Q106 14 106 139Q106 174 139 264T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 299 34 333T82 404T161 441Z"></path></g></g></g></svg></mjx-container></li>
+<li>Roll(横滚)，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex;" xmlns="http://www.w3.org/2000/svg" width="1.348ex" height="2.034ex" role="img" focusable="false" viewBox="0 -694 596 899"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D719" d="M409 688Q413 694 421 694H429H442Q448 688 448 686Q448 679 418 563Q411 535 404 504T392 458L388 442Q388 441 397 441T429 435T477 418Q521 397 550 357T579 260T548 151T471 65T374 11T279 -10H275L251 -105Q245 -128 238 -160Q230 -192 227 -198T215 -205H209Q189 -205 189 -198Q189 -193 211 -103L234 -11Q234 -10 226 -10Q221 -10 206 -8T161 6T107 36T62 89T43 171Q43 231 76 284T157 370T254 422T342 441Q347 441 348 445L378 567Q409 686 409 688ZM122 150Q122 116 134 91T167 53T203 35T237 27H244L337 404Q333 404 326 403T297 395T255 379T211 350T170 304Q152 276 137 237Q122 191 122 150ZM500 282Q500 320 484 347T444 385T405 400T381 404H378L332 217L284 29Q284 27 285 27Q293 27 317 33T357 47Q400 66 431 100T475 170T494 234T500 282Z"></path></g></g></g></svg></mjx-container></li>
+<li>Pitch(俯仰)，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.023ex;" xmlns="http://www.w3.org/2000/svg" width="1.061ex" height="1.618ex" role="img" focusable="false" viewBox="0 -705 469 715"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"></path></g></g></g></svg></mjx-container></li>
 </ul>
-<p>向量绕轴$\bold{r}=[a,b,c]^T,(a^2+b^2+c^2=1)$ 旋转$\alpha$ 角度的过程用四元数表示为：</p>
+<p>向量绕轴<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="35.732ex" height="2.47ex" role="img" focusable="false" viewBox="0 -841.7 15793.5 1091.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtext" fill="red" stroke="red"><path data-c="5C" d="M56 731Q56 740 62 745T75 750Q85 750 92 740Q96 733 270 255T444 -231Q444 -239 438 -244T424 -250Q414 -250 407 -240Q404 -236 230 242T56 731Z"></path><path data-c="62" d="M307 -11Q234 -11 168 55L158 37Q156 34 153 28T147 17T143 10L138 1L118 0H98V298Q98 599 97 603Q94 622 83 628T38 637H20V660Q20 683 22 683L32 684Q42 685 61 686T98 688Q115 689 135 690T165 693T176 694H179V543Q179 391 180 391L183 394Q186 397 192 401T207 411T228 421T254 431T286 439T323 442Q401 442 461 379T522 216Q522 115 458 52T307 -11ZM182 98Q182 97 187 90T196 79T206 67T218 55T233 44T250 35T271 29T295 26Q330 26 363 46T412 113Q424 148 424 212Q424 287 412 323Q385 405 300 405Q270 405 239 390T188 347L182 339V98Z" transform="translate(500,0)"></path><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(1056,0)"></path><path data-c="6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z" transform="translate(1556,0)"></path><path data-c="64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z" transform="translate(1834,0)"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(2390,0)"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mo" transform="translate(3118.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(4174.6,0)"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(4452.6,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mo" transform="translate(4981.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(5426.2,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mo" transform="translate(5855.2,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(6299.9,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g><g data-mml-node="msup" transform="translate(6732.9,0)"><g data-mml-node="mo"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g><g data-mml-node="mi" transform="translate(311,363) scale(0.707)"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g></g><g data-mml-node="mo" transform="translate(7591.7,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(8036.4,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msup" transform="translate(8425.4,0)"><g data-mml-node="mi"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mn" transform="translate(562,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(9613.1,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="msup" transform="translate(10613.4,0)"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mn" transform="translate(462,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(11701.1,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="msup" transform="translate(12701.4,0)"><g data-mml-node="mi"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g><g data-mml-node="mn" transform="translate(466,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(13848.7,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(14904.5,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(15404.5,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container> 旋转<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.448ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 640 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D6FC" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"></path></g></g></g></svg></mjx-container> 角度的过程用四元数表示为：</p>
 <p>$$<br>
-\begin{align}<br>
-\bold{q}(\alpha,\bold{r}) = [cos(\alpha/2)，a<em>sin(\alpha/2)，b</em>sin(\alpha/2)，c*sin(\alpha/2)]^T<br>
-\end{align}<br>
+\bold{q}(\alpha, \bold{r}) = [cos(\alpha/2)，a<em>sin(\alpha/2)，b</em>sin(\alpha/2)，c*sin(\alpha/2)]^T<br>
 $$<br>
 欧拉角和四元数转换过程中，需要注意轴旋转顺序，此处旋转顺序为ZYX。根据旋转复合，可得：</p>
-<center><img src="img-1.png"></center>
-<p><a target="_blank" rel="noopener" href="https://item.kongfz.com/book/62834881.html">多旋翼飞行器设计与控制</a> P100-103</p>
+<center><img lazyload="" src="/images/loading.svg" data-src="img-1.png"></center>
+<p><a class="link" target="_blank" rel="noopener" href="https://item.kongfz.com/book/62834881.html">多旋翼飞行器设计与控制<i class="fa-solid fa-up-right-from-square"></i></a> P100-103</p>
 
+            </div>
 
-        <hr>
-        <!-- Pager -->
-        <ul class="pager">
-          
-          
-          <li class="next">
-            <a href="/undefined/free-music/" data-toggle="tooltip" data-placement="top" title="Free Music">Next Post &rarr;</a>
-          </li>
-          
-        </ul>
-
-        
-
-        
-        <hr>
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-
-<!-- 2. gitment comment -->
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <hr>
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
-    
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">目录</strong>
-        
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">四元数与三维旋转</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">四元数与欧拉角</span></a></li></ol>
-        
-        </div>
-      </aside>
-    
-
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-        <section>
-          <!-- no hr -->
-          <h5>
-            <a href="/tags/">特色标签</a>
-          </h5>
-          <div class="tags">
             
-          </div>
-        </section>
-        
 
-        <!-- Friends Blog -->
-        
-        <hr>
-        <h5>链友</h5>
-        <ul class="list-inline">
+            
 
-          
-          <li>
-            <a href="https://riskyjr.gitee.io" target="_blank">Gitee Blog</a>
-          </li>
-          
-          <li>
-            <a href="https://joiner12.github.io/" target="_blank">Git Blog</a>
-          </li>
-          
-        </ul>
-        
-      </div>
-    </div>
-  </div>
-</article>
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="../free-music/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Free Music</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
 
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
-
-
-		<!-- Footer (contains ThemeColor、viewer) -->
-		<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center">
-          
-
-          
-            <li>
-              <a target="_blank" href="https://github.com/Joiner12">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-
-          <!-- wechat -->
-          
-            <li>
-              <a target="_blank" href="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/we_chat_heaher.jpg">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-weixin fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          
-
-        <!-- gitee -->
-        
-          <li>
-            <a target="_blank" href="http://gitee.com/RiskyJR">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-star-half-o fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-        
-
-        </ul>
-        <p class="copyright text-muted">
-          Copyright &copy;
-          Wh
-          2023
-          <br>
-          Theme by
-          <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
-          <span style="display: inline-block; margin: 0 5px;">
-            <i class="fa fa-heart"></i>
-          </span>
-          re-Ported by
-          <a target="_blank" rel="noopener" href="https://v-vincen.life/">Live My Life</a>
-          |
-          <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=V-Vincen&repo=V-Vincen.github.io&type=star&count=true"></iframe>
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<a id="rocket" href="#top" class=""></a>
-
-
-  <!-- jQuery -->
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <!-- Bootstrap Core JavaScript -->
-  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-  <!-- Custom Theme JavaScript -->
-  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
-  <!-- catalog -->
-  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
-  <!-- totop(rocket) -->
-  <script async="true" type="text/javascript" src="/js/totop.js"></script>
-
-  
-
-  
-    <!-- Scroll start -->
-    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
-    <!-- Scroll end -->
-  
-
-  
-
-  
-
-  
-    <!-- ribbon -->
-    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
-  
-
-  
-
-
-
-
-
-
-  <!-- viewer start -->
-  <!-- viewer start (Picture preview) -->
-  
-    <script async="async" type="text/javascript" src="/js/viewer/viewer.min.js"></script>
-    <script async="async" type="text/javascript" src="/js/viewer/pic-viewer.js"></script>
-  
-
-  <!-- viewer end -->
-
-
-<script>
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function (e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  }
-
-  // fastClick.js
-  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
-    var $nav = document.querySelector("nav");
-    if ($nav)
-      FastClick.attach($nav);
-    }
-  )
-</script>
-
-<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
-https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
-<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
-
-<!-- jquery.tagcloud.js -->
-<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("http://yoursite-url/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
-start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
-
-
-		<!-- Search -->
-		
-		<div class="popup search-popup local-search-popup">
-  <span class="popup-btn-close">
-    ESC
-  </span>
-  <div class="container">
-    <div class="row">
-      <!-- <div class="col-md-9 col-md-offset-1"> -->
-      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
-
-        <div class="local-search-header clearfix">
-
-          <div class="local-search-input-wrapper">
-            <span class="search-icon">
-              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
-            </span>
-            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
-          </div>
+            
         </div>
-        <div id="local-search-result"></div>
-      </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list"></i> <strong>目录</strong></div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">四元数与三维旋转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">四元数与欧拉角</span></a></li></ol>
     </div>
-  </div>
+</div>
+            </div>
+        
+    </div>
 </div>
 
 
-  
-    <script src="/js/ziploader.js"></script>
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.json";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    // monitor main search box;
-    var onPopupClose = function (e) {
-      $('.popup').fadeOut(300);
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $('body').css('overflow', '');
-    }
+                
 
-    function proceedsearch() {
-      $('.popup').fadeIn(300);
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-    // get search zip version
-    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
-      if (localStorage.getItem('searchVersion') !== res) {
-        localStorage.setItem('searchVersion', res);
-        initSearchJson();
-      }
-    });
+            </div>
 
-    function initSearchJson() {
-      initLoad(['/search.flv'], {
-        loadOptions: {
-          success: function (obj) {
-            localStorage.setItem('searchJson', obj['search.json'])
-          },
-          error: function (e) {
-            return console.log(e)
-          }
-        },
-        returnOptions: {
-          'json': TYPE_TEXT
-        },
-        mimeOptions: {
-          'json': 'application/json'
-        }
-      })
-    }
-    // search function;
-    var searchFunc = function (search_id, content_id) {
-      'use strict';
-      isfetched = true;
-      var datas = JSON.parse(localStorage.getItem('searchJson'));
-      // console.log(search_id)
-      var input = document.getElementById(search_id);
-      var resultContent = document.getElementById(content_id);
-      var inputEventFunction = function () {
-        var searchText = input.value.trim().toLowerCase();
-        var keywords = searchText.split(/[\s\-]+/);
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        var resultItems = [];
-        if (searchText.length > 0) {
-          // perform local searching
-          datas.forEach(function (data) {
-            var isMatch = false;
-            var hitCount = 0;
-            var searchTextCount = 0;
-            var title = data.title
-              ? data.title.trim()
-              : '';
-            var titleInLowerCase = title.toLowerCase();
-            var content = data.content
-              ? data.content.trim().replace(/<[^>]+>/g, "")
-              : '';
-            var contentInLowerCase = content.toLowerCase();
-            var articleUrl = decodeURIComponent(data.url);
 
-            var date = data.date;
-            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
-            var imgUrl = data.header_img;
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
             
-
-
-            var indexOfTitle = [];
-            var indexOfContent = [];
-            // only match articles with not empty titles
-            keywords.forEach(function (keyword) {
-              function getIndexByWord(word, text, caseSensitive) {
-                var wordLen = word.length;
-                if (wordLen === 0) {
-                  return [];
-                }
-                var startPosition = 0,
-                  position = [],
-                  index = [];
-                if (!caseSensitive) {
-                  text = text.toLowerCase();
-                  word = word.toLowerCase();
-                }
-                while ((position = text.indexOf(word, startPosition)) > -1) {
-                  index.push({position: position, word: word});
-                  startPosition = position + wordLen;
-                }
-                return index;
-              }
-              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-            });
-            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-              isMatch = true;
-              hitCount = indexOfTitle.length + indexOfContent.length;
-            }
-            // show search results
-            if (isMatch) {
-              // sort index by position of keyword
-              [indexOfTitle, indexOfContent].forEach(function (index) {
-                index.sort(function (itemLeft, itemRight) {
-                  if (itemRight.position !== itemLeft.position) {
-                    return itemRight.position - itemLeft.position;
-                  } else {
-                    return itemLeft.word.length - itemRight.word.length;
-                  }
-                });
-              });
-              // merge hits into slices
-              function mergeIntoSlice(text, start, end, index) {
-                var item = index[index.length - 1];
-                var position = item.position;
-                var word = item.word;
-                var hits = [];
-                var searchTextCountInSlice = 0;
-                while (position + word.length <= end && index.length != 0) {
-                  if (word === searchText) {
-                    searchTextCountInSlice++;
-                  }
-                  hits.push({position: position, length: word.length});
-                  var wordEnd = position + word.length;
-                  // move to next position of hit
-                  index.pop();
-                  while (index.length != 0) {
-                    item = index[index.length - 1];
-                    position = item.position;
-                    word = item.word;
-                    if (wordEnd > position) {
-                      index.pop();
-                    } else {
-                      break;
+              <span>2022</span>
+              -
+            
+            2023&nbsp;<i class="fa-solid fa-heart icon-animate"></i>&nbsp;<a href="/">Wh. 版权所有.</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v0.4.6</a>
+        </div>
+        
+        
+        <script async data-pjax defer>
+            function odometer_init(){
+                    let el = document.getElementsByClassName('odometer');
+                    for (i = 0; i < el.length; i++) {
+                        od = new Odometer({
+                            el: el[i],
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
                     }
-                  }
-                }
-                searchTextCount += searchTextCountInSlice;
-                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
-              }
-              var slicesOfTitle = [];
-              if (indexOfTitle.length != 0) {
-                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-              }
-              var slicesOfContent = [];
-              while (indexOfContent.length != 0) {
-                var item = indexOfContent[indexOfContent.length - 1];
-                var position = item.position;
-                var word = item.word;
-                // cut out 100 characters
-                var start = position - 20;
-                var end = position + 80;
-                if (start < 0) {
-                  start = 0;
-                }
-                if (end < position + word.length) {
-                  end = position + word.length;
-                }
-                if (end > content.length) {
-                  end = content.length;
-                }
-                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-              }
-              // sort slices in content by search text's count and hits' count
-              slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                  return sliceRight.hits.length - sliceLeft.hits.length;
-                } else {
-                  return sliceLeft.start - sliceRight.start;
-                }
-              });
-              // select top N slices in content
-              var upperBound = parseInt('1');
-              if (upperBound >= 0) {
-                slicesOfContent = slicesOfContent.slice(0, upperBound);
-              }
-              // highlight title and content
-              function highlightKeyword(text, slice) {
-                var result = '';
-                var prevEnd = slice.start;
-                slice.hits.forEach(function (hit) {
-                  result += text.substring(prevEnd, hit.position);
-                  var end = hit.position + hit.length;
-                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                  prevEnd = end;
-                });
-                result += text.substring(prevEnd, slice.end);
-                return result;
-              }
-              var resultItem = '';
-
-              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
-              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
-              // "...</p></a>"; }); resultItem += "</li>";
-
-              if (slicesOfTitle.length != 0) {
-                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
-              } else {
-                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
-              }
-              slicesOfContent.forEach(function (slice) {
-                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
-              });
-              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
-
-              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
             }
-          })
-        };
+            odometer_init();
+        </script>
+        <div id="start_time_div" style="display:none">
+            2022/8/17 11:45:14
+        </div>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
 
-        if (keywords.length === 1 && keywords[0] === "") {
-          resultContent.innerHTML = '<div id="no-result"></div>'
-        } else if (resultItems.length === 0) {
-          resultContent.innerHTML = '<div id="no-result"></div>'
-        } else {
-          resultItems.sort(function (resultLeft, resultRight) {
-            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-              return resultRight.searchTextCount - resultLeft.searchTextCount;
-            } else if (resultLeft.hitCount !== resultRight.hitCount) {
-              return resultRight.hitCount - resultLeft.hitCount;
-            } else {
-              return resultRight.id - resultLeft.id;
-            }
-          });
-          var searchResultList = '<div class=\"search-result-list\">';
-          resultItems.forEach(function (result) {
-            searchResultList += result.item;
-          })
-          searchResultList += "</div>";
-          resultContent.innerHTML = searchResultList;
-        }
-      }
-      if ('auto' === 'auto') {
-        input.addEventListener('input', inputEventFunction);
-      } else {
-        $('.search-icon').click(inputEventFunction);
-        input.addEventListener('keypress', function (event) {
-          if (event.keyCode === 13) {
-            inputEventFunction();
-          }
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fa-solid fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fa-solid fa-left-right"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fa-solid fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fa-solid fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fa-solid fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fa-solid fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="js/utils.js"></script>
+
+<script src="js/main.js"></script>
+
+<script src="js/header-shrink.js"></script>
+
+<script src="js/back2top.js"></script>
+
+<script src="js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="js/local-search.js"></script>
+
+
+
+
+    
+<script src="js/code-copy.js"></script>
+
+
+
+
+    
+<script src="js/lazyload.js"></script>
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="js/toc-toggle.js"></script>
+
+<script src="js/libs/anime.min.js"></script>
+
+<script src="js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
         });
-      }
-      // remove loading animation
-      $('body').css('overflow', '');
-      proceedsearch();
-    }
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function (e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc('local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function (e) {
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
 
-    document.addEventListener('mouseup', (e) => {
-      var _con = document.querySelector(".local-search-content");
-      if (_con) {
-        if (!_con.contains(e.target)) {
-          onPopupClose();
-        }
-      }
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
     });
-  </script>
+</script>
 
 
-		
-	<script type="text/x-mathjax-config">
+
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],

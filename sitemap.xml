@@ -37,13 +37,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite-url/categories/index.html</loc>
-    
-    <lastmod>2022-05-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite-url/tags/index.html</loc>
     
     <lastmod>2022-05-30</lastmod>
@@ -128,6 +121,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite-url/categories/index.html</loc>
+    
+    <lastmod>2020-03-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/archive/index.html</loc>
     
     <lastmod>2017-03-20</lastmod>
@@ -144,7 +144,7 @@
 
   <url>
     <loc>http://yoursite-url/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -152,98 +152,98 @@
   
   <url>
     <loc>http://yoursite-url/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/MATLAB/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/algorithm/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/matlab/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/kNN/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/Python/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/Html/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/%E8%AF%BB%E4%B9%A6/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/raspberry/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/Kodi/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/instruction/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/search/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/reg/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -252,14 +252,14 @@
   
   <url>
     <loc>http://yoursite-url/categories/Learning-Note/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/categories/Processing/</loc>
-    <lastmod>2023-01-03</lastmod>
+    <lastmod>2023-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

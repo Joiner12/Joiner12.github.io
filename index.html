@@ -1,462 +1,441 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<html lang="cn,default">
 <head>
-  <!-- Google Analytics -->
-  
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxx-xx"></script>
-    <script type="text/javascript">
-      window.dataLayer = window.dataLayer || [];
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="脑海中起毛球的记忆">
+    <meta name="author" content="Wh">
+    
+    <title>
+        
+        Wh&#39;s 🛰️ Blogs
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+<link rel="stylesheet" href="css/style.css">
 
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'UA-xxxxxx-xx');
-    </script>
-  
-
-  <!-- Baidu Tongji -->
-  
-    <script type="text/javascript">
-      // Originial
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-  
-
-  <!-- Baidu Push -->
-  
-    <script>
-      (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-      })();
-    </script>
-  
-
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
-  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="脑海中起毛球的记忆"/>
-  <meta name="keyword" content="Wh,Blog"/>
-  <link rel="shortcut icon" href="/img/avatar/favicon.jpg"/>
-
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
-
-  
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/beantech.min.css"/>
-
-    <!-- Pygments Highlight CSS -->
-    <link rel="stylesheet" href="/css/highlight.css"/>
-    <link rel="stylesheet" href="/css/widget.css"/>
-    <link rel="stylesheet" href="/css/rocket.css"/>
-    <link rel="stylesheet" href="/css/signature.css"/>
-    <link rel="stylesheet" href="/css/catalog.css"/>
-    <link rel="stylesheet" href="/css/livemylife.css"/>
+    <link rel="shortcut icon" href="img/avatar/Jr.png">
+    
+<link rel="stylesheet" href="css/fontawesome.min.css">
 
     
-      <!-- wave start -->
-      <link rel="stylesheet" href="/css/wave.css"/>
-      <!-- wave end -->
+<link rel="stylesheet" href="css/brands.min.css">
+
+    
+<link rel="stylesheet" href="css/solid.min.css">
+
+    
+<link rel="stylesheet" href="css/regular.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="css/css2.css">
+
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"yoursite-url","root":"/","language":["cn","default"],"path":"search.json"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"img/avatar/Jr.png","favicon":"img/avatar/Jr.png","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://evan.beee.top/img/wallhaven-wqery6-light.webp","dark":"https://evan.beee.top/img/wallhaven-wqery6-dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"没有记录 就没有发生"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"0.4.6","friend_links":{"columns":2}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
     
 
     
-      <!-- top start (article top hot config) -->
-      <link rel="stylesheet" href="/css/top.css"/>
-      <!-- top end -->
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
     
-
-    
-      <!-- ThemeColor start -->
-      <link rel="stylesheet" href="/css/scroll.css"/>
-      <!-- ThemeColor end -->
-    
-
-    
-      <!-- viewer start (Picture preview) -->
-      <link rel="stylesheet" href="/css/viewer.min.css"/>
-      <!-- viewer end -->
-    
-
-    
-      <!-- Search start -->
-      <link rel="stylesheet" href="/css/search.css"/>
-      <!-- Search end -->
-    
-
-    
-      <!-- ThemeColor start -->
-      <link rel="stylesheet" href="/css/themecolor.css"/>
-      <!-- ThemeColor end -->
-    
-
-    
-
-    
-  
-
-  <!-- Custom Fonts -->
-  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-  <!-- Hux change font-awesome CDN to qiniu -->
-  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
-  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
-
-  <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/">
-  <title>
-    
-      Wh&#39;s 🛰️ Blogs
-    
-  </title>
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-
-<!-- hack iOS CSS :active style -->
-
-	<body ontouchstart="" class="body--light body--dark">
-
-
-		<!-- ThemeColor -->
-		
-		<!-- ThemeColor -->
-<style type="text/css">
-  .body--light {
-    --light-mode: none;
-    --dark-mode: block;
-  }
-  .body--dark {
-    --light-mode: block;
-    --dark-mode: none;
-  }
-  i.mdui-icon.material-icons.light-mode {
-    display: var(--light-mode);
-  }
-  i.mdui-icon.material-icons.dark-mode {
-    display: var(--dark-mode);
-  }
-</style>
-<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
-  <i class="mdui-icon material-icons light-mode"></i>
-  <i class="mdui-icon material-icons dark-mode"></i>
-</div>
-<script>
-  //getCookieValue
-  function getCookieValue(a) {
-    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
-    return b
-      ? b.pop()
-      : '';
-  }
-  let themeMode = 'dark';
-  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
-    let dbody = document.body.classList;
-    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
-  }
-
-  //setCookieValue
-  var toggleBtn = document.querySelector(".toggle");
-  toggleBtn.addEventListener("click", function () {
-    var e = document.body.classList.contains("body--dark");
-    var cookieString = e
-      ? "dark"
-      : "light";
-    var exp = new Date();
-    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
-    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
-  });
-</script>
-
-		
-
-		<!-- Gitter -->
-		
-		<!-- Gitter -->
-<!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
-<script>
-  ((window.gitter = {}).chat = {}).options = {
-    room: 'your-community/your-room'
-  };
-</script>
-<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
-
-		
-
-		<!-- Navigation (contains search)-->
-		<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Wh&#39;s 🛰️ Blogs</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
-    <div id="huxblog_navbar">
-      <div class="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="/">首页</a>
-          </li>
-
-          
-          
-          
-          
-          <li>
-            <a href="/about/">
-              
-              关于
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/archive/">
-              
-              归档
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/categories/">
-              
-              分类
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
-          
-          
-
-          
-          <li>
-            <a class="popup-trigger">
-              <span class="search-icon"></span>搜索</a>
-          </li>
-          
-
-          <!-- LangSelect -->
-          
-        </ul>
-      </div>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container -->
-</nav>
-<!-- progress -->
-<div id="progress">
-  <div class="line" style="width: 0%;"></div>
 </div>
 
-<script>
-  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
-  var $body = document.body;
-  var $toggle = document.querySelector('.navbar-toggle');
-  var $navbar = document.querySelector('#huxblog_navbar');
-  var $collapse = document.querySelector('.navbar-collapse');
 
-  $toggle.addEventListener('click', handleMagic)
-
-  function handleMagic(e) {
-    if ($navbar.className.indexOf('in') > 0) {
-      // CLOSE
-      $navbar.className = " ";
-      // wait until animation end.
-      setTimeout(function() {
-        // prevent frequently toggle
-        if ($navbar.className.indexOf('in') < 0) {
-          $collapse.style.height = "0px"
-        }
-      }, 400)
-    } else {
-      // OPEN
-      $collapse.style.height = "auto"
-      $navbar.className += " in";
-    }
-  }
-</script>
-
-
-		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
-		<!-- Modified by Yu-Hsuan Yen -->
-<!-- Post Header -->
-
-  <style type="text/css">
-    .body--light {
-      /* intro-header */
-      --intro-header-background-image-url-home: url('/img/header_img/newhome_bg-1.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/');
-    }
-    .body--dark {
-      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg-1.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/');
-    }
-
-    header.intro-header {
-       /*config*/
-        background-image: var(--intro-header-background-image-url-home);
-        /* background-image: url('/img/header_img/newhome_bg-1.jpg'); */
-      
-    }
+<main class="page-container">
 
     
-  </style>
-
-
-
-
-
-<header class="intro-header">
-  <!-- Signature -->
-  <div id="signature">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          
-          <div class="site-heading">
-            <h1>Wh&#39;s 🛰️ Blogs</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">没有记录就没有发生</span>
-
-          </div>
-          
+        <div class="first-screen-container flex-center">
+    <div class="content flex-center">
+        <div class="description fade-in-down-animation">
+          没有记录 就没有发生
         </div>
-      </div>
+        
+            <div class="s-icon-list fade-in-down-animation">
+                
+                    
+                        
+                            <span class="s-icon-item github">
+                                <a target="_blank" href="https://github.com/Joiner12">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </span>
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                            <span class="s-icon-item gitee">
+                                <a target="_blank" href="https://riskyjr.gitee.io">
+                                    <i class="fa-brands fa-gitee"></i>
+                                </a>
+                            </span>
+                        
+                    
+                
+            </div>
+        
     </div>
-  </div>
+</div>
 
-  
-  <!-- waveoverlay start -->
-  <div class="preview-overlay">
-    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-      <defs>
-        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
-      </defs>
-      <g class="preview-parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
-        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
-        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
-        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
-      </g>
-    </svg>
-  </div>
-  <!-- waveoverlay end -->
-  
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+    
+    <div class="header-content has-first-screen">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="img/avatar/favicon.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+                Wh&#39;s 🛰️ Blogs
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <!-- Menu -->
+                            <a class="active" 
+                                href="index.html" >
+                                
+                                    
+                                        <i class="fa-regular fa-house"></i>
+                                    
+                                    首页
+                                
+                            </a>
+                            <!-- Submenu -->
+                            
+                        </li>
+                    
+                        <li class="menu-item">
+                            <!-- Menu -->
+                            <a class="" 
+                                href="/archives" >
+                                
+                                    
+                                        <i class="fa-regular fa-archive"></i>
+                                    
+                                    归档
+                                
+                            </a>
+                            <!-- Submenu -->
+                            
+                        </li>
+                    
+                        <li class="menu-item">
+                            <!-- Menu -->
+                            <a class="has-dropdown" 
+                                href="javascript:void(0);">
+                                
+                                    
+                                        <i class="fa-regular fa-user"></i>
+                                    
+                                    关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                
+                            </a>
+                            <!-- Submenu -->
+                            
+                                <ul class="sub-menu">
+                                  
+                                    <li>
+                                      <a href="/about">ME
+                                      </a>
+                                    </li>
+                                  
+                                    <li>
+                                      <a target="_blank" rel="noopener" href="https://joiner12.github.io/">GITHUB
+                                      </a>
+                                    </li>
+                                  
+                                </ul>
+                            
+                        </li>
+                    
+                        <li class="menu-item">
+                            <!-- Menu -->
+                            <a class="" 
+                                href="/categories" >
+                                
+                                    
+                                        <i class="fa-regular fa-link"></i>
+                                    
+                                    分类
+                                
+                            </a>
+                            <!-- Submenu -->
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active" 
+                       href="index.html" >
+                         
+                            
+                                <i class="fa-regular fa-house"></i>
+                            
+                            首页
+                        
+                    </a>
+                </li>
+                <!-- Submenu -->
+                
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" 
+                       href="/archives" >
+                         
+                            
+                                <i class="fa-regular fa-archive"></i>
+                            
+                            归档
+                        
+                    </a>
+                </li>
+                <!-- Submenu -->
+                
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="has-dropdown" 
+                       href="javascript:void(0);">
+                        
+                            
+                                <i class="fa-regular fa-user"></i>
+                            
+                            关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                        
+                    </a>
+                </li>
+                <!-- Submenu -->
+                          
+                    
+                        <li class="dropdown-item flex-center">
+                            <a class="dropdown-item" href="/about">ME</a>
+                        </li>
+                    
+                        <li class="dropdown-item flex-center">
+                            <a class="dropdown-item" target="_blank" rel="noopener" href="https://joiner12.github.io/">GITHUB</a>
+                        </li>
+                    
+                
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" 
+                       href="/categories" >
+                         
+                            
+                                <i class="fa-regular fa-link"></i>
+                            
+                            分类
+                        
+                    </a>
+                </li>
+                <!-- Submenu -->
+                
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
 
 </header>
 
 
+        </div>
 
-		<!-- Main Content (Post contains
-	Pager、
-	tip、
-	socialshare、
-	gitalk、gitment、disqus-comment、
-	Catalog、
-	Sidebar、
-	Featured-Tags、
-	Friends Blog、
-	anchorjs、
-	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+        <div class="page-main-content-middle">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+            <div class="main-content">
 
-      <!-- Main Content -->
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
 
+                
+                    <i class="fa-solid fa-thumbtack fa-thumbtack top-icon"></i>
+                
 
+                <h3 class="home-article-title">
+                    <a href="undefined/Target/">
+                        Target
+                    </a>
+                </h3>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <div class="top">
-    <div class="iconfont icon-hot animated infinite tada"></div>
-  </div>
-  
-  <!-- top end -->
-  
-
-  <a href="/undefined/Target/">
-    <h2 class="post-title">
-      Target
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      人需要给自己定一些可行度高的目标来敦促自己不浪费生命！
+                <div class="home-article-content markdown-body">
+                    
+                        人需要给自己定一些可行度高的目标来敦促自己不浪费生命！
 淡泊明志，宁静致远。
 
 2022-05-25
@@ -468,88 +447,66 @@ The Nature of Code 学习翻译一章
 2022-05-31
 不妨考虑把烟戒掉！
 
-2022-06-06
+2...
+                    
+                </div>
 
-
-
-事项
-DeadLine
-耗时
-
-
-
-
-The Nature of Code 粒子系统
-本周
-√
-
-
-《全球化与国家竞争......
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Mon May 30 2022 10:36:53 GMT+0800">2022-05-30</span></span>
+        
+        
     </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-05-30
-  </p>
-  <div class="tags">
-    
-  </div>
-  
 
+    <a href="undefined/Target/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
-<hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
+            </li>
+        
+            <li class="home-article-item">
 
-  <a href="/undefined/quaternion/">
-    <h2 class="post-title">
-      quaternion
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      四元数在三维旋转中的是最常用的一种方法，最近在做关于IMU相关的工作，下面就是过程中涉及到的相关资料的收集整理和个人理解记录。
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/quaternion/">
+                        quaternion
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        四元数在三维旋转中的是最常用的一种方法，最近在做关于IMU相关的工作，下面就是过程中涉及到的相关资料的收集整理和个人理解记录。
 
 四元数与三维旋转
-Krasjet的文章从二维复数开始，然后讨论用二维复数和二维空间中向量旋转的关系。然后引出四元数（Quaternion）及用四元数来表示三维空间中向量旋转相关知识。语言通俗、详细地推导了相关的数学公式，是很好的一篇文章，且在附录部分介绍了很多继续......
+Krasjet的文章从二维复数开始，然后讨论用二维复数和二维空间中向量旋转的关系。然后引出四元数（Qu...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Mon Aug 08 2022 15:43:52 GMT+0800">2022-08-08</span></span>
+        
+        
     </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-08-08
-  </p>
-  <div class="tags">
-    
-  </div>
-  
 
+    <a href="undefined/quaternion/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
-<hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
+            </li>
+        
+            <li class="home-article-item">
 
-  <a href="/undefined/free-music/">
-    <h2 class="post-title">
-      Free Music
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      免费音乐下载网站(工具)
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/free-music/">
+                        Free Music
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        免费音乐下载网站(工具)
 音乐搜索器 - 多站合一音乐搜索,音乐在线试听 (musictool.top)
 优点：
 
@@ -559,1055 +516,559 @@ Krasjet的文章从二维复数开始，然后讨论用二维复数和二维空�
 
 无法选择音质
 
-搜索 - MYFREEMP3 - 無料音楽ダウンロード - 무료 음악 다운로드 - Free Mp3 Download (liumingye.cn)
-易音论坛 - 发烧级音乐资源分享，专业级HIFI设备讨论 - SACDR.NET
-歌曲大......
+搜索 - MYFREEMP3 - 無料音楽ダウンロード - 무료 음악 다운로드 - Free ...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Wed Jul 20 2022 17:59:26 GMT+0800">2022-07-20</span></span>
+        
+        
     </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-07-20
-  </p>
-  <div class="tags">
-    
-  </div>
-  
 
+    <a href="undefined/free-music/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
-<hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
+            </li>
+        
+            <li class="home-article-item">
 
-  <a href="/undefined/TheNatureofCode-Vector/">
-    <h2 class="post-title">
-      The Nature of Code:Pvector
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      向量(Vectors)
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/TheNatureofCode-Vector/">
+                        The Nature of Code:Pvector
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        向量(Vectors)
 The Nature of Code-Vectors
-向量是Processing编程中的基本模块，向量又叫矢量(Euler Vector)，定义为有方向和大小的实体。向量通常用箭头表示，箭头的指向就是向量的方向，箭头的长度就是向量的大小。
+向量是Processing编程中的基本模块，向量又叫矢量(Euler Vector)，定义为有方向和大小的实体。向量通常用箭头表示，箭头的指向就是向量的方向，箭头的长度就是...
+                    
+                </div>
 
-Vectors,You Complete Me.
-在详细介绍向量之前，先通过一个例子来论证向量的重要性，以至于我们会从向量开始。......
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Mon Jul 11 2022 10:39:11 GMT+0800">2022-07-11</span></span>
+        
+            <span class="home-article-category"><i class="fa-solid fa-folders"></i></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="categories/Processing/">Processing</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
     </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-07-11
-  </p>
-  <div class="tags">
-    
-  </div>
-  
 
+    <a href="undefined/TheNatureofCode-Vector/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
-<hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
+            </li>
+        
+            <li class="home-article-item">
 
-  <a href="/undefined/TheNatureOfCode-Introduction/">
-    <h2 class="post-title">
-      The Nature of Code:Introduction
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Introduction
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/TheNatureOfCode-Introduction/">
+                        The Nature of Code:Introduction
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Introduction
 The Nature of Code:Introduction
-nature-of-code/noc-examples-processing: Repository for example code from The Nature of Code book (github.com)
-本章将会从最简单的运动仿真——随机游走(random walk)开始。
-随机游走(R......
+nature-of-code/noc-examples-processing: Repository for example code from The Nat...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Wed Jun 15 2022 11:32:25 GMT+0800">2022-06-15</span></span>
+        
+            <span class="home-article-category"><i class="fa-solid fa-folders"></i></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="categories/Processing/">Processing</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
     </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-06-15
-  </p>
-  <div class="tags">
-    
-  </div>
-  
 
+    <a href="undefined/TheNatureOfCode-Introduction/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
-<hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
+            </li>
+        
+            <li class="home-article-item">
 
-  <a href="/undefined/TheNatureOfCode-ParticleSystem/">
-    <h2 class="post-title">
-      The Nature of Code:Particle System
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/TheNatureOfCode-ParticleSystem/">
+                        The Nature of Code:Particle System
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
 粒子系统(Particle Systems)
 Click Here Jump To Source Page—The Nature of Code
-​	粒子系统是由许多单个粒子的集合，所有这些单个粒子的集合用来表示一个模糊的物体。一段时间内，粒子在系统中生成、移动、变化最后消失。粒子系统是一种在计算机图形中非常常见且有用的技术。
-​	自 1980 年代初以来，粒子系统已被用于无数视频游戏、动......
+​	粒子系统是由许多单个粒子的集合，所有这些单个粒子的集合用来表示一个模糊的物体。一段时间内，粒子在系...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Wed May 25 2022 15:39:07 GMT+0800">2022-05-25</span></span>
+        
+            <span class="home-article-category"><i class="fa-solid fa-folders"></i></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="categories/Processing/">Processing</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
     </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-05-25
-  </p>
-  <div class="tags">
-    
-  </div>
-  
 
+    <a href="undefined/TheNatureOfCode-ParticleSystem/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
-<hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
+            </li>
+        
+            <li class="home-article-item">
 
-  <a href="/undefined/士兵突击—不一样的兵王的故事/">
-    <h2 class="post-title">
-      士兵突击—不是一个兵王的故事
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      人性
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/%E5%A3%AB%E5%85%B5%E7%AA%81%E5%87%BB%E2%80%94%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E5%85%B5%E7%8E%8B%E7%9A%84%E6%95%85%E4%BA%8B/">
+                        士兵突击—不是一个兵王的故事
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        人性
 1、遵守是一种惯性，散漫也是一种惯性，人是适应性很强的生物，能适应懒散的惯性也能适应积极的惯性，如果你还能碰到给你惯性的人。
 2、团结就是从众，从众就是迁就集体的底线，底线就是一根一直掉深不见底的线；
-3、坚持分很多种，有一种我们比较熟悉，就是把全世界推到自己的对立面，把所有投来的目光视为毒箭，做事为打脸，怨恨当源泉。
-4、自卑和怯懦的人在面对新环境时会长期的观察和揣度，表现为一种木讷......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-04-27
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#随想" title="随想">随想</a>
-    
-  </div>
-  
+3、坚持分很多种，有一种我们比较熟悉，就是...
+                    
+                </div>
 
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/undefined/《人世间-摘抄》/">
-    <h2 class="post-title">
-      《人世间》 摘抄
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      
-
-    《人世间》于我，是一本很好的书。平凡、真实、伟大；故事讲述的一个东北普通家庭从文化大革命到改革开放40多年后的今天家庭发展历程。因为真实，自然就平凡，于平凡中显精神之伟大。
-    借用题记：“于人间烟火处彰显道义和担当，于悲欢离合中，抒写情怀和热望。”
-
-
-
-    
-        上部
-    
-
-
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 27 2022 08:39:02 GMT+0800">2022-04-27</span></span>
         
-1.当别人对你下跪相求时，表面看来完全是别人的可怜，往深......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-04-26
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#读书" title="读书">读书</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/undefined/搜索技巧/">
-    <h2 class="post-title">
-      搜索技巧
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      
-
-1 写在前面
-1.1 何为搜索
-​	先做解释，搜索的学术名词叫信息检索，通俗的解释就是基于搜索引擎、根据一定的搜索思路、应用相关的搜索技巧在互联网上找到想要的信息。互联网上信息很多，但也不是任何信息都能够找到，比如想要通过常规手段在互联网查找身份证信息就几乎不可能。
-1.2 搜索的重要性
-​	搜索就是一个主动获取信息的过程。个人认为，人的认知、接触的信息、思维模型之间的关系是这样的：首先......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-03-19
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#search" title="search">search</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/undefined/classification-using-nearest-neighbors-instruction-matlab/">
-    <h2 class="post-title">
-      MATLAB近邻算法分类指南
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      
-    
-
-
-近邻算法分类
-
-    原文:Classification Using Nearest Neighbors
-
-1.距离度量指标
-将待查询数据和训练数据集的距离作为分类依据是一种简单有效的分类方法。可以使用多种指标来确定距离。
-常用的距离度量有：
-
-欧式距离
-归一化欧式距离
-马（马哈拉诺比斯）氏距离
-城市街区距离
-闵可夫斯基距离
-切比雪夫距离
-余弦距离
-相关距离
-汉明距离
-杰卡......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Wh on
-    2022-01-11
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#algorithm" title="algorithm">algorithm</a>
-    
-    <a href="/tags/#matlab" title="matlab">matlab</a>
-    
-    <a href="/tags/#kNN" title="kNN">kNN</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-
-  <!-- Pager -->
-  <ul class="pager">
-    
-    
-    <li class="next">
-      <a href="/archives/2/">下一页 &rarr;</a>
-    </li>
-    
-  </ul>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Visitors -->
-<h5><a href="/">来访者</a></h5>
-
-
-        <hr>
-    
-        <!-- Featured Tags -->
-
-<section>
-  <h5><a href="/tags/">特色标签</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#算法" title="算法" rel="1">算法</a>
-    
-    
-    
-    <a href="/tags/#MATLAB" title="MATLAB" rel="1">MATLAB</a>
-    
-    
-    
-    <a href="/tags/#algorithm" title="algorithm" rel="1">algorithm</a>
-    
-    
-    
-    <a href="/tags/#matlab" title="matlab" rel="1">matlab</a>
-    
-    
-    
-    <a href="/tags/#kNN" title="kNN" rel="1">kNN</a>
-    
-    
-    
-    <a href="/tags/#Python" title="Python" rel="1">Python</a>
-    
-    
-    
-    <a href="/tags/#Html" title="Html" rel="1">Html</a>
-    
-    
-    
-    <a href="/tags/#读书" title="读书" rel="1">读书</a>
-    
-    
-    
-    <a href="/tags/#raspberry" title="raspberry" rel="1">raspberry</a>
-    
-    
-    
-    <a href="/tags/#Kodi" title="Kodi" rel="1">Kodi</a>
-    
-    
-    
-    <a href="/tags/#instruction" title="instruction" rel="1">instruction</a>
-    
-    
-    
-    <a href="/tags/#随想" title="随想" rel="1">随想</a>
-    
-    
-    
-    <a href="/tags/#search" title="search" rel="1">search</a>
-    
-    
-    
-    <a href="/tags/#reg" title="reg" rel="1">reg</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">关于自己</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/favicon-32x32-monkey.png" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>你转身向背 侧脸还是很美</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/Joiner12">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      <!-- wechat -->
-      
-        <li>
-          <a target="_blank" href="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/we_chat_heaher.jpg">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-weixin fa-stack-1x fa-inverse"></i>
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="tags/%E9%9A%8F%E6%83%B3/">随想</a>&nbsp;
+                        </li>
+                    
+                </ul>
             </span>
-          </a>
-        </li>
-      
-
-        <!-- gitee -->
         
-          <li>
-            <a target="_blank" href="http://gitee.com/RiskyJR">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-star-half-o fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-        
-        
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">最近博文</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="undefined/quaternion/">
-      <li>quaternion</li>
-    </a>
-    
-    <a href="undefined/free-music/">
-      <li>Free Music</li>
-    </a>
-    
-    <a href="undefined/TheNatureofCode-Vector/">
-      <li>The Nature of Code:Pvector</li>
-    </a>
-    
-    <a href="undefined/TheNatureOfCode-Introduction/">
-      <li>The Nature of Code:Introduction</li>
-    </a>
-    
-    <a href="undefined/Target/">
-      <li>Target</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-        <!-- Friends Blog -->
-
-<h5><a href="/">链友</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="https://riskyjr.gitee.io" target="_blank">Gitee Blog</a></li>
-  
-  <li><a href="https://joiner12.github.io/" target="_blank">Git Blog</a></li>
-  
-</ul>
-
-
-        <hr>
-    
-        <!-- Archives -->
-
-<h5><a href="/archives/">archives</a></h5>
-<div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/07/">July 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/01/">January 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/12/">December 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/11/">November 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/10/">October 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/12/">December 2020</a><span class="archive-list-count">1</span></li></ul>
-</div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<h5><a href="/categories/">categories</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#Learning Note">
-      <li>Learning Note</li>
-    </a>
-    
-    <a href="/categories/#Processing">
-      <li>Processing</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-
-    
-  </div>
-</div>
-
-
-		<!-- Footer (contains ThemeColor、viewer) -->
-		<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center">
-          
-
-          
-            <li>
-              <a target="_blank" href="https://github.com/Joiner12">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-
-          <!-- wechat -->
-          
-            <li>
-              <a target="_blank" href="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/we_chat_heaher.jpg">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-weixin fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          
-
-        <!-- gitee -->
-        
-          <li>
-            <a target="_blank" href="http://gitee.com/RiskyJR">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-star-half-o fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-        
-
-        </ul>
-        <p class="copyright text-muted">
-          Copyright &copy;
-          Wh
-          2023
-          <br>
-          Theme by
-          <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
-          <span style="display: inline-block; margin: 0 5px;">
-            <i class="fa fa-heart"></i>
-          </span>
-          re-Ported by
-          <a target="_blank" rel="noopener" href="https://v-vincen.life/">Live My Life</a>
-          |
-          <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=V-Vincen&repo=V-Vincen.github.io&type=star&count=true"></iframe>
-        </p>
-      </div>
     </div>
-  </div>
+
+    <a href="undefined/%E5%A3%AB%E5%85%B5%E7%AA%81%E5%87%BB%E2%80%94%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E5%85%B5%E7%8E%8B%E7%9A%84%E6%95%85%E4%BA%8B/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/%E3%80%8A%E4%BA%BA%E4%B8%96%E9%97%B4-%E6%91%98%E6%8A%84%E3%80%8B/">
+                        《人世间》 摘抄
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/%E8%BE%9B%E5%BC%83%E7%96%BE.PNG" alt="辛弃疾" style="zoom: 50%;" />
+<div>
+    <p style="font-size:22px;font-family:楷体;font-weight:bold;">《人世间》于我，是一本很好的书。平凡、真实、伟大；故事讲述的一个东北普通家庭从文化大革命到改革开放40多年后的今天家庭发展历程。因为真实，自然就平凡，于平凡中显精神之伟大。<br>
+    借用题记：“于人间烟火处彰显道义和担当，于悲欢离合中，抒写情怀和热望。”</p>
+</div>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Tue Apr 26 2022 11:17:37 GMT+0800">2022-04-26</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="tags/%E8%AF%BB%E4%B9%A6/">读书</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="undefined/%E3%80%8A%E4%BA%BA%E4%B8%96%E9%97%B4-%E6%91%98%E6%8A%84%E3%80%8B/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/">
+                        搜索技巧
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/1c7a57458a2d4281a12bb816f51e2876.PNG">
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Sat Mar 19 2022 15:05:16 GMT+0800">2022-03-19</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="tags/search/">search</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="undefined/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="undefined/classification-using-nearest-neighbors-instruction-matlab/">
+                        MATLAB近邻算法分类指南
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <div style="text-align:center;">
+    <img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/KNN-1.gif" style="width:400px;height:250px;">
+</div>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;<span class="home-article-date" data-date="Tue Jan 11 2022 15:11:39 GMT+0800">2022-01-11</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="tags/algorithm/">algorithm</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="tags/matlab/">matlab</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="tags/kNN/">kNN</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="undefined/classification-using-nearest-neighbors-instruction-matlab/">阅读全文&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+
+    
+        <a class="next btn"
+           href="archives/2/"
+        >下一页</a>
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;<i class="fa-solid fa-heart icon-animate"></i>&nbsp;<a href="/">Wh. 版权所有.</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v0.4.6</a>
+        </div>
+        
+        
+        <script async data-pjax defer>
+            function odometer_init(){
+                    let el = document.getElementsByClassName('odometer');
+                    for (i = 0; i < el.length; i++) {
+                        od = new Odometer({
+                            el: el[i],
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    }
+            }
+            odometer_init();
+        </script>
+        <div id="start_time_div" style="display:none">
+            2022/8/17 11:45:14
+        </div>
+        
+        
+        
+    </div>  
 </footer>
+        </div>
+    </div>
 
-<a id="rocket" href="#top" class=""></a>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fa-solid fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fa-solid fa-left-right"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fa-solid fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fa-solid fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fa-solid fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fa-solid fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
 
-  <!-- jQuery -->
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <!-- Bootstrap Core JavaScript -->
-  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-  <!-- Custom Theme JavaScript -->
-  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
-  <!-- catalog -->
-  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
-  <!-- totop(rocket) -->
-  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
-  
+    
 
-  
-    <!-- Scroll start -->
-    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
-    <!-- Scroll end -->
-  
-
-  
-
-  
-
-  
-    <!-- ribbon -->
-    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
-  
-
-  
+</main>
 
 
 
 
 
+<script src="js/utils.js"></script>
 
-  <!-- viewer start -->
-  <!-- viewer start (Picture preview) -->
-  
-    <script async="async" type="text/javascript" src="/js/viewer/viewer.min.js"></script>
-    <script async="async" type="text/javascript" src="/js/viewer/pic-viewer.js"></script>
-  
+<script src="js/main.js"></script>
 
-  <!-- viewer end -->
+<script src="js/header-shrink.js"></script>
 
+<script src="js/back2top.js"></script>
+
+<script src="js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="js/local-search.js"></script>
+
+
+
+
+    
+<script src="js/code-copy.js"></script>
+
+
+
+
+    
+<script src="js/lazyload.js"></script>
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    
+<script src="js/libs/pjax.min.js"></script>
 
 <script>
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function (e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  }
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
 
-  // fastClick.js
-  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
-    var $nav = document.querySelector("nav");
-    if ($nav)
-      FastClick.attach($nav);
-    }
-  )
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
 </script>
 
-<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
-https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
-<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
-
-<!-- jquery.tagcloud.js -->
-<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("http://yoursite-url/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
-start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
 
 
-		<!-- Search -->
-		
-		<div class="popup search-popup local-search-popup">
-  <span class="popup-btn-close">
-    ESC
-  </span>
-  <div class="container">
-    <div class="row">
-      <!-- <div class="col-md-9 col-md-offset-1"> -->
-      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
-
-        <div class="local-search-header clearfix">
-
-          <div class="local-search-input-wrapper">
-            <span class="search-icon">
-              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
-            </span>
-            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
-          </div>
-        </div>
-        <div id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  
-    <script src="/js/ziploader.js"></script>
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.json";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    // monitor main search box;
-    var onPopupClose = function (e) {
-      $('.popup').fadeOut(300);
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $('.popup').fadeIn(300);
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-    // get search zip version
-    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
-      if (localStorage.getItem('searchVersion') !== res) {
-        localStorage.setItem('searchVersion', res);
-        initSearchJson();
-      }
-    });
-
-    function initSearchJson() {
-      initLoad(['/search.flv'], {
-        loadOptions: {
-          success: function (obj) {
-            localStorage.setItem('searchJson', obj['search.json'])
-          },
-          error: function (e) {
-            return console.log(e)
-          }
-        },
-        returnOptions: {
-          'json': TYPE_TEXT
-        },
-        mimeOptions: {
-          'json': 'application/json'
-        }
-      })
-    }
-    // search function;
-    var searchFunc = function (search_id, content_id) {
-      'use strict';
-      isfetched = true;
-      var datas = JSON.parse(localStorage.getItem('searchJson'));
-      // console.log(search_id)
-      var input = document.getElementById(search_id);
-      var resultContent = document.getElementById(content_id);
-      var inputEventFunction = function () {
-        var searchText = input.value.trim().toLowerCase();
-        var keywords = searchText.split(/[\s\-]+/);
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        var resultItems = [];
-        if (searchText.length > 0) {
-          // perform local searching
-          datas.forEach(function (data) {
-            var isMatch = false;
-            var hitCount = 0;
-            var searchTextCount = 0;
-            var title = data.title
-              ? data.title.trim()
-              : '';
-            var titleInLowerCase = title.toLowerCase();
-            var content = data.content
-              ? data.content.trim().replace(/<[^>]+>/g, "")
-              : '';
-            var contentInLowerCase = content.toLowerCase();
-            var articleUrl = decodeURIComponent(data.url);
-
-            var date = data.date;
-            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
-            var imgUrl = data.header_img;
-            
-
-
-            var indexOfTitle = [];
-            var indexOfContent = [];
-            // only match articles with not empty titles
-            keywords.forEach(function (keyword) {
-              function getIndexByWord(word, text, caseSensitive) {
-                var wordLen = word.length;
-                if (wordLen === 0) {
-                  return [];
-                }
-                var startPosition = 0,
-                  position = [],
-                  index = [];
-                if (!caseSensitive) {
-                  text = text.toLowerCase();
-                  word = word.toLowerCase();
-                }
-                while ((position = text.indexOf(word, startPosition)) > -1) {
-                  index.push({position: position, word: word});
-                  startPosition = position + wordLen;
-                }
-                return index;
-              }
-              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-            });
-            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-              isMatch = true;
-              hitCount = indexOfTitle.length + indexOfContent.length;
-            }
-            // show search results
-            if (isMatch) {
-              // sort index by position of keyword
-              [indexOfTitle, indexOfContent].forEach(function (index) {
-                index.sort(function (itemLeft, itemRight) {
-                  if (itemRight.position !== itemLeft.position) {
-                    return itemRight.position - itemLeft.position;
-                  } else {
-                    return itemLeft.word.length - itemRight.word.length;
-                  }
-                });
-              });
-              // merge hits into slices
-              function mergeIntoSlice(text, start, end, index) {
-                var item = index[index.length - 1];
-                var position = item.position;
-                var word = item.word;
-                var hits = [];
-                var searchTextCountInSlice = 0;
-                while (position + word.length <= end && index.length != 0) {
-                  if (word === searchText) {
-                    searchTextCountInSlice++;
-                  }
-                  hits.push({position: position, length: word.length});
-                  var wordEnd = position + word.length;
-                  // move to next position of hit
-                  index.pop();
-                  while (index.length != 0) {
-                    item = index[index.length - 1];
-                    position = item.position;
-                    word = item.word;
-                    if (wordEnd > position) {
-                      index.pop();
-                    } else {
-                      break;
-                    }
-                  }
-                }
-                searchTextCount += searchTextCountInSlice;
-                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
-              }
-              var slicesOfTitle = [];
-              if (indexOfTitle.length != 0) {
-                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-              }
-              var slicesOfContent = [];
-              while (indexOfContent.length != 0) {
-                var item = indexOfContent[indexOfContent.length - 1];
-                var position = item.position;
-                var word = item.word;
-                // cut out 100 characters
-                var start = position - 20;
-                var end = position + 80;
-                if (start < 0) {
-                  start = 0;
-                }
-                if (end < position + word.length) {
-                  end = position + word.length;
-                }
-                if (end > content.length) {
-                  end = content.length;
-                }
-                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-              }
-              // sort slices in content by search text's count and hits' count
-              slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                  return sliceRight.hits.length - sliceLeft.hits.length;
-                } else {
-                  return sliceLeft.start - sliceRight.start;
-                }
-              });
-              // select top N slices in content
-              var upperBound = parseInt('1');
-              if (upperBound >= 0) {
-                slicesOfContent = slicesOfContent.slice(0, upperBound);
-              }
-              // highlight title and content
-              function highlightKeyword(text, slice) {
-                var result = '';
-                var prevEnd = slice.start;
-                slice.hits.forEach(function (hit) {
-                  result += text.substring(prevEnd, hit.position);
-                  var end = hit.position + hit.length;
-                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                  prevEnd = end;
-                });
-                result += text.substring(prevEnd, slice.end);
-                return result;
-              }
-              var resultItem = '';
-
-              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
-              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
-              // "...</p></a>"; }); resultItem += "</li>";
-
-              if (slicesOfTitle.length != 0) {
-                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
-              } else {
-                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
-              }
-              slicesOfContent.forEach(function (slice) {
-                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
-              });
-              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
-
-              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
-            }
-          })
-        };
-
-        if (keywords.length === 1 && keywords[0] === "") {
-          resultContent.innerHTML = '<div id="no-result"></div>'
-        } else if (resultItems.length === 0) {
-          resultContent.innerHTML = '<div id="no-result"></div>'
-        } else {
-          resultItems.sort(function (resultLeft, resultRight) {
-            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-              return resultRight.searchTextCount - resultLeft.searchTextCount;
-            } else if (resultLeft.hitCount !== resultRight.hitCount) {
-              return resultRight.hitCount - resultLeft.hitCount;
-            } else {
-              return resultRight.id - resultLeft.id;
-            }
-          });
-          var searchResultList = '<div class=\"search-result-list\">';
-          resultItems.forEach(function (result) {
-            searchResultList += result.item;
-          })
-          searchResultList += "</div>";
-          resultContent.innerHTML = searchResultList;
-        }
-      }
-      if ('auto' === 'auto') {
-        input.addEventListener('input', inputEventFunction);
-      } else {
-        $('.search-icon').click(inputEventFunction);
-        input.addEventListener('keypress', function (event) {
-          if (event.keyCode === 13) {
-            inputEventFunction();
-          }
-        });
-      }
-      // remove loading animation
-      $('body').css('overflow', '');
-      proceedsearch();
-    }
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function (e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc('local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function (e) {
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-
-    document.addEventListener('mouseup', (e) => {
-      var _con = document.querySelector(".local-search-content");
-      if (_con) {
-        if (!_con.contains(e.target)) {
-          onPopupClose();
-        }
-      }
-    });
-  </script>
-
-
-		
-	<script type="text/x-mathjax-config">
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
