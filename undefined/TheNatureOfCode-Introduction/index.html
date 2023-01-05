@@ -1,292 +1,116 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
 
 
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="../../img/avatar/Jr.png">
-  <link rel="icon" href="../../img/avatar/Jr.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Wh">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="Introduction The Nature of Code:Introduction nature-of-code&#x2F;noc-examples-processing: Repository for example code from The Nature of Code book (github.com) 本章将会从最简单的运动仿真——随机游走(random walk)开始。 随机游走(Rand">
-<meta property="og:type" content="article">
-<meta property="og:title" content="The Nature of Code:Introduction">
-<meta property="og:url" content="http://yoursite-url/undefined/TheNatureOfCode-Introduction/index.html">
-<meta property="og:site_name" content="Wh&#39;s 🛰️ Blogs">
-<meta property="og:description" content="Introduction The Nature of Code:Introduction nature-of-code&#x2F;noc-examples-processing: Repository for example code from The Nature of Code book (github.com) 本章将会从最简单的运动仿真——随机游走(random walk)开始。 随机游走(Rand">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_02.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_03.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_04.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_05.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_06.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_07.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_08.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_10.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_11.png">
-<meta property="og:image" content="https://natureofcode.com/book/imgs/intro/intro_ex06.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220705101319316.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220705101201719.png">
-<meta property="article:published_time" content="2022-06-15T03:32:25.000Z">
-<meta property="article:modified_time" content="2022-06-15T03:32:25.000Z">
-<meta property="article:author" content="Wh">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://natureofcode.com/book/imgs/intro/intro_02.png">
-  
-  
-  
-  <title>The Nature of Code:Introduction - Wh&#39;s 🛰️ Blogs</title>
-
-  <link  rel="stylesheet" href="../../https:/lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="../../https:/lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="../../https:/lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="../../https:/lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="../../at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="../../at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="../../css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="../../css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="../../css/highlight-dark.css" />
+<html lang="zh-CN">
   
 
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="脑海中起毛球的记忆" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>The Nature of Code:Introduction |  Wh&#39;s 🛰️ Blogs</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/img/avatar/Jr.Png" />
+       
+<link rel="stylesheet" href="../../dist/main.css">
 
+      
+<link rel="stylesheet" href="../../css/fonts/remixicon.css">
 
+      
+<link rel="stylesheet" href="../../css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"yoursite-url","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="../../js/utils.js" ></script>
-  <script  src="../../js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
 
 
 <body>
-  
-
-  <header>
+  <div id="app">
     
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-TheNatureOfCode-Introduction"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  The Nature of Code:Introduction
+</h1>
+ 
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="../../index.html">
-      <strong>Wh&#39;s 🛰️ Blogs</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="../../index.html">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="../../archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="../../categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="../../tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="../../about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="" class="article-date">
+  <time datetime="2022-06-15T03:32:25.000Z" itemprop="datePublished">2022-06-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/Processing/">Processing</a>
   </div>
-</nav>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">14 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
 
   
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('../../img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="The Nature of Code:Introduction"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-15 11:32" pubdate>
-          2022年6月15日 中午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          6.8k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          57 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">The Nature of Code:Introduction</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h1>Introduction</h1>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>Introduction</h1>
 <p><a target="_blank" rel="noopener" href="https://natureofcode.com/book/introduction/">The Nature of Code:Introduction</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/nature-of-code/noc-examples-processing">nature-of-code/noc-examples-processing: Repository for example code from The Nature of Code book (github.com)</a></p>
 <p>本章将会从最简单的运动仿真——随机游走(random walk)开始。</p>
@@ -334,8 +158,8 @@ $$</p>
 <p>正态分布指的是数值分布聚集在均值附近。也叫高斯分布(Gaussian distribution)。将分布绘制成图就是下面这种钟形图。</p>
 <table>
     <tr>
-        <td><img src="https://natureofcode.com/book/imgs/intro/intro_02.png" srcset="/img/loading.gif" lazyload></td>
-        <td><img src="https://natureofcode.com/book/imgs/intro/intro_03.png" srcset="/img/loading.gif" lazyload></td>
+        <td><img src="https://natureofcode.com/book/imgs/intro/intro_02.png"></td>
+        <td><img src="https://natureofcode.com/book/imgs/intro/intro_03.png"></td>
     </tr>
 </table>
 <p>上面的曲线是由一个数学函数生成，该函数将任何给定值出现的概率定义为均值(μ)和标准(σ)的函数。对于上面的曲线，均值决定最高点的位置，方差决定了最高点的值，右边的方差比左边的方差值更大，表示分布离散度更高。高斯分布特点：</p>
@@ -375,7 +199,7 @@ Processing提供了<strong>Random</strong>类用以处理随机数。</p>
 <p>在前面序言中，介绍了可以通过用值填充数组（一些值是重复的以便更高频率选择到）或通过比较random() 的结果来生成自定义概率分布。 比如有通过有 1% 的机会迈出一大步来实现 Lévy flight。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> r=random();</span><br><span class="line"><span class="keyword">if</span> (r&lt;<span class="number">0.01</span>)</span><br><span class="line">&#123;</span><br><span class="line">	xstep=random(-<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">	ystep=random(-<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	xstep = random(-<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">	ystep = random(-<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但是，这会将概率降低到固定数量的选项。如果想制定一个更普遍的规则——数字越大，被选中的可能性就越大呢？ 3.145 比 3.144 更有可能被选中，即使这种可能性只是稍微大一点。 换句话说，如果 x 是随机数，我们可以用 y = x 在 y 轴上映射概率。</p>
-<img src="https://natureofcode.com/book/imgs/intro/intro_04.png" srcset="/img/loading.gif" lazyload>
+<img src="https://natureofcode.com/book/imgs/intro/intro_04.png">
 <p>如果我们能够根据上图弄清楚如何生成随机数的分布，那么我们将能够将相同的方法应用于任何曲线。</p>
 <p>一种解决方案是选择两个随机数而不是一个。 第一个随机数作为待比较随机数，第二个是“比较随机值”。 它决定使用第一个还是舍弃并选择另一个。较容易获得资格的号码将被更频繁地挑选，而很少符合资格的号码将不经常被挑选。 以下是步骤（现在，我们只考虑 0 到 1 之间的随机值）：</p>
 <ol>
@@ -391,8 +215,8 @@ Processing提供了<strong>Random</strong>类用以处理随机数。</p>
 <p>一个好的随机数生成器产生的数字之间没有关系，也没有明显的模式。正如我们开始看到的，在编写有机的、栩栩如生的行为时，一点点随机性可能是一件好事。然而，作为单一指导原则的随机性并不一定是自然的。一种被称为“Perlin 噪声”的算法（以其发明者 Ken Perlin 命名）考虑了这一点。 Perlin 在 1980 年代初制作原始 Tron 电影时开发了噪声功能；它旨在为计算机生成的效果创建程序纹理。 1997 年，佩林因这项工作获得了奥斯卡技术成就奖。 Perlin 噪声可用于生成具有自然品质的各种效果，例如云、风景和大理石等图案纹理。  Perlin 噪声具有更有机的外观，因为它产生自然有序（“平滑”）的伪随机数序列。左下图显示了 Perlin 噪声随时间的变化，x 轴代表时间；注意曲线的平滑度。右图显示随时间变化的纯随机数。</p>
 <table>
     <tr>
-        <td><img src="https://natureofcode.com/book/imgs/intro/intro_05.png" srcset="/img/loading.gif" lazyload ></td>
-        <td><img src="https://natureofcode.com/book/imgs/intro/intro_06.png" srcset="/img/loading.gif" lazyload ></td>
+        <td><img src="https://natureofcode.com/book/imgs/intro/intro_05.png" ></td>
+        <td><img src="https://natureofcode.com/book/imgs/intro/intro_06.png" ></td>
     </tr>
 </table>
 <p>Processing 有一个 Perlin 噪声算法的内置实现：函数<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>。<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span> 函数可以输入一个、两个或三个参数，因为噪声是在一维、二维或三个维度上计算的。从一维噪声开始。</p>
@@ -439,21 +263,21 @@ Processing提供了<strong>Random</strong>类用以处理随机数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> t_value=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> n = noise(t_value);</span><br><span class="line">    t_value +=<span class="number">1</span>;</span><br><span class="line">    println(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的代码会输出不同的随机值。</p>
 <p><em>t_value</em> 变化快慢会影响噪声的光滑度；如果我们在时间上有很大的跳跃，那么我们就会向前跳跃，并且值会更加随机。</p>
-<img src="https://natureofcode.com/book/imgs/intro/intro_07.png" srcset="/img/loading.gif" lazyload>
+<img src="https://natureofcode.com/book/imgs/intro/intro_07.png">
 <h3 id="噪声值映射-Mapping-Noise">噪声值映射(Mapping Noise)</h3>
 <p><span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>函数生成的值范围是0~1，使用<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">map()</span>函数能将这些值映射到任意的范围，<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">map()</span>函数需要五个参数。</p>
-<img src="https://natureofcode.com/book/imgs/intro/intro_08.png" srcset="/img/loading.gif" lazyload>
+<img src="https://natureofcode.com/book/imgs/intro/intro_08.png">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> t = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> n = noise(t);</span><br><span class="line"><span class="comment">//Using map() to customize the range of Perlin noise</span></span><br><span class="line">  <span class="keyword">float</span> x = map(n,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,width);</span><br><span class="line">  ellipse(x,<span class="number">180</span>,<span class="number">16</span>,<span class="number">16</span>);</span><br><span class="line"> </span><br><span class="line">  t += <span class="number">0.01</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="二维噪声-Two-Dimensional-Noise">二维噪声(Two-Dimensional Noise)</h3>
 <p>Processing中Perlin噪声是通过<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>函数实现的，相比较于另外一个随机数生成函数<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">random()</span>，<span style ="font-family: Menlo, Monaco, Consolas, monospace;font-size: 16px;">noise()</span>最大的不同点是：调用此函数生成的噪声曲线更光滑，这是因为其相邻数值变化更小。对于一维Perlin噪声，某个数有两个与它直接相邻(左图)。对于二维Perlin噪声，其相邻数据是在网格中一个格子周边的所有单个格子中的数据(如右图)。</p>
 <table>
     <tr>
-        <td> <img src="https://natureofcode.com/book/imgs/intro/intro_10.png" srcset="/img/loading.gif" lazyload></td>
-        <td> <img src="https://natureofcode.com/book/imgs/intro/intro_11.png" srcset="/img/loading.gif" lazyload></td>
+        <td> <img src="https://natureofcode.com/book/imgs/intro/intro_10.png"></td>
+        <td> <img src="https://natureofcode.com/book/imgs/intro/intro_11.png"></td>
     </tr>
 </table>
 <p>从概念上看，二维噪声和一维噪声的实现方式相同。不同之处在于其相邻点的存在方式和个数，一位是一条线相邻的两点，二维是网格周边所有的单个格子。给定值将的相邻点在其：上方、下方、右侧、左侧以及沿任何对角线。如果您要将这张方格纸可视化，并将每个值映射到颜色的亮度，会得到看起来像云的东西。 白色旁边是浅灰色，灰色旁边是灰色，深灰色旁边是黑色，黑色旁边是深灰色，等等。</p>
-<img src="https://natureofcode.com/book/imgs/intro/intro_ex06.png" srcset="/img/loading.gif" lazyload>
+<img src="https://natureofcode.com/book/imgs/intro/intro_ex06.png">
 <p>这就是最初发明噪音的原因。可以稍微调整参数或使用颜色，以使生成的图像看起来更像大理石或木材或任何其他有机纹理。</p>
 <p>二维噪声的实现：如果想为窗口的每个像素随机着色，可以通过一个<strong>嵌套循环</strong>来实现，这样能访问每个像素点并选择随机亮度。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">loadPixels();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;width;x++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>;y&lt;height;y++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">float</span> brightness = random(<span class="number">255</span>);</span><br><span class="line">        pixels[x+y*width]=color(brightness);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">updatePixels();</span><br></pre></td></tr></table></figure>
@@ -463,378 +287,507 @@ Processing提供了<strong>Random</strong>类用以处理随机数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> xoff = <span class="number">0.0</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; width; x++) &#123;</span><br><span class="line"><span class="comment">//For every xoff, start yoff at 0.</span></span><br><span class="line">  <span class="keyword">float</span> yoff = <span class="number">0.0</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; height; y++) &#123;</span><br><span class="line"><span class="comment">//Use xoff and yoff for noise().</span></span><br><span class="line">    <span class="keyword">float</span> bright = map(noise(xoff,yoff),<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">255</span>);</span><br><span class="line"><span class="comment">//Use x and y for pixel location.</span></span><br><span class="line">    pixels[x+y*width] = color(bright);</span><br><span class="line"><span class="comment">//Increment yoff.</span></span><br><span class="line">    yoff += <span class="number">0.01</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//Increment xoff.</span></span><br><span class="line">  xoff += <span class="number">0.01</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <table>
     <tr>
-        <td><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220705101319316.png" srcset="/img/loading.gif" lazyload style="width:500px;height:250px;">
+        <td><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220705101319316.png" style="width:500px;height:250px;">
             <br>
             <p style="font-size:20px;">random函数生成二维随机颜色</p>
         </td>
-        <td><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220705101201719.png" srcset="/img/loading.gif" lazyload style="width:500px;height:250px;">
+        <td><img src="https://cdn.jsdelivr.net/gh/Joiner12/PicBed@main/image-20220705101201719.png" style="width:500px;height:250px;">
         <br>
             <p style="font-size:20px;">noise函数生成二维随机颜色</p>
         </td>
     </tr>
 </table>
 <p>在本节中，介绍了 Perlin 噪声的几种典型用法。 对于一维噪声，使用平滑值来设置对象的位置，从而呈现出徘徊的外观。 使用二维噪声，在像素平面上创建了具有平滑值的多云图案。 然而，Perlin 噪声值就是特定的数值，它们本质上与像素位置或颜色无关，只是对其值的进行使用。本书中任何具有变量的示例都可以通过 Perlin 噪声进行控制。比如对风力建模时，它的强度可以由Perlin噪声控制。分形树模式中分支之间的角度或流场模拟中沿网格移动的对象的速度和方向也是如此。</p>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
+ 
+      <!-- reward -->
       
-
-<span class="category-chains">
-  
-  
+    </div>
     
-      <span class="category-chain">
-        
-  <a href="../../categories/Processing/" class="category-chain-item">Processing</a>
-  
-  
 
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
       </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>The Nature of Code:Introduction</div>
-      <div>http://yoursite-url/undefined/TheNatureOfCode-Introduction/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Wh</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年6月15日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="../TheNatureofCode-Vector/" title="The Nature of Code:Pvector">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">The Nature of Code:Pvector</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="../Target/" title="Target">
-                        <span class="hidden-mobile">Target</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
         </div>
       </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
 </div>
 
-
-
-  </aside>
-
-
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite-url/undefined/TheNatureOfCode-Introduction/" alt="微信分享二维码">
     </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
   </div>
-</div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+   
+  <nav class="article-nav">
     
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      <a href="../TheNatureofCode-Vector/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            The Nature of Code:Pvector
+          
+        </div>
       </a>
     
-
     
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+      <a href="../Target/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Target</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2023
+        <i class="ri-heart-fill heart_icon"></i> Wh
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
     </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="../../index.html"><img src="/img/avatar/favicon-32x32-monkey.png" alt="Wh&#39;s 🛰️ Blogs"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../index.html">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../http:/shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="../../images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="../../images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
   </div>
 </div>
-
     
+<script src="../../js/jquery-3.6.0.min.js"></script>
+ 
+<script src="../../js/lazyload.min.js"></script>
 
-    
-  </main>
+<!-- Tocbot -->
+ 
+<script src="../../js/tocbot.min.js"></script>
 
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="../../dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
     </div>
-  
-  
-  
-  
+
 </div>
 
-  </footer>
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
 
-  <!-- Scripts -->
-  
-  <script  src="../../https:/lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="../../https:/lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="../../https:/lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="../../https:/lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="../../js/events.js" ></script>
-<script  src="../../js/plugins.js" ></script>
-
-
-  <script  src="../../https:/lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="../../js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
 <script>
-  Fluid.utils.createScript('../../https:/lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
 
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
     }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
-    });
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
   });
 </script>
 
-
-  <script src=../../https:/lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
 <script>
-  Fluid.utils.createScript('../../https:/lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="../../js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="../../css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
         }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
 </script>
 
 
-  
-<script>
-  Fluid.utils.createScript('../../https:/lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
+    
+    
 
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="../../js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="../../js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+  </div>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
@@ -851,4 +804,5 @@ Processing提供了<strong>Random</strong>类用以处理随机数。</p>
 </script>
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
+
 </html>
