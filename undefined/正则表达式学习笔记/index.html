@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">7 分钟</span>
+            <span class="post-count">6 分钟</span>
         </span>
     </span>
 </div>
@@ -110,12 +110,11 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="正则表达式">正则表达式</h2>
-<p>正则表达式（regular expression）描述了一种字符串匹配的模式（pattern）。正则表达式是由普通字符以及特殊字符构成的文字模式。</p>
+  <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式（regular expression）描述了一种字符串匹配的模式（pattern）。正则表达式是由普通字符以及特殊字符构成的文字模式。</p>
 <p>构建正则表达式和写数学表达式一样，通过元字符和运算符将小的表达式构建为更大的表达式。</p>
 <span id="more"></span>
-<h3 id="元字符">元字符</h3>
-<p>正则表达式主要依赖元字符， 元字符不代表其本身的含义而是具有特殊的含义。</p>
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><p>正则表达式主要依赖元字符， 元字符不代表其本身的含义而是具有特殊的含义。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -133,7 +132,7 @@
 <td><code>字符种类</code>。匹配方括号内的任意字符。</td>
 </tr>
 <tr>
-<td>[^ ]</td>
+<td><sup><a href="#fn_ " id="reffn_ "> </a></sup></td>
 <td>否定的字符种类。匹配除了方括号里的任意字符</td>
 </tr>
 <tr>
@@ -157,12 +156,14 @@
 <td><code>字符集</code>，匹配与 xyz 完全相等的字符串.</td>
 </tr>
 <tr>
-<td>|</td>
+<td>\</td>
+<td></td>
 <td>或运算符，匹配符号前或后的字符.</td>
 </tr>
 <tr>
 <td>\</td>
-<td>转义字符,用于匹配一些保留的字符 <code>[ ] ( ) &#123; &#125; . * + ? ^ $ \ |</code></td>
+<td>转义字符,用于匹配一些保留的字符 `[ ] ( ) { } . * + ? ^ $ \</td>
+<td>`</td>
 </tr>
 <tr>
 <td>^</td>
@@ -174,8 +175,9 @@
 </tr>
 </tbody>
 </table>
-<h3 id="简写字符集">简写字符集</h3>
-<p>正则表达式提供一些常用的字符集简写。如下:</p>
+</div>
+<h3 id="简写字符集"><a href="#简写字符集" class="headerlink" title="简写字符集"></a>简写字符集</h3><p>正则表达式提供一些常用的字符集简写。如下:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -189,57 +191,58 @@
 <td>除换行符外的所有字符</td>
 </tr>
 <tr>
-<td>\w</td>
+<td>\\w</td>
 <td>匹配所有字母数字，等同于 <code>[a-zA-Z0-9_]</code></td>
 </tr>
 <tr>
-<td>\W</td>
+<td>\\W</td>
 <td>匹配所有非字母数字，即符号，等同于： <code>[^\w]</code></td>
 </tr>
 <tr>
-<td>\d</td>
+<td>\\d</td>
 <td>匹配数字： <code>[0-9]</code></td>
 </tr>
 <tr>
-<td>\D</td>
+<td>\\D</td>
 <td>匹配非数字： <code>[^\d]</code></td>
 </tr>
 <tr>
-<td>\s</td>
+<td>\\s</td>
 <td>匹配所有空格字符，等同于： <code>[\t\n\f\r\p&#123;Z&#125;]</code></td>
 </tr>
 <tr>
-<td>\S</td>
+<td>\\S</td>
 <td>匹配所有非空格字符： <code>[^\s]</code></td>
 </tr>
 <tr>
-<td>\f</td>
+<td>\\f</td>
 <td>匹配一个换页符</td>
 </tr>
 <tr>
-<td>\n</td>
+<td>\\n</td>
 <td>匹配一个换行符</td>
 </tr>
 <tr>
-<td>\r</td>
+<td>\\r</td>
 <td>匹配一个回车符</td>
 </tr>
 <tr>
-<td>\t</td>
+<td>\\t</td>
 <td>匹配一个制表符</td>
 </tr>
 <tr>
-<td>\v</td>
+<td>\\v</td>
 <td>匹配一个垂直制表符</td>
 </tr>
 <tr>
-<td>\p</td>
+<td>\\p</td>
 <td>匹配 CR/LF（等同于 <code>\r\n</code>），用来匹配 DOS 行终止符</td>
 </tr>
 </tbody>
 </table>
-<h3 id="定位符">定位符</h3>
-<p>​	定位符能将正则表达式固定到行首或行尾。同时能将正则表达式固定在单词内部，单词的开头或结尾。</p>
+</div>
+<h3 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h3><p>​    定位符能将正则表达式固定到行首或行尾。同时能将正则表达式固定在单词内部，单词的开头或结尾。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -257,18 +260,19 @@
 <td style="text-align:left">匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与 \n 或 \r 之前的位置匹配。</td>
 </tr>
 <tr>
-<td style="text-align:left">\b</td>
+<td style="text-align:left">\\b</td>
 <td style="text-align:left">匹配一个单词边界，即字与空格间的位置。</td>
 </tr>
 <tr>
-<td style="text-align:left">\B</td>
+<td style="text-align:left">\\B</td>
 <td style="text-align:left">非单词边界匹配。</td>
 </tr>
 </tbody>
 </table>
-<h3 id="修饰符（标志）">修饰符（标志）</h3>
-<p>​	标志也叫模式修正符，因为它可以用来修改表达式的搜索结果。 这些标志可以任意的组合使用，它也是整个正则表达式的一部分。标记不写在正则表达式里，标记位于表达式之外，格式如下：</p>
+</div>
+<h3 id="修饰符（标志）"><a href="#修饰符（标志）" class="headerlink" title="修饰符（标志）"></a>修饰符（标志）</h3><p>​    标志也叫模式修正符，因为它可以用来修改表达式的搜索结果。 这些标志可以任意的组合使用，它也是整个正则表达式的一部分。标记不写在正则表达式里，标记位于表达式之外，格式如下：</p>
 <p><code>/pattern/flags</code></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -291,9 +295,10 @@
 </tr>
 </tbody>
 </table>
-<h3 id="运算优先级">运算优先级</h3>
-<p>正则表达式从左到右进行计算，并遵循优先级顺序，这与算术表达式非常类似。</p>
+</div>
+<h3 id="运算优先级"><a href="#运算优先级" class="headerlink" title="运算优先级"></a>运算优先级</h3><p>正则表达式从左到右进行计算，并遵循优先级顺序，这与算术表达式非常类似。</p>
 <p>相同优先级的从左到右进行运算，不同优先级的运算先高后低。下表从最高到最低说明了各种正则表达式运算符的优先级顺序：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -319,44 +324,39 @@
 <td style="text-align:left">定位点和序列（即：位置和顺序）</td>
 </tr>
 <tr>
-<td style="text-align:left">|</td>
-<td style="text-align:left">替换，“或&quot;操作 字符具有高于替换运算符的优先级，使得&quot;m|food&quot;匹配&quot;m&quot;或&quot;food”。若要匹配&quot;mood&quot;或&quot;food&quot;，请使用括号创建子表达式，从而产生&quot;(m|f)ood&quot;。</td>
+<td style="text-align:left">\</td>
+<td style="text-align:left"></td>
+<td>替换，”或”操作 字符具有高于替换运算符的优先级，使得”m\</td>
+<td>food”匹配”m”或”food”。若要匹配”mood”或”food”，请使用括号创建子表达式，从而产生”(m\</td>
+<td>f)ood”。</td>
 </tr>
 </tbody>
 </table>
-<h3 id="零宽度断言">零宽度断言</h3>
-<p>先行断言和后发断言都属于<strong>非捕获簇</strong>（不捕获文本 ，也不针对组合计进行计数）。 先行断言用于判断所匹配的格式是否在另一个确定的格式之前，匹配结果不包含该确定格式（仅作为约束）。</p>
-<h4 id="正先行断言"><code>?=...</code> 正先行断言</h4>
-<p><code>?=...</code> 正先行断言，表示第一部分表达式之后必须跟着 <code>?=...</code>定义的表达式。</p>
+</div>
+<h3 id="零宽度断言"><a href="#零宽度断言" class="headerlink" title="零宽度断言"></a>零宽度断言</h3><p>先行断言和后发断言都属于<strong>非捕获簇</strong>（不捕获文本 ，也不针对组合计进行计数）。 先行断言用于判断所匹配的格式是否在另一个确定的格式之前，匹配结果不包含该确定格式（仅作为约束）。</p>
+<h4 id="正先行断言"><a href="#正先行断言" class="headerlink" title="?=... 正先行断言"></a><code>?=...</code> 正先行断言</h4><p><code>?=...</code> 正先行断言，表示第一部分表达式之后必须跟着 <code>?=...</code>定义的表达式。</p>
 <p>返回结果只包含满足匹配条件的第一部分表达式。 定义一个正先行断言要使用 <code>()</code>。在括号内部使用一个问号和等号： <code>(?=...)</code>。</p>
 <p>正先行断言的内容写在括号中的等号后面。 例如，表达式 <code>(T|t)he(?=\sfat)</code> 匹配 <code>The</code> 和 <code>the</code>，在括号中我们又定义了正先行断言 <code>(?=\sfat)</code> ，即 <code>The</code> 和 <code>the</code> 后面紧跟着 <code>(空格)fat</code>。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;(T|t)he(?=\sfat)&quot;</span> =&gt; The fat <span class="keyword">cat</span> sat <span class="keyword">on</span> the <span class="keyword">mat</span>.</span><br></pre></td></tr></table></figure>
-<h4 id="负先行断言"><code>?!...</code> 负先行断言</h4>
-<p>负先行断言 <code>?!</code> 用于筛选所有匹配结果，筛选条件为 其后不跟随着断言中定义的格式。 <code>正先行断言</code> 定义和 <code>负先行断言</code> 一样，区别就是 <code>=</code> 替换成 <code>!</code> 也就是 <code>(?!...)</code>。</p>
+<h4 id="负先行断言"><a href="#负先行断言" class="headerlink" title="?!... 负先行断言"></a><code>?!...</code> 负先行断言</h4><p>负先行断言 <code>?!</code> 用于筛选所有匹配结果，筛选条件为 其后不跟随着断言中定义的格式。 <code>正先行断言</code> 定义和 <code>负先行断言</code> 一样，区别就是 <code>=</code> 替换成 <code>!</code> 也就是 <code>(?!...)</code>。</p>
 <p>表达式 <code>(T|t)he(?!\sfat)</code> 匹配 <code>The</code> 和 <code>the</code>，且其后不跟着 <code>(空格)fat</code>。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;(T|t)he(?!\sfat)&quot;</span> =&gt; The fat <span class="keyword">cat</span> sat <span class="keyword">on</span> the <span class="keyword">mat</span>.</span><br></pre></td></tr></table></figure>
-<h4 id="正后发断言"><code>?&lt;= ...</code> 正后发断言</h4>
-<p>正后发断言 记作<code>(?&lt;=...)</code> 用于筛选所有匹配结果，筛选条件为 其前跟随着断言中定义的格式。 例如，表达式 <code>(?&lt;=(T|t)he\s)(fat|mat)</code> 匹配 <code>fat</code> 和 <code>mat</code>，且其前跟着 <code>The</code> 或 <code>the</code>。</p>
+<h4 id="lt-正后发断言"><a href="#lt-正后发断言" class="headerlink" title="?&lt;= ... 正后发断言"></a><code>?&lt;= ...</code> 正后发断言</h4><p>正后发断言 记作<code>(?&lt;=...)</code> 用于筛选所有匹配结果，筛选条件为 其前跟随着断言中定义的格式。 例如，表达式 <code>(?&lt;=(T|t)he\s)(fat|mat)</code> 匹配 <code>fat</code> 和 <code>mat</code>，且其前跟着 <code>The</code> 或 <code>the</code>。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;(?&lt;=(T|t)he\s)(fat|mat)&quot;</span> =&gt; The fat <span class="keyword">cat</span> sat <span class="keyword">on</span> the <span class="keyword">mat</span>.</span><br></pre></td></tr></table></figure>
-<h4 id="负后发断言"><code>?&lt;!...</code> 负后发断言</h4>
-<p>负后发断言 记作 <code>(?&lt;!...)</code> 用于筛选所有匹配结果，筛选条件为 其前不跟随着断言中定义的格式。 例如，表达式 <code>(?&lt;!(T|t)he\s)(cat)</code> 匹配 <code>cat</code>，且其前不跟着 <code>The</code> 或 <code>the</code>。</p>
+<h4 id="lt-负后发断言"><a href="#lt-负后发断言" class="headerlink" title="?&lt;!... 负后发断言"></a><code>?&lt;!...</code> 负后发断言</h4><p>负后发断言 记作 <code>(?&lt;!...)</code> 用于筛选所有匹配结果，筛选条件为 其前不跟随着断言中定义的格式。 例如，表达式 <code>(?&lt;!(T|t)he\s)(cat)</code> 匹配 <code>cat</code>，且其前不跟着 <code>The</code> 或 <code>the</code>。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;(?&lt;!(T|t)he\s)(cat)&quot;</span> =&gt; The <span class="keyword">cat</span> sat <span class="keyword">on</span> <span class="keyword">cat</span>.</span><br></pre></td></tr></table></figure>
-<h3 id="贪婪和惰性匹配（Greedy-vs-lazy-）">贪婪和惰性匹配（Greedy vs lazy ）</h3>
-<p><strong>*</strong> 匹配&gt;=0个重复的在*号之前的字符。</p>
+<h3 id="贪婪和惰性匹配（Greedy-vs-lazy-）"><a href="#贪婪和惰性匹配（Greedy-vs-lazy-）" class="headerlink" title="贪婪和惰性匹配（Greedy vs lazy ）"></a>贪婪和惰性匹配（Greedy vs lazy ）</h3><p><strong>*</strong> 匹配&gt;=0个重复的在*号之前的字符。</p>
 <p><strong>+</strong> 匹配&gt;=1个重复的+号前的字符。</p>
 <p><strong>?</strong> 标记?之前的字符为可选（0次或者1次）。</p>
 <p>正则表达式默认采用贪婪匹配模式，在该模式下意味着会匹配尽可能长的子串。我们可以使用 <code>?</code> 将贪婪匹配模式转化为惰性匹配模式。</p>
-<p style= "font-family:Consolas;font-size:20px;">
+<p><p style= "font-family:Consolas;font-size:20px;">
   To be continued...  
-</p>
-### 示例 1
-<p>提取以下文本内容中的emoji表情</p>
+</p></p>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h3><p>提取以下文本内容中的emoji表情</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;emoji_card&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/zh-hans/emoji/%F0%9F%90%AE&quot;</span> <span class="attr">class</span>=<span class="string">&quot;emoji_font&quot;</span>&gt;</span>🐮<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/zh-hans/emoji/%F0%9F%90%AE&quot;</span> <span class="attr">class</span>=<span class="string">&quot;emoji_name truncate&quot;</span>&gt;</span>奶牛头<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;emoji_symbol&quot;</span> <span class="attr">data-clipboard-text</span>=<span class="string">&quot;🐮&quot;</span>&gt;</span>复制<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;emoji_card&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/zh-hans/emoji/%F0%9F%90%82&quot;</span> <span class="attr">class</span>=<span class="string">&quot;emoji_font&quot;</span>&gt;</span>🐂<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/zh-hans/emoji/%F0%9F%90%82&quot;</span> <span class="attr">class</span>=<span class="string">&quot;emoji_name truncate&quot;</span>&gt;</span>公牛<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;emoji_symbol&quot;</span> <span class="attr">data-clipboard-text</span>=<span class="string">&quot;🐂&quot;</span>&gt;</span>复制<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="示例-2">示例 2</h3>
-<p>删除resource_path(),保留os.path.join(“audios”, “j.mp3”)</p>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h3><p>删除resource_path(),保留os.path.join(“audios”, “j.mp3”)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resource_path(os.path.join(<span class="string">&quot;audios&quot;</span>, <span class="string">&quot;j.mp3&quot;</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="reference">reference</h3>
-<p>1.<a target="_blank" rel="noopener" href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md#learn-regex">learn-regex</a></p>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p>1.<a target="_blank" rel="noopener" href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md#learn-regex">learn-regex</a> </p>
 <p>2.<a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-tutorial.html">正则表达式-教程</a></p>
  
       <!-- reward -->
@@ -847,7 +847,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
