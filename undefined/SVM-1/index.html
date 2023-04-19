@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>HMM和Viterbi算法 |  Wh&#39;s 🛰️ Blogs</title>
+      <title>SVM(Support Vector Machine)——交叉验证 |  Wh&#39;s 🛰️ Blogs</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/img/avatar/Jr.ico" />
@@ -43,119 +43,7 @@
           font-size: 1.6rem;
         }
       </style>
-    <style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+    </head>
   </html>
 </html>
 
@@ -167,7 +55,7 @@ mjx-container[display="true"] + br {
     <main class="content on">
       <section class="outer">
   <article
-  id="post-HMM"
+  id="post-SVM-1"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -178,7 +66,7 @@ mjx-container[display="true"] + br {
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  HMM和Viterbi算法
+  SVM(Support Vector Machine)——交叉验证
 </h1>
  
 
@@ -187,14 +75,14 @@ mjx-container[display="true"] + br {
      
     <div class="article-meta">
       <a href="" class="article-date">
-  <time datetime="2023-04-03T11:09:57.000Z" itemprop="datePublished">2023-04-03</time>
+  <time datetime="2023-04-19T01:49:45.000Z" itemprop="datePublished">2023-04-19</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">147</span>
+            <span class="post-count">2.4k</span>
         </span>
     </span>
 
@@ -203,22 +91,95 @@ mjx-container[display="true"] + br {
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">8 分钟</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>​    隐马尔可夫模型(hidden Markov model,HMM)是可用于标注问题的统计学习模型，描述由隐藏的马尔可夫链随机生成观测序列的过程，属于生成模型，描述了两个相关序列的依赖关系。隐马尔可夫模型在语音识别、自然语言处理、生物信息、模式识别等领域有着广泛的应用。其主要思想来源于马尔可夫过程，它假设当前时刻状态只与前一时刻的状态有关，而与更早的状态无关。</p>
+  <p>[TOC]</p>
+<h2 id="概述">概述</h2>
+<p>​	SVM（支持向量机）是一种常用的机器学习算法，其中交叉验证用于评估模型在新数据上的表现。交叉验证是一个常用的模型选择和性能评估技巧，它将原始数据集划分为多个互相重叠的子集，其中一部分数据用于模型训练，另一部分数据用于模型测试和验证。通过测试集的效果评估，可以评估模型的性能和泛化能力。而交叉验证就是一种更加复杂的测试集划分方式，可以让更好地评估SVM模型的性能。</p>
 <span id="more"></span>
-<center><embed src="HMM.pdf" width="800" height="1000"></center>
+<p>​	下面介绍几种常用的SVM交叉验证数据集划分方法及其特点：</p>
+<ol>
+<li>
+<p>K折交叉验证法(K-Fold Cross-Validation)</p>
+</li>
+<li>
+<p>留一交叉验证法(Leave-One-Out Cross-Validation)</p>
+</li>
+<li>
+<p>分层随机交叉验证法(Stratified Random Sampling Cross-Validation)</p>
+</li>
+</ol>
+<p>交叉验证是评估SVM模型性能的有效方法，最常用的是K折交叉验证法，可以减轻模型评估的随机性。</p>
+<h2 id="K折交叉验证法-K-Fold-Cross-Validation">K折交叉验证法(K-Fold Cross-Validation)</h2>
+<p>​	K折交叉验证是一种广泛使用的交叉验证方法，其中数据集被随机分为K个互不相交的子集。在每个迭代中，使用K-1个子集进行训练，并使用剩余的子集进行测试。这个过程重复K次，确保每个子集都被用于测试一次，并且每个子集被用于训练 K-1 次。最终，通过计算K次测试的平均值得到模型的性能指标。K折交叉验证法比简单交叉验证法更可以减少模型评估的随机性以及评估模型的鲁棒性，更能反映模型性能的稳定性。在K折交叉验证法中，将原有数据集分成K份，一般K取值为10。</p>
+<p><strong>优点</strong>：每一个样本数据都即被用作训练数据，也被用作测试数据。避免的过度学习和欠学习状态的发生，得到的结果比较具有说服力。</p>
+<p><strong>缺点</strong>：不能用于不平衡的数据集。不适合于时间序列数据。对于时间序列数据，样本的顺序很重要。但在K-Fold交叉验证法中，样本是按随机顺序选择的。</p>
+<p>下面是使用MATLAB演示K折交叉验证的示例代码：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">load fisheriris; <span class="comment">% 导入数据集</span></span><br><span class="line">class = grp2idx(species); <span class="comment">% 将类别名称转换成数字</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 将数据集随机分为K份</span></span><br><span class="line">K = <span class="number">5</span>; <span class="comment">% K折验证的折数</span></span><br><span class="line">cvpart = cvpartition(class, <span class="string">&#x27;kfold&#x27;</span>, K);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 迭代进行K次交叉验证</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>: K  </span><br><span class="line">  trainIndex = cvpart.training(<span class="built_in">i</span>);</span><br><span class="line">  testIndex = cvpart.test(<span class="built_in">i</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">% 训练模型</span></span><br><span class="line">  SVMModel = fitcsvm(meas(trainIndex,:), class(trainIndex));</span><br><span class="line">  </span><br><span class="line">  <span class="comment">% 测试模型，计算测试误差</span></span><br><span class="line">  [predictedLabels, score] = predict(SVMModel, meas(testIndex,:));</span><br><span class="line">  loss(<span class="built_in">i</span>) = lossClass(predictedLabels, class(testIndex));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 对K次交叉验证的测试误差求平均值作为模型泛化误差</span></span><br><span class="line">avgLoss = <span class="built_in">mean</span>(loss);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="留一交叉验证法（LOOCV）">留一交叉验证法（LOOCV）</h2>
+<p>留一交叉验证法（LOOCV）是一种特殊的 K 折交叉验证方法，其中 K 等于数据集中的样本数。在每个迭代中，留下一个数据样本进行测试并使用其余的样本来训练模型，这个过程重复 N 次，N是数据集中的样本数。最终，通过计算 N 次测试的平均值得到模型的性能指标。</p>
+<p>留一交叉验证的具体流程如下：</p>
+<ol>
+<li>输入数据集和算法模型；</li>
+<li>对于每一个样本，将当前样本留出作为测试数据，其余样本作为训练数据；</li>
+<li>用训练数据集训练模型；</li>
+<li>使用测试样本计算模型测试误差；</li>
+<li>重复 2-4 步，直到所有样本都被用于测试一次；</li>
+<li>对所有的测试误差求平均值，作为模型的性能指标。</li>
+</ol>
+<p>具体流程和 K 折交叉验证类似，但 K 值等于样本数，所以 LOOCV 会迭代 N 次，比 K 折交叉验证更加耗时，但可以更好的评估模型的泛化能力。</p>
+<p>下面是使用MATLAB演示留一交叉验证的示例代码：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">load fisheriris; <span class="comment">% 导入数据集</span></span><br><span class="line">class = grp2idx(species); <span class="comment">% 将类别名称转换成数字</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 为每个样本执行留一交叉验证</span></span><br><span class="line">N = <span class="built_in">size</span>(meas, <span class="number">1</span>); <span class="comment">% 样本数量</span></span><br><span class="line">loss = <span class="built_in">zeros</span>(N, <span class="number">1</span>); <span class="comment">% 存储测试误差</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:N  </span><br><span class="line">  <span class="comment">% 拆分数据，将第 i 个样本留出用于测试</span></span><br><span class="line">  testIndex = <span class="built_in">i</span>;</span><br><span class="line">  trainIndex = [<span class="number">1</span>:<span class="built_in">i</span><span class="number">-1</span>, <span class="built_in">i</span>+<span class="number">1</span>:N];</span><br><span class="line">  </span><br><span class="line">  <span class="comment">% 训练模型</span></span><br><span class="line">  SVMModel = fitcsvm(meas(trainIndex,:), class(trainIndex));</span><br><span class="line">  </span><br><span class="line">  <span class="comment">% 测试模型，计算测试误差</span></span><br><span class="line">  [predictedLabels, score] = predict(SVMModel, meas(testIndex,:));</span><br><span class="line">  loss(<span class="built_in">i</span>) = lossClass(predictedLabels, class(testIndex));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 计算平均测试误差</span></span><br><span class="line">avgLoss = <span class="built_in">mean</span>(loss);</span><br></pre></td></tr></table></figure>
+<p><strong>优点</strong>：为了提高模型的可靠性，每个分类器或模型都使用几乎所有的样本来训练，因此尽可能地接近样本。这种方法可以减少随机因素的影响，使整个实验过程具有可重复性。最终得出的结果更加可靠。</p>
+<p><strong>缺点</strong>：计算成本高，当N非常大时，计算耗时,因为需要建立的模型数量与原始数据样本数量相同。只适合于小样本数据集。</p>
+<h2 id="分层随机交叉验证法-Stratified-Random-Sampling-Cross-Validation">分层随机交叉验证法(Stratified Random Sampling Cross-Validation)</h2>
+<p>​	分层 K 折交叉验证（Stratified K-Fold Cross Validation）是 K 折交叉验证的一种改进方法，特别适用于样本不均衡（即各类别样本数量不相等）的情况下。它的主要思想是，在将数据集分成 K 个子集之前，要先对数据集进行分层（Stratification）处理，以确保每个子集中，不同类别的样本数量比例尽可能保持与原始数据集中相同的比例。</p>
+<p>分层 K 折交叉验证的详细流程：</p>
+<ol>
+<li>将数据集分成 K 个子集，每个子集包含尽量相同的样本数量。</li>
+<li>对于数据集中每个类别，计算其在原始数据集中占总样本数量的比例。假设该比例为 p，则在每个子集中，该类别的样本数量应该也占该子集总样本数的比例 p。</li>
+<li>对每个子集，将剩余的 K-1 个子集作为训练数据，选定该子集作为测试数据，并使用训练数据训练模型。</li>
+<li>计算测试误差，将测试误差与其他子集的测试误差平均，以获取模型的性能指标。</li>
+<li>重复 3-4 步，直到所有子集都被用于测试一次。</li>
+<li>计算所有子集的性能指标的平均值，作为模型的最终性能指标。</li>
+</ol>
+<p>分层 K 折交叉验证的主要优点是可以解决数据集中类别不平衡的问题，因为它能够确定每个子集中不同类别样本的比例，从而减少了模型偏向其中一个或几个类别的情况。此外，它保持了原始数据集中各类别间的比例，比另一种 K 折交叉验证方法更可靠，因为分层处理可以避免某个类别全部出现在一个子集中的情况发生。</p>
+<p><strong>优点</strong> ：对不平衡的数据有很好的作用。分层交叉验证中的每一个Fold都会有一个所有类别的数据代表，其比例与整个数据集相同。</p>
+<p><strong>缺点</strong> ：不适用于时间序列数据。对于时间序列数据，样本的顺序很重要。但在分层交叉验证中，样本是按随机顺序选择的。</p>
+<h2 id="matlab交叉验证的分区数据函数cvpartition">matlab交叉验证的分区数据函数cvpartition</h2>
+<p>MATLAB 的 <code>cvpartition</code> 函数可以用于生成交叉验证的数据集划分。交叉验证是一个常用的模型选择和性能评估技巧，它将原始数据集划分为多个互相重叠的子集，其中一部分数据用于模型训练，另一部分数据用于模型测试和验证。</p>
+<p><code>cvpartition</code> 函数可以生成交叉验证的数据集划分对象，使得子集的划分具有良好的统计性质。例如，可以使用 <code>cvpartition</code> 函数将原始数据集划分为训练集和测试集，可以划分为 $k$ 折交叉验证集（$k$-fold cross-validation）等等。</p>
+<p><code>cvpartition</code> 函数常用的语法格式为：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">C</span> = cvpartition(N,<span class="string">&#x27;Name&#x27;</span>,Value)</span><br></pre></td></tr></table></figure>
+<p>其中，<code>N</code> 是原始数据集的大小，<code>Name/Value</code> 表示参数名和参数值。常用的参数名称和含义如下：</p>
+<ul>
+<li><code>KFold</code>：指定 $k$ 折交叉验证的数量，即将原始数据集划分为 $k$ 个子集，默认值为 10。</li>
+<li><code>Holdout</code>：指定留存数据集的比例，例如 0.3 表示将原始数据集划分为训练集和测试集，训练集占 70%，测试集占 30%。</li>
+<li><code>LeaveOut</code>：指定每次留一法交叉验证（leave-one-out cross-validation）的开关，如果设置为 <code>on</code>，则将原始数据集划分为 $n$ 个子集，其中 $n$ 是原始数据集大小，每次从中随机选择一个数据点作为测试集，其他数据点作为训练集，训练 $n$ 次模型并分别测试，计算均值和方差。默认值为 <code>off</code>。</li>
+</ul>
+<p><code>cvpartition</code> 函数返回的对象 <code>C</code> 包含以下属性：</p>
+<ul>
+<li><code>C.NumTestSets</code>：测试数据集的数量。</li>
+<li><code>C.TrainSize</code>：每个测试数据集的训练集大小。</li>
+<li><code>C.TestSize</code>：每个测试数据集的测试集大小。</li>
+<li><code>C.NumObservations</code>：原始数据集的大小。</li>
+<li><code>C.training(i)</code>：第 $i$ 个训练数据集的下标。</li>
+<li><code>C.test(i)</code>：第 $i$ 个测试数据集的下标。</li>
+</ul>
+<p>详细参考：<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/stats/cvpartition.html">Partition data for cross-validation - MATLAB - MathWorks 中国</a></p>
  
       <!-- reward -->
       
@@ -283,7 +244,7 @@ mjx-container[display="true"] + br {
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite-url/undefined/HMM/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite-url/undefined/SVM-1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,19 +255,10 @@ mjx-container[display="true"] + br {
    
   <nav class="article-nav">
     
-      <a href="../SVM-1/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            SVM(Support Vector Machine)——交叉验证
-          
-        </div>
-      </a>
     
-    
-      <a href="../quaternion/" class="article-nav-link">
+      <a href="../HMM/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">quaternion</div>
+        <div class="article-nav-title">HMM和Viterbi算法</div>
       </a>
     
   </nav>
