@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="脑海中起毛球的记忆" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Kalman |  Wh&#39;s 🛰️ Blogs</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/img/avatar/Jr.ico" />
+       
+<link rel="stylesheet" href="../../dist/main.css">
+
+      
+<link rel="stylesheet" href="../../css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="../../css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Kalman"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Kalman
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="" class="article-date">
+  <time datetime="2023-08-16T06:33:00.000Z" itemprop="datePublished">2023-08-16</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">11 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>卡尔曼滤波所要解决的问题？</p>
+<p><code>离散时间线性系统的状态进行最优估算</code></p>
+<span id="more"></span>
+<h2 id="滤波器模型"><a href="#滤波器模型" class="headerlink" title="滤波器模型"></a>滤波器模型</h2><p>考虑一个有多个输入量(又称控制量)和多个输出量(又称观测量)的离散时间线性动态系统(MIMO)，其控制过程一般可用以下的线性差分方程式来表示:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\boldsymbol{x}(t_{k})=A(t_{k},t_{k-1})\boldsymbol{x}(t_{k-1})+\boldsymbol{B}(t_{k-1})\boldsymbol{u}(t_{k-1})+\boldsymbol{w}(t_{k-1})&& \left(1\right)  \\
+\end{aligned}</script><p>其中：</p>
+<p>$t_k$ 代表第 $k$ 个测量时刻或第 $k$ 测量历元所对应的时间；</p>
+<p>$\boldsymbol{u}$ 代表系统的输入向量；</p>
+<p>$\boldsymbol{x}$ 代表系统的状态向量；</p>
+<p>$\boldsymbol{w}$ 代表过程噪声向量；</p>
+<p>$A(t_{k},t_{k-1})$ 代表从 $t_{k-1}$ 到 $t_{k}$ 时刻的状态转移矩阵；</p>
+<p>$ \boldsymbol{B}(t_{k-1})$代表在 $t_{k-1}$时刻系统输入量与系统状态之间的关系矩阵（输入矩阵）。系统的输入量是个可选项，即有些系统可以没有输入量，比如用户 GPS接收机这个定位系统通常视为没有任何输入；</p>
+<p>状态转移矩阵$A(t_{k},t_{k-1})$与输入关系矩阵$ \boldsymbol{B}(t_{k-1})$在不同时刻可以是不同的(时变系统)，但为了简化公式表达，假定其值固定不变（时不变系统）。这样式(1)可简写成：</p>
+<script type="math/tex; mode=display">
+x_{k}=Ax_{k-1}+Bu_{k-1}+w_{k-1}   \left(2\right)</script><p>式(2)称为卡尔曼滤波的状态方程，它描述了系统状态如何随时间变化，是系统的动态模型系统的控制过程。</p>
+<p><img src="D:/pic-bed/image-20230815200011759.png" alt="image-20230815200011759"></p>
+<p>由多个状态变量组成的状态向量 $ x_{k} $ 全面描述了系统在当前时刻的运行状况，它们的值通常是未知的，但一般却是我们所想要了解、掌握的。各个状态变量必须具有<code>可观性</code>，即它们的值能直接或间接地反映在对系统的观测量之中，而我们应用卡尔曼滤波器的目的正是为了达到从系统观测量 $ y_{k} $ 来估算系统状态 。卡尔曼波假定系统的状态向量 与观测向量存在以下线性关系:</p>
+<script type="math/tex; mode=display">
+y_{k} =Cx_{k}+\nu_{k}\quad(3)</script><p>其中，$C$ 代表观测量与系统状态之间的关系矩阵，以代表测量噪声向量。式(3)称为卡尔曼滤波的测量方程，它描述了当前的系统测量值与系统状态之间的关系。尽管卡尔曼滤波允许测量关系矩阵的值随时间而变化，但是为了简化起见，我们在上式中将它视为一个常系数阵$C$ 。</p>
+<p>卡尔曼滤波用上述的一个状态方程式(1)和一个测量(观测)方程式(2)来完整描述一个线性动态系统，它们是该线性动态系统的数学模型。对于一个有 $L$ 个输入变量、$M$ 个观测变量以及 $N$个状态变量的系统，卡尔曼滤波器涉及以下一些系统参变量:</p>
+<p>$x_{k}$ 由N个状态变量$(x_{1,k},x_{2,k},\cdots,x_{N,k})$所组成的${N\times1}$的状态向量；</p>
+<p><img src="D:/pic-bed/image-20230816091014636.png" alt="image-20230816091014636" style="zoom: 80%;" /></p>
+<h2 id="kalman滤波两大假设"><a href="#kalman滤波两大假设" class="headerlink" title="kalman滤波两大假设"></a>kalman滤波两大假设</h2><ul>
+<li><p>假定向量 $w_{k}$ 中的每个过程噪声变量为一个均值为零的正态白噪声，向量 $w_{k}$ 中的各个过程噪声变量代表系统输入量 $u$ 所包含的以及由系统内部所产生的随机噪声误差。即：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E({\boldsymbol{w}}_{k})=0& \quad{(4) } \\
+\mathrm{Cov}(w_{k})=E(w_{k}w_{k}^{\mathrm{T}})=Q& \quad{(5) }
+\end{aligned}</script><p>也就是说 $w_k$ 的概率分布呈$N(0,Q)$。过程噪声向量的协方差矩阵为一个$N\times N$的对称矩阵,但它并不一定是个对角阵。</p>
+</li>
+<li><p>假定向量$v_{k}$中的每个观测噪声变量为一个均值为零的正态白噪声，向量$v_{k}$中的各个测量噪声变量代表系统观测量 $y_{k} $ 所包含的随机测量误差与噪声。即：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}E(\nu_k)&=\boldsymbol{0}&(6)\\
+\mathrm{Cov}(\nu_k)&=E(\nu_k\nu_k^\mathrm{T})=\boldsymbol{R}&(7)\end{aligned}</script></li>
+</ul>
+<p>​        也就是说 $v_k$ 的概率分布呈$N(0,R)$。过程噪声向量的协方差矩阵为一个$M\times M$的对称矩阵,但它并不一定是个对角阵。</p>
+<p>​        </p>
+<p>尽管噪声向量 $w_{k}$ 和 $v_{k}$的值是未知的，但它们的协方差矩阵Q和R对卡尔曼波器来说是已知的。尽管协方差矩阵Q和R的值一般会随着时间的不同而变化，但是为了简化公式表达，我们这里认为它们均是一个常系数矩阵。此外，卡尔曼滤波假定过程噪声向量 $w_{k}$ 中的各分量与测量噪声向量 $v_{k}$  中的各分量互不相关，即</p>
+<script type="math/tex; mode=display">
+E(w_{i}v_{j}^{\mathrm{T}})=0  \quad{(8) }</script><h2 id="滤波算法"><a href="#滤波算法" class="headerlink" title="滤波算法"></a>滤波算法</h2><p>卡尔曼滤波用一套数学递推公式对系统状态进行最优估计，使系统状态的估计值有最小均方误差(MMSE)。假设 $\hat{x}_{k-1}$  代表第$k-1$个时刻卡尔曼滤波器对系统状态  ${x}_{k-1}$ 的最优估计值，那么在同时给出输人量 $u_{k-1}$ 和观测量 $y_{k}$ 的条件下，来推导第 $k$ 个时刻卡尔曼滤波器对系统状态${x}_{k}$ 的最优估计值。上标 “^” 代表估计值，从 $\hat{x}_{k-1}$和 $u_{k-1}$ 出发，卡尔曼波利用状态方程式(1)来预测第 $k$  时刻的状态 ${x}_{k}$ ，即：</p>
+<script type="math/tex; mode=display">
+\hat{x}_{k}^{-}=A\hat{x}_{k-1}+Bu_{k-1} \quad{(9) }</script><p>因为估计值$ \hat{x}_{k}^{-} $ 还没有得到测量值 $ y_{k}$ 的验证，所以通常被称为先验估计值，并用右上标 $ ^- $代表先验。先验估计误差 $e_{k}^{-}$ 定义为系统状态的真实值${x}_{k}$ 与其先验估计值 $ \hat{x}_{k}^{-} $ 之间的差异，即</p>
+<script type="math/tex; mode=display">
+e_{k}^{-}=x_{k}-\hat{x}_{k}^{-} \quad{(10)}</script><p>先验估计误差 $e_{k}^{-}$ 的协方差阵 $P_{k}^{-}$ 称为状态均方误差阵(或称误差协方差阵)，它可直接根据协方差的定义而表达成：</p>
+<script type="math/tex; mode=display">
+P_{k}^{-}=E(\vec{e_{k}}\vec{e_{k}}^{-\mathrm{T}})\quad(11)</script><p>有了对当前状态 ${x}_{k}$ 的先验估计值$ \hat{x}_{k}^{-} $ ，就可根据测量方程式(2)而认为第k 历元的观测量值应该等于 $C\hat{x}_{k}^{-}$ 再加上未知的测量噪声。观测量的实际值 $y_{k}$  与其预测值 $C\hat{x}_{k}^{-}$之间的差异，即称为观测量的残余。即：</p>
+<script type="math/tex; mode=display">
+r_{k}=y_{k}-C\hat{x}_{k}^{-} \quad(12)</script><p>接着，卡尔曼滤波将先验估计值 $ \hat{x}_{k}^{-} $ 与观测量残余 $r_{k}$ 的线性组合作为对状态 ${x}_{k}$ 的最优估计值$\hat{x}_{k}$，即</p>
+<script type="math/tex; mode=display">
+\hat{x}_{k}=\hat{x}_{k}^{-}+K_{k}r_{k}=\hat{x}_{k}^{-}+K_{k}\left(y_{k}-C\hat{x}_{k}^{-}\right)\quad(13)</script><p>其中，系数矩阵 $K_{k}$ 称为卡尔曼滤波增益。因为实际观测量$y_{k}$ 已经核对、校正了估计值$\hat{x}_{k}$，所以，通常$\hat{x}_{k}$称为后验估计值。</p>
+<p>类似于式(10)和式(11)，可定义后验估计值的误差ek为</p>
+<script type="math/tex; mode=display">
+e_{k}=x_{k}-\hat{x}_{k} \quad(14)</script><p>定义后验估计误差$e_{k}$的均方误差阵$P_{k}$为</p>
+<script type="math/tex; mode=display">
+P_{k}=E(e_{k}e_{k}^{\mathrm{T}}) \quad(15)</script><p>上述后验估计均方误差阵 $P_{k}$ 中的各个对角线元素分别对应于各个状态变量估计值的均方误差(附录C随机变量和随机过程)。下面要做的是推导出增益矩阵$K_{k}$的最优值，从而使得均方误差阵 $P_{k}$ 的对角线元素之和最小，那么由此得到的卡尔曼滤波状态估计值 $\hat{x}_{k}$ 就有最小均方误差，相应地卡尔曼滤波器在此意义上也就是一种最优的滤波器。</p>
+<p>为了推导 $K_{k}$，我们得先对$e_{k}$  与 $P_{k}$ 进行一些整理。将式(3)、式(10)和式(13)代入式(14)，经整理后得:</p>
+<script type="math/tex; mode=display">
+e_{k}=(I-K_{k}C)e_{k}^{-}-K_{k}\nu_{k} \quad(16)</script><p>然后将式(7)、式(11)和式(16)代人式(15)，经整理后得</p>
+<script type="math/tex; mode=display">
+P_{k}=P_{k}^{-}-K_{k}CP_{k}^{-}-\left(K_{k}CF_{k}^{-}\right)^{\mathrm{T}}+K_{k}\left(CP_{k}^{-}C^{\mathrm{T}}+R\right)K_{k}^{\mathrm{T}} \quad(17)</script><p><strong>TODO:详细推导过程</strong></p>
+<p>$P_{k}$ 是一个关于 $K_{k}$的二次型函数，关于$P_{k}$ 的二次型函数存在最小值。求导，并使其导数值等于零，我们就可得到使$P_{k}$ 的秩值最小的$K_{k}$，的解，即</p>
+<script type="math/tex; mode=display">
+K_k=P_k^-C^\mathrm{T}\left(CP_k^-C^\mathrm{T}+R\right)^{-1} \quad(18)</script><p>再将式(18)中的$K_{k}$代回到式(17)，得:</p>
+<script type="math/tex; mode=display">
+P_k=(I-K_kC)P_k^- \quad(19)</script><p>在此，我们将卡尔曼滤波的递推算法总结一下。如图 所示，卡尔曼滤波算法可分为预测和校正两个过程。</p>
+<p><img src="D:/pic-bed/image-20230816110206315.png" alt="image-20230816110206315"></p>
+<p>(1)预测:预测过程又叫时间更新过程，它在上一个历元( 即第$k-1$)状态估计值的基础上利用系统的状态方程来预测当前这一(即第$ k $)个历元的状态值。这一过程涉及以下两个公式</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\hat{\boldsymbol{x}}_k^-&=A\hat{\boldsymbol{x}}_{k-1}+B\boldsymbol{u}_{k-1}&(6.31)\\P_k^-&=A\boldsymbol{P}_{k-1}A^\mathrm{T}+\boldsymbol{Q}&(6.32)\end{aligned}</script><p>其中，式(6.31)只是重复了式(6.17)，它利用状态方程来预测当前的系统状态。在卡尔曼滤波中每一个状态估计值必须跟随一个用来衡量此状态估计值可靠性的均方误差阵。在预测状态时，由于过程噪声 label 的值未知因而状态先验估计值的均方误差阵计算公式(6.32)添加了过程噪声的方差lable，以降低状态先验估计值的可靠性和保持均方误差阵的正确性。在完成这一预测过程后系统的状态估计均方误差通常会变大。</p>
+<p>(2)校正:校正过程又叫测量更新过程，它是利用实际测量值来校正经上一步预测得到的状态先验估计值。这一过程涉及以下三个公式</p>
+<script type="math/tex; mode=display">
+\begin{gathered}
+ K_{k}=P_{k}^{-}C^{\mathrm{T}}\left(CP_{k}^{-}C^{\mathrm{T}}+R\right)^{-1}\quad (6.33) \\ \\
+\hat{x}_{k}=\hat{x}_{k}^{-}+K_{k}\left(\boldsymbol{y}_{k}-\boldsymbol{C}\hat{\boldsymbol{x}}_{k}^{-}\right) \quad  (6.34) \\ \\
+P_{k}=(I-K_{k}C)P_{k}^{-} \text{(6.35)} 
+\end{gathered}</script><p>其中，式(6.33)就是我们前面推导出的卡尔曼增益计算公式(6.29)，而式(6.34)和式(6.35)对系统的状态估计值及其均方误差进行更新。在这一过程中，由于状态估计值得到了实际测量值的验证因而它的均方误差值变小，即可靠性增加。卡尔曼滤波器综合、平衡了它的先验估计和实际测量这两方面的信息，使测量更新以后的状态估计值具有最小的均方误差。</p>
+<p>通过该方程可知，卡尔曼增益 $K_{k}$ 实际上表征了状态最优估计过程中模型预测误差与量测误差的比重，即 $K_{k}∈[0,1]$  。当 $K_{k}=0$ 时，即预测误差为0，系统的状态值完全取决与预测值（$\hat{x}_{k}=\hat{x}_{k}^{-}$）；而当 $K_{k} =1$ 时，即量测误差为0，系统的状态值完全取决于量侧值。</p>
+<p>GPS原理和接收机设计 谢钢 </p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48876718">卡尔曼滤波（Kalman Filter）原理与公式推导 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ycwang16/p/5999034.html">（二）. 细说Kalman滤波：The Kalman Filter - 王永才 - 博客园 (cnblogs.com)</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite-url/undefined/Kalman/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="../IMU%E6%A0%A1%E5%87%86-%E8%AF%AF%E5%B7%AE%E6%BA%90/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            IMU校准(1)-误差源
+          
+        </div>
+      </a>
+    
+    
+      <a href="../Python%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Python网络编程</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2023
+        <i class="ri-heart-fill heart_icon"></i> Wh
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="../../index.html"><img src="/img/avatar/favicon-32x32-monkey.png" alt="Wh&#39;s 🛰️ Blogs"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../index.html">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="../../images/wechat.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="../../images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="../../js/jquery-3.6.0.min.js"></script>
+ 
+<script src="../../js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="../../js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="../../dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="../../js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="../../css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
