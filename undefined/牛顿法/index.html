@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>IMU校准(1)-误差源 |  Wh&#39;s 🛰️ Blogs</title>
+      <title>牛顿法 |  Wh&#39;s 🛰️ Blogs</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/img/avatar/Jr.ico" />
@@ -55,8 +55,8 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="mems-IMU校准-误差源"
-  class="article article-type-mems"
+  id="post-牛顿法"
+  class="article article-type-post"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  IMU校准(1)-误差源
+  牛顿法
 </h1>
  
 
@@ -75,14 +75,14 @@
      
     <div class="article-meta">
       <a href="" class="article-date">
-  <time datetime="2023-09-22T02:58:22.000Z" itemprop="datePublished">2023-09-22</time>
+  <time datetime="2023-10-10T03:05:59.000Z" itemprop="datePublished">2023-10-10</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.8k</span>
+            <span class="post-count">1.4k</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">10 分钟</span>
+            <span class="post-count">5 分钟</span>
         </span>
     </span>
 </div>
@@ -106,168 +106,98 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="引言">引言</h2>
-<p>IMU（Inertial Measurement Unit）是一种广泛应用于导航、机器人、飞行器和虚拟现实等领域的传感器装置，它可以测量并记录物体的加速度和角速度。但是其测量结果具有噪声和不精确性，这些误差源可能会导致导航或测量的不准确性。为了解决IMU的误差问题，校准是必不可少的步骤。校准是一个复杂的过程，旨在减少系统误差、随机误差和温度效应等因素的影响。在本博客中，我们将深入探讨IMU校准的误差源，以及如何通过校准方法来提高IMU的精度和性能。本系列博客为IMU校准相关工作的总结和记录，包含原理和MATLAB代码。</p>
+  <h2 id="牛顿法">牛顿法</h2>
+<p>在数值分析中，牛顿法(Newton’s method)，也称为牛顿-拉斐森法(Newton–Raphson method)是一种求解函数根的算法。</p>
 <span id="more"></span>
-<h2 id="IMU误差">IMU误差</h2>
-<p>常见的IMU器件按照其组成模块分为6轴IMU、9轴IMU。9轴传感器包括：三轴加速度计(Tri-Axial Accelerometer)、三轴陀螺仪(Tri-Axial Gyroscope)和三轴磁力计(Tri-Axial Magnetometer )。9轴IMU的能测量载体线性加速度、角速度和方向（包括方向相对于地磁场）。6轴传感器包括：三轴加速度计(Tri-Axial Accelerometer)、三轴陀螺仪(Tri-Axial Gyroscope)，它们用于测量物体的线性加速度和角速度。本文所使用的传感器为ICM20948模组<a target="_blank" rel="noopener" href="https://www.digikey.com/en/product-highlight/i/invensense/icm-20948-9-axis-motion-tracking-device">ICM-20948 Tracking Device - InvenSense | DigiKey</a>。且暂时只对加速度计和陀螺仪进行校准，两者的误差源基本一致。</p>
-<p><img src="../IMU%E6%A0%A1%E5%87%86-%E8%AF%AF%E5%B7%AE%E6%BA%90/invensense-icm-20948-9-axis-motion-tracking-device-200.jpg" alt="InvenSense ICM-20948 9-Axis Motion-Tracking Device "></p>
-<p>按照误差特性，其误差分为确定性误差（deterministic errors）、随机误差（stochastic errors）两部分并进行研究讨论。</p>
-<p><img src="../IMU%E6%A0%A1%E5%87%86-%E8%AF%AF%E5%B7%AE%E6%BA%90/image-20230925163044666.png" alt="误差源分类"></p>
-<h2 id="确定性误差">确定性误差</h2>
-<h3 id="零偏">零偏</h3>
-<p>零偏误差（Offset ），也称为偏置误差或静态误差，是传感器测量结果与实际值之间的差异。零偏误差表示了传感器在零输入条件下的输出值与零点（或标定点）之间的差异。</p>
-<p>具体来说，如果一个传感器在没有外部刺激或输入信号的情况下，输出值不为零，那么这个输出值与零点之间的差异就是零偏误差。零偏误差可能由多种因素引起，包括传感器本身的制造偏差、环境条件的变化、温度变化以及电子噪声等。</p>
-<p>零偏误差通常以传感器输出值的百分比或固定数值来表示。例如，如果一个温度传感器在零摄氏度时输出值为1摄氏度，那么它的零偏误差就是1度。如果在零摄氏度时输出值为0.5摄氏度，那么零偏误差通常以百分比表示，例如零偏误差为±0.5%。陀螺仪/加速度计的零偏是在与输入加速度或旋转无关的特定操作条件下测量的一段时间内的平均值。陀螺仪的零偏单位为(°/h)或者(rad/s)，加速度的零偏单位为(m²/s)或(g)(重力加速值)。</p>
-<p>零偏误差包括固定项、温度引起的变化、开关变化和运行中的变化。零篇中的固定项和温度引起的变化可以通过实验室校准测试来估计。</p>
-<h3 id="标度-比例-因子">标度(比例)因子</h3>
-<p>标定因子(Scale ratio)指的是将传感器的数字输出转换为实际物理量的比例。标定因子对于相同传感器的不同情况是不同的，而制造商仅提供默认的标称标定因子。标定因子的大小用百万分之一( ppm )或百分数表示。标度因子误差包括固定项、温度引起的变化、不对称性和非线性误差部分。标度因子误差的主要部分是固定项和温度引起的变化。与零偏类似，可以通过实验室校准测试来估计标度因子误差，并且估计的误差参数构成误差补偿或校准算法的输入。</p>
-<h3 id="轴未对准">轴未对准</h3>
-<p>理想情况下，三轴传感器各轴严格正交，即任何一轴均不会感应到另外两个轴的分量。由于传感器设备装配精度等原因，实际情况存在的三轴非正交误差，即任何轴上的任何运动都会导致其他轴发生变化，具体取决于未对准的大小。并且这种非正交性会对测量产生尺度因子效应。其单位是毫弧(mili-radian)。非正交性会对测量产生缩放因子影响。任何轴上的任何移动都会导致其他轴上的变化，这取决于未对准的大小。</p>
-<p>下图为三种确定性误差项示意图，来源[1]。</p>
-<p><img src="../IMU%E6%A0%A1%E5%87%86-%E8%AF%AF%E5%B7%AE%E6%BA%90/image-20230925105207281.png" alt="确定性误差示意图"></p>
-<p>[1] <a target="_blank" rel="noopener" href="https://www.semanticscholar.org/paper/A-method-of-low-cost-IMU-calibration-and-alignment-Lv-Ravankar/9f5c1ac90830fee28259acd7f2b1e456d7f58c51">A method of low-cost IMU calibration and alignment | Semantic Scholar</a></p>
-<h2 id="随机误差">随机误差</h2>
-<p>随机误差是由于偏差或标度因子随时间的随机变化和传感器噪声。零偏和标度因子的随机变化是随机误差的低频分量。传感器噪声是随机误差的高频分量。随机误差最重要的特征是输入和输出之间可能没有任何直接关系。随机误差的来源是电子器件中的闪烁噪声和对信号的干扰效应。其中零偏和标度因子随着时间随机变化的过程分别定义为零偏不稳定性（漂移）和尺度因子不稳定性（漂移）。</p>
-<h3 id="零偏不稳定性">零偏不稳定性</h3>
-<p>零偏不稳定性(Bias Instability (Bias Drift))是指，零偏并不是一个固定值，运行过程中零偏会随时间变换。换句话说，零偏不稳定性表示零偏随时间变化。零偏不稳定性可以通过Allan方差和自相关分析来表征，并使用这些测试和分析的结果来建模。随机误差建模采用随机游动模型、高斯-马尔可夫模型、随机常数模型和自回归模型等多种方法（随机过程）。一阶高斯-马尔可夫模型是针对零偏不稳定性的最合适的随机过程。</p>
-<h3 id="比例因子不稳定性">比例因子不稳定性</h3>
-<p>比例因子不稳定性（Scale Factor Instability (Scale Factor Drift)）表示比例因子随时间变化的量。比例因子不稳定性表征试验不同于偏置不稳定性表征测试方法。尺度因子不稳定性的表征需要长期的动态速率测试，尺度因子不稳定的影响不是很明显，而且可以忽略不计。</p>
-<h3 id="传感器噪声">传感器噪声</h3>
-<p>传感器噪声是随机误差的高频分量。通过滤波可以减少传感器噪声的影响。根据传感器的噪声带宽和噪声功率设计了低通滤波器。随机传感器噪声在IMU误差模型中被建模为零均值白化噪声。随机传感器噪声密度的单位为 $deg/h / \sqrt{Hz}$ 或 $deg/s / \sqrt{Hz}$，随机噪声密度用1δ值表示。</p>
-<p>上述的确定性误差和随机误差项针对加速度计和陀螺仪误差分析皆适用。IMU噪声中，确定性误差可以通过补偿消除，随机误差只能减小不能完全消除。</p>
-<h2 id="IMU误差模型">IMU误差模型</h2>
-<p>IMU系统需要在xyz三个方向上测量加速度和角速率，以计算姿态、位置和速度。因此，IMU包含三个加速度计和三个陀螺仪。根据前面对IMU误差源的分析，现在分别建立三轴加速度计和陀螺仪的误差模型。</p>
-<p><strong>加速度计误差模型</strong></p>
-<p>单轴加速度计误差模型：<br>
-$$<br>
-\tilde{a_x}=(1+S_x+\delta S_x)a_x+B_x+\delta B_x+n_x<br>
-$$<br>
-其中：</p>
+<p>牛顿法的基本思想：<strong>从一个接近于函数根的初始值$x_0$开始，求解函数在$x_0$点处的斜率，然后根据经过$x_0$ 函数的切线与x轴的交点，切线与x轴交点的值会比初始值接近真实的根。</strong></p>
+<p><strong>优点：</strong></p>
 <ul>
-<li>$ \tilde{a_x} $ ：加速计测量值；</li>
-<li>$  {a_x} $ ：真实加速度值；</li>
-<li>$S_x$ ：比例因子误差；</li>
-<li>$\delta S_x$：比例因子不稳定性误差；</li>
-<li>$B_x$：零偏误差值；</li>
-<li>$\delta B_x$ ：零偏误差不稳定性值；</li>
-<li>$n_x$：传感器噪声；</li>
+<li>通常情况下，收敛性是二次的：当该方法在根上收敛时，每一步的根和近似值之间的差都是平方（精确数字的数量大致翻倍）；</li>
+<li>收敛速度快；</li>
 </ul>
-<p>三轴加速度计误差模型用矩阵形式表示为：</p>
-<p>$$<br>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>牛顿法要求导数可以直接计算。导数表达式在某些情况下很难直接求得或者消耗很大；</li>
+<li>Overshoot：如果一阶导数在特定根的邻域中表现不佳，则该方法可能会过冲，并偏离该根；</li>
+<li>Stationay Point：如果遇到函数的驻点，导数为零，该方法将因除以零而终止；</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://mathresearch.utsa.edu/wiki/index.php?title=Newton's_Method">Newton’s Method - Department of Mathematics at UTSA</a></p>
+<p>以下以求解一维函数$f(x)$ 的根为例子：</p>
+<ul>
+<li>
+<p>目标</p>
+<p>求解函数 $f(x) = 0$ ；</p>
+</li>
+<li>
+<p>推导过程</p>
+<p>$f:(a,b)$ 在区间$(a,b)$ 中连续可导，当前有一个近似解$x_n$ 。函数$y=f(x)$ 在 $x=x_n$ 处的切线函数为<br>
+$$<br>
+y =f’(x_n)(x-x_n)+f(x_n)<br>
+$$<br>
+$f’$ 表示函数的一阶导数，将$y$ 的解($y=0$ 时候的$x$ 值)作为下一个近似值$x_{n+1}$，$x_{n+1}$ 更接近于函数的解。可得如下推导：<br>
+$$<br>
+0=y =f’(x_n)(x-x_n)+f(x_n)<br>
+$$<br>
+则可以求解 $x_{n+1}$,<br>
+$$<br>
+x_{n+1} = x_n -\frac{f(x_n)}{f’(x_n)}<br>
+$$</p>
+</li>
+</ul>
+<p>已经证明，如果$f’$是连续的，并且待求的$x$是孤立的，那么在零点$x$周围存在一个区域，只要初始值$x_0$位于这个邻近区域内，那么牛顿法必定收敛。并且，如果 $f’$ 不为0, 那么牛顿法将具有平方收敛的性能。粗略的说，这意味着每迭代一次，牛顿法结果的有效数字将增加一倍。由于牛顿法是基于当前位置的切线来确定下一次的位置，所以牛顿法又被很形象地称为是&quot;切线法&quot;。</p>
+<p>牛顿法应用于一元函数求根算法过程:</p>
+<ol>
+<li>初始化参数向量${x_0}$；</li>
+<li>在每次迭代中，计算函数 $ f(x)$ 和其相对于  $ x $ 的梯度（一阶导数）；</li>
+<li>求解当前迭代中参数向量的变化量 $\Delta x $ ；</li>
+<li>更新参数向量：$ x_{n+1}  = x_n + \Delta x$</li>
+<li>重复步骤2-4，直到满足收敛条件。</li>
+</ol>
+<p>牛顿迭代法求函数根示例，考虑以下一维函数：<br>
+$$<br>
+f(x) = x^3 - cos(x)<br>
+$$</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 牛顿法求解一维函数根示例代码</span></span><br><span class="line">clc;</span><br><span class="line">y_fcn = @(x)x .* x; <span class="comment">% 原函数</span></span><br><span class="line">y_d = @(x)<span class="number">2</span> * x; <span class="comment">% 一阶导数</span></span><br><span class="line"><span class="comment">% y_fcn = @(x)x .^ 3 - cos(x); % 原函数</span></span><br><span class="line"><span class="comment">% y_d = @(x)3 * x .^ 2 + sin(x); % 一阶导数</span></span><br><span class="line">x0 = <span class="built_in">linspace</span>(<span class="number">-10</span>, <span class="number">10</span>, <span class="number">201</span>); <span class="comment">% x</span></span><br><span class="line">y0 = y_fcn(x0); <span class="comment">% y</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 中间变量</span></span><br><span class="line">mid_iter = <span class="built_in">zeros</span>(<span class="number">0</span>);</span><br><span class="line">mid_x = <span class="built_in">zeros</span>(<span class="number">0</span>);</span><br><span class="line">iter_n = <span class="number">0</span>;</span><br><span class="line">x_pre = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 停止条件</span></span><br><span class="line">iter_torrence = <span class="number">1e-4</span>; <span class="comment">% 容差</span></span><br><span class="line">iter_max = <span class="number">20</span>; <span class="comment">% 最大迭代次数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">true</span></span><br><span class="line">    <span class="comment">% 泰勒展开近似线性化</span></span><br><span class="line">    x_new = x_pre - (y_fcn(x_pre) / y_d(x_pre));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (norm(x_pre - x_new)) &lt;= iter_torrence || iter_n &gt; iter_max</span><br><span class="line">        fprintf(<span class="string">&quot;finished,...iter:%d,delta x:%.4f\r\n&quot;</span>, iter_n, norm(x_pre - x_new));</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    iter_n = iter_n + <span class="number">1</span>;</span><br><span class="line">    x_pre = x_new;</span><br><span class="line">    mid_iter(iter_n) = iter_n;</span><br><span class="line">    mid_x(iter_n) = x_new;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">    close(<span class="string">&#x27;newtons-1&#x27;</span>)</span><br><span class="line"><span class="keyword">catch</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>(<span class="string">&#x27;Name&#x27;</span>, <span class="string">&#x27;newtons-1&#x27;</span>, <span class="string">&#x27;Color&#x27;</span>, <span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"><span class="built_in">plot</span>(mid_iter, mid_x, <span class="string">&#x27;r-*&#x27;</span>)</span><br><span class="line">xlabel(<span class="string">&#x27;迭代次数/n&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;估计值x&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/wizardforcel/data-science-notebook/blob/master/ml/BAT_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_1000_%E9%A2%98/301-400.md">data-science-notebook/ml/BAT_机器学习_1000_题/301-400.md at master · wizardforcel/data-science-notebook (github.com)</a></p>
+<h2 id="牛顿方法应用于最小二乘问题">牛顿方法应用于最小二乘问题</h2>
+<p>考虑如下最小二乘问题：<br>
+$$<br>
 \begin{aligned}<br>
-\begin{bmatrix}<br>
-\tilde{a_x} \\<br>
-\tilde{a_y} \\<br>
-\tilde{a_z}<br>
-\end{bmatrix}=<br>
-\begin{bmatrix}<br>
-1+S_x+\delta S_x &amp; M_{xy}&amp;M_{xz} \\<br>
-M_{yx}&amp;1+S_y+\delta S_y&amp;M_{yz}\\<br>
-M_{zx}&amp;M_{zy}&amp;1+\mathrm{S}_y+\delta\mathrm{S}_y<br>
-\end{bmatrix}<br>
-\begin{bmatrix}<br>
-a_x \\<br>
-a_y \\<br>
-a_z<br>
-\end{bmatrix}+<br>
-\begin{bmatrix}B_x+\delta B_x \\<br>
-B_y+\delta B_y \\<br>
-B_z+\delta B_z<br>
-\end{bmatrix}+<br>
-\begin{bmatrix}<br>
-n_x \\<br>
-n_y \\<br>
-n_z<br>
-\end{bmatrix}<br>
+&amp;F(\mathbf{x})=\frac{1}{2}\sum_{i=1}^{m}\left(f_i(\mathbf{x})\right)^2<br>
 \end{aligned}<br>
-$$</p>
-<p>其中：</p>
-<p>$M_{xy},M_{xz},M_{yx},M_{yz},M_{zx},M_{zy}$ 表示轴为对准，$M_{xy}$ 表示三轴加速度计坐标x轴绕正交坐标系y轴旋转的角度。</p>
-<img src="../IMU校准-误差源/145042-1.png" alt="旋转角度示意图" style="zoom: 25%;" />
-<p><strong>陀螺仪计误差模型</strong></p>
-<p>类似于加速度计误差模型，陀螺仪受加速度计的影响，还存在一个与加速度相关的误差项。</p>
-<p>陀螺仪单轴误差模型表示为：<br>
 $$<br>
-\tilde{w_x}=(1+S_x+\delta S_x)w_x+B_x+\delta B_x+B_{Gx}a_x+n_x<br>
+其中，待拟合函数 $ f_i:\mathbf{R}^n\mapsto\mathbf{R},i=1,\ldots,m \quad m\geq n.$ 。找出使得损失函数$F(\mathbf{x})$ 最小时的$x$的值$\mathbf{x}^*$。</p>
+<p>在最优化的问题中，线性最优化可以直接求解，但对于非线性优化问题，牛顿法提供了一种求解的办法**。任务是优化一个目标函数 $F(x)$，求函数$F$ 的极小（极大）问题，可以转化为求解函数 $F$ 的导数 $F^{\prime}(\mathbf{x}) = 0$ 的问题，这样求可以把优化问题看成方程求解问题。**</p>
+<p>$F^{\prime}(\mathbf{x+h}) $ 的泰勒展开式为：<br>
 $$<br>
-其中：</p>
-<ul>
-<li>$\tilde{w_x}$ ：陀螺仪输出值；</li>
-<li>${w_x}$：真实角速度；</li>
-<li>$S_x$ ：比例因子误差；</li>
-<li>$\delta S_x$：比例因子不稳定性误差；</li>
-<li>$B_x$：零偏误差值；</li>
-<li>$\delta B_x$ ：零偏误差不稳定性值；</li>
-<li>$B_{Gx}$：与加速度有关误差项系数；</li>
-<li>$n_x$：传感器噪声；</li>
-</ul>
-<p>三轴陀螺仪误差模型用矩阵表示如下：<br>
+\begin{aligned}<br>
+\mathbf{F}^{\prime}(\mathbf{x}+\mathbf{h}) &amp; \mathbf{=}\mathbf{F}^{\prime}(\mathbf{x})+\mathbf{F}^{\prime\prime}(\mathbf{x})\mathbf{h}+O(|\mathbf{h}|^{2})  \<br>
+&amp;\simeq\mathbf{F}^{\prime}(\mathbf{x})+\mathbf{F}^{\prime\prime}(\mathbf{x})\mathbf{h}\quad\mathrm{for}\left|\mathbf{h}\right|\text{sufficiently small}<br>
+\end{aligned}<br>
 $$<br>
-\begin{bmatrix}<br>
-\tilde{w_{x}} \\<br>
-\tilde{w_{y}} \\<br>
-\tilde{w_{z}}<br>
-\end{bmatrix}=<br>
-\begin{bmatrix}<br>
-1+S_{x}+\delta S_{x}&amp;M_{xy}&amp;M_{xz}\\<br>
-M_{yx}&amp;1+S_{y}+\delta S_{y}&amp;M_{yz}\\<br>
-M_{zx}&amp;M_{zy}&amp;1+S_{y}+\delta S_{y}<br>
-\end{bmatrix}<br>
-\begin{bmatrix}<br>
-w_{x}\\<br>
-w_{y}\\<br>
-w_{z}<br>
-\end{bmatrix}+<br>
-\begin{bmatrix}B_{x}+\delta B_{x}<br>
-\\B_{y}+\delta B_{y} \\<br>
-B_{z}+\delta B_{z}\end{bmatrix}+\begin{bmatrix}B_{gx}&amp;0&amp;0\\<br>
-0&amp;B_{gy}&amp;0\\<br>
-0&amp;0&amp;B_{gz}\end{bmatrix}<br>
-\begin{bmatrix}a_{x}\\<br>
-a_{y}\\<br>
-a_{z}\end{bmatrix}+\begin{bmatrix}n_{x}<br>
-\\n_{y}\\<br>
-n_{z}\end{bmatrix}<br>
+根据牛顿法可得：<br>
 $$<br>
-[2] <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6236828">Estimation of deterministic and stochastic IMU error parameters | IEEE Conference Publication | IEEE Xplore</a></p>
-<h2 id="简化IMU误差模型">简化IMU误差模型</h2>
-<p>由于轴未对准和三轴非正交导致加速度计坐标系(AF accelerometer frame)和陀螺仪坐标系(GF gyroscopes frame)是非正交的，需要分别定义加速度计和陀螺仪的<code>理想坐标系</code>，AOF,GOF。</p>
-<p>①AOF的x轴和AF的x轴重合；AOF 的 y 轴位于 AF 的 x 和 y 轴所组成的平面内。陀螺仪的坐标系定义也如此。</p>
-<p><img src="../IMU%E6%A0%A1%E5%87%86-%E8%AF%AF%E5%B7%AE%E6%BA%90/image-20230925153612631.png" alt="坐标系定义示意图"></p>
-<p>传感器（加速度计、陀螺仪）坐标系非正交三轴$(F_x,F_y,F_z)$ 和理想坐标系三轴$(OF_x,OF_y,OF_z)$示意图。</p>
-<p>②忽略零偏不稳定性和比例因子不稳定性（将其作为传感器噪声的一部分考虑）；</p>
-<p>③陀螺仪忽略与重力相关的误差项；</p>
-<p>由①②③则三轴加速度计和三轴陀螺仪误差模型可表示为：<br>
+\mathrm{Hh}<em>\mathrm{n}=-\mathbf{F}^{\prime}(\mathbf{x})<br>
 $$<br>
-a^O = T^aK^a(a^S + b^a + v^a )<br>
+其中 $F^{\prime}(\mathbf{x})$ 为 $F(\mathbf{x})$ 的梯度 , ${\textrm{H}}={\textbf{F}}^{\prime\prime}({\textbf{x}})$ 为Hassian矩阵，<br>
 $$<br>
-上式中$a^O$，$a^S$, $v^a$ 分表为三轴加速度计测量值，三轴加速度真实值，传感器噪声。<br>
+\left.\mathbf{F}‘(\mathbf{x})=\left[\begin{array}{c}\displaystyle\frac{\partial F}{\partial x_1}(\mathbf{x})\\vdots\\displaystyle\frac{\partial F}{\partial x_n}(\mathbf{x})\end{array}\right.\right] \ \<br>
+\mathbf{F}’'(\mathbf{x})=\left[\frac{\partial^2F}{\partial x_i\partial x_j}(\mathbf{x})\right].<br>
 $$<br>
-K^a = \begin{bmatrix}<br>
-s_{a}^{x} &amp; 0 &amp; 0 \\<br>
-0 &amp; s_{a}^{y} &amp; 0 \\<br>
-0 &amp; 0 &amp; s_{a}^{z}<br>
-\end{bmatrix}<br>
-T^a = \begin{bmatrix}<br>
-1 &amp; -\beta_{yz} &amp; \beta_{zy} \\<br>
-0 &amp; 1 &amp; -\beta_{zx} \\<br>
-0 &amp; 0 &amp; 1<br>
-\end{bmatrix}<br>
-b^a = \begin{bmatrix}<br>
-b_{a}^{x}\\<br>
-b_{a}^{y}\\<br>
-b_{a}^{z}<br>
-\end{bmatrix}<br>
+下一次迭代过程中：<br>
 $$<br>
-$K^a ,T^a,b^a$ 分别表示比例因子误差矩阵、轴未对准误差矩阵、零偏矩阵。</p>
-<p>其中$\beta_{ij}$ 具体表示为：</p>
-<p><img src="../IMU%E6%A0%A1%E5%87%86-%E8%AF%AF%E5%B7%AE%E6%BA%90/image-20230925161202496.png" alt="坐标系示意图"></p>
-<p>同理三轴陀螺仪表示为：<br>
+\mathbf{x}:=\mathbf{x}+\mathbf{h</em>{n}}.<br>
 $$<br>
-g^O = T^gK^g(g^S + b^g + v^g )<br>
-$$</p>
-<p>[3] <a target="_blank" rel="noopener" href="https://www.diag.uniroma1.it/~pretto/papers/tpm_icra2014.pdf">A Robust and Easy to Implement Method for IMU Calibration withoutExternal Equipments</a></p>
+牛顿法应用于最小二乘问题算法过程：</p>
+<ol>
+<li>初始化参数向量$\mathbf{x_0}$；</li>
+<li>在每次迭代中，计算损失函数 $F(\mathbf{x})$ 相对于参数向量 $\mathbf{x}$ 的梯度（一阶导数）和 Hessian 矩阵（二阶导数）；</li>
+<li>求解当前迭代中参数向量的变化量 $\mathbf{h_{n}} $ ；</li>
+<li>更新参数向量：$\mathbf{x_{n+1}} =\mathbf{x_n}+\mathbf{h_{n}}.$</li>
+<li>重复步骤2-4，直到满足收敛条件。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuhuastone/p/12814752.html">最优化理论与算法------牛顿法（附Matlab实现）： - YuhuaStone - 博客园 (cnblogs.com)</a></p>
+<p><a target="_blank" rel="noopener" href="http://www2.imm.dtu.dk/pubdb/edoc/imm3215.pdf">imm3215.pdf (dtu.dk)</a></p>
  
       <!-- reward -->
       
@@ -332,7 +262,7 @@ $$</p>
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite-url/undefined/IMU%E6%A0%A1%E5%87%86-%E8%AF%AF%E5%B7%AE%E6%BA%90/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite-url/undefined/%E7%89%9B%E9%A1%BF%E6%B3%95/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -343,19 +273,10 @@ $$</p>
    
   <nav class="article-nav">
     
-      <a href="../%E7%89%9B%E9%A1%BF%E6%B3%95/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            牛顿法
-          
-        </div>
-      </a>
     
-    
-      <a href="../Kalman/" class="article-nav-link">
+      <a href="../IMU%E6%A0%A1%E5%87%86-%E8%AF%AF%E5%B7%AE%E6%BA%90/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Kalman</div>
+        <div class="article-nav-title">IMU校准(1)-误差源</div>
       </a>
     
   </nav>
