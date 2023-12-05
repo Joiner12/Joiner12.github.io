@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="脑海中起毛球的记忆" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Runge-Kutta Methods Gyroscope |  Wh&#39;s 🛰️ Blogs</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/img/avatar/Jr.ico" />
+       
+<link rel="stylesheet" href="../../dist/main.css">
+
+      
+<link rel="stylesheet" href="../../css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="../../css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-RungeKutta"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Runge-Kutta Methods Gyroscope
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="" class="article-date">
+  <time datetime="2023-10-11T06:34:21.000Z" itemprop="datePublished">2023-10-11</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">13 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>Runge-Kutta Methods Gyroscope</h1>
+<p>陀螺仪的观测量是三轴角速度(angular velocity)，对一段时间内的角速度进行积分才能获取到姿态数据。 Runge-Kutta 4th<br>
+order normalized method (RK4n)是一种稳定且鲁棒性强的积分算法，相比较于标准线性积分有更高的积分准确度。</p>
+<span id="more"></span>
+<h2 id="数值积分求解微分方程">数值积分求解微分方程</h2>
+<h3 id="问题背景">问题背景</h3>
+<p>常微分方程(ordinary differential equations)求解，常微分方程是指只有一个变量的微分方程。求解常微分方程的具体任务描述如下，对于给定的常微分方程和初始条件，<br>
+$$<br>
+\frac{ dy(t)}{dt}  = y’(t) = f(y(t),t), \quad \quad {\rm{with;}} y(t_0)=y_0<br>
+$$</p>
+<p>已知 $y(t_0)=y0$  ，求解当 $t=t_0+h$  时 $y(t)$ 的值， 其中h是步长(step)。</p>
+<ul>
+<li>
+<p><strong>为什么使用积分求解微分方程</strong></p>
+<p>从微积分基础知识可知：<br>
+$$<br>
+y( t_0 + h) = y( t_0 ) + \int_{t_0}^{t_0 + h} {y’(\lambda )} d\lambda \<br>
+$$<br>
+由于$y’(t)=f(y,t)$ ， 于是：<br>
+$$<br>
+y (  t_0  + h ) = y ( t_0 ) + \int_{t_0}^{t_0 + h} {f( y( \lambda ),\lambda  )} d\lambda<br>
+$$</p>
+</li>
+<li></li>
+</ul>
+<p>​	<img src="D:/pic-bed/yintgrl.svg"></p>
+<p>​	从上图中可以看出，<br>
+$$<br>
+\begin{align}<br>
+&amp;y\left( { {t_0} + h} \right) \approx y\left( { {t_0} } \right) + f\left( {y\left( { {t_0} } \right),{t_0} } \right)h \\<br>
+&amp;用y^<em>(t)表示y(t)的近似值，则有如下等式:\\<br>
+&amp;y^</em>\left( { {t_0} + h} \right) = y\left( { {t_0} } \right) + f\left( {y\left( { {t_0} } \right),{t_0} } \right)h</p>
+<p>\end{align}<br>
+$$<br>
+​	假设h足够小，则得到的积分近似值和真实值之间的偏差会很小。为了求得下个步长下的近似值我们可以继续使用上面的公式进行	递推：<br>
+$$<br>
+{y^<em>}( {t_0} + 2h ) = {y^</em>}( {t_0} + h) + f\left(y^<em>\left( t_0 + h \right),t_0 \right)h \<br>
+{y^</em>}\left( t_0 + (n + 1)h \right) = {y^<em>}\left( t_0+ nh \right) + f\left( y^</em>\left( t_0 + nh \right),{t_0} \right)h \<br>
+$$</p>
+<ul>
+<li>
+<h4 id="使用近似解的原因">使用近似解的原因</h4>
+<p>对于微分方程求解，如果能够轻易地求得其方程的解析解，那当然会使用其解析解进行计算，直观且更准确。但实际情况是很多微分方程的解析解没办法求解。例如：<br>
+$$<br>
+{a_0}{ { {d^2}y(t)} \over {d{t^2} } } + {a_1}{ {dy(t)} \over {dt} } + {a_2}y(t) = f\left( t \right), \quad \quad \quad {\rm{with;} } y(t_0)=y_0<br>
+$$</p>
+</li>
+<li></li>
+</ul>
+<p>​	要解上述方程，不同的系数$a_0,a_1,a_2$ 或者不同初始条件下，解析解求取难度不同，因此最简便的方法还是使用数值积分。</p>
+<p>​</p>
+<h3 id="Euler’s-Method-First-Order-Runge-Kutta">Euler’s Method (First Order Runge-Kutta)</h3>
+<p>一阶龙格-库塔(First Order Runge-Kutta)法就是常用的欧拉法(Euler’s Method)。具体方法如下:<br>
+$$<br>
+\begin{align}<br>
+&amp;微分方程:\<br>
+&amp;\frac{dy(t)}{dt} = y’\left( t \right) = f(y(t),t)\<br>
+&amp; k_1 = y’\left( t \right) = f(y^<em>(t),t)\<br>
+&amp;假设时间步长h，我们在t_0附近扩展y(t)\<br>
+&amp;y({t_0} + h) = y({t_0}) + y’({t_0})h + y’‘({t_0})\frac{h^2}{2} +  \cdots\<br>
+&amp; 忽略高阶项:\<br>
+&amp;y({t_0} + h) \approx y({t_0}) + y’({t_0})h\<br>
+&amp;y^</em>({t_0} + h) = y^*({t_0}) + {k_1}h<br>
+\end{align}<br>
+$$</p>
+<h3 id="Second-Order-Runge-Kutta">Second Order Runge-Kutta</h3>
+<p>考虑如下一阶线性微分方程：<br>
+$$<br>
+{ dy(t)  \over  dt } + 2y(t) = 0\quad  \rm{or }  \quad { dy(t)  \over  dt } =  - 2y(t) \<br>
+$$<br>
+初始条件:y(0) = 3,h=0.2。为了方便对比数值积分求解，给出其解析解：$y(t)=3e^{-2t},t\geq0$。</p>
+<p>下图中，分别为y(t)和一阶数值积分得到的y*(h)对比，</p>
+<img src="D:/pic-bed/fig0.svg">
+<p>从图中可以看到，使用一阶数值积分得到的估计值y*(h)和y(h)存在一个偏差，为了减少这种偏差一个很直观的想法就是，使用t=h/2处的倒数作为斜率来估计y*(h)。当t=h/2时，其导数为k2。</p>
+<img src="D:/pic-bed/fig1.svg">
+<p>如果使用，t=0和t=h中间值的斜率(导数)k2来估计t=h处的值y*(h)，其估计值能更接近真实值。</p>
+<img src="D:/pic-bed/fig2.svg">
+<p>用t=h/2处的导数作为斜率来估计t=h处的值相比较于一阶方法中用t=0的斜率作为斜率来估计t=h的值，确实能够提高估计结果的准确度，但是在不知道解析解的情况下，我们并不能得到y(h/2)处的准确导数，也即斜率k2的值。</p>
+<p>二阶龙格库塔方法具体过程是：</p>
+<ul>
+<li>使用一阶龙格-库塔根据t=0的斜率(导数)k1估计t=h/2的近似值y*(h/2)；</li>
+<li>将y*(h/2)的值带入微分方程中，求得t=h/2处的斜率k2(k2是y’(h)的近似值)；</li>
+<li>再用k2求y(t)在t=h处的估计值y*(h)；</li>
+</ul>
+<p>一般的，从t=t0处的估计值到t=t0+h的估计值：</p>
+<p>$$<br>
+\begin{aligned}<br>
+y^{\prime}(t_{0})&amp; =-2y(t_0) &amp;&amp; \text{expression for derivative at }t=t_0  \<br>
+k_{1}&amp; =-2y^<em>(t_0) &amp;&amp; \mathrm{approximate~derivative~at~}t=t_{0}  \<br>
+y_{1}\left(t_{0}+{\frac{h}{2}}\right)&amp; =y^</em>(t_0)+k_1\frac h2 &amp;&amp; \mathrm{intermediate~estimate~of~function~at~}t=t_0+h/2  \<br>
+k_{2}&amp; =-2y_1\left(t_0+\frac h2\right) &amp;&amp; \mathrm{estimate~of~slope~at~}t=t_0+h/2  \<br>
+y(t_{0}+h)&amp; =y(t_0)+y’(t_0)h+y’'(0)\frac{h^2}2+\cdots  &amp;&amp; \mathrm{Taylor~Series~around~}t=t_{0}  \<br>
+y(t_{0}+h)&amp; \approx y(t_0)+y^{\prime}(t_0)h &amp;&amp; \text{Truncated Taylor Series}  \<br>
+y^{*}(t_{0}+h)&amp; =y(t_0)+k_2h &amp;&amp; \text{estimate of }y(t_0+h)<br>
+\end{aligned}<br>
+$$</p>
+<p><strong>Code</strong></p>
+<p><code>runge_kutta_1th.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y_start_th</span> = <span class="title">runge_kutta_1th</span><span class="params">(f, y_start_t0, h, varargin)</span></span></span><br><span class="line">    <span class="comment">%</span></span><br><span class="line">    k1 = f(y_start_t0);</span><br><span class="line">    y_start_th = k1 * h + y_start_t0;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>runge_kutta_2th.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y_start_th</span> = <span class="title">runge_kutta_2th</span><span class="params">(f, y_start_t0, h, varargin)</span></span></span><br><span class="line">    k1 = f(y_start_t0);</span><br><span class="line">    ystar_1 = y_start_t0 + k1 * h / <span class="number">2</span>;</span><br><span class="line">    k2 = f(ystar_1);</span><br><span class="line">    y_start_th = k2 * h + y_start_t0;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% Example 3 1th vs 2th</span></span><br><span class="line"></span><br><span class="line">clc;</span><br><span class="line">h = <span class="number">0.01</span>; <span class="comment">% Time step</span></span><br><span class="line">t = <span class="number">0</span>:h:<span class="number">2</span>; <span class="comment">% t goes from 0 to 2 seconds.</span></span><br><span class="line">yexact = <span class="number">3</span> * <span class="built_in">exp</span>(<span class="number">-2</span> * t); <span class="comment">% Exact solution (in general we won&#x27;t know this)</span></span><br><span class="line"></span><br><span class="line">f1 = @(y) - <span class="number">2</span> .* y;</span><br><span class="line">h_1 = <span class="number">0.2</span>;</span><br><span class="line">t_1 = <span class="number">0</span>:h_1:<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">y_stars_1 = <span class="built_in">zeros</span>(<span class="built_in">size</span>(t_1));</span><br><span class="line">y_stars_1(<span class="number">1</span>) = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="built_in">length</span>(t_1) - <span class="number">1</span></span><br><span class="line">    y_stars_1(k + <span class="number">1</span>) = runge_kutta_1th(f1, y_stars_1(k), h_1);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">h_2 = <span class="number">0.2</span>;</span><br><span class="line">t_2 = <span class="number">0</span>:h_2:<span class="number">2</span>;</span><br><span class="line">y_stars_2 = <span class="built_in">zeros</span>(<span class="built_in">size</span>(t_2));</span><br><span class="line">y_stars_2(<span class="number">1</span>) = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="built_in">length</span>(t_2) - <span class="number">1</span></span><br><span class="line">    y_stars_2(k + <span class="number">1</span>) = runge_kutta_2th(f1, y_stars_2(k), h_2);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">tcf(<span class="string">&#x27;tss&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span>(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;tss&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(t, yexact, <span class="string">&#x27;LineWidth&#x27;</span>, <span class="number">1.5</span>);</span><br><span class="line"><span class="built_in">plot</span>(t_1, y_stars_1, <span class="string">&#x27;-o&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>, <span class="number">1.5</span>)</span><br><span class="line"><span class="built_in">plot</span>(t_2, y_stars_2, <span class="string">&#x27;-o&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>, <span class="number">1.5</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;exact&#x27;</span>, <span class="string">&#x27;1th runge kutta&#x27;</span>, <span class="string">&#x27;2th runge kutta&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>下图为一阶龙格库塔对比二阶龙格库塔数值积分求解结果：</p>
+<img src="D:/pic-bed/rungekutta-1thvs-2th-1.svg">
+<h3 id="Fourth-Order-Runge-Kutta">Fourth Order Runge-Kutta</h3>
+<p>通过对比1th Runge-Kutta 和 2th Runge-Kutta发现，使用两步斜率估计能获得更高的精度，事实证明使用更多步骤的斜率估计能获取更高的估计精度。因此扩展到四阶Runge-Kutta(4th Runge-Kutta)方法，详细推导参考<a target="_blank" rel="noopener" href="https://search.library.uq.edu.au/primo-explore/fulldisplay?docid=61UQ_ALMA2195924180003131&amp;context=L&amp;vid=61UQ&amp;lang=en_US">Applied numerical methods / Brice Carnahan, H.A. Luther, James O. Wilkes.</a>。同2th Runge-Kutta一样，4th Runge-Kutta方法有许多变体，其共同点是都使用斜率的是都使用四个斜率的近似值，下面具体对一种4th Runge-Kutta方法进行说明。<br>
+$$<br>
+\begin{aligned}<br>
+&amp;k_{1} =f(y^<em>(t_0),t_0)  \<br>
+&amp;k_{2} =f\left(y^</em>(t_0)+k_1\frac h2,t_0+\frac h2\right)  \<br>
+&amp;k_{3} =f\left(y^<em>(t_0)+k_2\frac{h}{2},t_0+\frac{h}{2}\right)  \<br>
+&amp;k_{4} =f\left(y^</em>(t_0)+k_3h,t_0+h\right)<br>
+\end{aligned}<br>
+$$</p>
+<ul>
+<li>k1是起始时刻的斜率(y’(t0))，同1th中的k1一样；</li>
+<li>k2是中间时刻点上的的估计斜率，同2th中的k2一样；</li>
+<li>k3是在k2斜率基础上，另一个中间时刻估计斜率；</li>
+<li>最后使用k3，估计出最后时刻的斜率k4；</li>
+</ul>
+<p>最后的估计值是上述4个斜率的加权平均得到：<br>
+$$<br>
+\begin{aligned}y^<em>(t_0+h)&amp;=y^</em>(t_0)+\frac{k_1+2k_2+2k_3+k_4}{6}h=y^<em>(t_0)+\left(\frac{1}{6}k_1+\frac{1}{3}k_2+\frac{1}{3}k_3+\frac{1}{6}k_4\right)h\&amp;=y^</em>(t_0)+mh\quad\text{where }m\text{ is a weighted average slope approximation}\end{aligned}<br>
+$$<br>
+<strong>4th Runge-Kutta方法的核心思想类似于2th Runge-Kutta方法，在区间起始点(t0)和区间终点(t0+h)权重系数一致，4th Runge-Kutta中间点斜率(k2、k3)的权重系数比终点的斜率(k1、k4)大。</strong></p>
+<h4 id="可视化四阶龙格-库塔法">可视化四阶龙格-库塔法</h4>
+<p>对于如下微分方程：<br>
+$$<br>
+{ {dy(t)} \over {dt} } = y’(t) = -2y(t), \quad \quad {\rm{with;} } y(0)=3<br>
+$$<br>
+估计t=t0+h的值。</p>
+<h5 id="k1-y1">k1,y1</h5>
+<p>$$<br>
+&amp; {k_1} = f({y^*}({t_0}),{t_0}) \<br>
+&amp; {k_1} =  - 2y({t_0}) =  - 2y(0) =  - 6<br>
+$$</p>
+<p>用斜率k1估计一半步长处的值y(h/2)，$y_1(h/2)=y_0+k_1*h/2$</p>
+<img src="D:/pic-bed/k1estimate.svg">
+<h5 id="k2-y2">k2,y2</h5>
+<p>已知y1，可以求得t=t0+h/2处的另一个斜率值k2,<br>
+$$<br>
+\eqalign{<br>
+&amp; {k_2} = f\left( { {y^<em>}({t_0}) + {k_1}{h \over 2},{t_0} + {h \over 2} } \right) \<br>
+&amp; {k_2} =  - 2y_1 =  -4.8<br>
+}<br>
+$$<br>
+用斜率k2估计一半步长处的值y(h/2)，$y_2(h/2)=y_0+k_2</em>h/2$</p>
+<img src="D:/pic-bed/k2estimate.svg">
+<h5 id="k3-y3">k3,y3</h5>
+<p>已知y2，可以求得t=t0+h/2处的另一个斜率值k3。<br>
+$$<br>
+\eqalign{<br>
+&amp; {k_3} = f\left( { {y^<em>}({t_0}) + {k_2}{h \over 2},{t_0} + {h \over 2} } \right) \<br>
+&amp; {k_3} =  - 2y_2 =  -5.04<br>
+}<br>
+$$<br>
+用斜率k3估计步长处的值y(h)，$y_3(h)=y_0+k_3</em>h$</p>
+<img src="D:/pic-bed/k3estimate.svg">
+<h5 id="k4-y">k4,y*</h5>
+<p>已知y3，可以求得t=t0+h处的斜率值k4。<br>
+$$<br>
+\eqalign{<br>
+&amp; {k_4} = f\left( { {y^*}({t_0}) + {k_3}h,{t_0} + h} \right) \cr \<br>
+&amp; {k_4} =  - 2y_3 =  -3.9840<br>
+}<br>
+$$<br>
+对斜率k*取加权均值作为最后的斜率：<br>
+$$<br>
+m = {1 \over 6}{k_1} + {1 \over 3}{k_2} + {1 \over 3}{k_3} + {1 \over 6}{k_4}<br>
+$$</p>
+<p>$$<br>
+{y^*}(h) = y(0) + \left( { {1 \over 6}{k_1} + {1 \over 3}{k_2} + {1 \over 3}{k_3} + {1 \over 6}{k_4} } \right)h = y(0) + m \cdot h<br>
+$$</p>
+<img src="D:/pic-bed/ystarestimate.svg">
+<p><strong>Code</strong></p>
+<p><code>runge_kutta_4th.m</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y_start_th</span> = <span class="title">runge_kutta_4th</span><span class="params">(f, y_start_t0, h, varargin)</span></span></span><br><span class="line">    <span class="comment">% 函数功能:</span></span><br><span class="line">    <span class="comment">%   四阶龙格-库塔法数值积分求解微分方程;</span></span><br><span class="line">    <span class="comment">% 参数:</span></span><br><span class="line">    <span class="comment">%   f,求导函数句柄f(y,t);</span></span><br><span class="line">    <span class="comment">%   y_start_t0,t0时刻对应的y(t0)近似值y*(t0)</span></span><br><span class="line">    <span class="comment">%   h,步长;</span></span><br><span class="line">    <span class="comment">%   varargin,扩展参数</span></span><br><span class="line">    <span class="comment">% 返回:</span></span><br><span class="line">    <span class="comment">%   y_start_th,t0+h时刻对应的y(t0+h)近似值y*(t0+h)</span></span><br><span class="line">    <span class="comment">% 说明:</span></span><br><span class="line">    <span class="comment">%   参考:https://lpsa.swarthmore.edu/NumInt/NumIntFourth.html</span></span><br><span class="line"></span><br><span class="line">    k1 = f(y_start_t0);</span><br><span class="line">    y1 = y_start_t0 + k1 * h / <span class="number">2</span>;</span><br><span class="line">    k2 = f(y1);</span><br><span class="line">    y2 = y_start_t0 + k2 * h / <span class="number">2</span>;</span><br><span class="line">    k3 = f(y2);</span><br><span class="line">    y3 = y_start_t0 + k3 * h;</span><br><span class="line">    k4 = f(y3);</span><br><span class="line"></span><br><span class="line">    cof = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>] ./ <span class="number">6</span>;</span><br><span class="line">    y_start_th = y_start_t0 + h * ([k1, k2, k3, k4]) * cof&#x27;;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% Example  1th vs 2th vs 4th Runge-Kutta</span></span><br><span class="line"></span><br><span class="line">clc;</span><br><span class="line">h = <span class="number">0.01</span>; <span class="comment">% Time step</span></span><br><span class="line">t = <span class="number">0</span>:h:<span class="number">2</span>; <span class="comment">% t goes from 0 to 2 seconds.</span></span><br><span class="line">yexact = <span class="number">3</span> * <span class="built_in">exp</span>(<span class="number">-2</span> * t); <span class="comment">% Exact solution (in general we won&#x27;t know this)</span></span><br><span class="line"></span><br><span class="line">f1 = @(y) - <span class="number">2</span> .* y;</span><br><span class="line">h_1 = <span class="number">0.2</span>;</span><br><span class="line">t_1 = <span class="number">0</span>:h_1:<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">y_stars_1 = <span class="built_in">zeros</span>(<span class="built_in">size</span>(t_1));</span><br><span class="line">y_stars_1(<span class="number">1</span>) = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="built_in">length</span>(t_1) - <span class="number">1</span></span><br><span class="line">    y_stars_1(k + <span class="number">1</span>) = runge_kutta_1th(f1, y_stars_1(k), h_1);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">h_2 = <span class="number">0.2</span>;</span><br><span class="line">t_2 = <span class="number">0</span>:h_2:<span class="number">2</span>;</span><br><span class="line">y_stars_2 = <span class="built_in">zeros</span>(<span class="built_in">size</span>(t_2));</span><br><span class="line">y_stars_2(<span class="number">1</span>) = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="built_in">length</span>(t_2) - <span class="number">1</span></span><br><span class="line">    y_stars_2(k + <span class="number">1</span>) = runge_kutta_2th(f1, y_stars_2(k), h_2);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">h_4 = <span class="number">0.2</span>;</span><br><span class="line">t_4 = <span class="number">0</span>:h_4:<span class="number">2</span>;</span><br><span class="line">y_stars_4 = <span class="built_in">zeros</span>(<span class="built_in">size</span>(t_4));</span><br><span class="line">y_stars_4(<span class="number">1</span>) = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span>:<span class="built_in">length</span>(t_4) - <span class="number">1</span></span><br><span class="line">    y_stars_4(k + <span class="number">1</span>) = runge_kutta_4th(f1, y_stars_4(k), h_4);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">tcf(<span class="string">&#x27;tss&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span>(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;tss&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(t, yexact, <span class="string">&#x27;LineWidth&#x27;</span>, <span class="number">1.5</span>);</span><br><span class="line"><span class="built_in">plot</span>(t_1, y_stars_1, <span class="string">&#x27;-o&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>, <span class="number">1.5</span>)</span><br><span class="line"><span class="built_in">plot</span>(t_2, y_stars_2, <span class="string">&#x27;-o&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>, <span class="number">1.5</span>)</span><br><span class="line"><span class="built_in">plot</span>(t_4, y_stars_4, <span class="string">&#x27;-o&#x27;</span>, <span class="string">&#x27;LineWidth&#x27;</span>, <span class="number">1.5</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;exact&#x27;</span>, <span class="string">&#x27;1th runge kutta&#x27;</span>, <span class="string">&#x27;2th runge kutta&#x27;</span>, <span class="string">&#x27;4th runge kutta&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;Runge-Kutta Methods&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="D:/pic-bed/rungekutta-1thvs-2thvs-4th-1.svg">
+<h2 id="四元数运动学-quaternion-kinematics">四元数运动学(quaternion kinematics)</h2>
+<p>四元数运动学微分表达式如下：<br>
+$$<br>
+\bold{f}(\bold{q},t)=\bold{\dot q} = \frac{1}{2}\Omega(\omega(t))\bold{q}<br>
+$$<br>
+$\Omega(\omega)$ 是将角速度转换为实斜对称矩阵运算符：<br>
+$$<br>
+\Omega(\omega)=\left[<br>
+\begin{matrix}<br>
+&amp;0 \quad &amp;-\omega_x \quad &amp;-\omega_y \quad &amp;-\omega_z \<br>
+&amp;\omega_x \quad &amp;0 \quad &amp;\omega_z \quad &amp;-\omega_y \<br>
+&amp;\omega_y \quad &amp;-\omega_z \quad &amp;0 \quad &amp; \omega_x \<br>
+&amp;\omega_z \quad &amp;\omega_y \quad &amp;-\omega_x \quad &amp;0 \<br>
+\end{matrix}<br>
+\right]<br>
+$$</p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://matlabgeeks.weebly.com/uploads/8/0/4/8/8048228/runge-kutta-4-order_with_solution.pdf">COMPUTER PROJECT#4 (weebly.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1510.02224.pdf">1510.02224.pdf (arxiv.org)</a></li>
+<li><a target="_blank" rel="noopener" href="https://byjus.com/maths/runge-kutta-rk4-method/#:~:text=What">https://byjus.com/maths/runge-kutta-rk4-method/#:~:text=What</a> is Fourth Order RK,for a given point x.</li>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/runge-kutta-4th-order-method-solve-differential-equation/">Runge-Kutta 4th Order Method to Solve Differential Equation - GeeksforGeeks</a></li>
+<li><a target="_blank" rel="noopener" href="https://lpsa.swarthmore.edu/NumInt/NumIntIntro.html">Approximation of Differential Equations by Numerical Integration (swarthmore.edu)</a></li>
+<li><a target="_blank" rel="noopener" href="https://ece.uwaterloo.ca/~dwharder/NumericalAnalysis/14IVPs/rk/theory.html">Topic 14.3: 4th-Order Runge Kutta’s Method (Theory) (uwaterloo.ca)</a></li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite-url/undefined/RungeKutta/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="../%E7%89%9B%E9%A1%BF%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">牛顿、高斯牛顿、LM方法</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2023
+        <i class="ri-heart-fill heart_icon"></i> Wh
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="../../index.html"><img src="/img/avatar/favicon-32x32-monkey.png" alt="Wh&#39;s 🛰️ Blogs"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../index.html">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="../../about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="../../images/wechat.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="../../images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="../../js/jquery-3.6.0.min.js"></script>
+ 
+<script src="../../js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="../../js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="../../dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="../../js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="../../css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>

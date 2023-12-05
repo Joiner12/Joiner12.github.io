@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">11 分钟</span>
+            <span class="post-count">12 分钟</span>
         </span>
     </span>
 </div>
@@ -185,9 +185,27 @@ P_k=(I-K_kC)P_k^- \quad(19)</script><p>在此，我们将卡尔曼滤波的递�
 P_{k}=(I-K_{k}C)P_{k}^{-} \text{(6.35)} 
 \end{gathered}</script><p>其中，式(6.33)就是我们前面推导出的卡尔曼增益计算公式(6.29)，而式(6.34)和式(6.35)对系统的状态估计值及其均方误差进行更新。在这一过程中，由于状态估计值得到了实际测量值的验证因而它的均方误差值变小，即可靠性增加。卡尔曼滤波器综合、平衡了它的先验估计和实际测量这两方面的信息，使测量更新以后的状态估计值具有最小的均方误差。</p>
 <p>通过该方程可知，卡尔曼增益 $K_{k}$ 实际上表征了状态最优估计过程中模型预测误差与量测误差的比重，即 $K_{k}∈[0,1]$  。当 $K_{k}=0$ 时，即预测误差为0，系统的状态值完全取决与预测值（$\hat{x}_{k}=\hat{x}_{k}^{-}$）；而当 $K_{k} =1$ 时，即量测误差为0，系统的状态值完全取决于量侧值。</p>
-<p>GPS原理和接收机设计 谢钢 </p>
+<h2 id="EKF-Extented-Kalman-Filter"><a href="#EKF-Extented-Kalman-Filter" class="headerlink" title="EKF(Extented Kalman Filter)"></a>EKF(Extented Kalman Filter)</h2><div>
+    <img src="https://img-blog.csdnimg.cn/20200326213337273.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbmdkYW5lcnlh,size_16,color_FFFFFF,t_70">
+    <img src="https://img-blog.csdnimg.cn/20200326213128200.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbmdkYW5lcnlh,size_16,color_FFFFFF,t_70">
+    <img src="https://img-blog.csdnimg.cn/20200326213149483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbmdkYW5lcnlh,size_16,color_FFFFFF,t_70">
+    <img src="https://img-blog.csdnimg.cn/20200326213208958.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbmdkYW5lcnlh,size_16,color_FFFFFF,t_70">
+</div>
+
+
+
+
+
+
+
+
+<p><strong>Todo list:</strong></p>
+<p>:black_square_button: 系统建模方法 </p>
+<p>:black_square_button: EKF和KF</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="">GPS原理和接收机设计 谢钢 </a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48876718">卡尔曼滤波（Kalman Filter）原理与公式推导 - 知乎 (zhihu.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ycwang16/p/5999034.html">（二）. 细说Kalman滤波：The Kalman Filter - 王永才 - 博客园 (cnblogs.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/gangdanerya/article/details/105105611">扩展卡尔曼滤波（EKF）算法详细推导及仿真（Matlab）_ekf算法-CSDN博客</a></p>
  
       <!-- reward -->
       
